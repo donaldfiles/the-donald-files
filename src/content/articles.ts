@@ -90,6 +90,32 @@ export const articles: Article[] = [
     published: true,
   },
 
+  {
+    slug: 'doj-scotus-nevada-us-attorney-chattah',
+    title: 'DOJ asks Supreme Court to keep Nevada U.S. attorney after 9th Circuit disqualification',
+    category: 'REPORTS',
+    date: '2026-09-09',
+    dek: 'DOJ asks SCOTUS to overturn a 9th Circuit ruling that Sigal Chattah is not validly serving as Nevada’s top federal prosecutor.',
+    body: [
+      'The Trump administration petitioned the U.S. Supreme Court on 9 September 2026 to overturn a 9th Circuit ruling that Sigal Chattah is not validly serving as Nevada’s top federal prosecutor, Reuters reported — part of a broader fight over installing U.S. attorneys without Senate confirmation.',
+      'Reuters says Solicitor General D. John Sauer argued the August appeals‑court decision and similar 2nd and 3rd Circuit rulings conflict with the Federal Vacancies Reform Act (FVRA), risk “chaos,” and threaten confusion across five Ninth Circuit U.S. Attorney’s Offices handling over 8,000 cases a year. The petition seeks to reverse the disqualification of Chattah from supervising three criminal cases.',
+      'The primary 9th Circuit opinion (filed 17 August 2026 in United States v. Jackson and consolidated cases) held the Attorney General cannot make someone Acting U.S. Attorney by designating them first assistant to an already‑vacant office, and cannot create a de facto Acting U.S. Attorney by fully delegating all U.S. Attorney powers. The panel affirmed district‑court disqualification of Chattah from those prosecutions and dismissed defendants’ cross‑appeals seeking indictment dismissal for lack of appellate jurisdiction.',
+      'Reuters recounts Chattah’s path: interim appointment under 28 U.S.C. § 546 (late March 2025, 120‑day limit), then redesignation as First Assistant / acting when that term was ending; Nevada federal public defenders challenged her authority. Case caption at the Court: United States v. Jackson, No. 26‑304.',
+    ],
+    sources: [
+      {
+        label: 'Reuters, 9 Sep 2026 — Nate Raymond',
+        url: 'https://www.reuters.com/legal/government/doj-asks-us-supreme-court-allow-trump-ally-remain-nevadas-top-federal-prosecutor-2026-09-09/',
+      },
+      {
+        label:
+          'Primary — 9th Cir. opinion, 17 Aug 2026, Nos. 25‑6214 et al. (United States v. Jackson)',
+        url: 'https://cdn.ca9.uscourts.gov/datastore/opinions/2026/08/17/25-6470.pdf',
+      },
+    ],
+    published: true,
+  },
+
 ]
 
 export function getPublishedArticles(): Article[] {
