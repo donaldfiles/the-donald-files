@@ -8,9 +8,11 @@ import { About } from './pages/About'
 import { Subscribe } from './pages/Subscribe'
 import { Admin } from './pages/Admin'
 
+const basename = (import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '/'
+
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
