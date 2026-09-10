@@ -65,6 +65,31 @@ export const articles: Article[] = [
     ],
     published: true,
   },
+  {
+    slug: 'trump-dividend-5000-gop-congress',
+    title: 'Trump pledges $5,000 “Trump dividend” if GOP keeps Congress',
+    category: 'REPORTS',
+    date: '2026-09-10',
+    dek: 'At a Dallas midterm convention, Trump pledged a $5,000 “Trump dividend” to every adult U.S. citizen if Republicans retain Congress.',
+    body: [
+      'At the Republican midterm convention in Dallas on 9 September 2026, President Donald Trump pledged to issue a $5,000 “Trump dividend” to every adult U.S. citizen if Republicans retain both the House and Senate in November, the Associated Press and Reuters reported.',
+      'AP quotes Trump: “If the Republicans win the Senate and House, because of our tremendous strength and success economically, I will issue a dividend to every adult citizen in the United States of America for $5,000.” He said recipients would have to spend the money in the United States and offered no implementation details. Reuters independently reported the same pledge, estimating the proposal would likely cost more than $1 trillion (≈270 million U.S. adults) and could require congressional approval; legality and mechanics were unclear.',
+      'Both wire reports place the speech at the center of an unusual midterm convention that cast Trump as the campaign’s focus despite low approval ratings and public discontent over living costs and the Iran war. Reuters notes some vulnerable Republicans skipped the event; AP reports Trump also defended the Iran war and tariffs in the same address.',
+    ],
+    sources: [
+      {
+        label:
+          'Associated Press (via WRTV), 9 Sep 2026 — Colvin/Beaumont/Weissert',
+        url: 'https://www.wrtv.com/news/politics/trump-promises-5000-dividend-to-citizens-during-midterm-convention-speech/',
+      },
+      {
+        label: 'Reuters, 10 Sep 2026 — Bose/Holland/Layne',
+        url: 'https://www.reuters.com/world/us/trump-touts-5000-payout-if-republicans-win-vance-waits-wings-2026-09-10/',
+      },
+    ],
+    published: true,
+  },
+
 ]
 
 export function getPublishedArticles(): Article[] {
