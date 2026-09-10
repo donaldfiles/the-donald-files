@@ -45,12 +45,17 @@ npm run build
 
 | Path | Page |
 |------|------|
-| `/` | Home — hero, feed stubs, Telegram, Subscribe CTAs |
-| `/reports` | Reports |
+| `/` | Home — featured report + latest feed, Telegram, Subscribe CTAs |
+| `/reports` | Reports listing |
+| `/reports/:slug` | Individual REPORT article + SOURCE FILES |
 | `/the-record` | Timeline placeholder |
 | `/about` | About |
 | `/subscribe` | Subscribe / Support the Research / Buy the Report |
 | `/admin` | Admin stub (not in public nav) |
+
+## Content (v1)
+
+Published articles live in `src/content/articles.ts` (static module). Category labels use REPORTS / ANALYSIS / TIMELINE / OPINION. Each report renders a **SOURCE FILES** section with outbound links.
 
 ## Supabase
 

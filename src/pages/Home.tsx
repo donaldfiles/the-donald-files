@@ -1,61 +1,42 @@
 import { Link } from 'react-router-dom'
 import { CategoryLabel } from '../components/CategoryLabel'
-
-const stubs = [
-  {
-    id: 1,
-    category: 'REPORTS' as const,
-    title: 'Featured investigation — placeholder',
-    dek: 'A long-form report stub. Replace with live Supabase content.',
-    date: '2026-09-01',
-  },
-  {
-    id: 2,
-    category: 'ANALYSIS' as const,
-    title: 'What the numbers actually show',
-    dek: 'Analysis stub for the home feed.',
-    date: '2026-08-28',
-  },
-  {
-    id: 3,
-    category: 'TIMELINE' as const,
-    title: 'Key dates on The Record',
-    dek: 'Timeline excerpt stub.',
-    date: '2026-08-20',
-  },
-  {
-    id: 4,
-    category: 'OPINION' as const,
-    title: 'Why documentation matters',
-    dek: 'Opinion stub — clearly labelled.',
-    date: '2026-08-15',
-  },
-]
+import { getPublishedArticles } from '../content/articles'
 
 export function Home() {
-  const [featured, ...rest] = stubs
+  const published = getPublishedArticles()
+  const featured = published[0]
+  const rest = published.slice(1)
 
   return (
     <div className="page home">
-      <section className="hero" aria-labelledby="hero-title">
-        <CategoryLabel category={featured.category} />
-        <h1 id="hero-title">{featured.title}</h1>
-        <p className="dek">{featured.dek}</p>
-        <p className="meta">{featured.date}</p>
-        <Link className="btn btn-accent" to="/reports">
-          Read Reports
-        </Link>
-      </section>
+      {featured ? (
+        <section className="hero" aria-labelledby="hero-title">
+          <CategoryLabel category={featured.category} />
+          <h1 id="hero-title">
+            <Link to={`/reports/${featured.slug}`}>{featured.title}</Link>
+          </h1>
+          <p className="dek">{featured.dek}</p>
+          <p className="meta">{featured.date}</p>
+          <Link className="btn btn-accent" to={`/reports/${featured.slug}`}>
+            Read Report
+          </Link>
+        </section>
+      ) : null}
 
       <section className="feed" aria-labelledby="feed-title">
         <h2 id="feed-title" className="section-title">
           Latest
         </h2>
+        {rest.length === 0 && featured ? (
+          <p className="dek">More reports will appear here as they publish.</p>
+        ) : null}
         <ul className="article-list">
           {rest.map((item) => (
-            <li key={item.id} className="article-card">
+            <li key={item.slug} className="article-card">
               <CategoryLabel category={item.category} />
-              <h3>{item.title}</h3>
+              <h3>
+                <Link to={`/reports/${item.slug}`}>{item.title}</Link>
+              </h3>
               <p className="dek">{item.dek}</p>
               <p className="meta">{item.date}</p>
             </li>
