@@ -1,5 +1,10 @@
 const MEMES = [
   {
+    top: '$5,000 — VOID unless GOP wins',
+    bot: 'both chambers · funding TBD · spend in USA or else',
+    cap: 'SATIRE · desk-made check meme · NOT a fact · not a real check',
+  },
+  {
     top: 'When the press release',
     bot: 'meets the FOIA dump',
     cap: 'SATIRE · not a report · shareable scrap',
@@ -8,11 +13,6 @@ const MEMES = [
     top: '“Dividend” energy',
     bot: 'CBO has entered the chat',
     cap: 'SATIRE · labeled · not sourced claim',
-  },
-  {
-    top: 'Pickaxe Mountain',
-    bot: 'vs. the actual map',
-    cap: 'SATIRE · attitude chrome only',
   },
 ]
 

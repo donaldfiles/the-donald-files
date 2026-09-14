@@ -8,6 +8,8 @@ type Props = {
 /** Rage rank blurbs — attitude only, no new facts. */
 function rageBlurb(slug: string, fallbackIndex: number): string {
   const map: Record<string, string> = {
+    'truth-social-trump-dividend-5000-double-down':
+      'Truth Social Watch · live exhibit on the rail',
     'iran-war-midterms-pickaxe-mountain':
       'Lead blast · biggest heat on the stack',
     'doj-scotus-save-voter-verification': 'Filings first · spin optional',

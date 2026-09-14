@@ -1673,6 +1673,34 @@ h1, h2, h3 {
   margin: 0 0 10px;
 }
 
+
+.truth-post.is-live {
+  background: #16120e;
+  box-shadow: inset 0 0 0 2px var(--stamp-yellow);
+}
+
+.truth-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin: 0 0 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.truth-links a {
+  color: var(--stamp-yellow);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.truth-links a:hover {
+  color: #fff;
+}
+
 .truth-foot {
   font-family: var(--mono);
   font-size: 9px;

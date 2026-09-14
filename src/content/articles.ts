@@ -18,6 +18,35 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'truth-social-trump-dividend-5000-double-down',
+    title: 'He doubled down on the $5,000 midterm bribe on his own app',
+    category: 'REPORTS',
+    date: '2026-09-14',
+    dek: 'Two days after Dallas, Trump posted that the “Trump Dividend” will happen — and told America to VOTE REPUBLICAN. Here’s the post. Full stop.',
+    body: [
+      'FACT — What he posted: On 11 September 2026 at 3:08 PM ET, @realDonaldTrump posted: “The $5,000 Trump Dividend, given to all Adults in the United States due to the fact that our Country is taking in Trillions of Dollars of Economic Development, Investment, and Pure SUCCESS, is being criticized by “Dumocrats” who are hoping that it never happens — But it will! As an example, the Dumocrats said THE GREAT BIG BEAUTIFUL BILL, one of the largest ever approved by Congress, or signed into Law by a President happened, despite the Dumocrats saying it would be impossible to get approved — Or the Gift of $1776 that I gave last year to our Military, was an almost guaranteed Non Starter, everyone said it could not be done, but it was, our Military Patriots got the money, and loved it. When I say something, I mean it! The $5,000 Dividend will happen because the People of our Country deserve it. VOTE REPUBLICAN — MAKE AMERICA GREAT AGAIN! President DONALD J. TRUMP” Permalink: https://truthsocial.com/@realDonaldTrump/117253978301857789',
+      'No mechanics. No bill text. No funding line. Just a midterm demand note typed in all-caps energy and aimed at the base. Timestamp and full text also archived by the American Presidency Project (UCSB) for 11 September 2026.',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: This is the convention pledge with the mask off: not a policy white paper — a vote-contingent cash promise blasted on his private network after the arena lights went down. Wire reporting already put the sticker price north of $1 trillion and noted Congress would likely have to bless it. He answered the skepticism the only way he knows: yell “But it will!” and stamp VOTE REPUBLICAN on the end.',
+      'Related file: /reports/trump-dividend-5000-gop-congress/',
+    ],
+    sources: [
+      {
+        label: 'Primary — Truth Social permalink (@realDonaldTrump, 11 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117253978301857789',
+      },
+      {
+        label:
+          'Archive — American Presidency Project (UCSB), Truth Social Posts of 11 Sep 2026',
+        url: 'https://www.presidency.ucsb.edu/documents/truth-social-posts-september-11-2026',
+      },
+      {
+        label: 'Context — Reuters, 10 Sep 2026 (cost / Congress / legality)',
+        url: 'https://www.reuters.com/world/us/trump-touts-5000-payout-if-republicans-win-vance-waits-wings-2026-09-10/',
+      },
+    ],
+    published: true,
+  },
+  {
     slug: 'iran-war-midterms-pickaxe-mountain',
     title:
       'Trump ties endless Iran war to the midterms, threatens Pickaxe Mountain again',
