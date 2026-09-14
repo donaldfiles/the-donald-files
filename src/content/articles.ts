@@ -18,6 +18,35 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'truth-social-colossus-smithsonian-washington',
+    title:
+      'He wants a 30-foot Washington “Colossus” and a culture war at the Smithsonian',
+    category: 'REPORTS',
+    date: '2026-09-14',
+    dek: 'On 9/11 night, Trump posted a taxpayer-museum manifesto: dump the “Infinity” sculpture, build a giant George Washington statue, and replace “restorative history” with a “Center for American Heroes.” Here’s the post.',
+    body: [
+      'FACT — What he posted: On 11 September 2026 at 10:31 PM ET (7:31 PM PT), @realDonaldTrump posted (and reshared) a call on the Smithsonian Institution to: Mount a five-year George Washington exhibition at the National Museum of American History through 22 February 2032; Erect a 30-foot “Colossus statue” outside the museum to replace the “Infinity” sculpture; Install an 11-foot Washington statue from a “Freedom 250 Grand Prix” into Flag Hall by Constitution Day, 17 September 2026; Swap a “Center for Restorative History” / “Decolonization Plan” framing for a “Center for American Heroes.” He attacked an exhibit describing 1492–1776 as the “Great Unsettling,” claimed Washington’s Delaware crossing “is not even mentioned,” and closed: “Thank you for your attention to this matter! President DONALD J. TRUMP” Permalink: https://truthsocial.com/@realDonaldTrump/117255718355537976 Related RT: https://truthsocial.com/@realDonaldTrump/117255720319253709',
+      'Timestamp and full text also archived by the American Presidency Project (UCSB) for 11 September 2026.',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: This isn’t museum enthusiasm — it’s a presidential culture-war memo timed to the 9/11 anniversary and the nation’s 250th, drafted as if the Smithsonian were a campaign prop. Demanding a “Colossus,” scrubbing “restorative history,” and rewriting the exhibit brief from the Truth Social app is the same move every time: personal brand first, institutions second, history as a loyalty test.',
+    ],
+    sources: [
+      {
+        label: 'Primary — Truth Social permalink (@realDonaldTrump, 11 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117255718355537976',
+      },
+      {
+        label: 'Primary — companion RT (@realDonaldTrump, 11 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117255720319253709',
+      },
+      {
+        label:
+          'Archive — American Presidency Project (UCSB), Truth Social Posts of 11 Sep 2026',
+        url: 'https://www.presidency.ucsb.edu/documents/truth-social-posts-september-11-2026',
+      },
+    ],
+    published: true,
+  },
+  {
     slug: 'truth-social-trump-dividend-5000-double-down',
     title: 'He doubled down on the $5,000 midterm bribe on his own app',
     category: 'REPORTS',

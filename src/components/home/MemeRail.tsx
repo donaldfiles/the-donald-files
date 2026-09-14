@@ -1,5 +1,10 @@
 const MEMES = [
   {
+    top: 'NOW HIRING: 30-ft bronze ego',
+    bot: 'must tower over Infinity · apply via Truth Social',
+    cap: 'SATIRE · desk-made · NOT a fact · not a Smithsonian listing',
+  },
+  {
     top: '$5,000 — VOID unless GOP wins',
     bot: 'both chambers · funding TBD · spend in USA or else',
     cap: 'SATIRE · desk-made check meme · NOT a fact · not a real check',
