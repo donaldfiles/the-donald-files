@@ -1,5 +1,10 @@
 const MEMES = [
   {
+    top: 'FOREIGN POLICY IN THREE WORDS: FAFO',
+    bot: '(official soundtrack)',
+    cap: 'SATIRE · desk-made · NOT a fact · not a State Dept briefing',
+  },
+  {
     top: 'TRUMPPALOOZA 1 — NFL 0',
     bot: '*projections subject to vibes*',
     cap: 'SATIRE · desk-made scoreboard · NOT a fact · not Nielsen',

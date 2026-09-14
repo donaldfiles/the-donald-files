@@ -18,6 +18,39 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'truth-social-caracas-maduro-fafo',
+    title:
+      'On 9/11 night he dropped a Caracas flex reel: “effed around, and he found out”',
+    category: 'REPORTS',
+    date: '2026-09-14',
+    dek: 'Months after U.S. forces yanked Nicolás Maduro out of Venezuela, Trump posted a highlight reel calling the raid one of the “most stunning… displays of American military might” in U.S. history — and framed it as a warning to everyone else.',
+    body: [
+      'FACT — What he posted: On 11 September 2026 at 11:21 PM EDT, @realDonaldTrump posted a video. Per the Trump’s Truth archive transcript, the clip includes lines that U.S. forces conducted an “apprehension mission in Caracas, Venezuela to bring to justice 2 indicted persons, Nicolas and Cecilia Maduro,” plus the taunt that Maduro “had his chance until he didn’t” / “effed around, and he found out,” and praise for the operation as among the “most stunning, effective, and powerful displays of American military might and competence in American history.” Permalink: https://truthsocial.com/@realDonaldTrump/117255916246451243',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: This isn’t breaking news — the raid was 3 January 2026 (AP/Reuters). It’s a victory lap on the anniversary of 9/11, recycled as midterm-season intimidation porn: we can snatch a sitting leader; adjust accordingly. Maduro is in Brooklyn fighting the case on immunity grounds (Reuters, 2 Sep 2026). Trump’s still selling the extraction like a UFC walkout. Deterrence theater, truth-app edition.',
+    ],
+    sources: [
+      {
+        label: 'Primary — Truth Social permalink (@realDonaldTrump, 11 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117255916246451243',
+      },
+      {
+        label: 'Archive — Trumpstruth.org status 41697',
+        url: 'https://www.trumpstruth.org/statuses/41697',
+      },
+      {
+        label:
+          'Context — AP, Trump / Maduro Venezuela raid (3 Jan 2026 attributed)',
+        url: 'https://apnews.com/article/trump-maduro-venezuela-presidential-palace-blowtorches-7969152ae48510003fe9cbde92f3c102',
+      },
+      {
+        label:
+          'Context — Reuters, Maduro asserts immunity (2 Sep 2026)',
+        url: 'https://www.reuters.com/world/americas/venezuelas-maduro-asserts-immunity-urges-us-judge-dismiss-charges-2026-09-02/',
+      },
+    ],
+    published: true,
+  },
+  {
     slug: 'truth-social-dallas-beat-nfl',
     title:
       'He declared Dallas “beat the NFL” before the ratings even existed',
