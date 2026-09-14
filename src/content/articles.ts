@@ -19,14 +19,15 @@ export type Article = {
 export const articles: Article[] = [
   {
     slug: 'iran-war-midterms-pickaxe-mountain',
-    title: 'Iran war tied to midterms; Pickaxe Mountain threat',
+    title:
+      'Trump ties endless Iran war to the midterms, threatens Pickaxe Mountain again',
     category: 'REPORTS',
     date: '2026-09-10',
-    dek: 'Trump says the U.S.–Iran war will end after the November midterms and again threatens a strike on Pickaxe Mountain.',
+    dek: 'Six months in, Trump says the Iran war ends after November — and threatens Pickaxe Mountain again.',
     body: [
-      'President Donald Trump said he expects the U.S.–Iran war to end immediately after the November midterm elections, and again threatened a strike on Iran’s Pickaxe Mountain site linked to its nuclear programme, Reuters reported on 10 September 2026.',
-      'Speaking to reporters, Trump claimed Tehran cannot “hold out any longer” and is “desperate to try and affect the election.” At the Republican midterm convention he separately warned of “a little activity at Pickaxe,” advising Iran “not to get cute” or face a hard hit — a threat Reuters notes he has repeated since at least mid‑July.',
-      'Reuters places the conflict at about six months old (U.S. and Israel struck Iran in February). The same dispatch reports renewed shipping attacks, Brent crude hovering above $100, and Houthi moves toward leverage over the Bab el‑Mandeb Strait. Trump’s popularity, Reuters says, has been driven to record lows by the war and higher fuel prices. A Wall Street Journal report that top advisers privately warn the war could last through his term (to January 2029) was noted by Reuters as unverified by its reporters.',
+      'Six months into a war he sold as a quick hit, President Donald Trump is now pitching voters a new timeline: the Iran fight ends after November — conveniently once the ballots are in. Reuters, 10 September 2026.',
+      'To reporters, Trump claimed Tehran “can’t hold out any longer” and is “desperate to try and affect the election.” At the GOP’s midterm convention he also spotted “a little activity at Pickaxe” — the buried nuclear-linked site he’s been threatening since mid‑July — and warned Iran not to “get cute” or get hit “very hard.”',
+      'Meanwhile, reality: shipping attacks are back, Brent’s parked above $100, Houthis are muscling toward Bab el‑Mandeb, and the war-plus-gas-prices combo has dragged Trump’s popularity to record lows, per Reuters. A Wall Street Journal bit that top aides privately fear this drags through January 2029? Reuters flagged it as unverified on their end — so it stays rumor until someone documents it.',
     ],
     sources: [
       {
@@ -43,14 +44,14 @@ export const articles: Article[] = [
   },
   {
     slug: 'doj-scotus-save-voter-verification',
-    title: 'DOJ asks Supreme Court to restore blocked SAVE voter‑verification system',
+    title: 'DOJ begs the Supreme Court to revive its blocked voter-purge database',
     category: 'REPORTS',
     date: '2026-09-08',
-    dek: 'The administration seeks a Supreme Court stay of a district‑court order blocking DHS SAVE use for state voter‑roll checks.',
+    dek: 'Two months out from midterms, the Trump DOJ asks SCOTUS to unfreeze a citizenship-check system a federal judge already called a mess.',
     body: [
-      'The Trump administration asked the U.S. Supreme Court on 8 September 2026 to stay a June district‑court order that blocked use of a revamped DHS Systematic Alien Verification for Entitlements (SAVE) database for checking state voter rolls — one of several moves expanding federal election involvement ahead of the 3 November midterms, Reuters reported.',
-      'In the stay application, DOJ lawyers called Judge Sparkle Sooknanan’s order “indefensible,” arguing it vacates the government’s ability to use Social Security data when responding to state citizenship‑verification requests. The primary filing (DHS v. League of Women Voters, application dated 8 Sep 2026) states DHS updated SAVE in May 2025 to allow Social Security numbers and bulk queries, and that the D.C. Circuit denied a stay on 4 September before the Supreme Court ask.',
-      'Reuters reports the June ruling found the overhaul haphazard and the citizenship data unreliable; advocacy groups say eligible voters have been wrongly flagged as noncitizens. Democracy Forward’s Skye Perryman said courts have rejected an “unlawful system” that risks privacy and voting rights. The administration is also seeking relief on a blocked Postal Service mail‑ballot rule, per the same Reuters piece.',
+      'Two months out from midterms, the Trump DOJ is asking the Supreme Court to unfreeze a citizenship-check system a federal judge already called a mess — because nothing says “election integrity” like bulk Social Security scrapes and wrongful purge risk. Reuters, 8 September 2026.',
+      'Lawyers called Judge Sparkle Sooknanan’s June block “indefensible,” moaning it strips their power to feed states citizenship hits from a revamped DHS SAVE database. The primary filing (DHS v. League of Women Voters, 8 Sep 2026) admits the May 2025 upgrade added SSNs + bulk search; the D.C. Circuit shrugged off a stay on 4 September, so now it’s SCOTUS cosplay.',
+      'Sooknanan’s court found the rebuild haphazard with unreliable citizenship data. Rights groups say eligible voters — often naturalized citizens — get wrongly tagged as noncitizens and bounced off the rolls. Democracy Forward’s Skye Perryman: courts keep rejecting an “unlawful system” that torches privacy and the franchise. Bonus ask in the same Reuters piece: revive a blocked Postal Service mail-ballot rule. Pattern recognition not required, but it helps.',
     ],
     sources: [
       {
@@ -67,14 +68,15 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-dividend-5000-gop-congress',
-    title: 'Trump pledges $5,000 “Trump dividend” if GOP keeps Congress',
+    title:
+      'Trump’s midterm bribe cosplay: $5,000 “Trump dividend” if the GOP keeps Congress',
     category: 'REPORTS',
     date: '2026-09-10',
-    dek: 'At a Dallas midterm convention, Trump pledged a $5,000 “Trump dividend” to every adult U.S. citizen if Republicans retain Congress.',
+    dek: 'At Dallas’s “Trumpapalooza,” Trump floated $5,000 to every adult citizen — only if Republicans keep the House and Senate.',
     body: [
-      'At the Republican midterm convention in Dallas on 9 September 2026, President Donald Trump pledged to issue a $5,000 “Trump dividend” to every adult U.S. citizen if Republicans retain both the House and Senate in November, the Associated Press and Reuters reported.',
-      'AP quotes Trump: “If the Republicans win the Senate and House, because of our tremendous strength and success economically, I will issue a dividend to every adult citizen in the United States of America for $5,000.” He said recipients would have to spend the money in the United States and offered no implementation details. Reuters independently reported the same pledge, estimating the proposal would likely cost more than $1 trillion (≈270 million U.S. adults) and could require congressional approval; legality and mechanics were unclear.',
-      'Both wire reports place the speech at the center of an unusual midterm convention that cast Trump as the campaign’s focus despite low approval ratings and public discontent over living costs and the Iran war. Reuters notes some vulnerable Republicans skipped the event; AP reports Trump also defended the Iran war and tariffs in the same address.',
+      'At Dallas’s “Trumpapalooza” midterm convention, the president floated the most expensive campaign flyer in American history: $5,000 to every adult citizen — but only if Republicans keep the House and Senate. AP + Reuters, 9–10 September 2026.',
+      'His words, via AP: win both chambers and “I will issue a dividend to every adult citizen… for $5,000.” Spend it in America, he shrugged, with zero mechanics. Reuters ran the calculator: ~270 million adults ≈ $1 trillion+, likely needs Congress, legality fuzzy. Approval underwater, Iran war toxic, cost of living grinding — so sure, promise everyone a yacht voucher and call it economic genius.',
+      'Vulnerable Republicans skipped the show. He still spent the night defending the forever-adjacent Iran war and his tariff chaos. Bold strategy: make the midterms all about him while voters try to afford gas.',
     ],
     sources: [
       {
@@ -92,7 +94,8 @@ export const articles: Article[] = [
 
   {
     slug: 'doj-scotus-nevada-us-attorney-chattah',
-    title: 'DOJ asks Supreme Court to keep Nevada U.S. attorney after 9th Circuit disqualification',
+    title:
+      'DOJ asks Supreme Court to keep Nevada U.S. attorney after 9th Circuit disqualification',
     category: 'REPORTS',
     date: '2026-09-09',
     dek: 'DOJ asks SCOTUS to overturn a 9th Circuit ruling that Sigal Chattah is not validly serving as Nevada’s top federal prosecutor.',
@@ -116,6 +119,30 @@ export const articles: Article[] = [
     published: true,
   },
 
+  {
+    slug: 'trump-west-wing-holiday-cash-gifts',
+    title: 'Trump slipped $45k “holiday” cash to West Wing favorites',
+    category: 'REPORTS',
+    date: '2026-09-09',
+    dek: 'Disclosures show Trump handed $45,000 cash “holiday gifts” to three close aides — and $20,000 to a fourth — on top of federal salaries.',
+    body: [
+      'Fresh financial disclosures show President Donald Trump personally handed $45,000 cash “holiday gifts” to three close White House aides — and $20,000 to a fourth — on top of their already-plump federal salaries, Reuters reported 9 September 2026 (Washington Post first flagged the filings).',
+      'The lucky circle: executive assistant Natalie Harp, communications adviser Margo Martin, and Oval Office ops deputy Chamberlain Harris ($45k each). Oval Office ops director Walt Nauta got $20k. Disclosures label the payments “Cash Gift for Holidays.” Harp, Martin, and Harris pull $150,000 a year from taxpayers; Nauta $175,000. That’s roughly a one-third salary bump for the $45k trio — paid from Trump’s pocket, not the public payroll line item.',
+      'Federal employees are generally barred from taking compensation beyond their government pay. Former Bush ethics chief Richard Painter didn’t mince words: “A White House staffer is not your Fifth Avenue doorman.” The White House insists it’s fine. Spokesman Davis Ingle called it Trump’s “longstanding practice” of Christmas gifts to people “in his orbit,” claiming the cash “ha[s] nothing to do with… official government duties” and is “entirely permissible.”',
+      'These aren’t random staffers. Harp and Nauta ride shotgun with Trump — including, per prior WaPo reporting noted by Reuters, the secret Turkey-to-UK flight shuffle amid Iran threat fears. Harp helps run his Truth Social feed; colleagues call her the “human printer.” Nauta, a former valet, was charged (then dropped) over the Mar-a-Lago documents case after Trump returned to office.',
+    ],
+    sources: [
+      {
+        label: 'Reuters, 9 Sep 2026 — Pamuk/Chiacu',
+        url: 'https://www.reuters.com/legal/government/trump-gave-45000-cash-gifts-close-aide-natalie-harp-others-2026-09-09/',
+      },
+      {
+        label: 'Associated Press (via NBC), 9 Sep 2026',
+        url: 'https://www.nbcnews.com/politics/politics-news/trump-gave-45000-holiday-gifts-natalie-harp-two-white-house-aides-rcna596751',
+      },
+    ],
+    published: true,
+  },
 ]
 
 export function getPublishedArticles(): Article[] {
