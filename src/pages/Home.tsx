@@ -10,6 +10,8 @@ import { getPublishedArticles } from '../content/articles'
 
 /** Rage hierarchy (heat first) — uses existing articles only. */
 const RAGE_ORDER = [
+  'truth-social-reflecting-pool-vandalism-primer',
+  'truth-social-colossus-smithsonian-washington',
   'truth-social-trump-dividend-5000-double-down',
   'iran-war-midterms-pickaxe-mountain',
   'doj-scotus-save-voter-verification',
@@ -116,7 +118,7 @@ export function Home() {
           <strong>THE DONALD FILES</strong> · hybrid home · articles stay Open
           Dossier
         </div>
-        <div>Satire labeled · Exhibit A LIVE · B–C MOCK · homepage only</div>
+        <div>Satire labeled · Exhibits A–C LIVE · homepage only</div>
       </footer>
     </div>
   )

@@ -18,6 +18,43 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'truth-social-reflecting-pool-vandalism-primer',
+    title:
+      'On 9/11 weekend he boosted a vandalism yarn while the contractor paperwork points at botched primer',
+    category: 'REPORTS',
+    date: '2026-09-14',
+    dek: 'Trump RTed Interior Press on Truth Social blaming “342 feet of razor blade slashes” and “8647” graffiti for the drained Reflecting Pool — as reporting on contractor docs says the liner failed from bad primer and incompatible chemistry.',
+    body: [
+      'FACT — What he posted: On 13 September 2026 at 5:06 AM EDT, @realDonaldTrump reshared U.S. Interior Press (@interiorpress47) attacking the New York Times for covering the Reflecting Pool on the 25th anniversary of 9/11 and claiming the paper “continue[s] to avoid doing any real reporting on all the vandalism,” listing: 342 feet of razor blade slashes; “8647” spray-painted in massive lettering; (post truncated in the reshare preview). Permalink: https://truthsocial.com/@realDonaldTrump/117262936693023151 Companion: https://truthsocial.com/@realDonaldTrump/117262935739176527',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: This is the administration’s preferred plot: vandals did it, media ignored it, Trump’s the truth-teller. Wire and local reporting on contractor documents tell a colder story — Atlantic Industrial Coatings’ own findings cite insufficient primer, chemically incompatible layers, blistering/peeling under heat; DOJ dropped a vandalism case after acknowledging flawed renovation work (Newsweek/WTOP summarizing the NYT docs). He still hit boost on the slash-and-spray narrative. Choose your reality: forensic liner chemistry, or a Truth Social rage RT.',
+    ],
+    sources: [
+      {
+        label: 'Primary — Truth Social permalink (@realDonaldTrump, 13 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117262936693023151',
+      },
+      {
+        label: 'Primary — companion Truth Social (@realDonaldTrump, 13 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117262935739176527',
+      },
+      {
+        label: 'Archive — Trumpstruth.org status 41700',
+        url: 'https://www.trumpstruth.org/statuses/41700',
+      },
+      {
+        label:
+          'Context — Newsweek, Reflecting Pool / NYT / vandalism claims',
+        url: 'https://www.newsweek.com/trump-hits-back-at-new-york-times-over-reflecting-pool-story-on-9-11-12436224',
+      },
+      {
+        label:
+          'Context — WTOP, contractor docs point to primer not vandalism',
+        url: 'https://wtop.com/dc/2026/09/report-company-that-renovated-lincoln-memorial-reflecting-pool-says-issue-is-with-primer-not-vandalism/',
+      },
+    ],
+    published: true,
+  },
+  {
     slug: 'truth-social-colossus-smithsonian-washington',
     title:
       'He wants a 30-foot Washington “Colossus” and a culture war at the Smithsonian',

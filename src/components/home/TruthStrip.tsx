@@ -33,11 +33,14 @@ const EXHIBITS: Exhibit[] = [
     reportSlug: 'truth-social-colossus-smithsonian-washington',
   },
   {
-    tag: 'EXHIBIT C · MOCK',
-    handle: '@placeholder',
-    handleNote: 'mocked post',
-    body: '“SAVE Act now. Courts will do the right thing. Watch…”',
-    foot: 'Mock exhibit · compare to filings below',
+    tag: 'EXHIBIT C · LIVE',
+    handle: '@realDonaldTrump',
+    handleNote: '13 Sep 2026 · 5:06 AM EDT',
+    body: '“[RT @interiorpress47] …avoid doing any real reporting on all the vandalism… 342 feet of razor blade slashes… “8647” spray-painted in massive lettering…”',
+    foot: 'EXHIBIT · sourced pull · contractor primer docs cited',
+    live: true,
+    permalink: 'https://truthsocial.com/@realDonaldTrump/117262936693023151',
+    reportSlug: 'truth-social-reflecting-pool-vandalism-primer',
   },
 ]
 
@@ -46,7 +49,7 @@ export function TruthStrip() {
     <section className="truth-strip" aria-label="Truth Social exhibits">
       <div className="truth-head">
         <h2>Truth Social — In The Face</h2>
-        <span className="truth-badge">EXHIBIT RAIL · 2 LIVE + MOCK</span>
+        <span className="truth-badge">EXHIBIT RAIL · 3 LIVE</span>
       </div>
       <div className="truth-rail">
         {EXHIBITS.map((ex) => (
@@ -76,9 +79,8 @@ export function TruthStrip() {
         ))}
       </div>
       <div className="mock-note">
-        Exhibits A–B are LIVE sourced Truth Social pulls (permalink + UCSB
-        archive). Exhibit C remains a MOCK / EXHIBIT placeholder — not a live
-        feed, not an endorsement.
+        Exhibits A–C are LIVE sourced Truth Social pulls (permalink + cited
+        archives/reporting). Not a live feed scrape, not an endorsement.
       </div>
     </section>
   )

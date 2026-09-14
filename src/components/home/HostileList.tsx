@@ -8,6 +8,10 @@ type Props = {
 /** Rage rank blurbs — attitude only, no new facts. */
 function rageBlurb(slug: string, fallbackIndex: number): string {
   const map: Record<string, string> = {
+    'truth-social-reflecting-pool-vandalism-primer':
+      'Truth Social Watch · Reflecting Pool RT vs. primer docs',
+    'truth-social-colossus-smithsonian-washington':
+      'Truth Social Watch · Colossus / Smithsonian live exhibit',
     'truth-social-trump-dividend-5000-double-down':
       'Truth Social Watch · live exhibit on the rail',
     'iran-war-midterms-pickaxe-mountain':

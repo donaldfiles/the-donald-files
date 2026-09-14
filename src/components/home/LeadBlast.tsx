@@ -15,11 +15,14 @@ function megaHed(title: string) {
   const upper = title.toUpperCase()
   // Highlight a hostile punch phrase when present
   const hotPhrases = [
+    'BOTCHED PRIMER',
+    'VANDALISM YARN',
     'PICKAXE MOUNTAIN',
     '$5,000',
     'HOLIDAY',
     'VOTER-PURGE',
     'U.S. ATTORNEY',
+    'COLOSSUS',
   ]
   for (const phrase of hotPhrases) {
     const idx = upper.indexOf(phrase)
@@ -53,8 +56,7 @@ export function LeadBlast({ article, index = 0 }: Props) {
         </div>
         <div className="stamp-pile">
           <span className="ugly-stamp filled">FACT</span>
-          <span className="ugly-stamp yellow">OPEN</span>
-          <span className="ugly-stamp">READ IT</span>
+          <span className="ugly-stamp">REPORT</span>
         </div>
       </div>
       <h1 className="lead-hed">

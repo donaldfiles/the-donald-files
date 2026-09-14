@@ -1,5 +1,10 @@
 const MEMES = [
   {
+    top: 'Empty pool checklist',
+    bot: 'CAUSE OF FAILURE: [ ] primer [ ] chemistry [x] vibes',
+    cap: 'SATIRE · desk-made · NOT a fact · not a contractor finding',
+  },
+  {
     top: 'NOW HIRING: 30-ft bronze ego',
     bot: 'must tower over Infinity · apply via Truth Social',
     cap: 'SATIRE · desk-made · NOT a fact · not a Smithsonian listing',
