@@ -1,10 +1,19 @@
 import { Link, useParams } from 'react-router-dom'
-import { CategoryLabel } from '../components/CategoryLabel'
-import { getArticleBySlug } from '../content/articles'
+import { DossierCover } from '../components/DossierCover'
+import { ReadProgress } from '../components/ReadProgress'
+import { SourceFiles } from '../components/SourceFiles'
+import {
+  getArticleBySlug,
+  getPublishedArticles,
+} from '../content/articles'
+import { fileIdFromArticle } from '../lib/dossier'
 
 export function ReportArticle() {
   const { slug } = useParams<{ slug: string }>()
   const article = slug ? getArticleBySlug(slug) : undefined
+  const all = getPublishedArticles()
+  const idx = article ? all.findIndex((a) => a.slug === article.slug) : -1
+  const next = idx >= 0 ? all[idx + 1] ?? all[0] : undefined
 
   if (!article) {
     return (
@@ -20,38 +29,60 @@ export function ReportArticle() {
     )
   }
 
+  const fileId = fileIdFromArticle(article, Math.max(0, idx))
+
   return (
     <article className="page article-page">
-      <header className="page-header">
-        <CategoryLabel category={article.category} />
-        <h1>{article.title}</h1>
-        <p className="meta">{article.date}</p>
-      </header>
+      <div className="article-topbar">
+        <div className="article-topbar-inner">
+          <Link className="back-link" to="/reports">
+            ← Reports
+          </Link>
+          <div className="topbar-file">
+            FILE // <span>{fileId}</span>
+          </div>
+        </div>
+        <ReadProgress />
+      </div>
 
+      <DossierCover article={article} />
+
+      <aside className="evidence-strip" aria-label="Evidence strip">
+        <div className="evidence-label">Evidence</div>
+        <ul className="evidence-items">
+          <li>
+            <strong>{article.sources.length}</strong> source file
+            {article.sources.length === 1 ? '' : 's'}
+          </li>
+          <li>
+            <strong>{article.body.length}</strong> body grafs
+          </li>
+          <li>
+            <strong>Date</strong> {article.date}
+          </li>
+        </ul>
+      </aside>
+
+      <div className="body-chrome">FILE // BODY · READ IN ORDER</div>
       <div className="prose article-body">
         {article.body.map((paragraph, i) => (
           <p key={i}>{paragraph}</p>
         ))}
       </div>
 
-      <section className="source-files" aria-labelledby="sources-title">
-        <h2 id="sources-title" className="section-title">
-          SOURCE FILES
-        </h2>
-        <ol className="source-list">
-          {article.sources.map((source) => (
-            <li key={source.url}>
-              <a href={source.url} target="_blank" rel="noreferrer">
-                {source.label}
-              </a>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <SourceFiles sources={article.sources} />
 
-      <p className="article-back">
-        <Link to="/reports">← All Reports</Link>
-      </p>
+      {next && next.slug !== article.slug ? (
+        <aside className="next-cta" aria-label="Next file">
+          <div>
+            <div className="next-label">Next file</div>
+            <div className="next-hed">{next.title}</div>
+          </div>
+          <Link className="btn btn-ghost" to={`/reports/${next.slug}`}>
+            OPEN →
+          </Link>
+        </aside>
+      ) : null}
     </article>
   )
 }

@@ -20,6 +20,9 @@ export function Subscribe() {
   return (
     <div className="page">
       <header className="page-header">
+        <div className="file-label">
+          FILE // <span>SUBSCRIBE</span>
+        </div>
         <h1>Subscribe</h1>
         <p className="dek">
           Support the Research. Buy the Report when available. Get updates when
@@ -39,10 +42,14 @@ export function Subscribe() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
         />
-        <button className="btn btn-accent" type="submit" disabled={busy}>
+        <button className="btn btn-stamp" type="submit" disabled={busy}>
           {busy ? 'Submitting…' : 'Subscribe'}
         </button>
-        {status && <p className="form-status" role="status">{status}</p>}
+        {status && (
+          <p className="form-status" role="status">
+            {status}
+          </p>
+        )}
       </form>
 
       <section className="support-block">
@@ -51,7 +58,7 @@ export function Subscribe() {
           Paid report access and research support will plug in here. No “Donate”
           framing — Subscribe / Support the Research / Buy the Report only.
         </p>
-        <button type="button" className="btn btn-secondary" disabled>
+        <button type="button" className="btn btn-manila" disabled>
           Buy the Report — coming soon
         </button>
       </section>

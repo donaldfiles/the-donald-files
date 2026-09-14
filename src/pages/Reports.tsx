@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { CategoryLabel } from '../components/CategoryLabel'
+import { CaseCard } from '../components/CaseCard'
 import { getPublishedReports } from '../content/articles'
 
 export function Reports() {
@@ -8,24 +7,27 @@ export function Reports() {
   return (
     <div className="page">
       <header className="page-header">
-        <CategoryLabel category="REPORTS" />
+        <div className="file-label">
+          FILE // <span>REPORTS</span>
+        </div>
         <h1>Reports</h1>
         <p className="dek">
-          Documented investigations with primary SOURCE FILES.
+          Documented investigations with primary SOURCE FILES //.
         </p>
       </header>
-      <ul className="article-list">
-        {reports.map((item) => (
-          <li key={item.slug} className="article-card">
-            <CategoryLabel category={item.category} />
-            <h3>
-              <Link to={`/reports/${item.slug}`}>{item.title}</Link>
-            </h3>
-            <p className="dek">{item.dek}</p>
-            <p className="meta">{item.date}</p>
-          </li>
+
+      <div className="section-head">
+        <h2>LATEST FILES //</h2>
+        <span className="count">
+          {String(reports.length).padStart(2, '0')} OPEN
+        </span>
+      </div>
+
+      <div className="dossier-stack">
+        {reports.map((item, i) => (
+          <CaseCard key={item.slug} article={item} index={i} lead={i === 0} />
         ))}
-      </ul>
+      </div>
     </div>
   )
 }

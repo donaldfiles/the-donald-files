@@ -1,16 +1,28 @@
-import { CategoryLabel } from '../components/CategoryLabel'
-
-const events = [
-  { date: 'TBD', title: 'Timeline event placeholder', body: 'Documented entry — replace with The Record data.' },
-  { date: 'TBD', title: 'Second milestone stub', body: 'Chronology placeholder.' },
-  { date: 'TBD', title: 'Third milestone stub', body: 'Chronology placeholder.' },
-]
-
 export function TheRecord() {
+  const events = [
+    {
+      date: 'TBD',
+      title: 'Timeline event placeholder',
+      body: 'Documented entry — replace with The Record data.',
+    },
+    {
+      date: 'TBD',
+      title: 'Second milestone stub',
+      body: 'Chronology placeholder.',
+    },
+    {
+      date: 'TBD',
+      title: 'Third milestone stub',
+      body: 'Chronology placeholder.',
+    },
+  ]
+
   return (
     <div className="page">
       <header className="page-header">
-        <CategoryLabel category="TIMELINE" />
+        <div className="file-label">
+          FILE // <span>THE RECORD</span>
+        </div>
         <h1>The Record</h1>
         <p className="dek">
           A factual timeline. Stub layout — wire to curated events next.

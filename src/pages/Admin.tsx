@@ -2,6 +2,9 @@ export function Admin() {
   return (
     <div className="page admin">
       <header className="page-header">
+        <div className="file-label">
+          FILE // <span>ADMIN</span>
+        </div>
         <h1>Admin</h1>
         <p className="dek">
           Stub only. Wire Supabase Auth (email) + RLS before publishing tools.
