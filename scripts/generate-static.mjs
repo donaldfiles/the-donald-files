@@ -45,7 +45,7 @@ function extractArticles(text) {
     const sources = []
     if (sourcesBlock) {
       const sr =
-        /\{\s*label:\s*((?:'(?:\\'|[^'])*'\s*\+\s*)*'(?:\\'|[^'])*')\s*,\s*url:\s*'([^']+)'\s*\}/g
+        /\{\s*label:\s*((?:'(?:\\'|[^'])*'\s*\+\s*)*'(?:\\'|[^'])*')\s*,\s*url:\s*'([^']+)'\s*,?\s*\}/g
       let sm
       while ((sm = sr.exec(sourcesBlock[1]))) {
         sources.push({ label: parseStringExpr(sm[1]), url: sm[2] })
