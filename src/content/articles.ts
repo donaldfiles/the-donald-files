@@ -95,15 +95,15 @@ export const articles: Article[] = [
   {
     slug: 'doj-scotus-nevada-us-attorney-chattah',
     title:
-      'DOJ asks Supreme Court to keep Nevada U.S. attorney after 9th Circuit disqualification',
+      'DOJ asks SCOTUS to keep Nevada’s unlawfully parked U.S. attorney',
     category: 'REPORTS',
     date: '2026-09-09',
-    dek: 'DOJ asks SCOTUS to overturn a 9th Circuit ruling that Sigal Chattah is not validly serving as Nevada’s top federal prosecutor.',
+    dek: 'The Trump DOJ asks SCOTUS to bless parking political allies as U.S. attorneys without Senate confirmation — starting with Nevada’s Sigal Chattah.',
     body: [
-      'The Trump administration petitioned the U.S. Supreme Court on 9 September 2026 to overturn a 9th Circuit ruling that Sigal Chattah is not validly serving as Nevada’s top federal prosecutor, Reuters reported — part of a broader fight over installing U.S. attorneys without Senate confirmation.',
-      'Reuters says Solicitor General D. John Sauer argued the August appeals‑court decision and similar 2nd and 3rd Circuit rulings conflict with the Federal Vacancies Reform Act (FVRA), risk “chaos,” and threaten confusion across five Ninth Circuit U.S. Attorney’s Offices handling over 8,000 cases a year. The petition seeks to reverse the disqualification of Chattah from supervising three criminal cases.',
-      'The primary 9th Circuit opinion (filed 17 August 2026 in United States v. Jackson and consolidated cases) held the Attorney General cannot make someone Acting U.S. Attorney by designating them first assistant to an already‑vacant office, and cannot create a de facto Acting U.S. Attorney by fully delegating all U.S. Attorney powers. The panel affirmed district‑court disqualification of Chattah from those prosecutions and dismissed defendants’ cross‑appeals seeking indictment dismissal for lack of appellate jurisdiction.',
-      'Reuters recounts Chattah’s path: interim appointment under 28 U.S.C. § 546 (late March 2025, 120‑day limit), then redesignation as First Assistant / acting when that term was ending; Nevada federal public defenders challenged her authority. Case caption at the Court: United States v. Jackson, No. 26‑304.',
+      'The Trump DOJ just asked the Supreme Court to bless a staffing trick three appeals courts have already called illegal: parking political allies as U.S. attorneys without Senate confirmation. Target #1 — Nevada’s Sigal Chattah. Reuters, 9 September 2026.',
+      'Solicitor General D. John Sauer says the August 9th Circuit smackdown (plus similar 2nd and 3rd Circuit losses) conflicts with the Federal Vacancies Reform Act, risks “chaos,” and could confuse five Ninth Circuit U.S. Attorney’s Offices handling 8,000+ cases a year. Translation: please let us keep the workaround.',
+      'The primary opinion (United States v. Jackson, filed 17 August 2026) is blunt: you cannot make someone Acting U.S. Attorney by labeling them “first assistant” to an office that’s already vacant, and you cannot invent a de facto Acting U.S. Attorney by dumping every U.S. Attorney power onto one person. Panel affirmed Chattah’s disqualification from three prosecutions; defendants’ bid to kill the indictments got bounced for lack of appellate jurisdiction.',
+      'Her path, via Reuters: interim under 28 U.S.C. § 546 (late March 2025, 120-day clock), then First Assistant / acting redesignation as the clock ran out. Nevada federal public defenders sued. Court caption: United States v. Jackson, No. 26-304.',
     ],
     sources: [
       {
@@ -121,15 +121,15 @@ export const articles: Article[] = [
 
   {
     slug: 'trump-west-wing-holiday-cash-gifts',
-    title: 'Trump slipped $45k “holiday” cash to West Wing favorites',
+    title: 'Trump gave $45k cash “holiday” gifts to West Wing favorites',
     category: 'REPORTS',
     date: '2026-09-09',
     dek: 'Disclosures show Trump handed $45,000 cash “holiday gifts” to three close aides — and $20,000 to a fourth — on top of federal salaries.',
     body: [
-      'Fresh financial disclosures show President Donald Trump personally handed $45,000 cash “holiday gifts” to three close White House aides — and $20,000 to a fourth — on top of their already-plump federal salaries, Reuters reported 9 September 2026 (Washington Post first flagged the filings).',
-      'The lucky circle: executive assistant Natalie Harp, communications adviser Margo Martin, and Oval Office ops deputy Chamberlain Harris ($45k each). Oval Office ops director Walt Nauta got $20k. Disclosures label the payments “Cash Gift for Holidays.” Harp, Martin, and Harris pull $150,000 a year from taxpayers; Nauta $175,000. That’s roughly a one-third salary bump for the $45k trio — paid from Trump’s pocket, not the public payroll line item.',
-      'Federal employees are generally barred from taking compensation beyond their government pay. Former Bush ethics chief Richard Painter didn’t mince words: “A White House staffer is not your Fifth Avenue doorman.” The White House insists it’s fine. Spokesman Davis Ingle called it Trump’s “longstanding practice” of Christmas gifts to people “in his orbit,” claiming the cash “ha[s] nothing to do with… official government duties” and is “entirely permissible.”',
-      'These aren’t random staffers. Harp and Nauta ride shotgun with Trump — including, per prior WaPo reporting noted by Reuters, the secret Turkey-to-UK flight shuffle amid Iran threat fears. Harp helps run his Truth Social feed; colleagues call her the “human printer.” Nauta, a former valet, was charged (then dropped) over the Mar-a-Lago documents case after Trump returned to office.',
+      'Fresh financial disclosures show President Donald Trump personally handed $45,000 cash “holiday gifts” to three close White House aides — and $20,000 to a fourth — on top of their federal salaries, Reuters reported 9 September 2026 (Washington Post first flagged the filings).',
+      'The recipients: executive assistant Natalie Harp, communications adviser Margo Martin, and Oval Office ops deputy Chamberlain Harris ($45k each). Oval Office ops director Walt Nauta got $20k. Their own disclosure PDFs label the payments “Cash Gift for Holidays.” Harp, Martin, and Harris earn $150,000 a year; Nauta $175,000 — so the $45k gifts are roughly a one-third bump for that trio.',
+      'Federal employees are generally barred from compensation beyond government pay. Former Bush ethics chief Richard Painter: “A White House staffer is not your Fifth Avenue doorman.” White House spokesman Davis Ingle said the gifts comply with ethics rules — Trump’s “longstanding practice” of Christmas gifts to people “in his orbit,” unrelated to “official government duties” and “entirely permissible.”',
+      'Harp and Nauta are among Trump’s closest aides (including the secret Turkey-to-UK flight shuffle amid Iran threat fears, per prior WaPo reporting noted by Reuters). Harp helps run his Truth Social feed; colleagues call her the “human printer.” Nauta, a former valet, was charged (case later dropped) over the Mar-a-Lago documents matter after Trump returned to office.',
     ],
     sources: [
       {
@@ -139,6 +139,23 @@ export const articles: Article[] = [
       {
         label: 'Associated Press (via NBC), 9 Sep 2026',
         url: 'https://www.nbcnews.com/politics/politics-news/trump-gave-45000-holiday-gifts-natalie-harp-two-white-house-aides-rcna596751',
+      },
+      {
+        label: 'Primary — Natalie Harp 2026 annual disclosure (PDF)',
+        url: 'https://www.whitehouse.gov/wp-content/uploads/2026/09/Harp-Natalie-2026-Annual.pdf',
+      },
+      {
+        label: 'Primary — Chamberlain Harris 2026 annual disclosure (PDF)',
+        url: 'https://www.whitehouse.gov/wp-content/uploads/2026/09/Harris-Chamberlain-2026-Annual.pdf',
+      },
+      {
+        label: 'Primary — Margo Martin 2026 annual disclosure (PDF)',
+        url: 'https://www.whitehouse.gov/wp-content/uploads/2026/09/Martin-Margo-2026-Annual.pdf',
+      },
+      {
+        label:
+          'Primary — 2026 Annual Report to Congress on White House Staff (salaries)',
+        url: 'https://www.whitehouse.gov/wp-content/uploads/2026/07/2026-Annual-Report-to-Congress-on-White-House-Staff.pdf',
       },
     ],
     published: true,
