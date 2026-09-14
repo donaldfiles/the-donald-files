@@ -4,10 +4,12 @@ import { MobileDock } from './MobileDock'
 
 export function Layout() {
   const { pathname } = useLocation()
-  const isHome = pathname === '/'
+  // Loud hybrid feed: home + /reports index (not article slugs)
+  const isLoudFeed =
+    pathname === '/' || pathname === '/reports' || pathname === '/reports/'
   const isArticle = /^\/reports\/[^/]+/.test(pathname)
 
-  if (isHome) {
+  if (isLoudFeed) {
     return (
       <div className="app-shell app-shell-home">
         <Outlet />

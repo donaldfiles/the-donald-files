@@ -1052,8 +1052,9 @@ h1, h2, h3 {
 }
 
 /* ============================================================
-   HYBRID HOME — Hot Wire ugly anti-prestige (homepage only)
-   Article pages keep Open Dossier tokens above.
+   HYBRID LOUD FEED — Hot Wire ugly anti-prestige
+   Surfaces: / (home) + /reports index via .app-shell-home
+   Article pages /reports/:slug keep Open Dossier tokens above.
    ============================================================ */
 .app-shell-home {
   --bg: #0A0A0A;
@@ -1087,6 +1088,11 @@ h1, h2, h3 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px 120px;
+}
+
+.reports-index-head {
+  margin-top: 28px;
+  margin-bottom: 8px;
 }
 
 /* FightTicker */
