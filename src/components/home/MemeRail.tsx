@@ -1,5 +1,10 @@
 const MEMES = [
   {
+    top: 'TRUMPPALOOZA 1 — NFL 0',
+    bot: '*projections subject to vibes*',
+    cap: 'SATIRE · desk-made scoreboard · NOT a fact · not Nielsen',
+  },
+  {
     top: 'Empty pool checklist',
     bot: 'CAUSE OF FAILURE: [ ] primer [ ] chemistry [x] vibes',
     cap: 'SATIRE · desk-made · NOT a fact · not a contractor finding',

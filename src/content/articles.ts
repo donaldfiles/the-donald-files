@@ -18,6 +18,45 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'truth-social-dallas-beat-nfl',
+    title:
+      'He declared Dallas “beat the NFL” before the ratings even existed',
+    category: 'REPORTS',
+    date: '2026-09-14',
+    dek: 'Morning-after Truth Social: Trump called the midterm convention a “sold out hit” that “beat the NFL” — while reporters noted empty upper-deck seats and no Nielsen numbers out yet.',
+    body: [
+      'FACT — What he posted: On 10 September 2026 at 7:54 AM ET (4:54 AM PT), @realDonaldTrump posted: "The Republican Midterm Convention last night, in Dallas, was a major, sold out hit, far bigger, better, and more important than anyone thought possible. It was really something, streaming all over the place, and really big numbers, despite going up against the NFL. The overall numbers beat the NFL. The Arena, which was really nice, beat its own attendance records. The place was packed! There were thousands of people outside who couldn’t get in. Screens were provided. I guess people LOVE TRUMP POLITICS! I’ll be there again tonight to close out the show. Exciting “Stuff!” MAKE AMERICA GREAT AGAIN!!!" Permalink: https://truthsocial.com/@realDonaldTrump/117246607022445743',
+      'Timestamp and full text also archived by Trumpstruth.org (status 41664) and the American Presidency Project (UCSB) for 10 September 2026.',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: Classic move: declare victory in the absence of data. Mediaite noted unclear “overall numbers” — ratings weren’t in; last year’s NFL opener drew roughly 28 million. The Wall Street Journal flagged empty upper-deck seats; Nielsen hadn’t released ratings. He still typed “beat the NFL.”',
+    ],
+    sources: [
+      {
+        label: 'Primary — Truth Social permalink (@realDonaldTrump, 10 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117246607022445743',
+      },
+      {
+        label: 'Archive — Trumpstruth.org status 41664',
+        url: 'https://www.trumpstruth.org/statuses/41664',
+      },
+      {
+        label:
+          'Archive — American Presidency Project (UCSB), Truth Social Posts of 10 Sep 2026',
+        url: 'https://www.presidency.ucsb.edu/documents/truth-social-posts-september-10-2026',
+      },
+      {
+        label:
+          'Context — Mediaite, Trump claims midterm convention ratings beat NFL',
+        url: 'https://www.mediaite.com/media/news/trump-claims-midterm-convention-ratings-beat-nfl-i-guess-people-love-trump-politics/',
+      },
+      {
+        label:
+          'Context — WSJ live coverage, empty seats and NFL competition',
+        url: 'https://www.wsj.com/livecoverage/trump-vance-midterm-elections-2026-rnc/card/trump-raves-about-rnc-night-one-despite-empty-seats-and-nfl-competition-IkslVQ2STUepOXNq4KUb',
+      },
+    ],
+    published: true,
+  },
+  {
     slug: 'truth-social-reflecting-pool-vandalism-primer',
     title:
       'On 9/11 weekend he boosted a vandalism yarn while the contractor paperwork points at botched primer',

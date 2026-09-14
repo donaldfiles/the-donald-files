@@ -7,6 +7,7 @@ import { getPublishedReports } from '../content/articles'
 
 /** Rage hierarchy (heat first) — existing reports only; no invented files. */
 const RAGE_ORDER = [
+  'truth-social-dallas-beat-nfl',
   'truth-social-reflecting-pool-vandalism-primer',
   'truth-social-colossus-smithsonian-washington',
   'truth-social-trump-dividend-5000-double-down',
