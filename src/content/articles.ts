@@ -18,6 +18,51 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'truth-social-white-house-dump-ballroom',
+    title:
+      'He called the White House a “dump,” then sold the ballroom as a free gift again',
+    category: 'REPORTS',
+    date: '2026-09-14',
+    dek: 'Same Sunday: Trump posted that past presidents left the White House a “dump,” then doubled down that his East Wing ballroom is a “Gift” with “No Taxpayer Dollars” — a claim Washington Post contractor records already shredded.',
+    body: [
+      'FACT — What he posted: On 13 September 2026 at 9:03 PM EDT, @realDonaldTrump posted that the White House was in “very bad condition,” a “dump,” that past presidents “did not take care of it,” that the exterior “skin” was “practically falling off,” and that it is now in “better shape than when built in 1792,” with before/after column photos. Permalink: https://truthsocial.com/@realDonaldTrump/117266699812092755',
+      'Same-day ballroom doubles: 3:32 PM EDT — “Gift… No Taxpayer Dollars will be expended” — https://truthsocial.com/@realDonaldTrump/117265397440548141 ; 7:52 PM EDT — “Massively expensive, but free of charge to the American Taxpayer” — https://truthsocial.com/@realDonaldTrump/117266420132610360',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: Trash the people’s house as a dump you alone can save, then rebrand East Wing demolition as philanthropy. “No taxpayer dollars” collides with WaPo (16 Jun 2026) on Clark Construction records — a ~$600M estimate with roughly half tagged to taxpayer-funded accounts (Secret Service / WH Military Office / Executive Residence). Reuters (21 Aug): SCOTUS admin stay lets work continue while the National Trust fight grinds. Gilt-render fantasy vs the funding + lawsuit plot.',
+      'SATIRE (desk-made — NOT a fact): “GIFT RECEIPT: one ballroom, half paid by you.”',
+    ],
+    sources: [
+      {
+        label: 'Primary — Truth Social permalink (@realDonaldTrump, 13 Sep 2026, dump / renovation)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117266699812092755',
+      },
+      {
+        label: 'Archive — Trumpstruth.org status 41711',
+        url: 'https://www.trumpstruth.org/statuses/41711',
+      },
+      {
+        label: 'Primary — Truth Social “Gift… No Taxpayer Dollars” (13 Sep 2026; see also Trumpstruth 41702)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117265397440548141',
+      },
+      {
+        label: 'Primary — Truth Social “free of charge to the American Taxpayer” (13 Sep 2026; see also Trumpstruth 41707)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117266420132610360',
+      },
+      {
+        label: 'Context — Washington Post, Clark Construction records / ~$600M ballroom estimate (16 Jun 2026)',
+        url: 'https://www.washingtonpost.com/investigations/2026/06/16/records-reveal-600m-estimate-trumps-ballroom-project-with-half-taxpayers/',
+      },
+      {
+        label: 'Context — Reuters, SCOTUS lets ballroom work continue (21 Aug 2026)',
+        url: 'https://www.reuters.com/world/supreme-court-lets-trump-continue-work-white-house-ballroom-now-2026-08-21/',
+      },
+      {
+        label: 'Context — Fox News, Trump touts White House renovations / “very bad condition”',
+        url: 'https://www.foxnews.com/politics/trump-touts-white-house-renovations-says-building-very-bad-condition',
+      },
+    ],
+    published: true,
+  },
+  {
     slug: 'truth-social-caracas-maduro-fafo',
     title:
       'On 9/11 night he dropped a Caracas flex reel: “effed around, and he found out”',

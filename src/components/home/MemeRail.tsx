@@ -1,5 +1,10 @@
 const MEMES = [
   {
+    top: 'GIFT RECEIPT: one ballroom, half paid by you.',
+    bot: '(no taxpayer dollars* · *asterisk means you)',
+    cap: 'SATIRE · desk-made · NOT a fact · not a Clark Construction invoice',
+  },
+  {
     top: 'FOREIGN POLICY IN THREE WORDS: FAFO',
     bot: '(official soundtrack)',
     cap: 'SATIRE · desk-made · NOT a fact · not a State Dept briefing',

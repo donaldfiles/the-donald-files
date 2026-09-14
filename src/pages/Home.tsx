@@ -10,6 +10,7 @@ import { getPublishedArticles } from '../content/articles'
 
 /** Rage hierarchy (heat first) — uses existing articles only. */
 const RAGE_ORDER = [
+  'truth-social-white-house-dump-ballroom',
   'truth-social-caracas-maduro-fafo',
   'truth-social-dallas-beat-nfl',
   'truth-social-reflecting-pool-vandalism-primer',
