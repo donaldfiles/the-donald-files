@@ -18,6 +18,62 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'truth-social-save-america-act-photo-id',
+    title:
+      'Two lines, one midterm choke: photo ID + proof of citizenship',
+    category: 'REPORTS',
+    date: '2026-09-14',
+    dek: 'Labor Day morning, Trump boiled the SAVE America Act down to an all-caps checklist — every voter shows photo ID, every voter shows proof of citizenship — while the Senate still won’t give him the bill and midterms loom.',
+    body: [
+      'FACT — What he posted: On 7 September 2026 at 9:52 AM EDT, @realDonaldTrump posted: “THE SAVE AMERICA ACT: 1. ALL VOTERS MUST SHOW PHOTO I.D. (IDENTIFICATION!). 2. ALL VOTERS MUST SHOW PROOF OF CITIZENSHIP.” Permalink: https://truthsocial.com/@realDonaldTrump/117230085361299862',
+      'Timestamp and two-bullet text also archived by Trumpstruth.org (status 41595) and the American Presidency Project (UCSB) for 7 September 2026.',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: Two-bullet rage bait for the midterm base. LOUD distinction — this is NOT the DHS SAVE database (the blocked citizenship-check system DOJ is begging SCOTUS to revive; that is a separate live REPORT). This is the SAVE America Act — legislation: photo ID + proof of citizenship at the voter / registration gate. House moved the Act; AP: stalled in Senate despite Trump’s demands, no clear filibuster path before Nov. 3. Proof-of-citizenship registration is the knife (passport / birth-certificate territory; many state licenses don’t cut it per AP). Brennan Center: ~21.3M voting-age citizens lack that paperwork “readily available.” Same election-control stack, different weapon: Act = statute choke; DHS SAVE database = executive purge tool.',
+      'SATIRE (desk-made — NOT a fact): “VOTER ACCESS, SIMPLIFIED: bring a passport or don’t bother.”',
+      'Related file: /reports/doj-scotus-save-voter-verification/',
+    ],
+    sources: [
+      {
+        label: 'Primary — Truth Social permalink (@realDonaldTrump, 7 Sep 2026)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117230085361299862',
+      },
+      {
+        label: 'Archive — Trumpstruth.org status 41595',
+        url: 'https://www.trumpstruth.org/statuses/41595',
+      },
+      {
+        label:
+          'Archive — American Presidency Project (UCSB), Truth Social Posts of 7 Sep 2026',
+        url: 'https://www.presidency.ucsb.edu/documents/truth-social-posts-september-7-2026',
+      },
+      {
+        label:
+          'Context — AP, voting bill / citizenship / Senate / Thune / Trump',
+        url: 'https://apnews.com/article/voting-bill-citizenship-senate-thune-trump-3709f2bd02d2c841e16d501529ec9198',
+      },
+      {
+        label:
+          'Context — AP, voting / Trump midterms / citizenship / Republican Senate',
+        url: 'https://apnews.com/article/voting-trump-midterms-citizenship-republican-senate-d4acd3468c410a8842a0fe3e3b9cda57',
+      },
+      {
+        label:
+          'Context — AP fact check, SAVE Act identification / register to vote',
+        url: 'https://apnews.com/article/fact-check-save-act-identification-register-vote-d11d41b59f943bb72bcdca2d781293b7',
+      },
+      {
+        label:
+          'Context — Brennan Center, 21.3M voting-age citizens lack ready paperwork',
+        url: 'https://www.brennancenter.org/our-work/analysis-opinion/213-million-american-citizens-voting-age-dont-have-ready-access',
+      },
+      {
+        label:
+          'Related live REPORT — DOJ/SCOTUS + blocked DHS SAVE voter-verification database (NOT the Act)',
+        url: 'https://the-donald-files.pages.dev/reports/doj-scotus-save-voter-verification/',
+      },
+    ],
+    published: true,
+  },
+  {
     slug: 'truth-social-white-house-dump-ballroom',
     title:
       'He called the White House a “dump,” then sold the ballroom as a free gift again',

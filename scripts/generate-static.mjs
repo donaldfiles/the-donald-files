@@ -9,10 +9,42 @@ const dist = join(root, 'dist')
 const src = readFileSync(articlesPath, 'utf8')
 
 function parseStringExpr(expr) {
-  return expr
-    .split(/\s*\+\s*/)
-    .map((p) => p.trim().replace(/^'|'$/g, '').replace(/\\'/g, "'"))
-    .join('')
+  // Preserve literal "+" inside quotes; only join string-concatenation +.
+  const parts = []
+  let cur = ''
+  let i = 0
+  while (i < expr.length) {
+    const c = expr[i]
+    if (c === "'") {
+      cur += c
+      i++
+      while (i < expr.length) {
+        if (expr[i] === '\\' && i + 1 < expr.length) {
+          cur += expr[i] + expr[i + 1]
+          i += 2
+          continue
+        }
+        const ch = expr[i]
+        cur += ch
+        i++
+        if (ch === "'") break
+      }
+      continue
+    }
+    if (c === '+') {
+      parts.push(cur.trim().replace(/^'|'$/g, '').replace(/\\'/g, "'"))
+      cur = ''
+      i++
+      while (i < expr.length && /\s/.test(expr[i])) i++
+      continue
+    }
+    cur += c
+    i++
+  }
+  if (cur.trim()) {
+    parts.push(cur.trim().replace(/^'|'$/g, '').replace(/\\'/g, "'"))
+  }
+  return parts.join('')
 }
 
 function extractArticles(text) {
