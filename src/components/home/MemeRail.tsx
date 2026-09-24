@@ -14,6 +14,11 @@ const MEMES = [
     bot: '(no taxpayer dollars* · *asterisk means you)',
     cap: 'SATIRE · desk-made · NOT a fact · not a Clark Construction invoice',
   },
+  {
+    top: 'NOW PLAYING ON CH 47…',
+    bot: "THE ADMINISTRATION'S GREATEST HITS (NO QUESTIONS)",
+    cap: 'SATIRE · desk-made · NOT a fact · not a WH programming guide',
+  },
 ]
 
 export function MemeRail() {

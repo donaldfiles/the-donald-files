@@ -11,6 +11,8 @@ import { getPublishedArticles } from '../content/articles'
 
 /** Rage hierarchy (heat first) — uses existing articles only. */
 const RAGE_ORDER = [
+  'wh-youtube-trump-tv',
+  'trump-un-blunders',
   'truth-social-save-america-act-photo-id',
   'truth-social-white-house-dump-ballroom',
   'truth-social-caracas-maduro-fafo',

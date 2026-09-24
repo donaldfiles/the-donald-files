@@ -43,6 +43,251 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'wh-youtube-trump-tv',
+    title: 'He banned the pool, then launched Trump TV on YouTube',
+    category: 'REPORTS',
+    date: '2026-09-24',
+    dek: 'Same week the White House shut out CNN, MS NOW, and Politico, it flipped on a 24/7 YouTube stream branded TRUMP TV: The Essentials Station — “greatest hits, unfiltered,” on the taxpayer channel.',
+    body: [
+      'FACT — What happened: On 19 September 2026, Reuters reported the White House denied access and confiscated press passes for CNN, MS NOW, and Politico after Trump announced a ban, accusing them of “reporting FAKE NEWS.”',
+      'FACT — On 21 September 2026, the White House launched a round-the-clock YouTube livestream titled “TRUMP TV: The Essentials Station.” Official copy said it would put “top past moments, announcements, and the latest and greatest from the Administration all in one place,” and: “Not every big moment has made it on your tv, now it can.” The stream is mirrored on whitehouse.gov/live/ as CH 47 · Trump TV 24/7, next to CH 45 · White House Live and a White House Wire panel. Verified official WH author stream: https://www.youtube.com/watch?v=A4gNgHfZ-v4',
+      'FACT — Named official: TIME and Axios quote Kaelan Dorr — deputy assistant to the President; the July 2026 White House staff report lists him as Deputy Assistant to the President and Principal Deputy Communications Director and Head of Digital Strategy ($175,000) — saying Trump TV would show “the Administration’s greatest hits, unfiltered,” and that “The press, in some cases, reported inaccurately or not at all on the Administration’s many record breaking accomplishments…”',
+      'FACT — Same day as the launch, ABC, CBS, NBC, Fox News, and CNN suspended presidential TV pool coverage after CNN was blocked from finishing scheduled pool duty (TIME / The Wrap). Joint line via The Wrap: “No Administration should restrict a news organization because it objects to its reporting.”',
+      'FACT — Show-don’t-tell: At a 21 Sep 2026 White House helipad ribbon-cutting, TIME and The Guardian report Marine One drowned out Trump’s remarks on the WH feed; Newsmax noted there was “no microphone because the pool cameras aren’t there.”',
+      'FACT — Prequel: In late April 2025 the White House launched White House Wire (WH.gov/wire), a Drudge-style aggregator for “real news” favoring the agenda (Axios). The Verge (3 Jul 2025) found YouTube was Wire’s top linkout destination, and nearly all of those YouTube links went to the White House’s own channel.',
+      'FACT — Axios (22 Sep 2026): Trump TV mixes curated past speeches/executive actions with some live events; while Trump addressed UNGA, the stream reportedly replayed an earlier National Prayer Breakfast speech. Guardian describes early live viewership “hovered at around 1,500” despite millions of channel subscribers. Credible outlets used state-run / state media framing the same week (Guardian; TIME quoting Newsom, Kelly, Stephanie Grisham, Weijia Jiang; Streaming Wars).',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: This isn’t a boring .gov livestream upgrade. It’s a same-week trade: kick independent cameras out of the pool, then sell the country a 24/7 victory reel on YouTube and stamp it CH 47. “Greatest hits, unfiltered” is the product brief — the government’s final cut, not a press briefing. White House Wire already treated the WH channel as “real news”; Trump TV just drops the middleman and runs the feed forever. The helipad mute is the whole thesis in one visual: when the pool mics leave, you’re left with rotor wash and the official cut. State TV doesn’t need a cable license when YouTube + .gov do distribution for free.',
+    ],
+    sources: [
+      {
+        label: 'PRIMARY EMBED — TRUMP TV 24/7 stream (official WH YouTube)',
+        url: 'https://www.youtube.com/watch?v=A4gNgHfZ-v4',
+      },
+      {
+        label: 'White House Live page (CH 45 / CH 47 / Wire)',
+        url: 'https://www.whitehouse.gov/live/',
+      },
+      {
+        label: 'Official White House YouTube channel',
+        url: 'https://www.youtube.com/@whitehouse',
+      },
+      {
+        label: 'WH remarks upload (Sep 22 2026)',
+        url: 'https://www.youtube.com/watch?v=Q5WyknJN3qY',
+      },
+      {
+        label: 'Vance fraud press conference (WH YouTube)',
+        url: 'https://www.youtube.com/watch?v=gwXS24qsEEM',
+      },
+      {
+        label: 'Ballroom construction visit (WH YouTube)',
+        url: 'https://www.youtube.com/watch?v=qQxek3C2Gds',
+      },
+      {
+        label: '“Story of America: Benjamin Franklin” (WH series)',
+        url: 'https://www.youtube.com/watch?v=Ho4Ym6rzfoo',
+      },
+      {
+        label: 'White House — “Trump TV is Here”',
+        url: 'https://www.whitehouse.gov/videos/trump-tv-is-here/',
+      },
+      {
+        label: 'White House Wire',
+        url: 'https://www.whitehouse.gov/wire/',
+      },
+      {
+        label: 'Primary — 2026 Annual Report to Congress on White House Staff (Dorr title/salary)',
+        url: 'https://www.whitehouse.gov/wp-content/uploads/2026/07/2026-Annual-Report-to-Congress-on-White-House-Staff.pdf',
+      },
+      {
+        label: 'Reuters — CNN / MS NOW / Politico shutout (19 Sep 2026)',
+        url: 'https://www.reuters.com/world/white-house-turns-away-cnn-ms-now-politico-reporters-after-trump-announces-ban-2026-09-19/',
+      },
+      {
+        label: 'TIME — Trump TV / pool ban / state-run criticism (22 Sep 2026)',
+        url: 'https://time.com/article/2026/09/22/trump-tv-white-house-press-pool-ban-boycott-state-media/',
+      },
+      {
+        label: 'Guardian — “Literally state-run TV” (22 Sep 2026)',
+        url: 'https://www.theguardian.com/us-news/2026/sep/22/trump-launches-youtube-channel-amid-boycott-by-us-networks/',
+      },
+      {
+        label: 'Axios — what’s on Trump TV (22 Sep 2026)',
+        url: 'https://www.axios.com/2026/09/22/trump-trumptv-white-house-live-news-network',
+      },
+      {
+        label: 'Axios — White House Wire launch (30 Apr 2025)',
+        url: 'https://www.axios.com/2025/04/30/trump-white-house-drudge-style-website-launch',
+      },
+      {
+        label: 'The Verge — Wire → WH YouTube (3 Jul 2025)',
+        url: 'https://www.theverge.com/politics/698148/white-house-wire-youtube',
+      },
+      {
+        label: 'Streaming Wars — “State Media Built for YouTube”',
+        url: 'https://www.thestreamingwars.tv/programming/trump-tv-is-state-media-built-for-youtube/',
+      },
+      {
+        label: 'The Wrap — pool shutout / state-run reactions',
+        url: 'https://www.thewrap.com/media-platforms/politics/trump-tv-press-shutout-state-run-media-reactions/',
+      },
+    ],
+    embeds: [
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=A4gNgHfZ-v4',
+        title: 'TRUMP TV: The Essentials Station (official WH)',
+        caption: 'FACT · PRIMARY · CH 47 · Trump TV 24/7 livestream',
+        afterBodyIndex: 1,
+      },
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=Q5WyknJN3qY',
+        title: 'White House remarks (Sep 22 2026)',
+        caption: 'FACT · official WH YouTube upload',
+        afterBodyIndex: 2,
+      },
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=gwXS24qsEEM',
+        title: 'Vance fraud press conference (WH)',
+        caption: 'FACT · official WH YouTube',
+        afterBodyIndex: 4,
+      },
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=qQxek3C2Gds',
+        title: 'Ballroom construction visit (WH)',
+        caption: 'FACT · official WH YouTube',
+        afterBodyIndex: 5,
+      },
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=Ho4Ym6rzfoo',
+        title: 'Story of America: Benjamin Franklin (WH series)',
+        caption: 'FACT · official WH YouTube series clip',
+        afterBodyIndex: 6,
+      },
+    ],
+    published: true,
+    fixture: false,
+  },
+  {
+    slug: 'trump-un-blunders',
+    title:
+      'UNGA’s greatest hits: the laugh track, the broken teleprompter, and seven wars that weren’t',
+    category: 'REPORTS',
+    date: '2026-09-24',
+    dek: 'From the chamber laughing at his 2018 boast to a 2025 speech that opened with “whoever’s operating this teleprompter is in big trouble,” Trump’s UN podium still delivers — and the fact-checkers bring receipts.',
+    body: [
+      'FACT — What happened: On 25 September 2018 at the UN General Assembly, Trump said his administration had “accomplished more than almost any administration in the history of our country.” Delegates laughed. Trump: “I didn’t expect that reaction, but that’s OK.” (Guardian contemporaneous; AP video.)',
+      'FACT — On 19 September 2017 at UNGA, Trump vowed the U.S. would “totally destroy” North Korea if forced to defend itself and called Kim Jong Un “Rocket Man.” (Reuters; State Dept full address.)',
+      'FACT — On 23 September 2025, Trump opened his UNGA speech saying the teleprompter wasn’t working and that “whoever’s operating this teleprompter is in big trouble” (laughter). He later joked the UN gave him “a bad escalator and a bad teleprompter.” (PBS; NBC; BBC) Full speech on UN Web TV: https://webtv.un.org/en/asset/k19/k1952w5l08 — also ABC and State Dept YouTube mirrors. NBC teleprompter open clip: https://www.nbcnews.com/video/trump-s-teleprompter-malfunctions-during-united-nations-speech-248154181727',
+      'FACT — Same day — escalator: Trump and Melania were aboard when a UN HQ escalator stopped. BBC (24 Sep 2025): UN said a safety mechanism triggered; spokesperson Stéphane Dujarric said a U.S.-delegation videographer filming backward “may have inadvertently triggered the safety function.” BBC also reports a UN official said the White House was operating the teleprompter (own laptops plugged into the UN system).',
+      'FACT — Same speech — “I have ended seven unendable wars”: Trump listed Cambodia–Thailand, Kosovo–Serbia, DRC–Rwanda, Pakistan–India, Israel–Iran, Egypt–Ethiopia, Armenia–Azerbaijan. PolitiFact rates Mostly False (23 Sep 2025): some ceasefires with U.S. role; Egypt–Ethiopia not a war; Kosovo–Serbia thinly evidenced; Congo–Rwanda violence continued; India disputes mediation credit. CNN’s Daniel Dale and AP Fact Focus similarly flag the claim.',
+      'FACT — PBS also notes other on-camera lines from the same speech: countries with uncontrolled migration are “going to hell”; climate as “the greatest con job ever perpetrated on the world.”',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters: The 2018 laugh track still needs no overlay — the room fact-checked him live. 2025 upgrades the slapstick: blame the UN for a teleprompter the White House may have been running, then sell “seven unendable wars” to the one chamber that keeps the casualty counts. “Bad escalator + bad teleprompter” is grievance presidency as stagecraft — even the architecture is the deep state. Cut the AP 2018 laugh → smash to “teleprompter operator is in big trouble” → smash to the UN saying the videographer tripped the escalator. Three beats. Zero invented dialogue. The wars claim isn’t a vibe — it’s Mostly False with named conflicts and named fact-checkers.',
+    ],
+    sources: [
+      {
+        label: 'AP — Trump boast gets laugh at UN (2018 YouTube)',
+        url: 'https://www.youtube.com/watch?v=-z4y8OJxlK8',
+      },
+      {
+        label: 'UN Web TV — 2025 full UNGA speech (57:18) — NOT YouTube',
+        url: 'https://webtv.un.org/en/asset/k19/k1952w5l08',
+      },
+      {
+        label: 'ABC — 2025 full UNGA speech (YouTube)',
+        url: 'https://www.youtube.com/watch?v=RLoxCqc3Tro',
+      },
+      {
+        label: 'State Dept — 2025 UNGA remarks (YouTube)',
+        url: 'https://www.youtube.com/watch?v=lw9foqNRpyE',
+      },
+      {
+        label: 'NBC — teleprompter malfunction clip (NOT YouTube)',
+        url: 'https://www.nbcnews.com/video/trump-s-teleprompter-malfunctions-during-united-nations-speech-248154181727',
+      },
+      {
+        label: 'State Dept — 2017 Rocket Man UNGA address (YouTube)',
+        url: 'https://www.youtube.com/watch?v=AyttM9EnObc',
+      },
+      {
+        label: 'White House — President Trump delivers remarks to the UN General Assembly (2025)',
+        url: 'https://www.whitehouse.gov/videos/president-trump-delivers-remarks-to-the-united-nations-general-assembly/',
+      },
+      {
+        label: 'BBC — escalator + teleprompter context',
+        url: 'https://www.bbc.com/news/articles/cn76kyxp6epo',
+      },
+      {
+        label: 'Guardian — 2018 UNGA speech contemporaneous',
+        url: 'https://www.theguardian.com/us-news/2018/sep/25/trump-united-nations-general-assembly-speech-globalism-america',
+      },
+      {
+        label: 'UN AV Library — 2018 package',
+        url: 'https://media.un.org/avlibrary/en/asset/d224/d2243857',
+      },
+      {
+        label: 'Reuters — 2017 “totally destroy” North Korea / Rocket Man',
+        url: 'https://www.reuters.com/article/world/if-threatened-us-will-totally-destroy-north-korea-trump-vows-idUSKCN1BU0B3/',
+      },
+      {
+        label: 'PBS — 7 key moments from Trump’s U.N. speech (2025)',
+        url: 'https://www.pbs.org/newshour/politics/7-key-moments-from-trumps-u-n-speech',
+      },
+      {
+        label: 'CNN — Daniel Dale fact check, UN speech claims',
+        url: 'https://www.cnn.com/2025/09/23/politics/fact-check-un-speech-claims-trump',
+      },
+      {
+        label: 'PolitiFact — “ended seven wars” Mostly False',
+        url: 'https://www.politifact.com/factchecks/2025/sep/23/donald-trump/trump-ended-seven-wars-un-general-assembly/',
+      },
+      {
+        label: 'PolitiFact — UN speech article',
+        url: 'https://www.politifact.com/article/2025/sep/23/trump-un-general-assembly-speech/',
+      },
+      {
+        label: 'AP Fact Focus — seven wars claim',
+        url: 'https://apnews.com/article/trump-peace-wars-claim-fact-check-10128b26232e1d1eb9e68c5617320cf3',
+      },
+    ],
+    embeds: [
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=-z4y8OJxlK8',
+        title: 'AP — Trump boast gets laugh at UN (2018)',
+        caption: 'FACT · PRIMARY · chamber laugh track',
+        afterBodyIndex: 0,
+      },
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=AyttM9EnObc',
+        title: 'State Dept — full 2017 UNGA address (Rocket Man)',
+        caption: 'FACT · official State Dept YouTube',
+        afterBodyIndex: 1,
+      },
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=RLoxCqc3Tro',
+        title: 'ABC — full 2025 UNGA speech',
+        caption: 'FACT · full speech mirror (teleprompter open)',
+        afterBodyIndex: 2,
+      },
+      {
+        type: 'youtube',
+        youtubeUrl: 'https://www.youtube.com/watch?v=lw9foqNRpyE',
+        title: 'State Dept — 2025 UNGA remarks',
+        caption: 'FACT · official State Dept YouTube',
+        afterBodyIndex: 2,
+      },
+    ],
+    published: true,
+    fixture: false,
+  },
+  {
     slug: 'truth-social-save-america-act-photo-id',
     title:
       'Two lines, one midterm choke: photo ID + proof of citizenship',

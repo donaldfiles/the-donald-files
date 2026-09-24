@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import { VideoEmbed } from '../VideoEmbed'
 import { homeVideoExhibits } from '../../content/homeVideoExhibits'
 
 /**
- * Hybrid-ugly home video slot for upcoming WH propaganda + UN blunder exhibits.
+ * Hybrid-ugly home video slot for WH propaganda + UN blunder exhibits.
  * Wired even when empty: shows awaiting shell so Reed/Ink know where URLs land.
  */
 export function VideoExhibitRail() {
@@ -42,6 +43,13 @@ export function VideoExhibitRail() {
               <div className="video-exhibit-meta">
                 <h3>{item.hed}</h3>
                 <p>{item.note}</p>
+                {item.reportSlug ? (
+                  <div className="video-exhibit-links">
+                    <Link to={`/reports/${item.reportSlug}`}>
+                      Open dossier →
+                    </Link>
+                  </div>
+                ) : null}
               </div>
             </div>
           ))}
