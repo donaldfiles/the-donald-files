@@ -66,8 +66,7 @@ export const articles: Article[] = [
       'None of this fell out of the sky. Last year the White House launched White House Wire — a Drudge-style aggregator pitched as “real news” that just happened to favor the agenda. Reporting later found YouTube was Wire’s top linkout destination, and nearly all those links pointed straight back at the White House’s own channel. Trump TV doesn’t invent the content mill. It fires the middleman and loops the victory reel forever.',
       'What’s actually on it? Curated past speeches. Executive-action victory laps. Some live events. While Trump addressed the UN General Assembly, Trump TV was reportedly replaying an earlier National Prayer Breakfast speech. Early live viewership sat around 1,500 people, despite millions of channel subscribers. Critics reached for the blunt phrase the same week: literally state-run TV. State media built for YouTube. You don’t need a cable license when a `.gov` page and a free upload button do the distribution.',
       'So no — this is not a boring livestream upgrade. It is a same-week trade. Boot the independent cameras. Sell the country a 24/7 greatest-hits channel. Stamp it CH 47 like one man’s presidency finally got its own cable number. “Unfiltered” was never the point. Unopposed was.',
-    ]
-,
+    ],
     sources: [
       {
         label: 'PRIMARY EMBED — TRUMP TV 24/7',
@@ -173,8 +172,7 @@ export const articles: Article[] = [
         title: 'Story of America: Benjamin Franklin (WH)',
         afterBodyIndex: 10,
       },
-    ]
-,
+    ],
     published: true,
     fixture: false,
     proseArticle: true,
@@ -366,8 +364,7 @@ export const articles: Article[] = [
       'Because the “no taxpayer dollars” chorus does not survive contact with the paperwork. Washington Post reporting on Clark Construction records put the project around $600 million, with roughly half tagged to taxpayer-funded accounts — Secret Service, White House Military Office, Executive Residence. The Supreme Court has temporarily let construction keep rolling while the National Trust fight grinds on. So the Truth Social version is gilt fantasy and a gift bow. The real plot is lawsuits, scaffolding, and a tab that somehow still finds its way back to you.',
       'This is the two-step. Call the people’s house a dump only you can save. Rebrand East Wing demolition as charity. Post the renderings like a wedding venue brochure. Leave the funding fight off the caption.',
       'Gift receipt optional. Half paid by you.',
-    ]
-,
+    ],
     sources: [
       {
         label: 'Truth Social — “dump” post, 13 Sep 2026 9:03 PM EDT',

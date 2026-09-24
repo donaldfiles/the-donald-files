@@ -64,7 +64,7 @@ function extractArticles(text) {
     const dek = /dek:\s*'((?:\\'|[^'])*)'/.exec(block)
     const date = /date:\s*'([^']+)'/.exec(block)
     const category = /category:\s*'([^']+)'/.exec(block)
-    const bodyBlock = /body:\s*\[([\s\S]*?)\],\s*sources:/.exec(block)
+    const bodyBlock = /body:\s*\[([\s\S]*?)\]\s*,\s*sources:/.exec(block)
     const bodies = []
     if (bodyBlock) {
       const pr = /'((?:\\'|[^'])*)'/g
@@ -73,7 +73,7 @@ function extractArticles(text) {
         bodies.push(pm[1].replace(/\\'/g, "'"))
       }
     }
-    const sourcesBlock = /sources:\s*\[([\s\S]*?)\],\s*published:/.exec(block)
+    const sourcesBlock = /sources:\s*\[([\s\S]*?)\]\s*,\s*(?:embeds|published):/.exec(block)
     const sources = []
     if (sourcesBlock) {
       const sr =
