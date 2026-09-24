@@ -39,6 +39,11 @@ export type Article = {
    * HTML, but excluded from home / reports feeds.
    */
   fixture?: boolean
+  /**
+   * Continuous snark prose — no FACT/ANALYSIS/SATIRE body labels;
+   * DossierCover omits tone Stamp chips when true.
+   */
+  proseArticle?: boolean
 }
 
 export const articles: Article[] = [
@@ -47,24 +52,25 @@ export const articles: Article[] = [
     title: 'He banned the pool, then launched Trump TV on YouTube',
     category: 'REPORTS',
     date: '2026-09-24',
-    dek: 'Same week the White House shut out CNN, MS NOW, and Politico, it flipped on a 24/7 YouTube stream branded TRUMP TV: The Essentials Station — “greatest hits, unfiltered,” on the taxpayer channel.',
+    dek: 'Kick the cameras out, flip on Channel 47, call it “unfiltered.” Same week. Same White House. Same taxpayer YouTube account.',
     body: [
-      'FACT — What happened: On 19 September 2026, Reuters reported the White House denied access and confiscated press passes for CNN, MS NOW, and Politico after Trump announced a ban, accusing them of “reporting FAKE NEWS.”',
-      'FACT — On 21 September 2026, the White House launched a round-the-clock YouTube livestream titled “TRUMP TV: The Essentials Station.” Official copy said it would put “top past moments, announcements, and the latest and greatest from the Administration all in one place,” and: “Not every big moment has made it on your tv, now it can.” The stream is mirrored on whitehouse.gov/live/ as CH 47 · Trump TV 24/7, next to CH 45 · White House Live and a White House Wire panel. Verified official WH author stream: https://www.youtube.com/watch?v=A4gNgHfZ-v4',
-      'FACT — Named official: TIME and Axios quote Kaelan Dorr — deputy assistant to the President; the July 2026 White House staff report lists him as Deputy Assistant to the President and Principal Deputy Communications Director and Head of Digital Strategy ($175,000) — saying Trump TV would show “the Administration’s greatest hits, unfiltered,” and that “The press, in some cases, reported inaccurately or not at all on the Administration’s many record breaking accomplishments…”',
-      'FACT — Same day as the launch, ABC, CBS, NBC, Fox News, and CNN suspended presidential TV pool coverage after CNN was blocked from finishing scheduled pool duty (TIME / The Wrap). Joint line via The Wrap: “No Administration should restrict a news organization because it objects to its reporting.”',
-      'FACT — Show-don’t-tell: At a 21 Sep 2026 White House helipad ribbon-cutting, TIME and The Guardian report Marine One drowned out Trump’s remarks on the WH feed; Newsmax noted there was “no microphone because the pool cameras aren’t there.”',
-      'FACT — Prequel: In late April 2025 the White House launched White House Wire (WH.gov/wire), a Drudge-style aggregator for “real news” favoring the agenda (Axios). The Verge (3 Jul 2025) found YouTube was Wire’s top linkout destination, and nearly all of those YouTube links went to the White House’s own channel.',
-      'FACT — Axios (22 Sep 2026): Trump TV mixes curated past speeches/executive actions with some live events; while Trump addressed UNGA, the stream reportedly replayed an earlier National Prayer Breakfast speech. Guardian describes early live viewership “hovered at around 1,500” despite millions of channel subscribers. Credible outlets used state-run / state media framing the same week (Guardian; TIME quoting Newsom, Kelly, Stephanie Grisham, Weijia Jiang; Streaming Wars).',
-      'ANALYSIS (labeled opinion / editorial context) — Why it matters: This isn’t a boring .gov livestream upgrade. It’s a same-week trade: kick independent cameras out of the pool, then sell the country a 24/7 victory reel on YouTube and stamp it CH 47. “Greatest hits, unfiltered” is the product brief — the government’s final cut, not a press briefing. White House Wire already treated the WH channel as “real news”; Trump TV just drops the middleman and runs the feed forever. The helipad mute is the whole thesis in one visual: when the pool mics leave, you’re left with rotor wash and the official cut. State TV doesn’t need a cable license when YouTube + .gov do distribution for free.',
+      'The joke writes itself, and then the White House streams it in 24/7 stereo.',
+      'On 19 September 2026, after Trump announced a ban and accused them of “reporting FAKE NEWS,” the White House denied access and confiscated press passes for CNN, MS NOW, and Politico. Two days later — same week, no cooling-off period, no apology tour — the administration flipped on a round-the-clock YouTube livestream branded TRUMP TV: The Essentials Station. Official copy promised “top past moments, announcements, and the latest and greatest from the Administration all in one place,” plus the quiet confession that doubles as a mission statement: “Not every big moment has made it on your tv, now it can.” The feed sits on the White House Live page as CH 47 · Trump TV 24/7, nestled beside CH 45 · White House Live and a White House Wire ticker, as if cable news had been replaced by a presidency-numbered playlist.',
+      'The stream runs on the official White House YouTube channel. The launch was waved in under a White House video titled “Trump TV is Here.”',
+      'Kaelan Dorr — listed in the July 2026 White House staff report as Deputy Assistant to the President and Principal Deputy Communications Director and Head of Digital Strategy, at $175,000 a year — put the product brief in plain English. Trump TV would show “the Administration’s greatest hits, unfiltered,” he said, because “The press, in some cases, reported inaccurately or not at all on the Administration’s many record breaking accomplishments…” Greatest hits. Unfiltered. On the government’s cut.',
+      'The same Monday the stream went up, ABC, CBS, NBC, Fox News, and CNN suspended presidential TV pool coverage after CNN was blocked from finishing scheduled pool duty. Their joint line was blunt: “No Administration should restrict a news organization because it objects to its reporting.”',
+      'Then came the visual that needed no press release. At a 21 September White House helipad ribbon-cutting, Marine One drowned out Trump’s remarks on the official feed. There was no microphone because the pool cameras weren’t there. When the independent mics leave, the soundtrack is rotor wash and the official cut.',
+      'None of this arrived from nowhere. In late April 2025 the White House launched White House Wire, a Drudge-style aggregator pitched as a place for “real news” favoring the agenda. By July, reporting showed YouTube was Wire’s top linkout destination — and nearly all of those YouTube links went to the White House’s own channel. Trump TV doesn’t invent the content mill. It just removes the middleman and runs the victory reel forever.',
+      'Coverage of the launch described the mix as curated past speeches and executive actions plus some live events. While Trump addressed the UN General Assembly, Trump TV was reportedly replaying an earlier National Prayer Breakfast speech. Early live viewership landed in the neighborhood of 1,500 people, despite millions of channel subscribers. Critics reached for the blunt phrase the same week: literally state-run TV. State media built for YouTube. You don’t need a cable license when YouTube and a `.gov` page do the distribution for free.',
+      'This is not a boring livestream upgrade. It is a same-week trade: kick independent cameras out of the pool, then sell the country a 24/7 victory reel and stamp it CH 47 like a cable number for one man’s presidency. “Greatest hits, unfiltered” is not a newsroom slogan. It is a product brief for the government’s final cut. White House Wire already treated the official channel as “real news.” Trump TV just drops the pretense and loops the feed. The helipad mute is the whole thesis in one visual.',
     ],
     sources: [
       {
-        label: 'PRIMARY EMBED — TRUMP TV 24/7 stream (official WH YouTube)',
+        label: 'PRIMARY EMBED — TRUMP TV 24/7',
         url: 'https://www.youtube.com/watch?v=A4gNgHfZ-v4',
       },
       {
-        label: 'White House Live page (CH 45 / CH 47 / Wire)',
+        label: 'White House Live (CH 45 / CH 47 / Wire)',
         url: 'https://www.whitehouse.gov/live/',
       },
       {
@@ -72,23 +78,7 @@ export const articles: Article[] = [
         url: 'https://www.youtube.com/@whitehouse',
       },
       {
-        label: 'WH remarks upload (Sep 22 2026)',
-        url: 'https://www.youtube.com/watch?v=Q5WyknJN3qY',
-      },
-      {
-        label: 'Vance fraud press conference (WH YouTube)',
-        url: 'https://www.youtube.com/watch?v=gwXS24qsEEM',
-      },
-      {
-        label: 'Ballroom construction visit (WH YouTube)',
-        url: 'https://www.youtube.com/watch?v=qQxek3C2Gds',
-      },
-      {
-        label: '“Story of America: Benjamin Franklin” (WH series)',
-        url: 'https://www.youtube.com/watch?v=Ho4Ym6rzfoo',
-      },
-      {
-        label: 'White House — “Trump TV is Here”',
+        label: '“Trump TV is Here”',
         url: 'https://www.whitehouse.gov/videos/trump-tv-is-here/',
       },
       {
@@ -96,31 +86,31 @@ export const articles: Article[] = [
         url: 'https://www.whitehouse.gov/wire/',
       },
       {
-        label: 'Primary — 2026 Annual Report to Congress on White House Staff (Dorr title/salary)',
+        label: '2026 White House staff report — Dorr title/salary',
         url: 'https://www.whitehouse.gov/wp-content/uploads/2026/07/2026-Annual-Report-to-Congress-on-White-House-Staff.pdf',
       },
       {
-        label: 'Reuters — CNN / MS NOW / Politico shutout (19 Sep 2026)',
+        label: 'Reuters — CNN / MS NOW / Politico shutout, 19 Sep 2026',
         url: 'https://www.reuters.com/world/white-house-turns-away-cnn-ms-now-politico-reporters-after-trump-announces-ban-2026-09-19/',
       },
       {
-        label: 'TIME — Trump TV / pool ban / state-run criticism (22 Sep 2026)',
+        label: 'TIME — Trump TV / pool ban / state-run criticism, 22 Sep 2026',
         url: 'https://time.com/article/2026/09/22/trump-tv-white-house-press-pool-ban-boycott-state-media/',
       },
       {
-        label: 'Guardian — “Literally state-run TV” (22 Sep 2026)',
+        label: 'The Guardian — “Literally state-run TV,” 22 Sep 2026',
         url: 'https://www.theguardian.com/us-news/2026/sep/22/trump-launches-youtube-channel-amid-boycott-by-us-networks/',
       },
       {
-        label: 'Axios — what’s on Trump TV (22 Sep 2026)',
+        label: 'Axios — what’s on Trump TV, 22 Sep 2026',
         url: 'https://www.axios.com/2026/09/22/trump-trumptv-white-house-live-news-network',
       },
       {
-        label: 'Axios — White House Wire launch (30 Apr 2025)',
+        label: 'Axios — Wire launch, 30 Apr 2025',
         url: 'https://www.axios.com/2025/04/30/trump-white-house-drudge-style-website-launch',
       },
       {
-        label: 'The Verge — Wire → WH YouTube (3 Jul 2025)',
+        label: 'The Verge — Wire → WH YouTube, 3 Jul 2025',
         url: 'https://www.theverge.com/politics/698148/white-house-wire-youtube',
       },
       {
@@ -131,46 +121,58 @@ export const articles: Article[] = [
         label: 'The Wrap — pool shutout / state-run reactions',
         url: 'https://www.thewrap.com/media-platforms/politics/trump-tv-press-shutout-state-run-media-reactions/',
       },
+      {
+        label: 'WH remarks upload, 22 Sep 2026',
+        url: 'https://www.youtube.com/watch?v=Q5WyknJN3qY',
+      },
+      {
+        label: 'Vance fraud press conference',
+        url: 'https://www.youtube.com/watch?v=gwXS24qsEEM',
+      },
+      {
+        label: 'Ballroom construction visit',
+        url: 'https://www.youtube.com/watch?v=qQxek3C2Gds',
+      },
+      {
+        label: '“Story of America: Benjamin Franklin”',
+        url: 'https://www.youtube.com/watch?v=Ho4Ym6rzfoo',
+      },
     ],
     embeds: [
       {
         type: 'youtube',
         youtubeUrl: 'https://www.youtube.com/watch?v=A4gNgHfZ-v4',
         title: 'TRUMP TV: The Essentials Station (official WH)',
-        caption: 'FACT · PRIMARY · CH 47 · Trump TV 24/7 livestream',
         afterBodyIndex: 1,
       },
       {
         type: 'youtube',
         youtubeUrl: 'https://www.youtube.com/watch?v=Q5WyknJN3qY',
         title: 'White House remarks (Sep 22 2026)',
-        caption: 'FACT · official WH YouTube upload',
-        afterBodyIndex: 2,
+        afterBodyIndex: 3,
       },
       {
         type: 'youtube',
         youtubeUrl: 'https://www.youtube.com/watch?v=gwXS24qsEEM',
         title: 'Vance fraud press conference (WH)',
-        caption: 'FACT · official WH YouTube',
-        afterBodyIndex: 4,
+        afterBodyIndex: 5,
       },
       {
         type: 'youtube',
         youtubeUrl: 'https://www.youtube.com/watch?v=qQxek3C2Gds',
         title: 'Ballroom construction visit (WH)',
-        caption: 'FACT · official WH YouTube',
-        afterBodyIndex: 5,
+        afterBodyIndex: 6,
       },
       {
         type: 'youtube',
         youtubeUrl: 'https://www.youtube.com/watch?v=Ho4Ym6rzfoo',
         title: 'Story of America: Benjamin Franklin (WH series)',
-        caption: 'FACT · official WH YouTube series clip',
-        afterBodyIndex: 6,
+        afterBodyIndex: 7,
       },
     ],
     published: true,
     fixture: false,
+    proseArticle: true,
   },
   {
     slug: 'trump-un-blunders',
@@ -349,44 +351,54 @@ export const articles: Article[] = [
       'He called the White House a “dump,” then sold the ballroom as a free gift again',
     category: 'REPORTS',
     date: '2026-09-14',
-    dek: 'Same Sunday: Trump posted that past presidents left the White House a “dump,” then doubled down that his East Wing ballroom is a “Gift” with “No Taxpayer Dollars” — a claim Washington Post contractor records already shredded.',
+    dek: 'One Sunday: the people’s house is a dump, the ballroom is a gift, and the taxpayer is apparently imaginary.',
     body: [
-      'FACT — What he posted: On 13 September 2026 at 9:03 PM EDT, @realDonaldTrump posted that the White House was in “very bad condition,” a “dump,” that past presidents “did not take care of it,” that the exterior “skin” was “practically falling off,” and that it is now in “better shape than when built in 1792,” with before/after column photos. Permalink: https://truthsocial.com/@realDonaldTrump/117266699812092755',
-      'Same-day ballroom doubles: 3:32 PM EDT — “Gift… No Taxpayer Dollars will be expended” — https://truthsocial.com/@realDonaldTrump/117265397440548141 ; 7:52 PM EDT — “Massively expensive, but free of charge to the American Taxpayer” — https://truthsocial.com/@realDonaldTrump/117266420132610360',
-      'ANALYSIS (labeled opinion / editorial context) — Why it matters: Trash the people’s house as a dump you alone can save, then rebrand East Wing demolition as philanthropy. “No taxpayer dollars” collides with WaPo (16 Jun 2026) on Clark Construction records — a ~$600M estimate with roughly half tagged to taxpayer-funded accounts (Secret Service / WH Military Office / Executive Residence). Reuters (21 Aug): SCOTUS admin stay lets work continue while the National Trust fight grinds. Gilt-render fantasy vs the funding + lawsuit plot.',
-      'SATIRE (desk-made — NOT a fact): “GIFT RECEIPT: one ballroom, half paid by you.”',
+      'First he trashes the mansion. Then he invoices you for the glow-up and calls it philanthropy.',
+      'On 13 September 2026 at 9:03 PM EDT, Donald Trump posted on Truth Social that the White House was in “very bad condition, both inside and out,” that it was a “dump,” that past presidents “did not take care of it,” that the exterior “skin” was “practically falling off,” and that it is now “in better shape than when built in 1792.” He attached before-and-after column photos, as if the executive mansion were a HGTV episode with better security. Even Fox News carried the “dump” line.',
+      'Earlier that same Sunday he had already been selling the East Wing ballroom as a patriotic freebie. At 3:32 PM EDT he posted that the “Spectacular Ballroom” is a “Gift to the U.S.A. from me and other American Patriots” and that “No Taxpayer Dollars will be expended in its Construction.” At 7:52 PM EDT he was back with “First interior renderings,” “Massively expensive, but free of charge to the American Taxpayer,” “On budget, and ahead of schedule.”',
+      'Dump by nightfall. Gift receipt all afternoon. Same account. Same day.',
+      'This is the two-step: declare the people’s house a dump only you can save, then rebrand East Wing demolition as charity. The “no taxpayer dollars” chorus collides with Washington Post reporting on Clark Construction records that put the project around $600 million, with roughly half tagged to taxpayer-funded accounts — Secret Service, White House Military Office, Executive Residence. Reuters has the Supreme Court temporarily letting construction continue while the National Trust fight grinds on. Gilt-render fantasy on Truth Social. Funding fight and lawsuit in the actual plot. Gift receipt optional. Half paid by you.',
     ],
     sources: [
       {
-        label: 'Primary — Truth Social permalink (@realDonaldTrump, 13 Sep 2026, dump / renovation)',
+        label: 'Truth Social — “dump” post, 13 Sep 2026 9:03 PM EDT',
         url: 'https://truthsocial.com/@realDonaldTrump/117266699812092755',
       },
       {
-        label: 'Archive — Trumpstruth.org status 41711',
+        label: 'Trump’s Truth archive — dump post',
         url: 'https://www.trumpstruth.org/statuses/41711',
       },
       {
-        label: 'Primary — Truth Social “Gift… No Taxpayer Dollars” (13 Sep 2026; see also Trumpstruth 41702)',
+        label: 'Truth Social — ballroom “Gift” / no taxpayer dollars, 3:32 PM EDT',
         url: 'https://truthsocial.com/@realDonaldTrump/117265397440548141',
       },
       {
-        label: 'Primary — Truth Social “free of charge to the American Taxpayer” (13 Sep 2026; see also Trumpstruth 41707)',
+        label: 'Trump’s Truth archive — gift post',
+        url: 'https://www.trumpstruth.org/statuses/41702',
+      },
+      {
+        label: 'Truth Social — interior renderings / “free of charge,” 7:52 PM EDT',
         url: 'https://truthsocial.com/@realDonaldTrump/117266420132610360',
       },
       {
-        label: 'Context — Washington Post, Clark Construction records / ~$600M ballroom estimate (16 Jun 2026)',
+        label: 'Trump’s Truth archive — renderings post',
+        url: 'https://www.trumpstruth.org/statuses/41707',
+      },
+      {
+        label: 'Washington Post — Clark Construction ~$600M / taxpayer share, 16 Jun 2026',
         url: 'https://www.washingtonpost.com/investigations/2026/06/16/records-reveal-600m-estimate-trumps-ballroom-project-with-half-taxpayers/',
       },
       {
-        label: 'Context — Reuters, SCOTUS lets ballroom work continue (21 Aug 2026)',
+        label: 'Reuters — SCOTUS admin stay on ballroom, 21 Aug 2026',
         url: 'https://www.reuters.com/world/supreme-court-lets-trump-continue-work-white-house-ballroom-now-2026-08-21/',
       },
       {
-        label: 'Context — Fox News, Trump touts White House renovations / “very bad condition”',
+        label: 'Fox News — “dump” / renovations coverage',
         url: 'https://www.foxnews.com/politics/trump-touts-white-house-renovations-says-building-very-bad-condition',
       },
     ],
     published: true,
+    proseArticle: true,
   },
   {
     slug: 'truth-social-caracas-maduro-fafo',

@@ -20,9 +20,11 @@ export function DossierCover({ article }: Props) {
         <div className="cover-cat">
           Category · <em>{article.category === 'REPORTS' ? 'REPORT' : article.category}</em>
         </div>
-        <div className="stamps">
-          <Stamp variant={stamp} />
-        </div>
+        {!article.proseArticle ? (
+          <div className="stamps">
+            <Stamp variant={stamp} />
+          </div>
+        ) : null}
       </div>
       <h1>{article.title}</h1>
       <p className="cover-dek">{article.dek}</p>

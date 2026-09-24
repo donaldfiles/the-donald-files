@@ -110,6 +110,7 @@ function extractArticles(text) {
         })
       }
     }
+    const proseArticle = /proseArticle:\s*true/.test(block)
     articles.push({
       slug,
       title: titleStr,
@@ -120,6 +121,7 @@ function extractArticles(text) {
       sources,
       embeds,
       fixture,
+      proseArticle,
     })
   }
   return articles.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
@@ -213,7 +215,7 @@ function articleHtml(a) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${esc(a.title)} — The Donald Files</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet"/><style>${CSS}</style></head><body>
 <div class="shell">
 <div class="chrome"><a href="/">← THE DONALD FILES</a> · <a href="/reports/">Reports</a> · FILE // <span>${esc(a.slug)}</span></div>
-<section class="cover"><span class="stamp">FACT</span> <span class="stamp">REPORT</span>
+<section class="cover">${a.proseArticle ? '' : '<span class="stamp">FACT</span> <span class="stamp">REPORT</span>'}
 <h1>${esc(a.title)}</h1>
 <p class="dek">${esc(a.dek)}</p>
 <div class="meta">${esc(a.date)} · By The Donald Files desk</div>
