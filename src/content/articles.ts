@@ -5,6 +5,24 @@ export type SourceFile = {
   url: string
 }
 
+/** Optional YouTube (or clean embed URL) exhibit on an article. */
+export type ArticleEmbed = {
+  type: 'youtube'
+  /** Raw 11-character YouTube video id */
+  id?: string
+  /** watch?v= / youtu.be / shorts / embed URL — normalized to nocookie */
+  youtubeUrl?: string
+  /** https youtube.com/embed/... or youtube-nocookie.com/embed/... */
+  embedUrl?: string
+  title?: string
+  caption?: string
+  /**
+   * Insert after this 0-based body paragraph index.
+   * Omit → after last body graf (before SOURCE FILES).
+   */
+  afterBodyIndex?: number
+}
+
 export type Article = {
   slug: string
   title: string
@@ -14,6 +32,13 @@ export type Article = {
   body: string[]
   sources: SourceFile[]
   published: boolean
+  /** Optional video embeds (YouTube → youtube-nocookie). Reed/Ink fill these. */
+  embeds?: ArticleEmbed[]
+  /**
+   * Engineering fixture — published for direct /reports/:slug access + static
+   * HTML, but excluded from home / reports feeds.
+   */
+  fixture?: boolean
 }
 
 export const articles: Article[] = [
@@ -428,16 +453,53 @@ export const articles: Article[] = [
     ],
     published: true,
   },
+
+  {
+    slug: 'embed-path-smoke-test',
+    title: 'Embed path smoke test (Ink: replace / remove)',
+    category: 'REPORTS',
+    date: '2026-09-24',
+    dek: 'Engineering fixture — proves youtube-nocookie iframe on Open Dossier pages. Not a dossier claim. Ink: delete this file or replace the embed with a real WH / UN URL.',
+    body: [
+      'FACT — Path proof only: this page exists so Cloudflare Pages + CSP + the VideoEmbed component can be verified live. No political claim is attached to the placeholder clip.',
+      'ANALYSIS (labeled opinion / editorial context) — Why it matters for the desk: Reed/Ink can pass embeds as { type: youtube, id } or youtubeUrl / embedUrl; the site normalizes to https://www.youtube-nocookie.com/embed/ID and renders a quiet 16:9 frame in the charcoal/manila dossier body.',
+      'SATIRE (desk-made — NOT a fact): “EXHIBIT STAMP: this is a smoke test, not a gotcha.”',
+    ],
+    sources: [
+      {
+        label: 'Placeholder — White House YouTube channel (smoke ID only)',
+        url: 'https://www.youtube.com/watch?v=WWDtyRXsGoI',
+      },
+    ],
+    embeds: [
+      {
+        type: 'youtube',
+        id: 'WWDtyRXsGoI',
+        title: 'White House channel (smoke-test placeholder)',
+        caption: 'MOCK EXHIBIT · SMOKE TEST · Ink replace with real URL',
+        afterBodyIndex: 0,
+      },
+    ],
+    fixture: true,
+    published: true,
+  },
 ]
 
 export function getPublishedArticles(): Article[] {
   return articles
-    .filter((a) => a.published)
+    .filter((a) => a.published && !a.fixture)
     .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
 }
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return articles.find((a) => a.slug === slug && a.published)
+}
+
+/** All published including engineering fixtures (static HTML / direct URL). */
+export function getAllPublishedArticles(): Article[] {
+  return articles
+    .filter((a) => a.published)
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
 }
 
 export function getPublishedReports(): Article[] {

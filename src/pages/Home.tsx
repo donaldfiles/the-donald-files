@@ -6,6 +6,7 @@ import { PastedCard } from '../components/home/PastedCard'
 import { TruthStrip } from '../components/home/TruthStrip'
 import { MemeRail } from '../components/home/MemeRail'
 import { HostileList } from '../components/home/HostileList'
+import { VideoExhibitRail } from '../components/home/VideoExhibitRail'
 import { getPublishedArticles } from '../content/articles'
 
 /** Rage hierarchy (heat first) — uses existing articles only. */
@@ -69,6 +70,7 @@ export function Home() {
         ) : null}
 
         <TruthStrip />
+        <VideoExhibitRail />
         <MemeRail />
         <HostileList articles={ranked} />
 
