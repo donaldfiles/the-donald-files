@@ -31,7 +31,6 @@ export function cardParams(a, fileNo) {
     file: escHtml(a.ogFile || `FILE // ${String(fileNo).padStart(3, '0')}`),
     stamp: escHtml(stamp),
     hed,
-    dek: escHtml(a.dek || ''),
   }
 }
 
@@ -59,11 +58,13 @@ export async function openRenderer(root) {
       if (last.bottom > foot.top - 8) issues.push('text into footer')
       const dekLines = dek ? Math.round(dek.getBoundingClientRect().height / parseFloat(getComputedStyle(dek).lineHeight)) : 0
       const fontsOk = getComputedStyle(hed).fontFamily.includes('Antonio')
+      const balance = CSS.supports('text-wrap', 'balance') && getComputedStyle(hed).textWrap?.includes('balance')
+      if (!balance) issues.push('text-wrap: balance not supported/applied')
       return { issues, dekLines, fontsOk }
     })
   }
 
-  /** Render; dek is dropped unless it fits on one line (spec). Throws on layout overflow. */
+  /** Render (cards are headline-only; any dek passed is dropped unless it fits one line). Throws on layout overflow. */
   async function render(params) {
     let m = await load(params)
     let usedDek = !!params.dek

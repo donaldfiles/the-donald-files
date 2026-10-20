@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import { openRenderer, cardParams } from './lib/share-card.mjs'
 import { extractArticles } from './lib/articles.mjs'
 import {
-  SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, clip, isoDate, articleUrl, articleOg,
+  SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, isoDate, articleUrl, articleOg,
   headTags, websiteLd,
 } from './lib/seo.mjs'
 
@@ -30,7 +30,7 @@ const defaultPath = join(dist, 'og', 'default.png')
 try {
   const { png } = await renderer.render({
     kicker: 'Hostile archive', file: 'FILE // INDEX', stamp: 'RECEIPTS',
-    hed: 'Brutal. Factual. *Documented.*', dek: 'Every receipt in the file.',
+    hed: 'Brutal. Factual. *Documented.*',
   })
   writeFileSync(defaultPath, png)
 } catch (e) {

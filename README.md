@@ -83,7 +83,7 @@ https://t.me/thedonaldfiles
     - `ogPunch`: an exact word or phrase from the hed to highlight. Defaults to no highlight.
     - `ogStamp`: FILED, RECEIPTS, ON TAPE or IN WRITING. Defaults to FILED. FACT, REPORT, ANALYSIS and SATIRE are rejected.
     - `ogFile`: dossier number. Defaults to the chronological order, with the oldest article as 001.
-  - The dek only goes on the card when it fits on one line, as the spec requires.
+  - Cards are headline only, with no dek. `.hed` uses `text-wrap: balance` (Chrome 114 or later) so lines come out even.
   - Bump `OG_VERSION` in `scripts/lib/seo.mjs` after a design change so X re-fetches the cards.
 - Home share tags injected into `dist/index.html`.
 - `dist/sitemap.xml`, `dist/robots.txt`, `dist/rss.xml` and `dist/feed.json` (JSON Feed 1.1), newest first.
