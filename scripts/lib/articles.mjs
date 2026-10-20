@@ -102,6 +102,10 @@ export function extractArticles(text) {
       }
     }
     const proseArticle = /proseArticle:\s*true/.test(block)
+    const ogStr = (k) => {
+      const m = new RegExp(`\\b${k}:\\s*'((?:\\\\'|[^'])*)'`).exec(block)
+      return m ? m[1].replace(/\\'/g, "'") : undefined
+    }
     articles.push({
       slug,
       title: titleStr,
@@ -113,6 +117,10 @@ export function extractArticles(text) {
       embeds,
       fixture,
       proseArticle,
+      ogKicker: ogStr('ogKicker'),
+      ogPunch: ogStr('ogPunch'),
+      ogStamp: ogStr('ogStamp'),
+      ogFile: ogStr('ogFile'),
     })
   }
   return articles.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))

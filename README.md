@@ -77,7 +77,14 @@ https://t.me/thedonaldfiles
 
 `npm run build` runs `scripts/generate-static.mjs` (article + /reports HTML with canonical, OG, Twitter and NewsArticle JSON-LD tags) and then `scripts/generate-seo.mjs`, which writes:
 
-- `dist/og/<slug>.png`: a 1200x630 share card per article, made with satori and resvg using the fonts in `scripts/fonts/`. `dist/og/default.png` is the fallback.
+- `dist/og/<slug>.png`: a 1200x630 share card per article, using Vex's share card v1 (`scripts/share-card/template.html` plus `SHARE-CARD-SPEC.md`). Headless Chrome screenshots it through `playwright-core` (system `/usr/bin/google-chrome`, override with `CHROME_PATH`) using the box's system fonts: Antonio and IBM Plex Mono, Serif and Sans. Any card that fails or overflows falls back to `dist/og/default.png`.
+  - Per-article fields in `articles.ts`, all optional:
+    - `ogKicker`: topic tape. Defaults to "Truth Social watch" for `truth-social-*` slugs, otherwise empty.
+    - `ogPunch`: an exact word or phrase from the hed to highlight. Defaults to no highlight.
+    - `ogStamp`: FILED, RECEIPTS, ON TAPE or IN WRITING. Defaults to FILED. FACT, REPORT, ANALYSIS and SATIRE are rejected.
+    - `ogFile`: dossier number. Defaults to the chronological order, with the oldest article as 001.
+  - The dek only goes on the card when it fits on one line, as the spec requires.
+  - Bump `OG_VERSION` in `scripts/lib/seo.mjs` after a design change so X re-fetches the cards.
 - Home share tags injected into `dist/index.html`.
 - `dist/sitemap.xml`, `dist/robots.txt`, `dist/rss.xml` and `dist/feed.json` (JSON Feed 1.1), newest first.
 

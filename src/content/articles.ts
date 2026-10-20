@@ -44,11 +44,22 @@ export type Article = {
    * DossierCover omits tone Stamp chips when true.
    */
   proseArticle?: boolean
+  /** Share card (og:image) kicker tape — short topic beat taken from the hed. */
+  ogKicker?: string
+  /** Word/phrase already in the hed to get the red highlight band. */
+  ogPunch?: string
+  /** Mood stamp: FILED / RECEIPTS / ON TAPE / IN WRITING. Never FACT/REPORT/ANALYSIS/SATIRE. */
+  ogStamp?: string
+  /** Override dossier number, e.g. 'FILE // 007'. Default derives from order. */
+  ogFile?: string
 }
 
 export const articles: Article[] = [
   {
     slug: 'wh-youtube-trump-tv',
+    ogKicker: 'Press pool watch',
+    ogPunch: 'Trump TV',
+    ogStamp: 'ON TAPE',
     title: 'He banned the pool, then launched Trump TV on YouTube',
     category: 'REPORTS',
     date: '2026-09-24',
@@ -179,6 +190,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-un-blunders',
+    ogKicker: 'UN watch',
+    ogPunch: 'seven wars',
+    ogStamp: 'ON TAPE',
     title:
       'UNGA’s greatest hits: the laugh track, the broken teleprompter, and seven wars that weren’t',
     category: 'REPORTS',
@@ -294,6 +308,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-save-america-act-photo-id',
+    ogKicker: 'Voting watch',
+    ogPunch: 'photo ID',
+    ogStamp: 'IN WRITING',
     title:
       'Two lines, one midterm choke: photo ID + proof of citizenship',
     category: 'REPORTS',
@@ -350,6 +367,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-white-house-dump-ballroom',
+    ogKicker: 'Ballroom watch',
+    ogPunch: 'dump',
+    ogStamp: 'IN WRITING',
     title:
       'He called the White House a “dump,” then sold the ballroom as a free gift again',
     category: 'REPORTS',
@@ -408,6 +428,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-caracas-maduro-fafo',
+    ogKicker: 'Venezuela watch',
+    ogPunch: 'found out',
+    ogStamp: 'ON TAPE',
     title:
       'On 9/11 night he dropped a Caracas flex reel: “effed around, and he found out”',
     category: 'REPORTS',
@@ -441,6 +464,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-dallas-beat-nfl',
+    ogKicker: 'Ratings watch',
+    ogPunch: 'beat the NFL',
+    ogStamp: 'IN WRITING',
     title:
       'He declared Dallas “beat the NFL” before the ratings even existed',
     category: 'REPORTS',
@@ -480,6 +506,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-reflecting-pool-vandalism-primer',
+    ogKicker: 'Reflecting Pool watch',
+    ogPunch: 'primer',
+    ogStamp: 'RECEIPTS',
     title:
       'On 9/11 weekend he boosted a vandalism yarn while the contractor paperwork points at botched primer',
     category: 'REPORTS',
@@ -517,6 +546,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-colossus-smithsonian-washington',
+    ogKicker: 'Smithsonian watch',
+    ogPunch: 'Colossus',
+    ogStamp: 'IN WRITING',
     title:
       'He wants a 30-foot Washington “Colossus” and a culture war at the Smithsonian',
     category: 'REPORTS',
@@ -546,6 +578,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-trump-dividend-5000-double-down',
+    ogKicker: 'Midterm bribe watch',
+    ogPunch: 'bribe',
+    ogStamp: 'IN WRITING',
     title: 'He doubled down on the $5,000 midterm bribe on his own app',
     category: 'REPORTS',
     date: '2026-09-14',
@@ -575,6 +610,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'iran-war-midterms-pickaxe-mountain',
+    ogKicker: 'Iran war watch',
+    ogPunch: 'Pickaxe Mountain',
+    ogStamp: 'FILED',
     title:
       'Trump ties endless Iran war to the midterms, threatens Pickaxe Mountain again',
     category: 'REPORTS',
@@ -600,6 +638,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'doj-scotus-save-voter-verification',
+    ogKicker: 'Supreme Court watch',
+    ogPunch: 'voter-purge',
+    ogStamp: 'FILED',
     title: 'DOJ begs the Supreme Court to revive its blocked voter-purge database',
     category: 'REPORTS',
     date: '2026-09-08',
@@ -624,6 +665,9 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-dividend-5000-gop-congress',
+    ogKicker: 'Midterm watch',
+    ogPunch: 'bribe',
+    ogStamp: 'RECEIPTS',
     title:
       'Trump’s midterm bribe cosplay: $5,000 “Trump dividend” if the GOP keeps Congress',
     category: 'REPORTS',
@@ -650,6 +694,9 @@ export const articles: Article[] = [
 
   {
     slug: 'doj-scotus-nevada-us-attorney-chattah',
+    ogKicker: 'DOJ watch',
+    ogPunch: 'unlawfully',
+    ogStamp: 'FILED',
     title:
       'DOJ asks SCOTUS to keep Nevada’s unlawfully parked U.S. attorney',
     category: 'REPORTS',
@@ -677,6 +724,9 @@ export const articles: Article[] = [
 
   {
     slug: 'trump-west-wing-holiday-cash-gifts',
+    ogKicker: 'West Wing watch',
+    ogPunch: '$45k cash',
+    ogStamp: 'RECEIPTS',
     title: 'Trump gave $45k cash “holiday” gifts to West Wing favorites',
     category: 'REPORTS',
     date: '2026-09-09',

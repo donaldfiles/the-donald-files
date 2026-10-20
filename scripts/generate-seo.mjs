@@ -1,13 +1,12 @@
 /**
- * Post-build (after generate-static): per-article 1200x630 og:image PNGs,
+ * Post-build (after generate-static): per-article 1200x630 og:image PNGs (Vex share card v1 via headless Chrome),
  * home-page share tags, sitemap.xml, robots.txt, rss.xml, feed.json.
  * Any per-article image failure falls back to /og/default.png.
  */
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import satori from 'satori'
-import { Resvg } from '@resvg/resvg-js'
+import { openRenderer, cardParams } from './lib/share-card.mjs'
 import { extractArticles } from './lib/articles.mjs'
 import {
   SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, clip, isoDate, articleUrl, articleOg,
@@ -19,68 +18,41 @@ const dist = join(root, 'dist')
 const all = extractArticles(readFileSync(join(root, 'src/content/articles.ts'), 'utf8'))
 const articles = all.filter((a) => !a.fixture)
 
-// ---------- og images ----------
-const fonts = [
-  { name: 'Anton', data: readFileSync(join(root, 'scripts/fonts/Anton-Regular.ttf')), weight: 400, style: 'normal' },
-  { name: 'Plex Mono', data: readFileSync(join(root, 'scripts/fonts/IBMPlexMono-Bold.ttf')), weight: 700, style: 'normal' },
-]
-const h = (type, style, ...children) => ({
-  type,
-  props: { style: { display: 'flex', boxSizing: 'border-box', ...style }, children: children.length <= 1 ? children[0] : children },
-})
-
-function headlineSize(t) {
-  const n = t.length
-  if (n <= 40) return 96
-  if (n <= 60) return 82
-  if (n <= 85) return 70
-  if (n <= 110) return 60
-  return 52
-}
-
-function card({ title, kicker, fileId, date }) {
-  const head = clip(title, 140).toUpperCase()
-  return h(
-    'div',
-    { width: 1200, height: 630, background: '#0A0A0A', padding: '34px 40px', flexDirection: 'column', fontFamily: 'Plex Mono' },
-    // folder tab
-    h('div', { width: 340, height: 44, background: '#D9CBB0', borderRadius: '10px 10px 0 0', marginLeft: 24, alignItems: 'center', paddingLeft: 22, fontSize: 18, color: '#5a5348', letterSpacing: 3 }, fileId),
-    h(
-      'div',
-      { width: 1100, height: 510, background: '#E8DCC8', border: '2px solid #c9bba3', flexDirection: 'column', padding: '30px 44px 26px', position: 'relative', boxShadow: '10px 10px 0 #D1001F' },
-      h('div', { justifyContent: 'space-between', alignItems: 'center', width: '100%' },
-        h('div', { border: '4px solid #D1001F', color: '#D1001F', fontSize: 24, padding: '6px 16px', letterSpacing: 4, transform: 'rotate(-3deg)' }, kicker),
-        h('div', { fontSize: 20, color: '#5a5348', letterSpacing: 3 }, date)),
-      h('div', { flex: 1, width: 1000, alignItems: 'center', fontFamily: 'Anton', fontSize: headlineSize(head), lineHeight: 1.04, color: '#1A1510', paddingTop: 10 }, head),
-      h('div', { justifyContent: 'space-between', alignItems: 'flex-end', borderTop: '3px dashed #b9a988', paddingTop: 14, width: '100%' },
-        h('div', { fontFamily: 'Anton', fontSize: 40, color: '#1A1510', letterSpacing: 1 },
-          h('span', {}, 'THE\u00a0'), h('span', { color: '#D1001F' }, 'DONALD'), h('span', {}, '\u00a0FILES')),
-        h('div', { fontSize: 22, color: '#5a5348', letterSpacing: 2 }, 'THEDONALDFILES.COM')),
-    ),
-  )
-}
-
-async function png(node) {
-  const svg = await satori(node, { width: 1200, height: 630, fonts })
-  return new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } }).render().asPng()
-}
-
+// ---------- og images (share card v1, headless Chrome) ----------
+// Dossier numbers: chronological among feed articles (oldest = 001), stable as new pieces are prepended.
+const fileNo = new Map()
+const chrono = all.filter((a) => !a.fixture).slice().reverse()
+chrono.forEach((a, i) => fileNo.set(a.slug, i + 1))
 mkdirSync(join(dist, 'og'), { recursive: true })
-writeFileSync(
-  join(dist, 'og', 'default.png'),
-  await png(card({ title: 'Brutal. Factual. Documented. Every receipt in the file.', kicker: 'OPEN FILES', fileId: 'FILE // INDEX', date: 'HOSTILE ARCHIVE' })),
-)
+const renderer = await openRenderer(root)
 const ogFailed = []
-for (const [i, a] of all.entries()) {
+const defaultPath = join(dist, 'og', 'default.png')
+try {
+  const { png } = await renderer.render({
+    kicker: 'Hostile archive', file: 'FILE // INDEX', stamp: 'RECEIPTS',
+    hed: 'Brutal. Factual. *Documented.*', dek: 'Every receipt in the file.',
+  })
+  writeFileSync(defaultPath, png)
+} catch (e) {
+  await renderer.close()
+  throw new Error(`default share card failed: ${e.message}`)
+}
+let withDek = 0
+for (const a of all) {
   const out = join(dist, 'og', `${a.slug}.png`)
+  const params = cardParams(a, fileNo.get(a.slug) ?? 0)
+  if (a.fixture) params.file = 'FILE // TEST'
   try {
-    writeFileSync(out, await png(card({ title: a.title, kicker: a.proseArticle ? 'FILED' : 'FACT · REPORT', fileId: `FILE // ${String(i + 1).padStart(3, '0')}`, date: a.date })))
+    const r = await renderer.render(params)
+    if (r.usedDek) withDek++
+    writeFileSync(out, r.png)
   } catch (e) {
     ogFailed.push(a.slug)
     console.warn(`og image failed for ${a.slug}: ${e.message} — using default`)
-    writeFileSync(out, readFileSync(join(dist, 'og', 'default.png')))
+    writeFileSync(out, readFileSync(defaultPath))
   }
 }
+await renderer.close()
 
 // ---------- home (SPA shell) share tags ----------
 const homePath = join(dist, 'index.html')
@@ -152,4 +124,4 @@ ${items
 `
 writeFileSync(join(dist, 'rss.xml'), rss)
 
-console.log(`SEO: ${all.length} og images (${ogFailed.length} fell back), sitemap ${urls.length} urls, feed/rss ${items.length} items`)
+console.log(`SEO: ${all.length} share cards (${ogFailed.length} fell back${ogFailed.length ? ': ' + ogFailed.join(', ') : ''}; ${withDek} with dek), sitemap ${urls.length} urls, feed/rss ${items.length} items`)

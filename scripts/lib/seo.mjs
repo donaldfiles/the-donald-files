@@ -3,7 +3,9 @@ export const SITE = 'https://thedonaldfiles.com'
 export const SITE_NAME = 'The Donald Files'
 export const SITE_DESC =
   'The Donald Files — Brutal. Factual. Documented. Sourced reporting and snark on Trump, with every receipt in the file.'
-export const DEFAULT_OG = `${SITE}/og/default.png`
+/** Bump when the card design changes so X/Facebook re-fetch instead of using cached cards. */
+export const OG_VERSION = 'v1'
+export const DEFAULT_OG = `${SITE}/og/default.png?${OG_VERSION}`
 
 export function esc(s) {
   return String(s ?? '')
@@ -27,7 +29,7 @@ export function isoDate(d) {
 }
 
 export const articleUrl = (slug) => `${SITE}/reports/${slug}/`
-export const articleOg = (slug) => `${SITE}/og/${slug}.png`
+export const articleOg = (slug) => `${SITE}/og/${slug}.png?${OG_VERSION}`
 
 /**
  * Build head tags. opts: { title, description, url, image, type, published,
