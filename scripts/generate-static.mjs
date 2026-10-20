@@ -2,130 +2,14 @@
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { extractArticles } from './lib/articles.mjs'
+import { headTags, newsArticleLd, isoDate, articleUrl, articleOg, SITE, DEFAULT_OG } from './lib/seo.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const articlesPath = join(root, 'src/content/articles.ts')
 const dist = join(root, 'dist')
 const src = readFileSync(articlesPath, 'utf8')
 
-function parseStringExpr(expr) {
-  // Preserve literal "+" inside quotes; only join string-concatenation +.
-  const parts = []
-  let cur = ''
-  let i = 0
-  while (i < expr.length) {
-    const c = expr[i]
-    if (c === "'") {
-      cur += c
-      i++
-      while (i < expr.length) {
-        if (expr[i] === '\\' && i + 1 < expr.length) {
-          cur += expr[i] + expr[i + 1]
-          i += 2
-          continue
-        }
-        const ch = expr[i]
-        cur += ch
-        i++
-        if (ch === "'") break
-      }
-      continue
-    }
-    if (c === '+') {
-      parts.push(cur.trim().replace(/^'|'$/g, '').replace(/\\'/g, "'"))
-      cur = ''
-      i++
-      while (i < expr.length && /\s/.test(expr[i])) i++
-      continue
-    }
-    cur += c
-    i++
-  }
-  if (cur.trim()) {
-    parts.push(cur.trim().replace(/^'|'$/g, '').replace(/\\'/g, "'"))
-  }
-  return parts.join('')
-}
-
-function extractArticles(text) {
-  const articles = []
-  const blockRe =
-    /\{\s*slug:\s*'([^']+)'[\s\S]*?published:\s*(true|false)[\s\S]*?\n\s*\}/g
-  let m
-  while ((m = blockRe.exec(text))) {
-    const block = m[0]
-    const slug = m[1]
-    if (m[2] !== 'true') continue
-
-    const titleMatch = block.match(
-      /title:\s*((?:'(?:\\'|[^'])*'\s*\+\s*)*'(?:\\'|[^'])*')/,
-    )
-    const titleStr = titleMatch ? parseStringExpr(titleMatch[1]) : slug
-    const dek = /dek:\s*'((?:\\'|[^'])*)'/.exec(block)
-    const date = /date:\s*'([^']+)'/.exec(block)
-    const category = /category:\s*'([^']+)'/.exec(block)
-    const bodyBlock = /body:\s*\[([\s\S]*?)\]\s*,\s*sources:/.exec(block)
-    const bodies = []
-    if (bodyBlock) {
-      const pr = /'((?:\\'|[^'])*)'/g
-      let pm
-      while ((pm = pr.exec(bodyBlock[1]))) {
-        bodies.push(pm[1].replace(/\\'/g, "'"))
-      }
-    }
-    const sourcesBlock = /sources:\s*\[([\s\S]*?)\]\s*,\s*(?:embeds|published):/.exec(block)
-    const sources = []
-    if (sourcesBlock) {
-      const sr =
-        /\{\s*label:\s*((?:'(?:\\'|[^'])*'\s*\+\s*)*'(?:\\'|[^'])*')\s*,\s*url:\s*'([^']+)'\s*,?\s*\}/g
-      let sm
-      while ((sm = sr.exec(sourcesBlock[1]))) {
-        sources.push({ label: parseStringExpr(sm[1]), url: sm[2] })
-      }
-    }
-    const fixture = /fixture:\s*true/.test(block)
-    const embeds = []
-    const embedsBlock =
-      /embeds:\s*\[([\s\S]*?)\],\s*(?:published|fixture):/.exec(block) ||
-      /embeds:\s*\[([\s\S]*?)\]\s*,?\s*(?:published|fixture):/.exec(block)
-    if (embedsBlock) {
-      const er = /\{\s*type:\s*'youtube'[\s\S]*?\}/g
-      let em
-      while ((em = er.exec(embedsBlock[1]))) {
-        const eb = em[0]
-        const id = /(?:^|[,\s])id:\s*'([^']+)'/.exec(eb)
-        const youtubeUrl = /youtubeUrl:\s*'([^']+)'/.exec(eb)
-        const embedUrl = /embedUrl:\s*'([^']+)'/.exec(eb)
-        const titleMatch = /\btitle:\s*'((?:\\'|[^'])*)'/.exec(eb)
-        const caption = /caption:\s*'((?:\\'|[^'])*)'/.exec(eb)
-        const after = /afterBodyIndex:\s*(\d+)/.exec(eb)
-        embeds.push({
-          type: 'youtube',
-          id: id?.[1],
-          youtubeUrl: youtubeUrl?.[1],
-          embedUrl: embedUrl?.[1],
-          title: titleMatch ? titleMatch[1].replace(/\\'/g, "'") : undefined,
-          caption: caption ? caption[1].replace(/\\'/g, "'") : undefined,
-          afterBodyIndex: after ? Number(after[1]) : undefined,
-        })
-      }
-    }
-    const proseArticle = /proseArticle:\s*true/.test(block)
-    articles.push({
-      slug,
-      title: titleStr,
-      dek: dek ? dek[1].replace(/\\'/g, "'") : '',
-      date: date?.[1] ?? '',
-      category: category?.[1] ?? 'REPORTS',
-      body: bodies,
-      sources,
-      embeds,
-      fixture,
-      proseArticle,
-    })
-  }
-  return articles.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
-}
 
 function esc(s) {
   return String(s)
@@ -212,7 +96,7 @@ function articleHtml(a) {
         `<a class="exhibit-item" href="${esc(s.url)}" rel="noreferrer noopener" target="_blank"><span class="exhibit-id">EX-${String(i + 1).padStart(2, '0')}</span> ${esc(s.label)}</a>`,
     )
     .join('')
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${esc(a.title)} — The Donald Files</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet"/><style>${CSS}</style></head><body>
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${esc(a.title)} — The Donald Files</title>${headTags({ title: a.title, description: a.dek || a.title, url: articleUrl(a.slug), image: articleOg(a.slug), type: 'article', published: isoDate(a.date), section: a.category, noindex: a.fixture, jsonLd: newsArticleLd(a) })}<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet"/><style>${CSS}</style></head><body>
 <div class="shell">
 <div class="chrome"><a href="/">← THE DONALD FILES</a> · <a href="/reports/">Reports</a> · FILE // <span>${esc(a.slug)}</span></div>
 <section class="cover">${a.proseArticle ? '' : '<span class="stamp">FACT</span> <span class="stamp">REPORT</span>'}
@@ -244,7 +128,7 @@ function indexHtml(articles) {
   const leadBlock = lead
     ? `<article class="lead"><div class="stamps"><span class="stamp filled">FACT</span><span class="stamp">REPORT</span></div><h1>${esc(lead.title)}</h1><p class="dek">${esc(lead.dek)}</p><a class="open" href="/reports/${esc(lead.slug)}/">OPEN THE FILE →</a></article>`
     : ''
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Reports — The Donald Files</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/><style>${INDEX_CSS}</style></head><body>
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Reports — The Donald Files</title>${headTags({ title: 'Reports — The Donald Files', description: 'Every open file: sourced Trump reporting, snark and receipts from The Donald Files, newest first.', url: `${SITE}/reports/`, image: DEFAULT_OG, type: 'website' })}<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/><style>${INDEX_CSS}</style></head><body>
 <div class="ticker">FIGHT ▸ · REPORTS INDEX · HYBRID UGLY · ARTICLES STAY OPEN DOSSIER</div>
 <header class="mast"><div class="kicker">HOSTILE ARCHIVE · NOT A NEWSROOM</div><div class="brand">THE <em>DONALD</em> FILES</div></header>
 <div class="shell">

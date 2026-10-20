@@ -72,3 +72,16 @@ Use: **Subscribe** / **Support the Research** / **Buy the Report**. Never “Don
 ## Telegram
 
 https://t.me/thedonaldfiles
+
+## SEO, share cards & feeds (build step)
+
+`npm run build` runs `scripts/generate-static.mjs` (article + /reports HTML with canonical, OG, Twitter and NewsArticle JSON-LD tags) and then `scripts/generate-seo.mjs`, which writes:
+
+- `dist/og/<slug>.png`: a 1200x630 share card per article, made with satori and resvg using the fonts in `scripts/fonts/`. `dist/og/default.png` is the fallback.
+- Home share tags injected into `dist/index.html`.
+- `dist/sitemap.xml`, `dist/robots.txt`, `dist/rss.xml` and `dist/feed.json` (JSON Feed 1.1), newest first.
+
+## X posting queue (prep, no keys yet)
+
+`node scripts/post-queue.mjs` does a dry run. It prints draft posts of 280 chars or fewer for articles that are not yet in `data/x-post-state.json`.
+`--write-drafts` saves them to `data/x-drafts.json`. `--post` calls the stubbed `postToX()`, which does nothing unless `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN` and `X_ACCESS_TOKEN_SECRET` are set, and is still unimplemented even when they are. `--mark-posted <slug>` records a manual post.

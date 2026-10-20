@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-static.mjs",
+    "build": "tsc -b && vite build && node scripts/generate-static.mjs && node scripts/generate-seo.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -16,11 +16,13 @@
     "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.0",
     "oxlint": "^1.79.0",
+    "satori": "^0.63.2",
     "typescript": "~6.0.2",
     "vite": "^8.2.2"
   }
