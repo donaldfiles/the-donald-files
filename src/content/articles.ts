@@ -52,6 +52,8 @@ export type Article = {
   ogStamp?: string
   /** Override dossier number, e.g. 'FILE // 007'. Default derives from order. */
   ogFile?: string
+  /** <title> override (SEO). The on-page headline stays `title`. */
+  seoTitle?: string
   /** 'clip' = short video post at /trump-videos/<slug>/ (v4 ClipPost). Default 'article' at /reports/<slug>/. */
   kind?: 'article' | 'clip'
   /** ClipPost: the original upload, embedded (never re-hosted). hed = title, kicker = ogKicker. */
@@ -94,6 +96,7 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 export const articles: Article[] = [
   {
     slug: 'camp-lejeune-no-win-no-money',
+    seoTitle: 'Trump Puts Camp Lejeune Marines’ Payouts on the Ballot',
     ogKicker: 'NO WIN, NO MONEY',
     ogPunch: 'ballot',
     ogStamp: 'RECEIPTS',
@@ -885,6 +888,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-un-blunders',
+    seoTitle: 'Trump at the UN: The Laugh Track, the Teleprompter, the Seven Wars',
     ogKicker: 'UN watch',
     ogPunch: 'teleprompter',
     ogStamp: 'ON TAPE',
@@ -1011,6 +1015,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-save-america-act-photo-id',
+    seoTitle: 'Trump’s SAVE America Act Push: Photo ID and Proof of Citizenship',
     ogKicker: 'Voting watch',
     ogPunch: 'choke',
     ogStamp: 'IN WRITING',
@@ -1071,6 +1076,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-white-house-dump-ballroom',
+    seoTitle: 'Trump Calls the White House a ‘Dump,’ Sells the Ballroom as a Gift',
     ogKicker: 'Ballroom watch',
     ogPunch: 'dump',
     ogStamp: 'IN WRITING',
@@ -1132,6 +1138,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-caracas-maduro-fafo',
+    seoTitle: 'Trump’s 9/11-Night Caracas Flex Reel on Maduro',
     ogKicker: 'Venezuela watch',
     ogPunch: 'flex',
     ogStamp: 'ON TAPE',
@@ -1175,6 +1182,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-dallas-beat-nfl',
+    seoTitle: 'Trump Declared Dallas ‘Beat the NFL’ Before the Ratings Existed',
     ogKicker: 'Ratings watch',
     ogPunch: 'NFL',
     ogStamp: 'IN WRITING',
@@ -1222,6 +1230,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-reflecting-pool-vandalism-primer',
+    seoTitle: 'Trump’s Reflecting Pool Vandalism Yarn vs. the Primer Paperwork',
     ogKicker: 'Reflecting Pool watch',
     ogPunch: 'primer',
     ogStamp: 'RECEIPTS',
@@ -1270,6 +1279,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-colossus-smithsonian-washington',
+    seoTitle: 'Trump Wants a 30-Foot Washington ‘Colossus’ and a Smithsonian Fight',
     ogKicker: 'Smithsonian watch',
     ogPunch: 'Colossus',
     ogStamp: 'IN WRITING',
@@ -1311,6 +1321,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-trump-dividend-5000-double-down',
+    seoTitle: 'Trump Doubles Down on the $5,000 Midterm Bribe on Truth Social',
     ogKicker: 'Midterm bribe watch',
     ogPunch: 'bribe',
     ogStamp: 'IN WRITING',
@@ -1389,6 +1400,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'doj-scotus-save-voter-verification',
+    seoTitle: 'Trump DOJ Begs SCOTUS to Revive Its Blocked Voter-Purge Database',
     ogKicker: 'Supreme Court watch',
     ogPunch: 'voter-purge',
     ogStamp: 'FILED',
@@ -1457,6 +1469,7 @@ export const articles: Article[] = [
 
   {
     slug: 'doj-scotus-nevada-us-attorney-chattah',
+    seoTitle: 'Trump DOJ Asks SCOTUS to Keep Nevada’s Unlawfully Parked U.S. Attorney',
     ogKicker: 'DOJ watch',
     ogPunch: 'unlawfully',
     ogStamp: 'FILED',

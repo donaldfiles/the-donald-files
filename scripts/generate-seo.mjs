@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import { openRenderer, cardParams } from './lib/share-card.mjs'
 import { extractArticles } from './lib/articles.mjs'
 import {
-  SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, isoDate, urlFor, articleOg,
+  SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, urlFor, articleOg, datesFor, embedUrlFor,
   headTags, websiteLd,
 } from './lib/seo.mjs'
 
@@ -73,7 +73,7 @@ const urls = [
   { loc: `${SITE}/the-record`, freq: 'daily', pri: '0.6' },
   { loc: `${SITE}/about`, freq: 'monthly', pri: '0.3' },
   { loc: `${SITE}/subscribe`, freq: 'monthly', pri: '0.4' },
-  ...articles.map((a) => ({ loc: urlFor(a), lastmod: a.date, freq: 'weekly', pri: '0.8', img: articleOg(a.slug), title: a.title })),
+  ...articles.map((a) => ({ loc: urlFor(a), lastmod: datesFor(a).modified, freq: 'weekly', pri: '0.8', img: articleOg(a.slug), title: a.title })),
 ]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -83,9 +83,55 @@ ${urls
 </urlset>
 `
 writeFileSync(join(dist, 'sitemap.xml'), sitemap)
+
+// ---------- video sitemap (every clip's video, incl. "before" clips) ----------
+const vids = []
+for (const a of articles.filter((x) => x.kind === 'clip')) {
+  const d = datesFor(a)
+  for (const [e, isBefore] of [[a.embed, false], [a.beforeEmbed, true]]) {
+    if (!e || (e.type !== 'x' && e.type !== 'youtube')) continue
+    vids.push({
+      loc: urlFor(a),
+      thumb: e.type === 'youtube' ? `https://i.ytimg.com/vi/${e.id}/hqdefault.jpg` : articleOg(a.slug),
+      title: isBefore ? `${e.label || 'Earlier clip'} (before)` : a.title,
+      desc: isBefore ? `The earlier clip referenced in: ${a.title}` : a.dek || a.title,
+      player: embedUrlFor(e),
+      date: d.published,
+      dur: !isBefore && a.durationSeconds ? a.durationSeconds : undefined,
+    })
+  }
+}
+const byLoc = new Map()
+for (const v of vids) byLoc.set(v.loc, [...(byLoc.get(v.loc) || []), v])
+const videoSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+${[...byLoc]
+  .map(
+    ([loc, vs]) =>
+      `  <url><loc>${esc(loc)}</loc>${vs
+        .map(
+          (v) =>
+            `<video:video><video:thumbnail_loc>${esc(v.thumb)}</video:thumbnail_loc><video:title>${esc(v.title.slice(0, 100))}</video:title><video:description>${esc(v.desc.slice(0, 2048))}</video:description><video:player_loc>${esc(v.player)}</video:player_loc>${v.dur ? `<video:duration>${v.dur}</video:duration>` : ''}<video:publication_date>${esc(v.date)}</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>`,
+        )
+        .join('')}</url>`,
+  )
+  .join('\n')}
+</urlset>
+`
+writeFileSync(join(dist, 'sitemap-video.xml'), videoSitemap)
+const newest = articles.map((a) => datesFor(a).modified).sort().pop()
+writeFileSync(
+  join(dist, 'sitemap-index.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap><loc>${SITE}/sitemap.xml</loc><lastmod>${newest}</lastmod></sitemap>
+  <sitemap><loc>${SITE}/sitemap-video.xml</loc><lastmod>${newest}</lastmod></sitemap>
+</sitemapindex>
+`,
+)
 writeFileSync(
   join(dist, 'robots.txt'),
-  `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE}/sitemap.xml\n`,
+  `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE}/sitemap-index.xml\nSitemap: ${SITE}/sitemap.xml\nSitemap: ${SITE}/sitemap-video.xml\n`,
 )
 
 // ---------- feed.json (JSON Feed 1.1) + rss.xml ----------
@@ -96,7 +142,8 @@ const items = articles.map((a) => ({
   title: a.title,
   summary: a.dek,
   image: articleOg(a.slug),
-  date_published: isoDate(a.date),
+  date_published: datesFor(a).published,
+  date_modified: datesFor(a).modified,
   tags: a.kind === 'clip' ? ['clip', ...(a.topics || [])] : [a.category],
   ...(a.kind === 'clip' && a.embed ? { external_url: a.embed.url } : {}),
 }))
@@ -126,4 +173,5 @@ ${items
 `
 writeFileSync(join(dist, 'rss.xml'), rss)
 
+console.log(`video sitemap: ${vids.length} videos on ${byLoc.size} pages`)
 console.log(`SEO: ${all.length} share cards (${ogFailed.length} fell back${ogFailed.length ? ': ' + ogFailed.join(', ') : ''}; ${withDek} with dek), sitemap ${urls.length} urls, feed/rss ${items.length} items`)

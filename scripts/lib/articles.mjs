@@ -139,6 +139,7 @@ export function extractArticles(text) {
       ogPunch: ogStr('ogPunch'),
       ogStamp: ogStr('ogStamp'),
       ogFile: ogStr('ogFile'),
+      seoTitle: ogStr('seoTitle'),
       kind: ogStr('kind') === 'clip' ? 'clip' : 'article',
       embed: parseEmbed(block, 'embed'),
       beforeEmbed: parseEmbed(block, 'beforeEmbed'),

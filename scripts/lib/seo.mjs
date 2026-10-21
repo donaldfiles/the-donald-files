@@ -24,6 +24,18 @@ export function clip(s, n = 200) {
 }
 
 /** YYYY-MM-DD → ISO 8601 (noon New York ≈ 16:00Z; dates carry no time). */
+import { readFileSync as _rf, existsSync as _ex } from 'node:fs'
+const _datesPath = new URL('../../src/content/content-dates.json', import.meta.url)
+const DATES = _ex(_datesPath) ? JSON.parse(_rf(_datesPath, 'utf8')) : {}
+
+/** { published, modified } ISO strings for a post. published falls back to its calendar date. */
+export function datesFor(a) {
+  const d = DATES[a.slug] || {}
+  const published = d.published || (a.publishedAt ? new Date(a.publishedAt).toISOString() : isoDate(a.date))
+  const modified = d.modified && d.modified > published ? d.modified : published
+  return { published, modified, hasTime: Boolean(d.published || a.publishedAt) }
+}
+
 export function isoDate(d) {
   return /^\d{4}-\d{2}-\d{2}$/.test(d) ? `${d}T16:00:00Z` : new Date().toISOString()
 }
@@ -79,7 +91,7 @@ const publisher = {
 }
 
 export function newsArticleLd(a) {
-  const pub = isoDate(a.date)
+  const { published: pub, modified } = datesFor(a)
   return {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
@@ -87,7 +99,7 @@ export function newsArticleLd(a) {
     description: clip(a.dek, 300),
     image: [articleOg(a.slug)],
     datePublished: pub,
-    dateModified: pub,
+    dateModified: modified,
     articleSection: a.category,
     mainEntityOfPage: { '@type': 'WebPage', '@id': urlFor(a) },
     url: urlFor(a),
@@ -141,6 +153,8 @@ export function clipLd(a) {
       description: clip(a.dek, 300),
       thumbnailUrl: thumbs,
       uploadDate: etNoon(a.date),
+      datePublished: datesFor(a).published,
+      dateModified: datesFor(a).modified,
       embedUrl: embedUrlFor(e),
       contentUrl: e.url,
       url,
@@ -152,4 +166,19 @@ export function clipLd(a) {
   const words = (a.body || []).join(' ').split(/\s+/).length
   if (words > 150 || !e || e.type === 'truthsocial') out.push(newsArticleLd(a))
   return out
+}
+
+const fmtET = (iso, withTime) =>
+  new Date(iso).toLocaleString('en-US', {
+    timeZone: 'America/New_York', month: 'short', day: 'numeric', year: 'numeric',
+    ...(withTime ? { hour: 'numeric', minute: '2-digit' } : {}),
+  }) + (withTime ? ' ET' : '')
+
+/** Visible "Published … · Updated …" line (HTML). */
+export function timeLineHtml(a) {
+  const { published, modified, hasTime } = datesFor(a)
+  const pubTxt = hasTime ? fmtET(published, true) : fmtET(etNoon(a.date), false)
+  let h = `<span class="t-pub">Published <time datetime="${esc(published)}">${esc(pubTxt)}</time></span>`
+  if (modified > published) h += ` · <span class="t-upd">Updated <time datetime="${esc(modified)}">${esc(fmtET(modified, true))}</time></span>`
+  return h
 }
