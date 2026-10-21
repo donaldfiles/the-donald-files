@@ -7,7 +7,7 @@
  */
 import { mkdirSync, writeFileSync, readFileSync, rmSync, cpSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { extractArticles, hrefFor, fileNumbers, liveTopics, TOPIC_LABEL } from '../lib/articles.mjs'
+import { extractArticles, hrefFor, fileNumbers, liveTopics, attachMedia, TOPIC_LABEL } from '../lib/articles.mjs'
 import {
   SITE, SITE_NAME, DEFAULT_OG, esc, headTags, newsArticleLd, clipLd, datesFor, urlFor, articleOg, etNoon,
 } from '../lib/seo.mjs'
@@ -22,7 +22,7 @@ const PER_PAGE = Number(process.env.DF_PER_PAGE || 24)
 const root = new URL('../..', import.meta.url).pathname
 const dist = join(root, 'dist')
 const read = (p) => readFileSync(join(root, p), 'utf8')
-const all = extractArticles(read('src/content/articles.ts')).filter((a) => !a.fixture)
+const all = attachMedia(extractArticles(read('src/content/articles.ts')).filter((a) => !a.fixture), join(root, 'data/clip-media.json'))
 const pub = (a) => datesFor(a).published
 const byNewest = (x, y) => (pub(y) > pub(x) ? 1 : pub(y) < pub(x) ? -1 : 0)
 const posts = all.slice().sort(byNewest)
@@ -56,19 +56,21 @@ const PLATFORM = { x: 'X', youtube: 'YouTube', truthsocial: 'Truth Social' }
 const ytId = (e) => e.id || /(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/.exec(e.youtubeUrl || e.embedUrl || '')?.[1]
 const PLAY = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32"/><path d="M26 20 L46 32 L26 44 Z"/></svg>'
 const QUOTE = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32"/><path d="M20 38c0-7 4-12 10-14l1 3c-3 1-5 4-5 6h5v9H20zm15 0c0-7 4-12 10-14l1 3c-3 1-5 4-5 6h5v9H35z"/></svg>'
-const SK = '<div class="sk"><i></i><i></i><i></i></div>'
 const dur = (a) => (a.duration ? `<span class="dur">${esc(a.duration)}</span>` : '')
 
+function posterImg(src, eager) {
+  return `<img class="poster" src="${esc(src)}" alt="" width="640" height="360" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`
+}
 function thumb(a, { big = false, eager = false } = {}) {
   const e = a.embed || {}
   const id = e.type === 'youtube' ? ytId(e) : null
-  const poster = id
-    ? `<img class="poster" src="https://i.ytimg.com/vi/${esc(id)}/hqdefault.jpg" alt="" width="480" height="360" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`
-    : SK
-  return `<div class="thumb${big ? ' big' : ''}">${poster}${e.type === 'truthsocial' ? QUOTE : PLAY}<span class="src">${esc(PLATFORM[e.type] || 'Clip')}</span>${dur(a)}</div>`
+  const src = a.poster || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null)
+  // No image (e.g. a Truth Social text post): solid blue tile with the kicker. Never grey mock lines.
+  const inner = src ? posterImg(src, eager) : `<span class="tkick">${esc(kickerOf(a) || PLATFORM[e.type] || 'Clip')}</span>`
+  return `<div class="thumb${big ? ' big' : ''}${src ? '' : ' fb'}">${inner}${e.type === 'truthsocial' ? QUOTE : PLAY}<span class="src">${esc(PLATFORM[e.type] || 'Clip')}</span>${dur(a)}</div>`
 }
 function tile(a, row = false) {
-  return `<a class="tile${row ? ' row' : ''}" href="${esc(hrefFor(a))}">${thumb(a)}<div class="tbody"><div class="tmeta">${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h3 class="thed">${punch(a.title, a.ogPunch)}</h3></div></a>`
+  return `<a class="tile${row ? ' row' : ''}" href="${esc(hrefFor(a))}"${row ? ` title="${esc(a.title)}" aria-label="${esc(a.title)}"` : ''}>${thumb(a)}<div class="tbody"><div class="tmeta">${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h3 class="thed">${punch(a.title, a.ogPunch)}</h3></div></a>`
 }
 function feat(a) {
   return `<a class="feat" href="${esc(hrefFor(a))}">${thumb(a, { big: true, eager: true })}<div class="fbody"><div class="tmeta"><span class="new" data-new hidden>New</span>${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h2 class="fhed">${punch(a.title, a.ogPunch)}</h2>${a.dek ? `<p class="fdek">${esc(a.dek)}</p>` : ''}</div></a>`
@@ -230,16 +232,17 @@ ${subband(topic ? `hub-${topic}` : 'hub')}`
   })
 }
 
-function facade(e, { big = false, label = '' } = {}) {
+function facade(e, { big = false, label = '', poster: pst = null, kicker = '' } = {}) {
   const who = e.accountName ? `${esc(e.accountName)}${e.account ? ` (${esc(e.account)})` : ''}` : esc(e.account || '')
   if (e.type === 'truthsocial') {
     return `<figure class="player"><div class="qcard"><p class="qsrc">Truth Social · ${who}</p><p class="qnote">A text post, not a video. Read it in full on the Trump’s Truth archive, which keeps a copy if the original disappears.</p><p class="qlinks"><a href="${esc(e.archiveUrl || e.url)}" target="_blank" rel="noopener noreferrer">Read the post (archive) ↗</a><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">Original on Truth Social ↗</a></p></div></figure>`
   }
   const id = e.type === 'youtube' ? ytId(e) : e.id
   const url = e.url || e.youtubeUrl || `https://www.youtube.com/watch?v=${id}`
-  const poster = e.type === 'youtube' ? `<img class="poster" src="https://i.ytimg.com/vi/${esc(id)}/hqdefault.jpg" alt="" width="480" height="360" ${big ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">` : SK
+  const src = pst || e.poster || (e.type === 'youtube' ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null)
+  const poster = src ? posterImg(src, big) : `<span class="tkick">${esc(kicker || PLATFORM[e.type])}</span>`
   const plat = PLATFORM[e.type]
-  return `<figure class="player${big ? '' : ' small'}">${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-url="${esc(url)}" aria-label="Play${e.title ? ` “${esc(e.title)}”` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span>${e.type === 'x' && who ? `<span class="who">${who}</span>` : ''}</a><figcaption class="credit">${e.title ? `<b>${esc(e.title)}</b>${e.caption ? ` · ${esc(e.caption)}` : ''} · ` : ''}Original upload${who ? `: ${who}` : ''} on ${plat} <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">↗</a></figcaption></figure>`
+  return `<figure class="player${big ? '' : ' small'}">${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-url="${esc(url)}" aria-label="Play${e.title ? ` “${esc(e.title)}”` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span>${e.type === 'x' && who ? `<span class="who">${who}</span>` : ''}</a><figcaption class="credit">${e.title ? `<b>${esc(e.title)}</b>${e.caption ? ` · ${esc(e.caption)}` : ''} · ` : ''}Original upload${who ? `: ${who}` : ''} on ${plat} <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">↗</a></figcaption></figure>`
 }
 function sourcesBox(a) {
   return `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}</ol></section>`
@@ -275,7 +278,7 @@ function clipPage(a) {
   const ld = clipLd(a).map((x) => (x['@type'] === 'BreadcrumbList' ? crumbLd(cr) : x))
   const head = headTags({ title: a.title, description: a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: isVideo ? 'video.other' : 'article', published: d.published, modified: d.modified, section: 'Trump Videos', jsonLd: ld })
   const body = `${crumbs(cr.map(([n, h], i) => (i === cr.length - 1 ? ['This clip', h] : [n, h])))}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}
-${a.embed ? facade(a.embed, { big: true }) : ''}
+${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a) }) : ''}
 <div class="prose">${a.body.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
 ${a.beforeEmbed ? facade(a.beforeEmbed, { label: `Before · ${esc(a.beforeEmbed.label || '')}` }) : ''}
 ${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>

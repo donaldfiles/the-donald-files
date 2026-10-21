@@ -69,3 +69,10 @@ iframe.yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(
  .rec li{flex-direction:column;gap:4px}
 }
 .sbl{flex-basis:100%;font:600 14px/1 var(--f-ui);color:var(--muted);margin-bottom:2px}
+.thumb.fb{background:var(--blue);display:flex;align-items:flex-end}
+.tkick{position:absolute;left:14px;right:14px;bottom:12px;font:800 20px/1.1 var(--f-head);letter-spacing:-.015em;color:var(--white);text-wrap:balance}
+.thumb.big .tkick{font-size:34px;left:22px;bottom:20px}
+.thumb.fb .play circle{fill:var(--white)}.thumb.fb .play path{fill:var(--blue)}
+.tile.row .tkick{font-size:13px;left:8px;bottom:8px}
+.tile.row .thed{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.thumb .poster{background:var(--sunk)}

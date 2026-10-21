@@ -7,7 +7,7 @@ import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { openRenderer, cardParams } from './lib/share-card.mjs'
-import { extractArticles, fileNumbers, liveTopics } from './lib/articles.mjs'
+import { extractArticles, fileNumbers, liveTopics, attachMedia } from './lib/articles.mjs'
 import {
   SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, urlFor, articleOg, datesFor, embedUrlFor,
 
@@ -15,7 +15,7 @@ import {
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
-const all = extractArticles(readFileSync(join(root, 'src/content/articles.ts'), 'utf8'))
+const all = attachMedia(extractArticles(readFileSync(join(root, 'src/content/articles.ts'), 'utf8')), join(root, 'data/clip-media.json'))
 const articles = all.filter((a) => !a.fixture)
 
 // ---------- og images (share card v1, headless Chrome) ----------
@@ -81,7 +81,7 @@ for (const a of articles.filter((x) => x.kind === 'clip')) {
     if (!e || (e.type !== 'x' && e.type !== 'youtube')) continue
     vids.push({
       loc: urlFor(a),
-      thumb: e.type === 'youtube' ? `https://i.ytimg.com/vi/${e.id}/hqdefault.jpg` : articleOg(a.slug),
+      thumb: e.poster ? `${SITE}${e.poster}` : !isBefore && a.poster ? `${SITE}${a.poster}` : e.type === 'youtube' ? `https://i.ytimg.com/vi/${e.id}/hqdefault.jpg` : articleOg(a.slug),
       title: isBefore ? `${e.label || 'Earlier clip'} (before)` : a.title,
       desc: isBefore ? `The earlier clip referenced in: ${a.title}` : a.dek || a.title,
       player: embedUrlFor(e),

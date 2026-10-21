@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 /** Shared parser for src/content/articles.ts (regex-based, no TS compile). */
 export function parseStringExpr(expr) {
   // Preserve literal "+" inside quotes; only join string-concatenation +.
@@ -170,4 +171,21 @@ export function fileNumbers(all) {
 export function liveTopics(all) {
   const used = new Set(all.filter((a) => a.kind === 'clip' && !a.fixture).flatMap((a) => a.topics || []))
   return TOPIC_ORDER.filter((t) => used.has(t))
+}
+
+/** Merge cached clip posters/durations (data/clip-media.json, from scripts/fetch-posters.mjs) into posts. */
+export function attachMedia(all, metaPath) {
+  let meta = {}
+  try { meta = JSON.parse(readFileSync(metaPath, 'utf8')) } catch {}
+  const mmss = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
+  for (const a of all) {
+    if (a.kind !== 'clip') continue
+    const m = meta[a.slug]
+    if (m?.poster) a.poster = m.poster
+    if (!a.durationSeconds && m?.durationSeconds) a.durationSeconds = m.durationSeconds
+    if (!a.duration && a.durationSeconds) a.duration = mmss(a.durationSeconds)
+    const b = meta[`${a.slug}--before`]
+    if (a.beforeEmbed && b?.poster) a.beforeEmbed = { ...a.beforeEmbed, poster: b.poster }
+  }
+  return all
 }

@@ -4,7 +4,7 @@ export const SITE_NAME = 'The Donald Files'
 export const SITE_DESC =
   'The Donald Files — Brutal. Factual. Documented. Sourced reporting and snark on Trump, with every receipt in the file.'
 /** Bump when the card design changes so X/Facebook re-fetch instead of using cached cards. */
-export const OG_VERSION = 'v3'
+export const OG_VERSION = 'v4'
 export const DEFAULT_OG = `${SITE}/og/default.png?${OG_VERSION}`
 
 export function esc(s) {
@@ -146,6 +146,7 @@ export function clipLd(a) {
   if (e && (e.type === 'x' || e.type === 'youtube')) {
     const thumbs = [articleOg(a.slug)]
     if (e.type === 'youtube') thumbs.unshift(`https://i.ytimg.com/vi/${e.id}/hqdefault.jpg`)
+    if (a.poster) thumbs.unshift(`${SITE}${a.poster}`)
     const v = {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
