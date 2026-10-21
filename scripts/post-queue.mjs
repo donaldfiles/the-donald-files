@@ -10,6 +10,8 @@
  *   options: --feed <path|url>  (default dist/feed.json, fallback https://thedonaldfiles.com/feed.json)
  *            --limit <n>        (max articles this run, default 3)
  *
+ * Hand-written drafts (data/x-custom-drafts.json, keyed by slug) replace the auto draft for that article;
+ * entries may carry quoteTweetId (sent as quote_tweet_id when posting is wired).
  * State lives in data/x-post-state.json: { posted: { [slug]: { at, tweetId } } }.
  * Only --post (after a real success) and --mark-posted modify state.
  */
@@ -20,6 +22,7 @@ import { fileURLToPath } from 'node:url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const STATE = join(root, 'data/x-post-state.json')
 const DRAFTS = join(root, 'data/x-drafts.json')
+const CUSTOM = join(root, 'data/x-custom-drafts.json')
 const LIVE_FEED = 'https://thedonaldfiles.com/feed.json'
 const MAX = 280
 const URL_LEN = 23 // X wraps every link in t.co → always counts as 23
@@ -95,12 +98,12 @@ export function draftPost(item) {
  * sign the request (e.g. oauth-1.0a) and POST { text } to https://api.x.com/2/tweets,
  * returning { ok:true, id } from response.data.id.
  */
-export async function postToX(text) {
+export async function postToX(text, { quoteTweetId } = {}) {
   const need = ['X_API_KEY', 'X_API_SECRET', 'X_ACCESS_TOKEN', 'X_ACCESS_TOKEN_SECRET']
   const missing = need.filter((k) => !process.env[k])
   if (missing.length) return { ok: false, skipped: true, reason: `missing env: ${missing.join(', ')}` }
   // TODO(press): implement signed POST to https://api.x.com/2/tweets once the account + keys exist.
-  return { ok: false, skipped: true, reason: 'postToX is a stub — not implemented yet', length: text.length }
+  return { ok: false, skipped: true, reason: 'postToX is a stub — not implemented yet', length: text.length, quoteTweetId }
 }
 
 async function main() {
@@ -120,12 +123,20 @@ async function main() {
   const queue = items.filter((it) => !state.posted[it.slug || it.id])
   const limit = Number(opt('--limit', 3))
   const batch = queue.slice(0, limit)
-  const drafts = batch.map((it) => ({ slug: it.slug, url: it.url, image: it.image, text: draftPost(it) }))
+  const custom = existsSync(CUSTOM) ? JSON.parse(readFileSync(CUSTOM, 'utf8')) : {}
+  const drafts = batch.flatMap((it) => {
+    const hand = Array.isArray(custom[it.slug]) ? custom[it.slug] : null
+    if (!hand) return [{ slug: it.slug, url: it.url, image: it.image, text: draftPost(it) }]
+    return hand.map((h, i) => {
+      if (xLength(h.text) > MAX) throw new Error(`custom draft ${it.slug}#${i + 1} is ${xLength(h.text)} chars`)
+      return { slug: it.slug, url: it.url, image: it.image, text: h.text, quoteTweetId: h.quoteTweetId, n: h.n ?? i + 1, custom: true }
+    })
+  })
 
   const mode = flag('--post') ? 'POST' : 'DRY RUN'
   console.log(`[${mode}] feed=${src} · ${items.length} articles · ${queue.length} unposted · showing ${drafts.length}\n`)
   for (const d of drafts) {
-    console.log(`— ${d.slug} (${xLength(d.text)}/280)\n${d.text}\n`)
+    console.log(`— ${d.slug}${d.custom ? ` #${d.n} (Ink)` : ''}${d.quoteTweetId ? ` · quote of ${d.quoteTweetId}` : ''} (${xLength(d.text)}/280)\n${d.text}\n`)
   }
   if (flag('--write-drafts')) {
     writeFileSync(DRAFTS, JSON.stringify({ generatedAt: new Date().toISOString(), drafts }, null, 2) + '\n')
@@ -134,7 +145,7 @@ async function main() {
   if (!flag('--post')) return
 
   for (const d of drafts) {
-    const r = await postToX(d.text)
+    const r = await postToX(d.text, { quoteTweetId: d.quoteTweetId })
     if (r.ok) {
       state.posted[d.slug] = { at: new Date().toISOString(), tweetId: r.id }
       saveState(state)

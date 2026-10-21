@@ -11,6 +11,7 @@ import { getPublishedArticles } from '../content/articles'
 
 /** Rage hierarchy (heat first) — uses existing articles only. */
 const RAGE_ORDER = [
+  'camp-lejeune-no-win-no-money',
   'wh-youtube-trump-tv',
   'trump-un-blunders',
   'truth-social-save-america-act-photo-id',

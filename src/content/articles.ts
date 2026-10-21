@@ -56,6 +56,68 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'camp-lejeune-no-win-no-money',
+    ogKicker: 'NO WIN, NO MONEY',
+    ogPunch: 'ballot',
+    ogStamp: 'RECEIPTS',
+    title: 'He played fraud bounty hunter at lunch, then put sick Marines’ payouts on the ballot',
+    category: 'REPORTS',
+    date: '2026-10-21',
+    dek: 'Afternoon: “I will be very generous.” Evening: “If we don’t win, there’s no money.” Same president. Same Tuesday. Different customers.',
+    body: [
+      'Turns out the government does have money for people who come forward. You just have to come forward to the right guy.',
+      'Tuesday afternoon, in the Oval Office, Donald Trump and JD Vance rolled out a $25 million Justice Department program that pays tipsters up to $30,000 for reporting fraud that leads to convictions or big federal enforcement actions. A 24-year-old conservative YouTuber got a $10,000 check on the spot. Very game show.',
+      'Then Trump added the twist nobody asked for. He’d personally be “the arbitrator of all of these decisions.” He’d decide who’s “deserving.” And he’d be “very generous. Believe me... we’re not looking to save on that.”',
+      'Not looking to save. Hold that thought until dinner.',
+      'Tuesday night, Greenville, North Carolina. A midterm rally in the same state as Camp Lejeune. For decades the drinking water on that Marine base was laced with industrial solvents, and up to a million people who lived or worked there from 1953 to 1987 may have been exposed. These are the people still fighting the government over cancer and worse.',
+      'Trump announced his administration had delivered $1 billion in settlements to these veterans and their families. Applause. Then came the fine print.',
+      '“If we win the House and the Senate, I am directing the Department of Justice to settle all remaining legitimate claims as soon as possible.” And then, so nobody missed it: “If we don’t win, there’s no money. If we do win, you’re getting it.”',
+      'So that’s the system. Rat out a stranger and the president will be very generous. Get poisoned serving your country and he’ll want to see your ballot first.',
+      'North Carolina’s governor, Josh Stein, didn’t bother with diplomacy. Conditioning “doing the right thing by sick North Carolinians on who wins the election,” he posted, “is foul.”',
+      'And it’s not like this crept up on the White House. The same day, Laura Loomer, of all people, was on X calling the Justice Department’s settlement offers “lowball” and warning it was “a political disaster waiting to happen.” Attorney General Todd Blanche fired back that “We love our veterans and we want to get these cases right.” By nightfall the boss had a fix. Get them right after November 3. Maybe.',
+      'This isn’t a one-off, either. It’s the whole tour. A $5,000 check for every adult citizen, but only if Republicans hold Congress. The night before in Kansas, year-round higher-ethanol gas sales, but only if Kansans keep their Republican senator. Every promise on this road trip comes with an “if,” and the “if” is always you voting the right way.',
+      'Every president promises to deliver for voters. This one is promising to withhold from them.',
+      'Cancer doesn’t care who controls the Senate. The guy in charge of the settlements apparently does.',
+    ],
+    sources: [
+      {
+        label: 'VIDEO EMBED — Trump on Camp Lejeune claims, Greenville rally, 20 Oct 2026 (original upload via Aaron Rupar)',
+        url: 'https://x.com/atrupar/status/2112709597777596755',
+      },
+      {
+        label: 'NBC News live blog — fraud tips program, “arbitrator” quote, Camp Lejeune remarks, Loomer/Blanche, 20 Oct 2026',
+        url: 'https://www.nbcnews.com/politics/trump-administration/live-blog/trump-midterm-rally-north-carolina-2026-election-congress-live-updates-rcna604465',
+      },
+      {
+        label: 'The Guardian live blog — “no money” for Camp Lejeune claims, Loomer vs DOJ, Nick Shirley $10,000 check, Kansas ethanol threat, 20 Oct 2026',
+        url: 'https://www.theguardian.com/us-news/live/2026/oct/20/donald-trump-midterms-republicans-democrats-north-carolina-latest-updates',
+      },
+      {
+        label: 'Raleigh News & Observer — Greenville rally live updates, Gov. Josh Stein’s response, $5,000 promise, 20 Oct 2026',
+        url: 'https://www.newsobserver.com/news/politics-government/election/article317703733.html',
+      },
+      {
+        label: 'CNN — Trump says he’ll direct DOJ to settle remaining Camp Lejeune claims if GOP wins, 20 Oct 2026',
+        url: 'https://www.cnn.com/2026/10/20/politics/live-news/midterm-election-congress',
+      },
+      {
+        label: 'AP — Trump campaigns in North Carolina; $5,000 checks and fraud-tip program, 20 Oct 2026',
+        url: 'https://apnews.com/article/trump-ukraine-zelenskyy-congress-midterm-elections-a298dcb9327bbad29c0bcc9e61955edb',
+      },
+      {
+        label: 'Washington Post — Tracking Trump: fraud tip rewards and more, 20 Oct 2026',
+        url: 'https://www.washingtonpost.com/the-seven-trump/2026/10/20/tracking-trump-us-delays-missiles-ukraine-voters-doubt-trump-will-accept-midterm-loss-trumps-fraud-tip-rewards-more/',
+      },
+      {
+        label: 'VA — Camp Lejeune past water contamination (background)',
+        url: 'https://www.publichealth.va.gov/EXPOSURES/CAMP-LEJEUNE/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'wh-youtube-trump-tv',
     ogKicker: 'Press pool watch',
     ogPunch: 'Trump TV',
