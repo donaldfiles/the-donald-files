@@ -1,6 +1,6 @@
 // Shared helpers for /api/subscribe, /api/confirm, /api/unsubscribe (Cloudflare Pages Functions).
 // Secrets (wrangler pages secret): SUPABASE_URL, SUPABASE_ANON_KEY, DF_RPC_SECRET,
-// DF_UNSUB_SECRET, RESEND_API_KEY, MAIL_FROM.
+// DF_UNSUB_SECRET, DF_UNSUB_SECRET_2 (digest Worker links), RESEND_API_KEY, MAIL_FROM.
 export const SITE = 'https://thedonaldfiles.com'
 
 const enc = new TextEncoder()
@@ -17,15 +17,24 @@ export function randomToken() {
 async function hmacKey(secret) {
   return crypto.subtle.importKey('raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
 }
-export async function unsubSig(env, id) {
-  return b64url(await crypto.subtle.sign('HMAC', await hmacKey(env.DF_UNSUB_SECRET), enc.encode(`unsub:${id}`)))
+async function sigWith(secret, id) {
+  return b64url(await crypto.subtle.sign('HMAC', await hmacKey(secret), enc.encode(`unsub:${id}`)))
 }
-export async function verifyUnsubSig(env, id, sig) {
-  const want = await unsubSig(env, id)
-  if (!sig || sig.length !== want.length) return false
+export async function unsubSig(env, id) {
+  return sigWith(env.DF_UNSUB_SECRET, id)
+}
+const same = (a, b) => {
+  if (!a || !b || a.length !== b.length) return false
   let d = 0
-  for (let i = 0; i < want.length; i++) d |= want.charCodeAt(i) ^ sig.charCodeAt(i)
+  for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i)
   return d === 0
+}
+// DF_UNSUB_SECRET signs links in confirm emails; DF_UNSUB_SECRET_2 is shared with the digest Worker.
+export async function verifyUnsubSig(env, id, sig) {
+  for (const secret of [env.DF_UNSUB_SECRET, env.DF_UNSUB_SECRET_2]) {
+    if (secret && same(await sigWith(secret, id), sig)) return true
+  }
+  return false
 }
 export async function unsubUrl(env, id) {
   return `${SITE}/api/unsubscribe?id=${encodeURIComponent(id)}&sig=${await unsubSig(env, id)}`

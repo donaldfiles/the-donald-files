@@ -1,0 +1,17 @@
+# Daily digest email for The Donald Files. Deploy: cd digest && npx wrangler deploy
+name = "donaldfiles-digest"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+# 07:00 America/New_York every day. 11:00 UTC while EDT is in force, 12:00 UTC while EST is.
+# Both fire; the Worker only sends on the one where it is 7am in New York.
+[triggers]
+crons = ["0 11 * * *", "0 12 * * *"]
+
+[vars]
+SITE = "https://thedonaldfiles.com"
+SUPABASE_URL = "https://rkudbltzydukizjtjonl.supabase.co"
+MAIL_FROM = "The Donald Files <files@thedonaldfiles.com>"
+REPLY_TO = ""
+# Secrets (wrangler secret put): RESEND_API_KEY, SUPABASE_ANON_KEY, DIGEST_SECRET, UNSUB_SECRET
