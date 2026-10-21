@@ -444,6 +444,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-cognitive-test-which-is-the-giraffe',
     kind: 'clip',
+    youtubeId: '3-5b7y7kAbg',
+    youtubeStart: 5293,
+    youtubeChannel: 'CNN (full speech)',
     ogKicker: '“ACED IT. AGAIN.”',
     ogPunch: 'giraffe',
     ogStamp: 'RECEIPTS',
