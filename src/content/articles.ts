@@ -571,6 +571,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-dumocrat-new-term-since-may',
     kind: 'clip',
+    youtubeId: 'yIPaYmgCQu8',
+    youtubeStart: 4074,
+    youtubeChannel: 'FOX 26 Houston (full stream)',
     ogKicker: 'STILL FRESH, APPARENTLY',
     ogPunch: 'Dumocrat',
     ogStamp: 'ON TAPE',
@@ -596,11 +599,12 @@ export const articles: Article[] = [
     },
     body: [
       'Every comedian has one bit they can’t let go of. This one has the nuclear codes.',
-      'Tuesday night in Greenville, North Carolina, Donald Trump treated the crowd to his latest invention. “Dumocrat. I use that new term. It took me years to figure it out.” Then the method, step by step, like he’s explaining the Manhattan Project: take out the E, put in a U, and “most people don’t know that ‘dumb’ has a B, so we throw that out too.”',
+      'Tuesday night in Greenville, North Carolina, Donald Trump treated the crowd to his latest invention. Roy Cooper, he said, “is the Dumocrat. And I use that new term. It’s a new term, it took me years to figure it out.” About fifteen seconds and a Pocahontas detour later came the method, step by step, like he’s explaining the Manhattan Project: take out the E, put in a U, and “most people don’t know that ‘dumb’ has a B, so we throw that out too.”',
       'New term. Took years. Funny thing about that. In May, at a rally in Suffern, New York, he did the exact same bit, the E, the U, “a lot of people don’t know dumb has a B in it,” and called it “a new name I came up with, you’ve never heard.” He ran it again in Wisconsin in early June. His own Rapid Response account was posting “Radical Dumocrats” the night before Greenville.',
       'So, to recap: the President of the United States has spent at least five months introducing the same one-letter joke as brand new, and each time explaining that the rest of us don’t know how to spell “dumb.”',
       'He used it on Roy Cooper, who’s running for Senate. Cooper’s response wasn’t necessary. The bit did the work.',
     ],
+    correction: 'Correction, Oct. 21: An earlier version trimmed and joined his remarks into one quote. It now matches the full rally tape.',
     sources: [
       {
         label: 'Republicans against Trump: the Greenville “Dumocrat” clip',
@@ -806,6 +810,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-watercane-hurricane-helene',
     kind: 'clip',
+    youtubeId: 'yIPaYmgCQu8',
+    youtubeStart: 5095,
+    youtubeChannel: 'FOX 26 Houston (full stream)',
     ogKicker: 'NEW WORD JUST DROPPED',
     ogPunch: 'Watercane',
     ogStamp: 'ON TAPE',
