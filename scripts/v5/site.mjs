@@ -99,8 +99,8 @@ const TOPIC_INTRO = {
   'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
   lies: 'He says it on stage, and we check it underneath. The gap is the story.',
   tariffs: 'He says Mexico pays. Your receipts say you do. Every clip has the math underneath.',
-  courts: 'Judges he’s lost to, judges he wants sent to hell. Every clip is tied to the court record.',
-  ballroom: 'He promised it’d be free. Here’s who’s actually paying, with the donor list attached.',
+  courts: 'Judges he’s lost to, and one he told to go to hell. The court record sits underneath.',
+  ballroom: 'He promised it’d be free. Here’s who’s actually paying, with the receipts underneath.',
   cruelty: 'No mask slipping here, because there isn’t one. Every clip is embedded from the original upload, with the sources underneath.',
 }
 const PROPER_TOPICS = new Set(['truth-social'])
