@@ -12,7 +12,7 @@
       if (n) n.hidden = false
     }
   })
-  // Click-to-load players: nothing third-party loads until the click.
+  // YouTube: click-to-load (nothing from YouTube loads until the click).
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest && ev.target.closest('a.facade')
     if (a) {
@@ -27,25 +27,6 @@
         f.referrerPolicy = 'strict-origin-when-cross-origin'
         f.className = 'yt'
         a.replaceWith(f)
-      } else if (t === 'x') {
-        var q = document.createElement('blockquote')
-        q.className = 'twitter-tweet'
-        q.setAttribute('data-dnt', 'true')
-        q.setAttribute('data-align', 'center')
-        var l = document.createElement('a')
-        l.href = u.replace('https://x.com/', 'https://twitter.com/')
-        l.textContent = 'View the post on X'
-        q.appendChild(l)
-        var w = document.createElement('div')
-        w.className = 'x-wrap'
-        w.appendChild(q)
-        a.replaceWith(w)
-        if (window.twttr && window.twttr.widgets) window.twttr.widgets.load(w)
-        else if (!document.getElementById('twjs')) {
-          var s = document.createElement('script')
-          s.id = 'twjs'; s.async = true; s.src = 'https://platform.twitter.com/widgets.js'
-          document.body.appendChild(s)
-        }
       }
       return
     }
@@ -54,6 +35,37 @@
       navigator.clipboard.writeText(c.dataset.copy).then(function () { c.textContent = 'Copied' })
     }
   })
+  // X embeds render on load (widgets.js is in <head>). Poster on top until X's iframe is really there;
+  // after 4s without it, or if widgets.js is blocked, the poster turns into a "Watch on X" button.
+  var xs = [].slice.call(document.querySelectorAll('[data-x]'))
+  if (xs.length) {
+    var ready = function (box) {
+      var f = box.querySelector('iframe')
+      if (f && f.offsetHeight > 80) { box.classList.remove('fail'); box.classList.add('ready'); return true }
+      return false
+    }
+    var fail = function () { xs.forEach(function (b) { if (!b.classList.contains('ready')) b.classList.add('fail') }) }
+    var check = function () { xs.forEach(ready); if (xs.every(function (b) { return b.classList.contains('ready') })) { clearInterval(poll); jump() } }
+    var poll = setInterval(check, 200)
+    setTimeout(function () { check(); fail(); setTimeout(function () { clearInterval(poll) }, 26000) }, 4000)
+    var hook = function () {
+      if (!window.twttr || !window.twttr.ready) return fail()
+      window.twttr.ready(function (tw) { if (tw.events) tw.events.bind('rendered', check) })
+    }
+    var js = document.getElementById('twjs')
+    if (window.__twFail) fail()
+    else if (window.twttr && window.twttr.ready) hook()
+    else if (js) { js.addEventListener('error', fail); js.addEventListener('load', hook) }
+    else fail()
+  }
+  // Tiles link to clip#play: bring the player into view on arrival (and again once the embed has grown).
+  var jumped = 0
+  function jump() {
+    if (location.hash !== '#play' || jumped > 1) return
+    var p = document.getElementById('play')
+    if (p) { jumped++; p.scrollIntoView({ block: 'start', behavior: jumped > 1 ? 'smooth' : 'auto' }) }
+  }
+  jump()
   // Subscribe forms (double opt-in via /api/subscribe; honeypot + fill time).
   document.querySelectorAll('form[data-sub]').forEach(function (f) {
     f.elements.t.value = String(now)

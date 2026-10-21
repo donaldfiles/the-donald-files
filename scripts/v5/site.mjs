@@ -69,11 +69,13 @@ function thumb(a, { big = false, eager = false } = {}) {
   const inner = src ? posterImg(src, eager) : `<span class="tkick">${esc(kickerOf(a) || PLATFORM[e.type] || 'Clip')}</span>`
   return `<div class="thumb${big ? ' big' : ''}${src ? '' : ' fb'}">${inner}${e.type === 'truthsocial' ? QUOTE : PLAY}<span class="src">${esc(PLATFORM[e.type] || 'Clip')}</span>${dur(a)}</div>`
 }
+// Clip tiles land on the player (canonical URLs stay hash-free).
+const playHref = (a) => (a.kind === 'clip' && a.embed ? `${hrefFor(a)}#play` : hrefFor(a))
 function tile(a, row = false) {
-  return `<a class="tile${row ? ' row' : ''}" href="${esc(hrefFor(a))}"${row ? ` title="${esc(a.title)}" aria-label="${esc(a.title)}"` : ''}>${thumb(a)}<div class="tbody"><div class="tmeta">${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h3 class="thed">${punch(a.title, a.ogPunch)}</h3></div></a>`
+  return `<a class="tile${row ? ' row' : ''}" href="${esc(playHref(a))}"${row ? ` title="${esc(a.title)}" aria-label="${esc(a.title)}"` : ''}>${thumb(a)}<div class="tbody"><div class="tmeta">${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h3 class="thed">${punch(a.title, a.ogPunch)}</h3></div></a>`
 }
 function feat(a) {
-  return `<a class="feat" href="${esc(hrefFor(a))}">${thumb(a, { big: true, eager: true })}<div class="fbody"><div class="tmeta"><span class="new" data-new hidden>New</span>${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h2 class="fhed">${punch(a.title, a.ogPunch)}</h2>${a.dek ? `<p class="fdek">${esc(a.dek)}</p>` : ''}</div></a>`
+  return `<a class="feat" href="${esc(playHref(a))}">${thumb(a, { big: true, eager: true })}<div class="fbody"><div class="tmeta"><span class="new" data-new hidden>New</span>${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h2 class="fhed">${punch(a.title, a.ogPunch)}</h2>${a.dek ? `<p class="fdek">${esc(a.dek)}</p>` : ''}</div></a>`
 }
 function card(a) {
   const t = (a.topics || [])[0]
@@ -150,7 +152,9 @@ function footer() {
 }
 const JS = read('scripts/v5/client.js').replace(/^\s*\/\/[^\n]*\n/gm, '').replace(/\s*\n\s*/g, '\n')
 
+const TWJS = '<script async id="twjs" src="https://platform.twitter.com/widgets.js" charset="utf-8" onerror="window.__twFail=1"></script>'
 function page({ title, head, active, body, ticker: withTicker = false }) {
+  if (body.includes('data-x>')) head += TWJS
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title>${head}<link rel="preload" href="/fonts/bricolage-700-800.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-400-700.woff2" as="font" type="font/woff2" crossorigin><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#FAF7F2"><style>${CSS}</style></head><body>${topbar(active)}${withTicker ? ticker() : ''}<main id="main">${body}</main>${footer()}<script>${JS}</script></body></html>`
 }
 function write(rel, html) {
@@ -236,17 +240,25 @@ ${subband(topic ? `hub-${topic}` : 'hub')}`
   })
 }
 
-function facade(e, { big = false, label = '', poster: pst = null, kicker = '' } = {}) {
+function facade(e, { big = false, label = '', poster: pst = null, kicker = '', anchor = false } = {}) {
   const who = e.accountName ? `${esc(e.accountName)}${e.account ? ` (${esc(e.account)})` : ''}` : esc(e.account || '')
   if (e.type === 'truthsocial') {
-    return `<figure class="player"><div class="qcard"><p class="qsrc">Truth Social · ${who}</p><p class="qnote">A text post, not a video. Read it in full on the Trump’s Truth archive, which keeps a copy if the original disappears.</p><p class="qlinks"><a href="${esc(e.archiveUrl || e.url)}" target="_blank" rel="noopener noreferrer">Read the post (archive) ↗</a><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">Original on Truth Social ↗</a></p></div></figure>`
+    return `<figure class="player"${anchor ? ' id="play"' : ''}><div class="qcard"><p class="qsrc">Truth Social · ${who}</p><p class="qnote">A text post, not a video. Read it in full on the Trump’s Truth archive, which keeps a copy if the original disappears.</p><p class="qlinks"><a href="${esc(e.archiveUrl || e.url)}" target="_blank" rel="noopener noreferrer">Read the post (archive) ↗</a><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">Original on Truth Social ↗</a></p></div></figure>`
   }
   const id = e.type === 'youtube' ? ytId(e) : e.id
   const url = e.url || e.youtubeUrl || `https://www.youtube.com/watch?v=${id}`
   const src = pst || e.poster || (e.type === 'youtube' ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null)
   const poster = src ? posterImg(src, big) : `<span class="tkick">${esc(kicker || PLATFORM[e.type])}</span>`
   const plat = PLATFORM[e.type]
-  return `<figure class="player${big ? '' : ' small'}">${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-url="${esc(url)}" aria-label="Play${e.title ? ` “${esc(e.title)}”` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span>${e.type === 'x' && who ? `<span class="who">${who}</span>` : ''}</a><figcaption class="credit">${e.title ? `<b>${esc(e.title)}</b>${e.caption ? ` · ${esc(e.caption)}` : ''} · ` : ''}Original upload${who ? `: ${who}` : ''} on ${plat} <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">↗</a></figcaption></figure>`
+  const credit = `<figcaption class="credit">${e.title ? `<b>${esc(e.title)}</b>${e.caption ? ` · ${esc(e.caption)}` : ''} · ` : ''}Original upload${who ? `: ${who}` : ''} on ${plat} <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">↗</a></figcaption>`
+  if (e.type === 'x') {
+    // X: the real embed renders on page load (widgets.js in <head>). The poster sits on top until X's iframe
+    // shows up; if it hasn't after 4s, or widgets.js is blocked, the poster becomes a "Watch on X" button.
+    // The blockquote stays invisible until then, so readers never see X's bare fallback link.
+    const tw = url.replace('https://x.com/', 'https://twitter.com/')
+    return `<figure class="player xp${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<div class="xembed" data-x><blockquote class="twitter-tweet" data-dnt="true" data-align="center" data-conversation="none"><a href="${esc(tw)}">${esc(url)}</a></blockquote><a class="xph thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="Watch${e.title ? ` “${esc(e.title)}”` : ' the clip'} on X (opens in a new tab)">${poster}${PLAY}<span class="src">${plat}</span>${who ? `<span class="who">${who}</span>` : ''}<span class="xload" aria-hidden="true">Loading the post from X…</span><span class="xcta">Watch on X ↗</span></a></div>${credit}</figure>`
+  }
+  return `<figure class="player${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-url="${esc(url)}" aria-label="Play${e.title ? ` “${esc(e.title)}”` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span></a>${credit}</figure>`
 }
 function sourcesBox(a) {
   return `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}</ol></section>`
@@ -282,7 +294,7 @@ function clipPage(a) {
   const ld = clipLd(a).map((x) => (x['@type'] === 'BreadcrumbList' ? crumbLd(cr) : x))
   const head = headTags({ title: a.title, description: a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: isVideo ? 'video.other' : 'article', published: d.published, modified: d.modified, section: 'Trump Videos', jsonLd: ld })
   const body = `${crumbs(cr.map(([n, h], i) => (i === cr.length - 1 ? ['This clip', h] : [n, h])))}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}
-${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a) }) : ''}
+${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a), anchor: true }) : ''}
 <div class="prose">${a.body.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
 ${a.beforeEmbed ? facade(a.beforeEmbed, { label: `Before · ${esc(a.beforeEmbed.label || '')}` }) : ''}
 ${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>

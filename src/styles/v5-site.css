@@ -76,3 +76,18 @@ iframe.yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(
 .tile.row .tkick{font-size:13px;left:8px;bottom:8px}
 .tile.row .thed{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .thumb .poster{background:var(--sunk)}
+/* X players: live embed under a poster placeholder; poster → "Watch on X" button if X never renders. */
+#play{scroll-margin-top:84px}
+.xembed{position:relative;min-height:120px}
+.xembed .twitter-tweet,.xembed .twitter-tweet-rendered{margin:0 auto!important}
+.xembed:not(.ready) .twitter-tweet,.xembed:not(.ready) .twitter-tweet-rendered{position:absolute!important;inset:0;visibility:hidden;overflow:hidden;pointer-events:none}
+.xembed blockquote.twitter-tweet{visibility:hidden;position:absolute;inset:0;overflow:hidden}
+.xph{display:block;cursor:pointer}.xph:hover .play{transform:translate(-50%,-50%) scale(1.07)}
+.xembed.ready .xph{display:none}
+.xph .xcta{display:none;position:absolute;left:50%;bottom:22px;transform:translateX(-50%);background:var(--blue);color:var(--white);font:800 19px/1 var(--f-head);padding:15px 26px;border-radius:999px;box-shadow:0 6px 24px rgb(var(--blue-rgb)/.35);white-space:nowrap}
+.xph .xload{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);font:600 12px/1 var(--f-ui,inherit);color:var(--white);background:rgb(0 0 0/.45);padding:6px 10px;border-radius:999px;white-space:nowrap}
+.xembed.fail .xph .xload{display:none}
+.xembed.fail .xph .xcta{display:inline-block}
+.xembed.fail .xph .play{transform:translate(-50%,-62%) scale(1.15)}
+.thumb:not(.big) .xcta{font-size:15px;padding:11px 18px;bottom:14px}
+.xembed.fail .xph .who{display:none}

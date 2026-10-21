@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://platform.twitter.com https://syndication.twitter.com; child-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://platform.twitter.com https://syndication.twitter.com
+  Content-Security-Policy: frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://platform.twitter.com https://syndication.twitter.com https://twitter.com https://x.com; child-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://platform.twitter.com https://syndication.twitter.com https://twitter.com https://x.com
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
 /memes/*
