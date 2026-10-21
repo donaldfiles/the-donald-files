@@ -204,7 +204,7 @@ function hubPage({ topic }) {
   const h1Word = topic ? (PROPER_TOPICS.has(topic) ? label : label.toLowerCase()) : ''
   const h1 = topic ? `Donald Trump <mark>${esc(h1Word)}</mark> videos` : 'Donald Trump videos: the worst <mark>clips</mark>, annotated'
   const intro = topic
-    ? TOPIC_INTRO[topic] || `Every Donald Trump ${h1Word} clip, embedded from the original uploads with the receipts underneath. Newest first.`
+    ? TOPIC_INTRO[topic] || `Every clip filed under ${h1Word}, embedded from the original uploads with the receipts underneath. Newest first.`
     : HUB_INTRO
   const files4 = topic ? files.filter((f) => (f.topics || []).includes(topic)).slice(0, 4) : []
   const cr = topic ? [['Home', '/'], ['Trump Videos', '/trump-videos/'], [label, base]] : [['Home', '/'], ['Trump Videos', '/trump-videos/']]

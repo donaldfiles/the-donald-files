@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 /** Shared parser for src/content/articles.ts (regex-based, no TS compile). */
 export function parseStringExpr(expr) {
   // Preserve literal "+" inside quotes; only join string-concatenation +.
@@ -161,10 +161,18 @@ export const TOPIC_LABEL = {
 export const TOPIC_ORDER = Object.keys(TOPIC_LABEL)
 
 /** Dossier numbers: chronological among feed posts (oldest = 001), stable as new posts are prepended. */
+// File numbers are permanent: data/file-numbers.json is the registry. A new post gets the next number
+// the first time a build sees it (ordered by date, then slug), and the registry is written back.
+const FILE_NUMBERS = new URL('../../data/file-numbers.json', import.meta.url)
 export function fileNumbers(all) {
-  const m = new Map()
-  all.filter((a) => !a.fixture).slice().reverse().forEach((a, i) => m.set(a.slug, i + 1))
-  return m
+  let reg = {}
+  try { reg = JSON.parse(readFileSync(FILE_NUMBERS, 'utf8')) } catch {}
+  const live = all.filter((a) => !a.fixture)
+  let next = Math.max(0, ...Object.values(reg)) + 1
+  const fresh = live.filter((a) => !reg[a.slug]).sort((a, b) => (a.date === b.date ? (a.slug < b.slug ? -1 : 1) : a.date < b.date ? -1 : 1))
+  for (const a of fresh) reg[a.slug] = next++
+  if (fresh.length) writeFileSync(FILE_NUMBERS, JSON.stringify(reg, null, 2) + '\n')
+  return new Map(live.map((a) => [a.slug, reg[a.slug]]))
 }
 
 /** Topics with at least one published clip get a /trump-videos/<topic>/ hub (no empty hubs). */
