@@ -34,12 +34,14 @@ export function PastedCard({ article, index, cream = false }: Props) {
       <div className={`tape${tapeRight ? ' right' : ''}`} aria-hidden="true" />
       <div className="card-file">
         <span>FILE // {fileIdFromArticle(article, index)}</span>
-        <div className="card-stamps">
-          <span className="mini">{stampLabel[stamp]}</span>
-          {article.category === 'REPORTS' ? (
-            <span className="mini analysis">REPORT</span>
-          ) : null}
-        </div>
+        {article.proseArticle ? null : (
+          <div className="card-stamps">
+            <span className="mini">{stampLabel[stamp]}</span>
+            {article.category === 'REPORTS' ? (
+              <span className="mini analysis">REPORT</span>
+            ) : null}
+          </div>
+        )}
       </div>
       <h3>{article.title}</h3>
       <p className="pasted-dek">{article.dek}</p>

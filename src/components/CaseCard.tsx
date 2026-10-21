@@ -27,12 +27,14 @@ export function CaseCard({ article, index = 0, lead = false }: Props) {
         <span className="case-file-id">
           FILE // {fileIdFromArticle(article, index)}
         </span>
-        <div className="stamps">
-          <Stamp variant={stamp} />
-          {article.category === 'REPORTS' ? (
-            <Stamp variant="report" />
-          ) : null}
-        </div>
+        {article.proseArticle ? null : (
+          <div className="stamps">
+            <Stamp variant={stamp} />
+            {article.category === 'REPORTS' ? (
+              <Stamp variant="report" />
+            ) : null}
+          </div>
+        )}
       </div>
       <div className="case-date">{formatDisplayDate(article.date)}</div>
       <h3>{article.title}</h3>

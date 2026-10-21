@@ -116,7 +116,7 @@ function indexHtml(articles) {
   const cards = rest
     .map(
       (a, i) =>
-        `<a class="card" href="/reports/${esc(a.slug)}/"><div class="fid">FILE // ${String(i + 2).padStart(2, '0')} · REPORT</div><h3>${esc(a.title)}</h3><p class="d">${esc(a.dek)}</p></a>`,
+        `<a class="card" href="/reports/${esc(a.slug)}/"><div class="fid">FILE // ${String(i + 2).padStart(2, '0')}${a.proseArticle ? '' : ' · REPORT'}</div><h3>${esc(a.title)}</h3><p class="d">${esc(a.dek)}</p></a>`,
     )
     .join('')
   const rows = articles
@@ -126,10 +126,10 @@ function indexHtml(articles) {
     )
     .join('')
   const leadBlock = lead
-    ? `<article class="lead"><div class="stamps"><span class="stamp filled">FACT</span><span class="stamp">REPORT</span></div><h1>${esc(lead.title)}</h1><p class="dek">${esc(lead.dek)}</p><a class="open" href="/reports/${esc(lead.slug)}/">OPEN THE FILE →</a></article>`
+    ? `<article class="lead">${lead.proseArticle ? '' : '<div class="stamps"><span class="stamp filled">FACT</span><span class="stamp">REPORT</span></div>'}<h1>${esc(lead.title)}</h1><p class="dek">${esc(lead.dek)}</p><a class="open" href="/reports/${esc(lead.slug)}/">OPEN THE FILE →</a></article>`
     : ''
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Reports — The Donald Files</title>${headTags({ title: 'Reports — The Donald Files', description: 'Every open file: sourced Trump reporting, snark and receipts from The Donald Files, newest first.', url: `${SITE}/reports/`, image: DEFAULT_OG, type: 'website' })}<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/><style>${INDEX_CSS}</style></head><body>
-<div class="ticker">FIGHT ▸ · REPORTS INDEX · HYBRID UGLY · ARTICLES STAY OPEN DOSSIER</div>
+<div class="ticker">FIGHT ▸ · EVERY FILE · SOURCED · NEWEST FIRST</div>
 <header class="mast"><div class="kicker">HOSTILE ARCHIVE · NOT A NEWSROOM</div><div class="brand">THE <em>DONALD</em> FILES</div></header>
 <div class="shell">
 <div class="sec">Open / Reports <span class="note">${String(articles.length).padStart(2, '0')} FILES</span></div>
@@ -139,7 +139,7 @@ ${leadBlock}
 <div class="sec">Rage / Rank <span class="note">Hierarchy by heat</span></div>
 <div class="hostile">${rows}</div>
 </div>
-<footer class="foot"><div><strong>THE DONALD FILES</strong> · reports index · hybrid ugly</div><div>Article pages stay Open Dossier</div></footer>
+<footer class="foot"><div><strong>THE DONALD FILES</strong> · every report, newest first</div><div>Sources linked on every file</div></footer>
 </body></html>`
 }
 

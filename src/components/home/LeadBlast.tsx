@@ -54,10 +54,12 @@ export function LeadBlast({ article, index = 0 }: Props) {
           <span className="live">LIVE FILE</span>
           {fileIdFromArticle(article, index)} · {formatDisplayDate(article.date)}
         </div>
-        <div className="stamp-pile">
-          <span className="ugly-stamp filled">FACT</span>
-          <span className="ugly-stamp">REPORT</span>
-        </div>
+        {article.proseArticle ? null : (
+          <div className="stamp-pile">
+            <span className="ugly-stamp filled">FACT</span>
+            <span className="ugly-stamp">REPORT</span>
+          </div>
+        )}
       </div>
       <h1 className="lead-hed">
         {hed.before}
