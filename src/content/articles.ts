@@ -122,14 +122,14 @@ export const articles: Article[] = [
     relatedClips: ['trump-tariffs-dont-cause-inflation-they-cause-wealth'],
     body: [
       'Ten years, and he finally found the receipt. Shame it’s in someone else’s name.',
-      'Saturday in Highland Heights, Kentucky, Donald Trump settled the question he’s been dodging since 2015. “Mexico did pay for the wall,” he said, just so we’re clear, “because I charged them tariffs.” Many, many times over, apparently.',
+      'Saturday in Highland Heights, Kentucky, Donald Trump settled the question he’s been dodging since 2015. “Mexico did pay for that wall,” he said, just so we’re clear, “because I charge them tariffs.” Many, many times over, apparently.',
       'Small problem: tariffs aren’t paid by Mexico. They’re paid by the American companies importing the goods, who then pass a lot of it on to you. Fact-checkers have been explaining this to him since the first term. Mexico’s leaders always refused to pay, and when NBC tallied it up, US taxpayers had covered roughly $15 billion of wall.',
       'Bigger problem: the big Mexico tariffs he’s bragging about were 25% duties imposed under an emergency law. In February the Supreme Court ruled that the law never let him impose tariffs at all. Customs now has a refund portal open so importers can claim the money back, and Penn-Wharton estimated more than $175 billion could be at stake.',
       'So the wall money came from Americans, through a tax the Supreme Court says he had no power to charge, which the government is now paying back. Mexico paid for it the way the guy who says “I’ll get the next round” pays for drinks.',
     ],
     sources: [
       {
-        label: 'Acyn: “Mexico did pay for the wall… because I charged them tariffs”',
+        label: 'Acyn: “Mexico did pay for that wall… because I charge them tariffs”',
         url: 'https://x.com/Acyn/status/2111526729462513934',
       },
       {
@@ -168,6 +168,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-ballroom-own-money-when-they-run-out',
     kind: 'clip',
+    youtubeId: '-uDuGJeTiOo',
+    youtubeStart: 510,
+    youtubeChannel: 'The White House',
     ogKicker: 'CHECK’S IN THE MAIL',
     ogPunch: 'donors',
     ogStamp: 'RECEIPTS',
@@ -187,7 +190,7 @@ export const articles: Article[] = [
     body: [
       'Good news for the East Wing’s replacement. The man who promised to chip in has finally named his price: later.',
       'Last Thursday the Washington Post published the ballroom donor list. More than $330 million. Apple, Nvidia and the Adelson Family Foundation at $25 million each. Lockheed Martin, Microsoft and Palantir at $10 million each. Google put in $22 million through a lawsuit settlement with Trump. Who isn’t on it? Trump. When the bulldozers went in last October, he posted that the ballroom was privately funded by patriots, companies “and, yours truly.”',
-      'The next day, outside Marine One, a reporter asked if he’d actually put in his own money. “I may do that. When they run out, I’ll be there, okay?” So the generous patriot is the emergency backup donor. Like a spare tyre, if the spare tyre owned a lot of golf courses.',
+      'The next day, outside Marine One, a reporter asked how much of his own money he’d actually put in. “Well, I haven’t said because when they run out, I’ll be there, okay?” So the generous patriot is the emergency backup donor. Like a spare tyre, if the spare tyre owned a lot of golf courses.',
       'There’s also the “military complex” he’s bolting underneath. Two days earlier in Arizona he explained the military component for the ballroom and his planned arch: “Everything has a military component nowadays. I have to do that to satisfy my senators.” His lawyers told the Supreme Court something grander, that it’s an “integrated military complex” vital to national security. It worked: the Court let construction continue. Chief Justice Roberts, dissenting, called it “likely unlawful.”',
       'To recap: Lockheed is paying for the ballroom, the military complex is there to calm down senators, and the president’s own check comes in once everyone else’s money runs out.',
     ],
@@ -246,7 +249,7 @@ export const articles: Article[] = [
     },
     body: [
       'The RNC posted this one themselves. Proudly. With capital letters. That’s the best part.',
-      'Last Wednesday in Bullhead City, Arizona, Donald Trump claimed a housing miracle: “Since I took office, rent in Arizona has plummeted by 14%, and it’s going to go down by another 20% or 25%.” The official Republican account clipped it and posted it with “PLUMMETED” in all caps, under “Since DAY ONE, President Trump has been delivering.”',
+      'Last Wednesday in Bullhead City, Arizona, Donald Trump claimed a housing miracle: “Since I took office, rent in Arizona has plummeted by 14%, and it’s going to go down by another 20 or 25%.” The official Republican account clipped it and posted it with “PLUMMETED” in all caps, under “Since DAY ONE, President Trump has been delivering.”',
       'Arizona’s KTAR checked. Apartment List data shows Arizona rents down about 3% over the past year. And that decline started before Trump returned to office in January 2025. So, by our math, the number is off by a factor of four or five, and the credit belongs to a trend that started before he got there. Other than that, nailed it.',
       'And “another 20 or 25%”? That’s a forecast from a man whose last number was off by about 11 points. If your landlord cuts your rent by a quarter before Christmas, please write in. We’ll print a correction.',
     ],
