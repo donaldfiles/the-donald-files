@@ -103,6 +103,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-mexico-paid-for-wall-tariffs',
     kind: 'clip',
+    youtubeId: '0hJmlrSVmtM',
+    youtubeStart: 920,
+    youtubeChannel: 'RSBN',
     ogKicker: 'CHECK BOUNCED',
     ogPunch: 'wall',
     ogStamp: 'RECEIPTS',
@@ -231,6 +234,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-arizona-rent-plummeted-14-percent',
     kind: 'clip',
+    youtubeId: 'roNmfSsF5XM',
+    youtubeStart: 9472,
+    youtubeChannel: 'GOP',
     ogKicker: 'OFF BY A LOT',
     ogPunch: 'plummeted',
     ogStamp: 'RECEIPTS',
@@ -274,6 +280,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-kari-lake-judge-go-to-hell',
     kind: 'clip',
+    youtubeId: 'roNmfSsF5XM',
+    youtubeStart: 10545,
+    youtubeChannel: 'GOP',
     ogKicker: 'FOUR YEARS LATER',
     ogPunch: 'hell',
     ogStamp: 'ON TAPE',
@@ -292,7 +301,7 @@ export const articles: Article[] = [
     },
     body: [
       'Some men hold grudges. This one runs them for office.',
-      'Last Wednesday in Bullhead City, Arizona, Donald Trump went back to 2022. He brought up the “wonderful woman” who lost the governor’s race. Aaron Rupar notes he couldn’t quite produce her name at first. She “won that election,” he said, and “probably won the other one too.” Then he got to the man who heard her case. As KTAR reported from the speech, his advice was: “You ought to tell that judge to go to hell.”',
+      'Last Wednesday in Bullhead City, Arizona, Donald Trump went back to 2022. He brought up the “wonderful woman” who lost the governor’s race. Aaron Rupar notes he couldn’t quite produce her name at first. She “won that election,” he said, and “probably won the other one too.” Then he got to the man who heard her case. He told the crowd they “ought to tell that judge to go to hell,” then: “He ought to go to hell.”',
       'For the record: in December 2022, Maricopa County Superior Court Judge Peter Thompson held a trial on Kari Lake’s challenge and found no clear and convincing evidence of misconduct that changed the result. Katie Hobbs’s win stood. Her appeals didn’t change the outcome. In 2023 the Arizona Supreme Court sanctioned Lake’s lawyers $2,000 for falsely claiming 35,563 ballots were “undisputedly” added. Then in 2024 she lost the Senate race to Ruben Gallego by a margin even Trump couldn’t round up.',
       'Best part: the candidate Trump flew in to help, Andy Biggs, told KTAR in July that the race is settled. “I think every court has said she won.” That’s his own guy, about the other woman.',
       'Meanwhile the President of the United States, a man who called a federal judge a “crazed lunatic” on Truth Social on Monday, is now outsourcing it: you tell the judge. He’s busy.',
@@ -307,7 +316,7 @@ export const articles: Article[] = [
         url: 'https://x.com/atrupar/status/2110472387577725339',
       },
       {
-        label: 'KTAR News: “You ought to tell that judge to go to hell,” plus Andy Biggs’ July comments',
+        label: 'KTAR News: Trump’s Bullhead City rally, plus Andy Biggs’ July comments',
         url: 'https://ktar.com/arizona-politics-news/election/donald-trump-bullhead-city-2',
       },
       {
@@ -326,6 +335,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-tariffs-dont-cause-inflation-they-cause-wealth',
     kind: 'clip',
+    youtubeId: 'WRRBagciJEM',
+    youtubeStart: 1754,
+    youtubeChannel: 'RSBN',
     ogKicker: 'AND I’M THE QUEEN OF ENGLAND',
     ogPunch: 'wealth',
     ogStamp: 'RECEIPTS',
