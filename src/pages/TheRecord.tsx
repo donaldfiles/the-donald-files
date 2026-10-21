@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { PostLink } from '../components/PostLink'
 import { getPublishedArticles } from '../content/articles'
 
 function fmt(d: string) {
@@ -35,7 +35,7 @@ export function TheRecord() {
               {fmt(a.date)}
             </time>
             <h3>
-              <Link to={`/reports/${a.slug}/`}>{a.title}</Link>
+              <PostLink post={a}>{a.title}</PostLink>
             </h3>
           </li>
         ))}

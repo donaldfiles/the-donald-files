@@ -38,6 +38,24 @@ export function parseStringExpr(expr) {
   return parts.join('')
 }
 
+function parseEmbed(block, key) {
+  const m = new RegExp(`\\n    ${key}: \\{([\\s\\S]*?)\\n    \\},`).exec(block)
+  if (!m) return undefined
+  const out = {}
+  const re = /\n      (\w+): '((?:\\'|[^'])*)',/g
+  let f
+  while ((f = re.exec(m[1]))) out[f[1]] = f[2].replace(/\\'/g, "'")
+  return out
+}
+
+function strList(block, key) {
+  const m = new RegExp(`\\n    ${key}: \\[([^\\]]*)\\]`).exec(block)
+  if (!m) return []
+  return [...m[1].matchAll(/'([^']+)'/g)].map((x) => x[1])
+}
+
+export const hrefFor = (a) => (a.kind === 'clip' ? `/trump-videos/${a.slug}/` : `/reports/${a.slug}/`)
+
 export function extractArticles(text) {
   const articles = []
   const blockRe =
@@ -64,7 +82,7 @@ export function extractArticles(text) {
         bodies.push(pm[1].replace(/\\'/g, "'"))
       }
     }
-    const sourcesBlock = /sources:\s*\[([\s\S]*?)\]\s*,\s*(?:embeds|published):/.exec(block)
+    const sourcesBlock = /sources:\s*\[([\s\S]*?)\]\s*,\s*(?:embeds|published|relatedClips|relatedArticle|fixture|proseArticle):/.exec(block)
     const sources = []
     if (sourcesBlock) {
       const sr =
@@ -121,6 +139,14 @@ export function extractArticles(text) {
       ogPunch: ogStr('ogPunch'),
       ogStamp: ogStr('ogStamp'),
       ogFile: ogStr('ogFile'),
+      kind: ogStr('kind') === 'clip' ? 'clip' : 'article',
+      embed: parseEmbed(block, 'embed'),
+      beforeEmbed: parseEmbed(block, 'beforeEmbed'),
+      duration: ogStr('duration'),
+      publishedAt: ogStr('publishedAt'),
+      relatedArticle: ogStr('relatedArticle'),
+      relatedClips: strList(block, 'relatedClips'),
+      topics: strList(block, 'topics'),
     })
   }
   return articles.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))

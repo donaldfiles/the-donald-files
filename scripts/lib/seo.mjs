@@ -29,6 +29,7 @@ export function isoDate(d) {
 }
 
 export const articleUrl = (slug) => `${SITE}/reports/${slug}/`
+export const urlFor = (a) => (a.kind === 'clip' ? `${SITE}/trump-videos/${a.slug}/` : articleUrl(a.slug))
 export const articleOg = (slug) => `${SITE}/og/${slug}.png?${OG_VERSION}`
 
 /**
@@ -88,8 +89,8 @@ export function newsArticleLd(a) {
     datePublished: pub,
     dateModified: pub,
     articleSection: a.category,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl(a.slug) },
-    url: articleUrl(a.slug),
+    mainEntityOfPage: { '@type': 'WebPage', '@id': urlFor(a) },
+    url: urlFor(a),
     author: { '@type': 'Organization', name: 'The Donald Files desk', url: `${SITE}/` },
     publisher,
     isAccessibleForFree: true,
@@ -102,4 +103,53 @@ export function websiteLd() {
     { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: `${SITE}/` },
     { '@context': 'https://schema.org', ...publisher },
   ]
+}
+
+/** ET calendar date → ISO with offset (noon ET; EDT until 1 Nov 2026). */
+export function etNoon(d) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return isoDate(d)
+  return `${d}T12:00:00${d >= '2026-11-01' ? '-05:00' : '-04:00'}`
+}
+
+export function embedUrlFor(e) {
+  if (!e) return undefined
+  if (e.type === 'youtube') return `https://www.youtube-nocookie.com/embed/${e.id}`
+  if (e.type === 'x') return `https://platform.twitter.com/embed/Tweet.html?id=${e.id}`
+  return e.url
+}
+
+export function clipLd(a) {
+  const url = urlFor(a)
+  const crumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Trump Videos', item: `${SITE}/trump-videos/` },
+      { '@type': 'ListItem', position: 3, name: a.title, item: url },
+    ],
+  }
+  const out = [crumbs]
+  const e = a.embed
+  if (e && (e.type === 'x' || e.type === 'youtube')) {
+    const thumbs = [articleOg(a.slug)]
+    if (e.type === 'youtube') thumbs.unshift(`https://i.ytimg.com/vi/${e.id}/hqdefault.jpg`)
+    const v = {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: a.title,
+      description: clip(a.dek, 300),
+      thumbnailUrl: thumbs,
+      uploadDate: etNoon(a.date),
+      embedUrl: embedUrlFor(e),
+      contentUrl: e.url,
+      url,
+      publisher,
+    }
+    if (a.durationSeconds) v.duration = `PT${a.durationSeconds}S`
+    out.push(v)
+  }
+  const words = (a.body || []).join(' ').split(/\s+/).length
+  if (words > 150 || !e || e.type === 'truthsocial') out.push(newsArticleLd(a))
+  return out
 }

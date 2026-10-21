@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { PostLink } from '../PostLink'
 import type { Article } from '../../content/articles'
 
 type Props = {
@@ -38,10 +38,10 @@ export function HostileList({ articles }: Props) {
       </div>
       <div className="hostile-list">
         {articles.map((a, i) => (
-          <Link
+          <PostLink
             key={a.slug}
             className="hostile-row"
-            to={`/reports/${a.slug}`}
+            post={a}
           >
             <div className="hostile-rank">
               {String(i + 1).padStart(2, '0')}
@@ -51,7 +51,7 @@ export function HostileList({ articles }: Props) {
               <p>{rageBlurb(a.slug, i)}</p>
             </div>
             <span className="hostile-go">OPEN →</span>
-          </Link>
+          </PostLink>
         ))}
       </div>
     </>

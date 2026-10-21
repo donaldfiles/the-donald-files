@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { PostLink } from '../components/PostLink'
 import { FightTicker } from '../components/home/FightTicker'
 import { LoudMasthead } from '../components/home/LoudMasthead'
 import { LeadBlast } from '../components/home/LeadBlast'
@@ -83,9 +84,9 @@ export function Home() {
               <div className="rage-dock-label">Next file · don’t scroll past</div>
               <div className="rage-dock-hed">{next.title}</div>
             </div>
-            <Link className="rage-dock-btn" to={`/reports/${next.slug}`}>
+            <PostLink className="rage-dock-btn" post={next}>
               OPEN FILE
-            </Link>
+            </PostLink>
           </aside>
         ) : null}
 

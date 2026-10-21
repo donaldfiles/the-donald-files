@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { PostLink } from '../PostLink'
 import type { Article } from '../../content/articles'
 import {
   fileIdFromArticle,
@@ -27,8 +27,8 @@ export function PastedCard({ article, index, cream = false }: Props) {
   const tapeRight = index % 2 === 1
 
   return (
-    <Link
-      to={`/reports/${article.slug}`}
+    <PostLink
+      post={article}
       className={`pasted-card${cream ? ' cream-scrap' : ''}`}
     >
       <div className={`tape${tapeRight ? ' right' : ''}`} aria-hidden="true" />
@@ -52,6 +52,6 @@ export function PastedCard({ article, index, cream = false }: Props) {
         </span>
         <span className="open">Open →</span>
       </div>
-    </Link>
+    </PostLink>
   )
 }

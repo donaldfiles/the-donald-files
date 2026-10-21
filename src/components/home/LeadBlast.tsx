@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { PostLink } from '../PostLink'
 import type { Article } from '../../content/articles'
 import {
   fileIdFromArticle,
@@ -76,9 +76,9 @@ export function LeadBlast({ article, index = 0 }: Props) {
           ))}
           <span className="ugly-chip">Source files</span>
         </div>
-        <Link className="rage-btn" to={`/reports/${article.slug}`}>
+        <PostLink className="rage-btn" post={article}>
           OPEN THE FILE →
-        </Link>
+        </PostLink>
       </div>
     </article>
   )

@@ -52,6 +52,43 @@ export type Article = {
   ogStamp?: string
   /** Override dossier number, e.g. 'FILE // 007'. Default derives from order. */
   ogFile?: string
+  /** 'clip' = short video post at /trump-videos/<slug>/ (v4 ClipPost). Default 'article' at /reports/<slug>/. */
+  kind?: 'article' | 'clip'
+  /** ClipPost: the original upload, embedded (never re-hosted). hed = title, kicker = ogKicker. */
+  embed?: ClipEmbed
+  /** ClipPost: optional "before" clip shown under the main embed. */
+  beforeEmbed?: ClipEmbed & { label?: string }
+  /** ClipPost: display duration, e.g. "1:42". */
+  duration?: string
+  /** ClipPost: duration in seconds (for ISO 8601 PT…S). */
+  durationSeconds?: number
+  /** ClipPost: when we published, ISO with offset. */
+  publishedAt?: string
+  updatedAt?: string
+  topics?: Topic[]
+  featured?: boolean
+  /** Slug of the long-form file this clip belongs to. */
+  relatedArticle?: string
+  /** Slugs of related clips (also used on articles to link back to their clips). */
+  relatedClips?: string[]
+}
+
+export type Topic = 'gaffes' | 'lies' | 'ballroom' | 'tariffs' | 'truth-social' | 'courts' | 'cruelty'
+
+export type ClipEmbed = {
+  type: 'x' | 'youtube' | 'truthsocial'
+  id: string
+  url: string
+  account?: string
+  accountName?: string
+  poster?: string
+  /** truthsocial only: trumpstruth.org archive link for the quote card. */
+  archiveUrl?: string
+}
+
+/** Site path for any post: clips live under /trump-videos/, files under /reports/. */
+export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
+  return a.kind === 'clip' ? `/trump-videos/${a.slug}/` : `/reports/${a.slug}`
 }
 
 export const articles: Article[] = [
@@ -111,6 +148,602 @@ export const articles: Article[] = [
       {
         label: 'VA — Camp Lejeune past water contamination (background)',
         url: 'https://www.publichealth.va.gov/EXPOSURES/CAMP-LEJEUNE/',
+      },
+    ],
+    relatedClips: ['trump-sick-person-reporter-oval-office', 'trump-budget-deficit-trade-deficit-confusion'],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-data-centers-mandated-by-me',
+    kind: 'clip',
+    ogKicker: 'POSTED AT 1:37AM',
+    ogPunch: 'Mandates',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump ‘Mandates’ Data Centers at 1:37am. In March It Was a Pledge.',
+    category: 'REPORTS',
+    date: '2026-10-21',
+    dek: 'Nothing good gets posted at 1:37 in the morning. Ask anyone’s ex. Or the President of the United States.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117477279556215047',
+      url: 'https://truthsocial.com/@realDonaldTrump/117477279556215047',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/42533',
+    },
+    body: [
+      'Nothing good gets posted at 1:37 in the morning. Ask anyone’s ex. Or the President of the United States.',
+      'Overnight, Donald Trump announced on Truth Social that he’s been “watching Data Centers very closely” and has reached “a very strong conclusion.” New data centers, the “gigantic” ones included, “are mandated by me to make their own electricity.” The result, in his own words: “therefore there is electric price increase.” Then the next sentence: “In fact, there could be a substantial decrease.” Pick one, sir. It’s 1:37.',
+      'Mandated by him? In March the White House brought in seven tech giants, Amazon, Google, Meta, Microsoft, OpenAI, Oracle and xAI, to sign what its own fact sheet calls the “Ratepayer Protection Pledge.” A pledge. Companies agreed to build, bring or buy their own power. The BBC asked energy analysts at the time how anyone would enforce it. Nobody had a great answer.',
+      'The other thing he said in March: tech companies “need some PR help.” Seven months later, his PR plan is to have them hand the neighbours cash. “Pay the community, and/or individuals within the community, a ‘dividend.’” Data centers that were unpopular, he says, became “extremely popular when a financial deal is struck.” That’s not energy policy. That’s a bribe with a dividend sticker on it.',
+      'And the receipt nobody at 1:37 brought up: on the campaign trail he promised to cut energy bills in half in his first year. According to the government’s own energy statisticians, residential electricity prices rose 6% in 2025.',
+    ],
+    sources: [
+      {
+        label: 'Trump on Truth Social: the data center post (archived at Trump’s Truth)',
+        url: 'https://www.trumpstruth.org/statuses/42533',
+      },
+      {
+        label: 'Reuters via CNBC-TV18: Trump says data center firms should pay communities a “dividend”',
+        url: 'https://www.cnbctv18.com/technology/trump-says-companies-should-pay-dividend-to-communities-to-make-data-centres-popular-20015962.htm',
+      },
+      {
+        label: 'White House fact sheet: the Ratepayer Protection Pledge, March 2026',
+        url: 'https://www.whitehouse.gov/fact-sheets/2026/03/fact-sheet-president-donald-j-trump-advances-energy-affordability-with-the-ratepayer-protection-pledge/',
+      },
+      {
+        label: 'BBC News: Tech firms pledge to pay for data center power costs. But will they?',
+        url: 'https://www.bbc.co.uk/news/articles/cx244kdplnzo',
+      },
+      {
+        label: 'American Presidency Project: Trump’s remarks at the Ratepayer Protection Pledge roundtable',
+        url: 'http://presidency.ucsb.edu/documents/remarks-during-roundtable-discussion-the-ratepayer-protection-pledge',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-budget-deficit-trade-deficit-confusion',
+    kind: 'clip',
+    ogKicker: 'WRONG DEFICIT, SIR',
+    ogPunch: 'Deficit',
+    ogStamp: 'ON TAPE',
+    title: 'Asked About the Budget Deficit, Trump Answers About Canada',
+    category: 'REPORTS',
+    date: '2026-10-20',
+    dek: 'Two deficits walk into the Oval Office. The president can only see one of them.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['gaffes'],
+    embed: {
+      type: 'x',
+      id: '2112614474561552601',
+      url: 'https://x.com/atrupar/status/2112614474561552601',
+      account: '@atrupar',
+      accountName: 'Aaron Rupar',
+    },
+    relatedArticle: 'camp-lejeune-no-win-no-money',
+    relatedClips: ['trump-sick-person-reporter-oval-office'],
+    body: [
+      'Two deficits walk into the Oval Office. The president can only see one of them.',
+      'Tuesday, at the fraud bounty event, a reporter asked a straight budget question: could all the fraud and waste the administration says it’s cutting make a difference to the deficit next year? Trump: “Absolutely, a tremendous difference.” So far so good.',
+      'Then he explained how. “I’m cutting back the deficit with these countries where we do business.” Canada, $90 billion. Mexico, $175 billion. The European Union. He’s cutting them “way back to the old days.” Those are trade gaps, sir. What Americans buy from other countries versus what we sell them. They don’t come out of the Treasury, and cutting them doesn’t put a dime back in.',
+      'The deficit the reporter asked about is the federal one, and the government’s own numbers put this fiscal year’s at close to $2 trillion. Not a typo. Trillion.',
+      'The man running the world’s largest economy, at an event about catching people who mix up money, mixed up the two most famous deficits in economics. You can’t make it up. You don’t have to. It’s on tape.',
+    ],
+    sources: [
+      {
+        label: 'Aaron Rupar: the deficit answer clip',
+        url: 'https://x.com/atrupar/status/2112614474561552601',
+      },
+      {
+        label: 'The White House: full video of the Trump and Vance announcement, 20 Oct',
+        url: 'https://www.whitehouse.gov/videos/president-trump-and-vice-president-jd-vance-make-an-announcement/',
+      },
+      {
+        label: 'CNBC: US budget deficit for fiscal 2026 near $2 trillion',
+        url: 'https://www.cnbc.com/2026/10/16/us-budget-deficit-2026.html',
+      },
+      {
+        label: 'Council on Foreign Relations: the US trade deficit, and how much it matters',
+        url: 'https://www.cfr.org/backgrounders/us-trade-deficit-how-much-does-it-matter',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-dumocrat-new-term-since-may',
+    kind: 'clip',
+    ogKicker: 'STILL FRESH, APPARENTLY',
+    ogPunch: 'Dumocrat',
+    ogStamp: 'ON TAPE',
+    title: 'Trump’s ‘Brand New’ Dumocrat Joke Turns Five Months Old',
+    category: 'REPORTS',
+    date: '2026-10-20',
+    dek: 'Every comedian has one bit they can’t let go of. This one has the nuclear codes.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['gaffes'],
+    embed: {
+      type: 'x',
+      id: '2112759782864224757',
+      url: 'https://x.com/RpsAgainstTrump/status/2112759782864224757',
+      account: '@RpsAgainstTrump',
+      accountName: 'Republicans against Trump',
+    },
+    beforeEmbed: {
+      type: 'youtube',
+      id: 'Ov3clNfykaI',
+      url: 'https://www.youtube.com/watch?v=Ov3clNfykaI',
+      accountName: 'FOX Nashville',
+      label: 'FOX Nashville on YouTube: Trump debuts “Dumocrats” in Suffern, NY, May 2026',
+    },
+    body: [
+      'Every comedian has one bit they can’t let go of. This one has the nuclear codes.',
+      'Tuesday night in Greenville, North Carolina, Donald Trump treated the crowd to his latest invention. “Dumocrat. I use that new term. It took me years to figure it out.” Then the method, step by step, like he’s explaining the Manhattan Project: take out the E, put in a U, and “most people don’t know that ‘dumb’ has a B, so we throw that out too.”',
+      'New term. Took years. Funny thing about that. In May, at a rally in Suffern, New York, he did the exact same bit, the E, the U, “a lot of people don’t know dumb has a B in it,” and called it “a new name I came up with, you’ve never heard.” He ran it again in Wisconsin in early June. His own Rapid Response account was posting “Radical Dumocrats” the night before Greenville.',
+      'So, to recap: the President of the United States has spent at least five months introducing the same one-letter joke as brand new, and each time explaining that the rest of us don’t know how to spell “dumb.”',
+      'He used it on Roy Cooper, who’s running for Senate. Cooper’s response wasn’t necessary. The bit did the work.',
+    ],
+    sources: [
+      {
+        label: 'Republicans against Trump: the Greenville “Dumocrat” clip',
+        url: 'https://x.com/RpsAgainstTrump/status/2112759782864224757',
+      },
+      {
+        label: 'FOX Nashville on YouTube: Trump debuts “Dumocrats” in Suffern, NY, May 2026',
+        url: 'https://www.youtube.com/watch?v=Ov3clNfykaI',
+      },
+      {
+        label: 'Forbes Breaking News on YouTube: “A lot of people don’t know dumb has a B,” June 2026',
+        url: 'https://www.youtube.com/watch?v=GsAUQu4L61M',
+      },
+      {
+        label: 'Rapid Response 47: “Radical Dumocrats” post, 19 Oct',
+        url: 'https://x.com/RapidResponse47/status/2112346642632331698',
+      },
+      {
+        label: 'WITN: Trump’s Greenville rally',
+        url: 'https://www.witn.com/2026/10/20/president-trump-holding-midterm-rally-greenville-today/',
+      },
+      {
+        label: 'WCTI: Trump rallies Republicans in Greenville, criticizes Cooper',
+        url: 'https://wcti12.com/news/local/trump-rallies-republicans-in-greenville-criticizes-cooper-ahead-of-midterms',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-gas-prices-small-price-to-pay',
+    kind: 'clip',
+    ogKicker: 'EASY FOR HIM TO SAY',
+    ogPunch: 'Small',
+    ogStamp: 'FILED',
+    title: 'Trump Says Your Gas Bill Is a ‘Small Price to Pay.’ Small for Whom?',
+    category: 'REPORTS',
+    date: '2026-10-20',
+    dek: 'Great news, rural America: the president has looked at your fuel bill and decided it’s cheap.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['gaffes'],
+    embed: {
+      type: 'x',
+      id: '2112622965774778437',
+      url: 'https://x.com/atrupar/status/2112622965774778437',
+      account: '@atrupar',
+      accountName: 'Aaron Rupar',
+    },
+    body: [
+      'Great news, rural America: the president has looked at your fuel bill and decided it’s cheap.',
+      'Tuesday in the Oval Office, a reporter cited Fox News’ own numbers: less than a quarter of rural voters are happy with the economy. Was Trump concerned? “No.” Once the war is over, “it’s gonna end very soon,” oil will “drop like a rock.” Meanwhile, “It’s a small price to pay” to keep Iran from getting a nuclear weapon.',
+      'Small for him. Out in Kansas, farmers are bringing in the harvest with diesel more than $2.50 a gallon higher than a year ago. The man calling that small hasn’t paid for his own fuel since January 2025. Air Force One runs on yours.',
+      'And “very soon” is doing a lot of work. The night before, he told a Wichita TV station “We could win tomorrow, frankly. We could leave today.” If you can leave today and win tomorrow, the voters paying at the pump would like to know why they’re paying for next week.',
+    ],
+    sources: [
+      {
+        label: 'Aaron Rupar: the full Oval Office “small price to pay” exchange',
+        url: 'https://x.com/atrupar/status/2112622965774778437',
+      },
+      {
+        label: 'Fox News: Trump says high gas prices are a small price to pay to stop an Iranian nuclear weapon',
+        url: 'https://www.foxnews.com/video/6407148730112',
+      },
+      {
+        label: 'KWCH 12 News: Trump’s one-on-one with Dylan Domangue',
+        url: 'https://www.kwch.com/2026/10/20/exclusive-president-trumps-one-on-one-with-12-news-dylan-domangue/',
+      },
+      {
+        label: 'HuffPost live updates: Kansas farmers and diesel prices',
+        url: 'https://www.huffpost.com/entry/live-updates_n_6ad5dc16e4b061c2be4462bd/liveblog_6ad6e7dce4b05d72fd9429d4',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-sick-person-reporter-oval-office',
+    kind: 'clip',
+    ogKicker: 'QUIET! QUIET!',
+    ogPunch: 'Sick',
+    ogStamp: 'ON TAPE',
+    title: 'Trump to Reporter Asking About His Golf Course: ‘Are You a Sick Person?’',
+    category: 'REPORTS',
+    date: '2026-10-20',
+    dek: 'The fraud tip line had been open about an hour before the president found something he really wanted to report: a journalist.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['cruelty'],
+    embed: {
+      type: 'x',
+      id: '2112623065263726702',
+      url: 'https://x.com/atrupar/status/2112623065263726702',
+      account: '@atrupar',
+      accountName: 'Aaron Rupar',
+    },
+    relatedArticle: 'camp-lejeune-no-win-no-money',
+    relatedClips: ['trump-daily-wire-is-good-sorry', 'trump-budget-deficit-trade-deficit-confusion'],
+    body: [
+      'The fraud tip line had been open about an hour before the president found something he really wanted to report: a journalist.',
+      'Tuesday in the Oval Office, The Independent’s Andrew Feinberg asked a simple money question. Why would a whistleblower take the administration’s new bounty, about 1% by Trump’s own pitch, when the False Claims Act, on the books since Lincoln, pays up to a quarter of what’s recovered? Trump’s answer, per Feinberg: “Because it’s a lot of money.” Math is optional at this level.',
+      'Then he asked Feinberg who he was. Feinberg has covered him for a decade, and by his account Trump winked at him earlier in that same event. A little later: “I don’t know who the hell you are, but you better be careful.”',
+      'Then Feinberg tried a question about Trump’s plan to rebuild a public D.C. golf course. “Wait. Wait. Quiet. Quiet. What’s wrong with you? Are you a sick person?” Feinberg: “Not that I know of, sir.” Trump: “I actually think there’s something wrong with you.” Aaron Rupar counted it as Trump’s third blowup of the Q&A.',
+      'There’s a pattern. The day before, Trump called the federal judge on the same golf course case a “crazed lunatic” on Truth Social. Ask about the golf course and you get a diagnosis. Feinberg says that after the event the White House rapid-response account called him a “Mongoloid Moron” and Vance called him an “imbecile.” Feinberg, for the record, says his annual physical came back fine.',
+    ],
+    sources: [
+      {
+        label: 'Aaron Rupar: the “Are you a sick person?” clip',
+        url: 'https://x.com/atrupar/status/2112623065263726702',
+      },
+      {
+        label: 'Bulwark Clips: the full golf course exchange',
+        url: 'https://x.com/BulwarkClips/status/2112625146397700141',
+      },
+      {
+        label: 'The Independent: Andrew Feinberg’s account of the Oval Office exchange',
+        url: 'https://www.the-independent.com/news/world/americas/us-politics/trump-the-independent-reporter-oval-office-andrew-feinberg-b3070310.html',
+      },
+      {
+        label: 'The Hill: Trump snaps at White House reporter, “Are you a sick person?”',
+        url: 'https://thehill.com/homenews/media/6161621-trump-snaps-at-white-house-reporter-are-you-a-sick-person/',
+      },
+      {
+        label: 'Fox News: Judge Trump called a “crazed lunatic” backs off DOJ demand in golf course case',
+        url: 'https://www.foxnews.com/politics/judge-trump-called-lunatic-abruptly-backs-off-demand-showdown-doj-3',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-ukraine-mostly-soldiers-die',
+    kind: 'clip',
+    ogKicker: '“OR WHATEVER”',
+    ogPunch: 'Soldiers',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump on Russia’s Strikes: ‘Mostly Soldiers Die.’ The Baby in the Stroller Wasn’t One.',
+    category: 'REPORTS',
+    date: '2026-10-20',
+    dek: 'Sunday a Russian drone hit a park in Nova Vodolaha, in Ukraine’s Kharkiv region. Six civilians dead.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['cruelty'],
+    embed: {
+      type: 'x',
+      id: '2112626041554628792',
+      url: 'https://x.com/United24media/status/2112626041554628792',
+      account: '@United24media',
+      accountName: 'UNITED24 Media',
+    },
+    body: [
+      'Sunday a Russian drone hit a park in Nova Vodolaha, in Ukraine’s Kharkiv region. Six civilians dead. The youngest was a baby just over a year old, in her stroller. Fifteen wounded, seven of them kids.',
+      'Tuesday, in the Oval Office, the President of the United States was asked about Russia hitting civilians. His answer: “Some people die in a town that got hit or whatever, but mostly soldiers die.”',
+      'Or whatever. That’s the eulogy.',
+      'In the same Q&A he said Zelensky “has to want to settle this war,” and that America had “given tremendous amounts to Ukraine” and gotten “nothing back other than high diesel.” Hard to say what high diesel means here. Ten days ago Trump lifted US sanctions on Russian diesel, so the only diesel in this story came from the side flying the drones.',
+      'Also Tuesday, by the Guardian’s count, at least nine more people were killed across Ukraine, including passengers on the Kyiv to Odesa highway. Mostly soldiers, presumably. Or whatever.',
+    ],
+    sources: [
+      {
+        label: 'UNITED24 Media: the “mostly soldiers die” clip',
+        url: 'https://x.com/United24media/status/2112626041554628792',
+      },
+      {
+        label: 'Bulwark Clips: the “nothing back other than high diesel” clip',
+        url: 'https://x.com/BulwarkClips/status/2112618857256890419',
+      },
+      {
+        label: 'Kyiv Post: Trump says Ukraine “has to want to make a deal” and “mostly soldiers die”',
+        url: 'https://www.kyivpost.com/post/87673',
+      },
+      {
+        label: 'PBS News / AP: Trump says US has gotten “nothing” from Ukraine',
+        url: 'https://www.pbs.org/newshour/politics/watch-trump-says-u-s-has-gotten-nothing-from-ukraine-other-than-high-diesel-urging-deal',
+      },
+      {
+        label: 'The Guardian: US resumes intelligence sharing with Ukraine; Tuesday’s death toll and the diesel sanctions',
+        url: 'https://www.theguardian.com/world/2026/oct/20/us-has-resumed-sharing-intelligence-with-ukraine-about-russian-strikes-says-zelenskyy',
+      },
+      {
+        label: 'Ukrainska Pravda: Russian drone strike on Kharkiv Oblast park kills six',
+        url: 'https://www.pravda.com.ua/eng/news/2026/10/19/8058772/',
+      },
+      {
+        label: 'Kyiv Post: Russian drone kills six in Kharkiv park, including infant in stroller',
+        url: 'https://www.kyivpost.com/post/87532',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-watercane-hurricane-helene',
+    kind: 'clip',
+    ogKicker: 'NEW WORD JUST DROPPED',
+    ogPunch: 'Watercane',
+    ogStamp: 'ON TAPE',
+    title: 'Trump Invents the ‘Watercane,’ a Hurricane but Wetter',
+    category: 'REPORTS',
+    date: '2026-10-20',
+    dek: 'Somewhere a meteorologist just closed their laptop and walked into the sea.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['gaffes'],
+    embed: {
+      type: 'x',
+      id: '2112700772815155620',
+      url: 'https://x.com/atrupar/status/2112700772815155620',
+      account: '@atrupar',
+      accountName: 'Aaron Rupar',
+    },
+    body: [
+      'Somewhere a meteorologist just closed their laptop and walked into the sea.',
+      'Tuesday night in Greenville, North Carolina, Donald Trump got around to Hurricane Helene, the 2024 storm that wrecked the western half of the state. He gave it a rebrand. “We call it a watercane.” Who “we” is, he didn’t say. Nobody at the National Hurricane Center has been informed.',
+      'His scientific finding: there’s never been a hurricane “that threw out more water than that.” A hurricane. With water. Stop the presses.',
+      'To be fair, he has a back catalogue. In 2018 Florence was “one of the wettest we’ve ever seen from the standpoint of water.” In 2019 there was the Sharpie on the Dorian map. And in 2025 he said he’d start “phasing out” FEMA, the agency that actually turns up after the watercane leaves.',
+      'He used the storm to call Roy Cooper, the former governor now running for Senate, “horrible” on recovery. Disaster-response tips from the man who wanted to phase out disaster response. Very wet advice.',
+    ],
+    sources: [
+      {
+        label: 'Aaron Rupar: the “watercane” clip, Greenville rally',
+        url: 'https://x.com/atrupar/status/2112700772815155620',
+      },
+      {
+        label: 'HuffPost: Trump faces storm of criticism over “water cane”',
+        url: 'https://www.huffpost.com/entry/trump-watercane-hurricane_n_6ad830cfe4b02def98693d8c',
+      },
+      {
+        label: 'PBS News: Trump holds GOP midterm rally in North Carolina',
+        url: 'https://www.pbs.org/newshour/politics/watch-live-trump-holds-gop-midterm-rally-in-north-carolina',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-christianity-know-more-than-anybody-two-corinthians',
+    kind: 'clip',
+    ogKicker: 'TWO CORINTHIANS WALK INTO A BAR',
+    ogPunch: 'Christianity',
+    ogStamp: 'ON TAPE',
+    title: 'Trump Knows More About Christianity ‘Than Anybody,’ Says the ‘Two Corinthians’ Guy',
+    category: 'REPORTS',
+    date: '2026-10-19',
+    dek: 'Move over, theologians. The man has spoken.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['gaffes'],
+    embed: {
+      type: 'x',
+      id: '2112338361079812590',
+      url: 'https://x.com/atrupar/status/2112338361079812590',
+      account: '@atrupar',
+      accountName: 'Aaron Rupar',
+    },
+    beforeEmbed: {
+      type: 'youtube',
+      id: '8EIgHsGZAmk',
+      url: 'https://www.youtube.com/watch?v=8EIgHsGZAmk',
+      accountName: 'C-SPAN',
+      label: 'C-SPAN on YouTube: Trump, “Two Corinthians,” Liberty University, Jan 2016',
+    },
+    body: [
+      'Move over, theologians. The man has spoken.',
+      'Monday night in Park City, Kansas, Donald Trump told the crowd he has “the all-time, in history, Christian vote,” and then went a step further: “I know more, I know more than anybody.” About Christianity. More than anybody. Including, presumably, the guy it’s named after.',
+      'Then he told the pastor story. A “certain pastor from a place in Dallas, Texas” supposedly said Trump “might not read the Bible as much as us, he might not know every passage,” but would “lead us to a period of time in Christianity that nobody else can do.” Trump’s review: “And he turned out to be right.” Hold on. He opened with “I know more than anybody,” then quoted a pastor saying he doesn’t know every passage. Two claims, under a minute apart.',
+      'The pastor is Robert Jeffress of First Baptist Dallas. He told HuffPost Trump was paraphrasing a 2015 Fox interview, and what he actually remembers saying is that Trump would be “the most faith-friendly president in history.” Not quite a new era of Christianity. That’s a Yelp review.',
+      'The vault has the receipt. In January 2016, at Liberty University, candidate Trump quoted “Two Corinthians” to a room full of evangelicals who’d spent their whole lives saying “Second Corinthians.” The room laughed. Ten years later he knows more than anybody. Growth.',
+    ],
+    sources: [
+      {
+        label: 'Aaron Rupar: the “period of time in Christianity” clip',
+        url: 'https://x.com/atrupar/status/2112338361079812590',
+      },
+      {
+        label: 'Acyn: “I know more than anybody” clip',
+        url: 'https://x.com/Acyn/status/2112338245703053374',
+      },
+      {
+        label: 'HuffPost via Yahoo: Trump says he’ll lead a “time of Christianity,” and pastor Robert Jeffress responds',
+        url: 'https://www.yahoo.com/news/politics/articles/trump-says-ll-lead-us-222326707.html',
+      },
+      {
+        label: 'Trump Archive: Park City, Kansas rally transcript, 19 Oct 2026',
+        url: 'https://trump-archive.com/item/a8a2b457-2f12-4209-8743-25fd4f8b2038',
+      },
+      {
+        label: 'C-SPAN on YouTube: Trump, “Two Corinthians,” Liberty University, Jan 2016',
+        url: 'https://www.youtube.com/watch?v=8EIgHsGZAmk',
+      },
+      {
+        label: 'Washington Post / Reuters video: “Two Corinthians” reference draws laughs',
+        url: 'https://www.washingtonpost.com/video/politics/trumps-two-corinthians-reference-draws-laughs-at-liberty-university/2016/01/19/d640a1ba-be82-11e5-98c8-7fab78677d51_video.html',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-daily-wire-is-good-sorry',
+    kind: 'clip',
+    ogKicker: 'OH. SORRY.',
+    ogPunch: 'Fake',
+    ogStamp: 'ON TAPE',
+    title: 'Trump Calls a Question ‘Fake News,’ Then Learns It’s From the Daily Wire',
+    category: 'REPORTS',
+    date: '2026-10-19',
+    dek: 'About fifteen seconds. That’s how long it takes the fake news to become real news, if it’s from the right outlet.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['gaffes'],
+    embed: {
+      type: 'x',
+      id: '2112263827538505803',
+      url: 'https://x.com/atrupar/status/2112263827538505803',
+      account: '@atrupar',
+      accountName: 'Aaron Rupar',
+    },
+    relatedClips: ['trump-sick-person-reporter-oval-office'],
+    body: [
+      'About fifteen seconds. That’s how long it takes the fake news to become real news, if it’s from the right outlet.',
+      'Monday, before leaving for Kansas, Donald Trump got a question about France: Emmanuel Macron, the reporter began, was blaming the Iran war and Trump for the rioting there. Trump didn’t let her finish. “That’s fake news. Who are you with?”',
+      '“No, sir. Mary Margaret with the Daily Wire.”',
+      'And just like that: “Oh, the Daily Wire is good. Sorry. Daily Wire is good.” Same question. Same facts, or lack of them. The only thing that changed was the logo on the mic.',
+      'Save this one for next time he talks about media bias. Because the next day, in the Oval Office, a reporter from The Independent who has covered him for a decade got “I don’t know who the hell you are” and “Are you a sick person?” Same president. Same “who are you with?” Different answer, different treatment.',
+    ],
+    sources: [
+      {
+        label: 'Aaron Rupar: the “Daily Wire is good. Sorry.” clip',
+        url: 'https://x.com/atrupar/status/2112263827538505803',
+      },
+      {
+        label: 'Newsweek: Trump apologizes for calling Daily Wire question “fake news”',
+        url: 'https://www.newsweek.com/trump-apologized-daily-wire-news-question-fake-france-12591572',
+      },
+      {
+        label: 'Mediaite: Trump snaps at reporter, then apologizes after hearing she’s with the Daily Wire',
+        url: 'https://www.mediaite.com/media/news/trump-snipes-at-reporter-then-apologizes-after-hearing-shes-with-pro-maga-outlet-sorry-daily-wire-is-good/',
+      },
+      {
+        label: 'The Independent: Trump was about to unload on a reporter. Then she said 8 words',
+        url: 'https://www.independent.co.uk/news/world/americas/us-politics/trump-reporter-daily-wire-iran-macron-b3069560.html',
+      },
+      {
+        label: 'The Independent: Andrew Feinberg on the next day’s Oval Office exchange',
+        url: 'https://www.the-independent.com/news/world/americas/us-politics/trump-the-independent-reporter-oval-office-andrew-feinberg-b3070310.html',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-nobody-appreciates-me-kansas-rally',
+    kind: 'clip',
+    ogKicker: 'PITY PARTY OF ONE',
+    ogPunch: 'Sad',
+    ogStamp: 'ON TAPE',
+    title: 'Trump Is Very Sad Nobody Appreciates How Great a President Trump Is',
+    category: 'REPORTS',
+    date: '2026-10-19',
+    dek: 'Nothing says “golden age” like the president crying about it into a microphone in Kansas.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['gaffes'],
+    embed: {
+      type: 'x',
+      id: '2112344604045725803',
+      url: 'https://x.com/Acyn/status/2112344604045725803',
+      account: '@Acyn',
+      accountName: 'Acyn',
+    },
+    body: [
+      'Nothing says “golden age” like the president crying about it into a microphone in Kansas.',
+      'Monday night in Park City, Donald Trump told a rally crowd what he thinks about while sitting in “the most magnificent office in the world.” Not the economy. Not the war. Him. “Nobody appreciates how great a president I am!” Then, in case anyone missed the violin: “I feel very sad.”',
+      'The crowd tried to cheer him up. It didn’t take. He kept going with the list of things he feels nobody thanks him for: rebuilding the military, Space Force, “the best job numbers in history,” the border. A man reading his own Yelp review out loud and giving it five stars.',
+      'Then he saw the headline coming and tried to block it. If the media reported he was in a down mood, he said, “they are just absolute scum.” So: be sad on stage, call it news, call the people who report it scum. A full emotional cycle in one rally.',
+      'Here’s the bit he skipped. He did this with his approval at a record low and the midterms two weeks out. Turns out the country has noticed how great a president he is. That’s the problem.',
+    ],
+    sources: [
+      {
+        label: 'Acyn: “Nobody appreciates how great a president I am” clip',
+        url: 'https://x.com/Acyn/status/2112344604045725803',
+      },
+      {
+        label: 'HuffPost via AOL: Trump whines about Americans not appreciating him',
+        url: 'https://www.aol.com/articles/trump-whines-americans-not-appreciating-012850000.html',
+      },
+      {
+        label: 'New York Magazine: the Kansas rally, including the “nobody appreciates” riff',
+        url: 'https://nymag.com/intelligencer/article/trump-antisemitic-slur-shylock-kansas-rally.html',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-shylock-slur-roger-marshall-kansas',
+    kind: 'clip',
+    ogKicker: 'HE WAS WARNED',
+    ogPunch: 'Slur',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump Defends Senator Who Sued 700 Patients With an Antisemitic Slur',
+    category: 'REPORTS',
+    date: '2026-10-19',
+    dek: 'Usually a politician’s worst story gets buried. Donald Trump dug this one up on stage and threw a slur in with it.',
+    publishedAt: '2026-10-21T11:30:00+02:00',
+    topics: ['cruelty'],
+    embed: {
+      type: 'x',
+      id: '2112342320339439718',
+      url: 'https://x.com/Acyn/status/2112342320339439718',
+      account: '@Acyn',
+      accountName: 'Acyn',
+    },
+    body: [
+      'Usually a politician’s worst story gets buried. Donald Trump dug this one up on stage and threw a slur in with it.',
+      'Back story: last month the New York Times reported that Sen. Roger Marshall’s obstetrics practice, before he went into politics, sued more than 700 patients over unpaid bills. In 81 of those cases patients were arrested after missing court dates. The Kansas City Star later found the practice charged 18% interest, possibly above the state’s 15% cap. Not great for a guy in a surprisingly tight race in Kansas.',
+      'So on Monday in Park City, Trump came to the rescue. Marshall was “mandated by law” to chase that money, Trump claimed. “And they made it like he was some kind of a Shylock type guy. I don’t know if I should be saying it.”',
+      'He shouldn’t have. He knows that, because Jewish groups called him out for using the same word at a rally in July 2025. Back then he said he’d “never heard it that way.” Fifteen months is apparently not enough time to hear it that way.',
+      'New York Magazine adds the cherry: Trump said someone on his team had told him not to bring up the lawsuit story at all. He did it anyway, “because I believe it’s appropriate.” The ADL condemned the term without naming him. Kansas Jewish leaders were less shy.',
+    ],
+    sources: [
+      {
+        label: 'Acyn: the full “Shylock type guy” clip',
+        url: 'https://x.com/Acyn/status/2112342320339439718',
+      },
+      {
+        label: 'NBC News: Trump uses antisemitic slur defending Roger Marshall',
+        url: 'https://www.nbcnews.com/politics/donald-trump/president-uses-antisemitic-slur-defending-roger-marshall-kansas-rally-rcna604497',
+      },
+      {
+        label: 'KCUR: Trump used antisemitic slur while defending Marshall’s lawsuits against patients',
+        url: 'https://www.kcur.org/politics-elections-and-government/2026-10-20/trump-used-antisemitic-slur-in-kansas-while-defending-marshalls-lawsuits-against-patients',
+      },
+      {
+        label: 'The Guardian: ADL condemns the slur but doesn’t name Trump',
+        url: 'https://www.theguardian.com/us-news/2026/oct/20/trump-kansas-rally-antisemitic-slur-anti-defamation-league',
+      },
+      {
+        label: 'New York Magazine: Trump drops antisemitic slur at Kansas rally',
+        url: 'https://nymag.com/intelligencer/article/trump-antisemitic-slur-shylock-kansas-rally.html',
+      },
+      {
+        label: 'The New York Times: Roger Marshall sued 700 patients for debts; 81 were arrested',
+        url: 'https://www.nytimes.com/2026/09/08/us/politics/roger-marshall-obgyn-doctor-debts.html',
+      },
+      {
+        label: 'Kansas City Star: Marshall charged 18% on medical bills',
+        url: 'https://www.kansascity.com/news/politics-government/article317557935.html',
+      },
+      {
+        label: 'KWCH: Jewish community responds after Trump uses slur at Wichita rally',
+        url: 'https://www.kwch.com/2026/10/21/jewish-community-responds-after-president-trump-uses-antisemitic-slur-wichita-rally/',
       },
     ],
     published: true,

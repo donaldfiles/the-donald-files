@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
+import { PostLink } from '../components/PostLink'
 import { DossierCover } from '../components/DossierCover'
 import { ReadProgress } from '../components/ReadProgress'
 import { SourceFiles } from '../components/SourceFiles'
@@ -6,6 +7,7 @@ import { VideoEmbed } from '../components/VideoEmbed'
 import {
   getArticleBySlug,
   getPublishedArticles,
+  hrefFor,
   type ArticleEmbed,
 } from '../content/articles'
 import { fileIdFromArticle } from '../lib/dossier'
@@ -35,6 +37,11 @@ export function ReportArticle() {
   const all = getPublishedArticles()
   const idx = article ? all.findIndex((a) => a.slug === article.slug) : -1
   const next = idx >= 0 ? all[idx + 1] ?? all[0] : undefined
+
+  if (article?.kind === 'clip') {
+    window.location.replace(hrefFor(article))
+    return null
+  }
 
   if (!article) {
     return (
@@ -107,6 +114,19 @@ export function ReportArticle() {
         ))}
       </div>
 
+      {article.relatedClips?.length ? (
+        <section className="related-clips" aria-label="Related clips">
+          <h2 className="related-clips-h">Watch the clips //</h2>
+          {article.relatedClips
+            .map((s) => getArticleBySlug(s))
+            .filter((c): c is NonNullable<typeof c> => Boolean(c && c.published))
+            .map((c) => (
+              <a key={c.slug} className="related-clip" href={hrefFor(c)}>
+                {c.ogKicker ? <span className="related-clip-k">{c.ogKicker}</span> : null} {c.title}
+              </a>
+            ))}
+        </section>
+      ) : null}
       <SourceFiles sources={article.sources} />
 
       {next && next.slug !== article.slug ? (
@@ -115,9 +135,9 @@ export function ReportArticle() {
             <div className="next-label">Next file</div>
             <div className="next-hed">{next.title}</div>
           </div>
-          <Link className="btn btn-ghost" to={`/reports/${next.slug}`}>
+          <PostLink className="btn btn-ghost" post={next}>
             OPEN →
-          </Link>
+          </PostLink>
         </aside>
       ) : null}
     </article>

@@ -2223,3 +2223,9 @@ h1, h2, h3 {
   color: var(--cream);
   max-width: 34rem;
 }
+
+.related-clips{margin:2rem 0 1.5rem;max-width:42rem}
+.related-clips-h{font-family:var(--font-mono,ui-monospace,monospace);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9a948a;margin:0 0 .6rem}
+.related-clip{display:block;padding:12px 16px;border:1px solid #2a2a2a;border-left:3px solid #ffd400;margin-bottom:8px;color:inherit;text-decoration:none}
+.related-clip:hover{border-color:#ffd400}
+.related-clip-k{font-family:var(--font-mono,ui-monospace,monospace);font-size:11px;font-weight:700;letter-spacing:.08em;color:#ffd400;text-transform:uppercase;margin-right:6px}

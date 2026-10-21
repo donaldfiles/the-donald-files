@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url'
 import { openRenderer, cardParams } from './lib/share-card.mjs'
 import { extractArticles } from './lib/articles.mjs'
 import {
-  SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, isoDate, articleUrl, articleOg,
+  SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, isoDate, urlFor, articleOg,
   headTags, websiteLd,
 } from './lib/seo.mjs'
 
@@ -69,10 +69,11 @@ const latest = articles[0]?.date
 const urls = [
   { loc: `${SITE}/`, lastmod: latest, freq: 'hourly', pri: '1.0' },
   { loc: `${SITE}/reports/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
+  { loc: `${SITE}/trump-videos/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
   { loc: `${SITE}/the-record`, freq: 'daily', pri: '0.6' },
   { loc: `${SITE}/about`, freq: 'monthly', pri: '0.3' },
   { loc: `${SITE}/subscribe`, freq: 'monthly', pri: '0.4' },
-  ...articles.map((a) => ({ loc: articleUrl(a.slug), lastmod: a.date, freq: 'weekly', pri: '0.8', img: articleOg(a.slug), title: a.title })),
+  ...articles.map((a) => ({ loc: urlFor(a), lastmod: a.date, freq: 'weekly', pri: '0.8', img: articleOg(a.slug), title: a.title })),
 ]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -89,14 +90,15 @@ writeFileSync(
 
 // ---------- feed.json (JSON Feed 1.1) + rss.xml ----------
 const items = articles.map((a) => ({
-  id: articleUrl(a.slug),
+  id: urlFor(a),
   slug: a.slug,
-  url: articleUrl(a.slug),
+  url: urlFor(a),
   title: a.title,
   summary: a.dek,
   image: articleOg(a.slug),
   date_published: isoDate(a.date),
-  tags: [a.category],
+  tags: a.kind === 'clip' ? ['clip', ...(a.topics || [])] : [a.category],
+  ...(a.kind === 'clip' && a.embed ? { external_url: a.embed.url } : {}),
 }))
 writeFileSync(
   join(dist, 'feed.json'),

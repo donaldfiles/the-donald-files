@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { PostLink } from './PostLink'
 import type { Article } from '../content/articles'
 import { Stamp } from './Stamp'
 import {
@@ -19,8 +19,8 @@ export function CaseCard({ article, index = 0, lead = false }: Props) {
   const stamp = stampForCategory(article.category)
 
   return (
-    <Link
-      to={`/reports/${article.slug}`}
+    <PostLink
+      post={article}
       className={`case-card${lead ? ' case-card-lead' : ''}`}
     >
       <div className="case-top">
@@ -49,6 +49,6 @@ export function CaseCard({ article, index = 0, lead = false }: Props) {
         </div>
         <span className="open-link">Open file →</span>
       </div>
-    </Link>
+    </PostLink>
   )
 }
