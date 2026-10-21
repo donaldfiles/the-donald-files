@@ -51,7 +51,7 @@ export async function pickItems(env, now = new Date(), hours = 24) {
     .filter((i) => Date.parse(i.date_published) > since && Date.parse(i.date_published) <= now.getTime())
     .map((i) => ({ ...i, clip: /\/trump-videos\//.test(i.url) }))
   fresh.sort((a, b) => (a.clip !== b.clip ? (a.clip ? -1 : 1) : Date.parse(b.date_published) - Date.parse(a.date_published)))
-  return fresh.slice(0, MAX_ITEMS).map((i) => ({ title: i.title, line: oneLine(i.summary || i.content_text), url: i.url, image: i.image, clip: i.clip }))
+  return fresh.slice(0, MAX_ITEMS).map((i) => ({ title: i.title, line: oneLine(i.summary || i.content_text), url: i.url, image: i.image, clip: i.clip, kicker: i._donaldfiles?.kicker || '' }))
 }
 
 const subjectFor = (items) => {
@@ -65,7 +65,7 @@ export function renderEmail({ items, intro, unsubscribe, date, site }) {
   const rows = items.map((it, k) => `
 <tr><td style="padding:${k ? '20px' : '4px'} 0 0">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.card};border:1px solid ${C.line};border-radius:16px;border-collapse:separate">
-<tr><td style="padding:12px 12px 0"><a href="${esc(utm(it.url))}" target="_blank"><img src="${esc(it.image)}" width="512" alt="${esc(it.title)}" style="display:block;width:100%;max-width:512px;height:auto;border:0;border-radius:10px"></a></td></tr>
+<tr><td style="padding:12px 12px 0"><a href="${esc(utm(it.url))}" target="_blank" style="display:block;text-decoration:none"><img src="${esc(it.image)}" width="512" alt="${esc(`${it.kicker || (it.clip ? 'Clip' : 'File')} | The Donald Files`)}" style="display:block;width:100%;max-width:512px;height:auto;border:0;border-radius:10px"></a></td></tr>
 <tr><td style="padding:14px 18px 0;font:700 12px/1.2 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:${C.blue}">${it.clip ? '▶ Clip' : 'File'}</td></tr>
 <tr><td style="padding:6px 18px 0;font:800 21px/1.25 Arial,Helvetica,sans-serif;color:${C.text}"><a href="${esc(utm(it.url))}" target="_blank" style="color:${C.text};text-decoration:none">${esc(it.title)}</a></td></tr>
 <tr><td style="padding:8px 18px 0;font:16px/1.5 Georgia,'Times New Roman',serif;color:${C.muted}">${esc(it.line)}</td></tr>
@@ -78,7 +78,7 @@ export function renderEmail({ items, intro, unsubscribe, date, site }) {
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px">
 <tr><td style="padding:0 4px 4px;font:800 24px/1 Arial,Helvetica,sans-serif;color:${C.text};letter-spacing:-.02em">The <span style="background:${C.hl};padding:0 5px;border-radius:5px">Donald</span> Files</td></tr>
 <tr><td style="padding:8px 4px 14px;font:700 12px/1.3 Arial,Helvetica,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:${C.muted}">The daily digest · ${esc(date)}</td></tr>
-${intro ? `<tr><td style="padding:0 0 14px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background:${C.soft};border-left:4px solid ${C.blue};border-radius:10px;padding:14px 16px;font:17px/1.45 Georgia,'Times New Roman',serif;color:${C.text}">${esc(intro)}</td></tr></table></td></tr>` : ''}
+${intro ? `<tr><td style="padding:0 0 14px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background:${C.paper};border-left:4px solid ${C.blue};padding:10px 16px;font:17px/1.45 Georgia,'Times New Roman',serif;color:${C.text}">${esc(intro)}</td></tr></table></td></tr>` : ''}
 ${rows}
 <tr><td style="padding:26px 4px 0;font:13px/1.6 Arial,Helvetica,sans-serif;color:${C.muted}">You’re getting this because you confirmed a subscription at <a href="${esc(site)}/" style="color:${C.blue}">thedonaldfiles.com</a>. Sourced. Snarky. Receipts attached.<br>
 <a href="${esc(unsubscribe)}" style="color:${C.muted};text-decoration:underline">Unsubscribe in one click</a></td></tr>
@@ -123,7 +123,8 @@ export async function runDigest(env, { test = false, now = new Date(), force = f
       })
     }
     // Same date + same recipients → same key, so a retry inside Resend's 24h window never double-sends.
-    const idem = `df-digest/${date}/${test ? 'test' : 'live'}/${hex(await crypto.subtle.digest('SHA-256', enc.encode(chunk.map((s) => s.id).join(',')))).slice(0, 32)}`
+    // (Test runs add a timestamp so repeated tests to the bot inbox aren't swallowed.)
+    const idem = `df-digest/${date}/${test ? `test-${Date.now()}` : 'live'}/${hex(await crypto.subtle.digest('SHA-256', enc.encode(chunk.map((s) => s.id).join(',')))).slice(0, 32)}`
     let rows
     try {
       const data = await sendBatch(env, payload, idem)

@@ -135,6 +135,8 @@ const items = articles.map((a) => ({
   date_modified: datesFor(a).modified,
   tags: a.kind === 'clip' ? ['clip', ...(a.topics || [])] : [a.category],
   ...(a.kind === 'clip' && a.embed ? { external_url: a.embed.url } : {}),
+  // JSON Feed extension, read by the digest Worker.
+  _donaldfiles: { kind: a.kind === 'clip' ? 'clip' : 'file', kicker: a.ogKicker || '' },
 }))
 writeFileSync(
   join(dist, 'feed.json'),
