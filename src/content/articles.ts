@@ -739,18 +739,20 @@ export const articles: Article[] = [
     proseArticle: true,
   },
   {
-    slug: 'trump-ukraine-mostly-soldiers-die',
-    unlisted: true,
+    slug: 'trump-ukraine-town-that-got-hit-or-whatever',
     kind: 'clip',
-    ogKicker: '“OR WHATEVER”',
-    ogPunch: 'Soldiers',
-    ogStamp: 'RECEIPTS',
-    title: 'Trump on Russia’s strikes: ‘Mostly Soldiers Die.’ The baby in the stroller wasn’t one.',
+    youtubeId: 'IQKChHxD9e8',
+    youtubeStart: 4732,
+    youtubeChannel: 'The White House',
+    ogKicker: 'OR WHATEVER',
+    ogPunch: 'Whatever',
+    ogStamp: 'ON TAPE',
+    title: 'Trump on dead Ukrainians: ‘Some people in a town that got hit or whatever’',
     category: 'REPORTS',
     date: '2026-10-20',
     dek: 'Sunday a Russian drone hit a park in Nova Vodolaha, in Ukraine’s Kharkiv region. Six civilians dead.',
     publishedAt: '2026-10-21T11:21:34+02:00',
-    topics: ['cruelty'],
+    topics: ['cruelty', 'gaffes'],
     embed: {
       type: 'x',
       id: '2112626041554628792',
@@ -760,23 +762,25 @@ export const articles: Article[] = [
     },
     body: [
       'Sunday a Russian drone hit a park in Nova Vodolaha, in Ukraine’s Kharkiv region. Six civilians dead. The youngest was a baby just over a year old, in her stroller. Fifteen wounded, seven of them kids.',
-      'Tuesday, in the Oval Office, the President of the United States was asked about Russia hitting civilians. His answer: “Some people die in a town that got hit or whatever, but mostly soldiers die.”',
-      'Or whatever. That’s the eulogy.',
-      'In the same Q&A he said Zelensky “has to want to settle this war,” and that America had “given tremendous amounts to Ukraine” and gotten “nothing back other than high diesel.” Hard to say what high diesel means here. Ten days ago Trump lifted US sanctions on Russian diesel, so the only diesel in this story came from the side flying the drones.',
-      'Also Tuesday, by the Guardian’s count, at least nine more people were killed across Ukraine, including passengers on the Kyiv to Odesa highway. Mostly soldiers, presumably. Or whatever.',
+      'Tuesday, in the Oval Office, Trump ran the numbers on the war. Last month, he said, “they lost 32,000 people between the both of them. They’re mostly soldiers, mostly young soldiers. Some people in a town that got hit or whatever, but mostly young soldiers.”',
+      'Some people. In a town. That got hit. Or whatever. That’s the whole entry for the civilians.',
+      'To be fair to the tape, he kept going: “It doesn’t affect us much. It doesn’t affect us in theory at all. We’re not involved. What affects me is to see that many souls lost so needlessly.” So the souls get a sentence. The baby in the stroller gets filed under “or whatever.”',
+      'Right before that, he said Zelensky is “going to have to want to make a deal.” Elsewhere in the same appearance he complained that America had given Ukraine a fortune and gotten “nothing back other than high diesel.” Ten days earlier Trump lifted US sanctions on Russian diesel, so the only diesel in this story came from the side flying the drones.',
+      'Also Tuesday, by the Guardian’s count, at least nine more people were killed across Ukraine, including passengers on the Kyiv to Odesa highway. Mostly young soldiers, presumably. Or whatever.',
     ],
+    correction: 'Correction: An earlier version of this post quoted Trump as saying “some people die in a town” and “mostly soldiers die,” and said he was answering a question about civilian strikes. The White House’s own video shows the words above, said during his answer on the war’s death toll. The post has been rewritten from that tape.',
     sources: [
       {
-        label: 'UNITED24 Media: the “mostly soldiers die” clip',
+        label: 'The White House (YouTube): full Oval Office event, the 32,000 and “or whatever” answer from 1:18:52',
+        url: 'https://www.youtube.com/watch?v=IQKChHxD9e8&t=4732s',
+      },
+      {
+        label: 'UNITED24 Media: the “town that got hit or whatever” clip',
         url: 'https://x.com/United24media/status/2112626041554628792',
       },
       {
         label: 'Bulwark Clips: the “nothing back other than high diesel” clip',
         url: 'https://x.com/BulwarkClips/status/2112618857256890419',
-      },
-      {
-        label: 'Kyiv Post: Trump says Ukraine “has to want to make a deal” and “mostly soldiers die”',
-        url: 'https://www.kyivpost.com/post/87673',
       },
       {
         label: 'PBS News / AP: Trump says US has gotten “nothing” from Ukraine',
@@ -912,6 +916,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-daily-wire-is-good-sorry',
     kind: 'clip',
+    youtubeId: '5YerQHGsX04',
+    youtubeStart: 228,
+    youtubeChannel: 'The White House',
     ogKicker: 'OH. SORRY.',
     ogPunch: 'Fake',
     ogStamp: 'ON TAPE',
@@ -931,11 +938,12 @@ export const articles: Article[] = [
     relatedClips: ['trump-sick-person-reporter-oval-office'],
     body: [
       'About fifteen seconds. That’s how long it takes the fake news to become real news, if it’s from the right outlet.',
-      'Monday, before leaving for Kansas, Donald Trump got a question about France: Emmanuel Macron, the reporter began, was blaming the Iran war and Trump for the rioting there. Trump didn’t let her finish. “That’s fake news. Who are you with?”',
+      'Monday, before leaving for Kansas, Donald Trump got a question about France: Emmanuel Macron, the reporter began, was blaming the Iran war and Trump for the rioting there. She got the whole question out. He had the verdict ready: “I don’t think he is. No, I think that’s fake news. Who you with?”',
       '“No, sir. Mary Margaret with the Daily Wire.”',
-      'And just like that: “Oh, the Daily Wire is good. Sorry. Daily Wire is good.” Same question. Same facts, or lack of them. The only thing that changed was the logo on the mic.',
-      'Save this one for next time he talks about media bias. Because the next day, in the Oval Office, a reporter from The Independent who has covered him for a decade got “I don’t know who the hell you are” and “Are you a sick person?” Same president. Same “who are you with?” Different answer, different treatment.',
+      'And just like that: “Oh, Daily Wire’s good.” Then, over the shouting: “Sorry, Daily Wire’s good.” Same question. Same facts, or lack of them. The only thing that changed was the logo on the mic.',
+      'Save this one for next time he talks about media bias. Because the next day, in the Oval Office, one reporter got “Are you a sick person?” and, per The Independent’s Andrew Feinberg, he got “I don’t know who the hell you are.” Same president. Different outlet, different treatment.',
     ],
+    correction: 'Correction, Oct. 21: An earlier version said Trump cut the reporter off and merged two separate Oval Office exchanges. Both are fixed to match the White House video.',
     sources: [
       {
         label: 'Aaron Rupar: the “Daily Wire is good. Sorry.” clip',

@@ -21,7 +21,8 @@ export function cardParams(a, fileNo) {
   let hed = String(a.title)
   if (a.ogPunch) {
     const p = String(a.ogPunch)
-    if (hed.includes(p)) hed = hed.replace(p, `*${p}*`)
+    const at = hed.includes(p) ? hed.indexOf(p) : hed.toLowerCase().indexOf(p.toLowerCase())
+    if (at >= 0) hed = `${hed.slice(0, at)}*${hed.slice(at, at + p.length)}*${hed.slice(at + p.length)}`
     else console.warn(`share-card: ogPunch "${a.ogPunch}" not in hed for ${a.slug} — no highlight`)
   }
   return {
