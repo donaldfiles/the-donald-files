@@ -97,6 +97,10 @@ const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: t
 const TOPIC_INTRO = {
   gaffes: 'Every time his mouth outran his brain, on tape. Newest first.',
   'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
+  lies: 'He says it on stage, and we check it underneath. The gap is the story.',
+  tariffs: 'He says Mexico pays. Your receipts say you do. Every clip has the math underneath.',
+  courts: 'Judges he’s lost to, judges he wants sent to hell. Every clip is tied to the court record.',
+  ballroom: 'He promised it’d be free. Here’s who’s actually paying, with the donor list attached.',
   cruelty: 'No mask slipping here, because there isn’t one. Every clip is embedded from the original upload, with the sources underneath.',
 }
 const PROPER_TOPICS = new Set(['truth-social'])
