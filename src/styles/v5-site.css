@@ -88,6 +88,6 @@ iframe.yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(
 .xph .xload{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);font:600 12px/1 var(--f-ui,inherit);color:var(--white);background:rgb(0 0 0/.45);padding:6px 10px;border-radius:999px;white-space:nowrap}
 .xembed.fail .xph .xload{display:none}
 .xembed.fail .xph .xcta{display:inline-block}
-.xembed.fail .xph .play{transform:translate(-50%,-62%) scale(1.15)}
+.xembed.fail .xph .play{display:none}
 .thumb:not(.big) .xcta{font-size:15px;padding:11px 18px;bottom:14px}
 .xembed.fail .xph .who{display:none}
