@@ -91,6 +91,13 @@ const crumbLd = (items) => ({
 // ---------- copy (Reed-approved, from design/v4-video-first + v5 mocks) ----------
 const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every clip is embedded from its original upload, and every claim links to its source.'
 const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: the gaffes, the lies, the ballroom, the court fights and the cruelty, embedded from the original uploads with our notes and the receipts underneath. Fresh clips land all day, US time.'
+// Topic hub intros (Reed-cleared, 21 Oct).
+const TOPIC_INTRO = {
+  gaffes: 'Every time his mouth outran his brain, on tape. Newest first.',
+  'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
+  cruelty: 'No mask slipping here, because there isn’t one. Every clip is embedded from the original upload, with the sources underneath.',
+}
+const PROPER_TOPICS = new Set(['truth-social'])
 const FAQ = [
   ['Where do these Donald Trump videos come from?', 'Every clip is embedded from its original upload on X or YouTube, usually the White House, C-SPAN, a network or the account that filmed it. We link the source under every video and never re-upload footage.'],
   ['How often is this page updated?', 'All day. The desk adds new Trump clips through the US morning and evening, and the newest always sits at the top.'],
@@ -191,9 +198,11 @@ function hubPage({ topic }) {
   const label = topic ? TOPIC_LABEL[topic] : null
   const base = topic ? `/trump-videos/${topic}/` : '/trump-videos/'
   const title = topic ? `Donald Trump ${label} Videos | The Donald Files` : 'Donald Trump Videos: The Worst Clips, Annotated | The Donald Files'
-  const h1 = topic ? `Donald Trump <mark>${esc(label.toLowerCase())}</mark> videos` : 'Donald Trump videos: the worst <mark>clips</mark>, annotated'
+  // Sentence case, but proper nouns (Truth Social) keep their capitals.
+  const h1Word = topic ? (PROPER_TOPICS.has(topic) ? label : label.toLowerCase()) : ''
+  const h1 = topic ? `Donald Trump <mark>${esc(h1Word)}</mark> videos` : 'Donald Trump videos: the worst <mark>clips</mark>, annotated'
   const intro = topic
-    ? `Every Donald Trump ${label.toLowerCase()} clip he’d rather you didn’t rewatch, embedded from the original uploads with our notes and the receipts underneath. Newest first.`
+    ? TOPIC_INTRO[topic] || `Every Donald Trump ${h1Word} clip, embedded from the original uploads with the receipts underneath. Newest first.`
     : HUB_INTRO
   const files4 = topic ? files.filter((f) => (f.topics || []).includes(topic)).slice(0, 4) : []
   const cr = topic ? [['Home', '/'], ['Trump Videos', '/trump-videos/'], [label, base]] : [['Home', '/'], ['Trump Videos', '/trump-videos/']]
