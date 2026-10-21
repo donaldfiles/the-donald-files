@@ -772,7 +772,7 @@ export const articles: Article[] = [
       'Right before that, he said Zelensky is “going to have to want to make a deal.” Elsewhere in the same appearance he complained that America had given Ukraine a fortune and gotten “nothing back other than high diesel.” Ten days earlier Trump lifted US sanctions on Russian diesel, so the only diesel in this story came from the side flying the drones.',
       'Also Tuesday, by the Guardian’s count, at least nine more people were killed across Ukraine, including passengers on the Kyiv to Odesa highway. Mostly young soldiers, presumably. Or whatever.',
     ],
-    correction: 'Correction: An earlier version of this post quoted Trump as saying “some people die in a town” and “mostly soldiers die,” and said he was answering a question about civilian strikes. The White House’s own video shows the words above, said during his answer on the war’s death toll. The post has been rewritten from that tape.',
+    correction: 'Correction, Oct. 21: An earlier version of this post quoted Trump as saying “some people die in a town” and “mostly soldiers die,” and said he was answering a question about civilian strikes. The White House’s own video shows the words above, said during his answer on the war’s death toll. The post has been rewritten from that tape.',
     sources: [
       {
         label: 'The White House (YouTube): full Oval Office event, the 32,000 and “or whatever” answer from 1:18:52',
