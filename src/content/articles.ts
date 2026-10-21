@@ -64,6 +64,10 @@ export type Article = {
   duration?: string
   /** YouTube-first: when set, the clip's main player is this YouTube upload (plays inline); the X post becomes an 'Also on X' credit. Set with scripts/set-youtube.mjs. */
   youtubeId?: string
+  /** Pulled from the site while kept for later: no page (301 to /trump-videos/), no hubs, feeds, sitemaps, digest or X queue. */
+  unlisted?: boolean
+  /** Correction line shown at the bottom of SOURCE FILES. */
+  correction?: string
   /** Seconds into the YouTube video where the clip starts. */
   youtubeStart?: number
   /** Uploader's channel name for the credit, e.g. 'The White House'. */
@@ -105,7 +109,7 @@ export const articles: Article[] = [
     kind: 'clip',
     youtubeId: '0hJmlrSVmtM',
     youtubeStart: 920,
-    youtubeChannel: 'RSBN',
+    youtubeChannel: 'Right Side Broadcasting Network (full stream)',
     ogKicker: 'CHECK BOUNCED',
     ogPunch: 'wall',
     ogStamp: 'RECEIPTS',
@@ -337,7 +341,7 @@ export const articles: Article[] = [
     kind: 'clip',
     youtubeId: 'WRRBagciJEM',
     youtubeStart: 1754,
-    youtubeChannel: 'RSBN',
+    youtubeChannel: 'Right Side Broadcasting Network (full stream)',
     ogKicker: 'AND I’M THE QUEEN OF ENGLAND',
     ogPunch: 'wealth',
     ogStamp: 'RECEIPTS',
@@ -695,7 +699,7 @@ export const articles: Article[] = [
     body: [
       'The fraud tip line had been open about an hour before the president found something he really wanted to report: a journalist.',
       'Tuesday in the Oval Office, The Independent’s Andrew Feinberg asked a simple money question. Why would a whistleblower take the administration’s new bounty, about 1% by Trump’s own pitch, when the False Claims Act, on the books since Lincoln, pays up to a quarter of what’s recovered? Trump’s answer, per Feinberg: “Because it’s a lot of money.” Math is optional at this level.',
-      'Then he asked Feinberg who he was. Feinberg has covered him for a decade, and by his account Trump winked at him earlier in that same event. A little later: “I don’t know who the hell you are, but you better be careful.”',
+      'Then he asked Feinberg who he was. Feinberg has covered him for a decade, and by his account Trump winked at him earlier in that same event. A little later, per Feinberg, aimed at him: “I don’t know who the hell you are, but you’d better be careful.”',
       'Then Feinberg tried a question about Trump’s plan to rebuild a public D.C. golf course. “Wait. Wait. Quiet. Quiet. What’s wrong with you? Are you a sick person?” Feinberg: “Not that I know of, sir.” Trump: “I actually think there’s something wrong with you.” Aaron Rupar counted it as Trump’s third blowup of the Q&A.',
       'There’s a pattern. The day before, Trump called the federal judge on the same golf course case a “crazed lunatic” on Truth Social. Ask about the golf course and you get a diagnosis. Feinberg says that after the event the White House rapid-response account called him a “Mongoloid Moron” and Vance called him an “imbecile.” Feinberg, for the record, says his annual physical came back fine.',
     ],
@@ -727,6 +731,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-ukraine-mostly-soldiers-die',
+    unlisted: true,
     kind: 'clip',
     ogKicker: '“OR WHATEVER”',
     ogPunch: 'Soldiers',
@@ -966,11 +971,12 @@ export const articles: Article[] = [
     },
     body: [
       'Nothing says “golden age” like the president crying about it into a microphone in Kansas.',
-      'Monday night in Park City, Donald Trump told a rally crowd what he thinks about while sitting in “the most magnificent office in the world.” Not the economy. Not the war. Him. “Nobody appreciates how great a president I am!” Then, in case anyone missed the violin: “I feel very sad.”',
+      'Monday night in Park City, Donald Trump told a rally crowd what he thinks about while sitting in “the most magnificent office in the world.” Not the economy. Not the war. Him. “Nobody appreciates how great a president I am.” About half a minute earlier, in case anyone missed the violin: “I feel very sad.”',
       'The crowd tried to cheer him up. It didn’t take. He kept going with the list of things he feels nobody thanks him for: rebuilding the military, Space Force, “the best job numbers in history,” the border. A man reading his own Yelp review out loud and giving it five stars.',
       'Then he saw the headline coming and tried to block it. If the media reported he was in a down mood, he said, “they are just absolute scum.” So: be sad on stage, call it news, call the people who report it scum. A full emotional cycle in one rally.',
-      'Here’s the bit he skipped. He did this with his approval at a record low and the midterms two weeks out. Turns out the country has noticed how great a president he is. That’s the problem.',
+      'Here’s the bit he skipped. He did this with his approval at what HuffPost calls a record low and the midterms two weeks out. Turns out the country has noticed how great a president he is. That’s the problem.',
     ],
+    correction: 'Correction, Oct. 21: An earlier version joined two separate remarks into one quote. It now matches the full rally tape.',
     sources: [
       {
         label: 'Acyn: “Nobody appreciates how great a president I am” clip',
@@ -1011,10 +1017,11 @@ export const articles: Article[] = [
     body: [
       'Usually a politician’s worst story gets buried. Donald Trump dug this one up on stage and threw a slur in with it.',
       'Back story: last month the New York Times reported that Sen. Roger Marshall’s obstetrics practice, before he went into politics, sued more than 700 patients over unpaid bills. In 81 of those cases patients were arrested after missing court dates. The Kansas City Star later found the practice charged 18% interest, possibly above the state’s 15% cap. Not great for a guy in a surprisingly tight race in Kansas.',
-      'So on Monday in Park City, Trump came to the rescue. Marshall was “mandated by law” to chase that money, Trump claimed. “And they made it like he was some kind of a Shylock type guy. I don’t know if I should be saying it.”',
-      'He shouldn’t have. He knows that, because Jewish groups called him out for using the same word at a rally in July 2025. Back then he said he’d “never heard it that way.” Fifteen months is apparently not enough time to hear it that way.',
+      'So on Monday in Park City, Trump came to the rescue. Marshall was “mandated by law” to chase that money, Trump claimed. “And they made it like, oh, he was some kind of a Shylock-type guy.” Then straight back to the legal argument.',
+      'He shouldn’t have said it. And he knows it, because Jewish groups called him out for using the same word at a rally in July 2025. Back then he said he’d “never heard it that way.” Fifteen months is apparently not enough time to hear it that way.',
       'New York Magazine adds the cherry: Trump said someone on his team had told him not to bring up the lawsuit story at all. He did it anyway, “because I believe it’s appropriate.” The ADL condemned the term without naming him. Kansas Jewish leaders were less shy.',
     ],
+    correction: 'Correction, Oct. 21: An earlier version joined two separate remarks into one quote. It now matches the full rally tape.',
     sources: [
       {
         label: 'Acyn: the full “Shylock type guy” clip',

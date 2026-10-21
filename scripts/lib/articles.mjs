@@ -74,7 +74,7 @@ export function extractArticles(text) {
     const dek = /dek:\s*'((?:\\'|[^'])*)'/.exec(block)
     const date = /date:\s*'([^']+)'/.exec(block)
     const category = /category:\s*'([^']+)'/.exec(block)
-    const bodyBlock = /body:\s*\[([\s\S]*?)\]\s*,\s*sources:/.exec(block)
+    const bodyBlock = /body:\s*\[([\s\S]*?)\]\s*,\s*(?:correction:[^\n]*\n\s*)?sources:/.exec(block)
     const bodies = []
     if (bodyBlock) {
       const pr = /'((?:\\'|[^'])*)'/g
@@ -149,6 +149,8 @@ export function extractArticles(text) {
       relatedArticle: ogStr('relatedArticle'),
       relatedClips: strList(block, 'relatedClips'),
       topics: strList(block, 'topics'),
+      unlisted: /\bunlisted:\s*true/.test(block),
+      correction: ogStr('correction'),
       youtubeId: ogStr('youtubeId'),
       youtubeStart: Number(/\byoutubeStart:\s*(\d+)/.exec(block)?.[1]) || 0,
       youtubeChannel: ogStr('youtubeChannel'),
@@ -199,7 +201,7 @@ export function fileNumbers(all) {
 
 /** Topics with at least one published clip get a /trump-videos/<topic>/ hub (no empty hubs). */
 export function liveTopics(all) {
-  const used = new Set(all.filter((a) => a.kind === 'clip' && !a.fixture).flatMap((a) => a.topics || []))
+  const used = new Set(all.filter((a) => a.kind === 'clip' && !a.fixture && !a.unlisted).flatMap((a) => a.topics || []))
   return TOPIC_ORDER.filter((t) => used.has(t))
 }
 

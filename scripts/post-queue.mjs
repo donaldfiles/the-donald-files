@@ -12,7 +12,8 @@
  *
  * Hand-written drafts (data/x-custom-drafts.json, keyed by slug) replace the auto draft for that article;
  * entries may carry quoteTweetId (sent as quote_tweet_id when posting is wired).
- * State lives in data/x-post-state.json: { posted: { [slug]: { at, tweetId } } }.
+ * State lives in data/x-post-state.json: { posted: { [slug]: { at, tweetId } }, blocked: { [slug]: { at, reason } } }.
+ * Blocked slugs (e.g. unlisted pieces) are never drafted or posted.
  * Only --post (after a real success) and --mark-posted modify state.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
@@ -120,7 +121,7 @@ async function main() {
 
   const { src, feed } = await loadFeed()
   const items = [...(feed.items || [])].sort((a, b) => (a.date_published < b.date_published ? 1 : a.date_published > b.date_published ? -1 : 0))
-  const queue = items.filter((it) => !state.posted[it.slug || it.id])
+  const queue = items.filter((it) => !state.posted[it.slug || it.id] && !(state.blocked || {})[it.slug || it.id])
   const limit = Number(opt('--limit', 3))
   const batch = queue.slice(0, limit)
   const custom = existsSync(CUSTOM) ? JSON.parse(readFileSync(CUSTOM, 'utf8')) : {}

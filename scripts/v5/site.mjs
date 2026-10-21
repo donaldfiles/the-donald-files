@@ -22,7 +22,9 @@ const PER_PAGE = Number(process.env.DF_PER_PAGE || 24)
 const root = new URL('../..', import.meta.url).pathname
 const dist = join(root, 'dist')
 const read = (p) => readFileSync(join(root, p), 'utf8')
-const all = attachMedia(extractArticles(read('src/content/articles.ts')).filter((a) => !a.fixture), join(root, 'data/clip-media.json'))
+const parsed = extractArticles(read('src/content/articles.ts')).filter((a) => !a.fixture)
+const UNLISTED = parsed.filter((a) => a.unlisted)
+const all = attachMedia(parsed.filter((a) => !a.unlisted), join(root, 'data/clip-media.json'))
 const pub = (a) => datesFor(a).published
 const byNewest = (x, y) => (pub(y) > pub(x) ? 1 : pub(y) < pub(x) ? -1 : 0)
 const posts = all.slice().sort(byNewest)
@@ -269,7 +271,7 @@ function facade(e, { big = false, label = '', poster: pst = null, kicker = '', a
   return `<figure class="player${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-start="${e.start || 0}" data-url="${esc(url)}" aria-label="Play${e.title ? ` “${esc(e.title)}”` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span></a>${credit}</figure>`
 }
 function sourcesBox(a) {
-  return `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}</ol></section>`
+  return `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}</ol>${a.correction ? `<p class="corr">${esc(a.correction)}</p>` : ''}</section>`
 }
 function shareRow(a) {
   const u = urlFor(a)
@@ -383,5 +385,11 @@ aboutPage()
 subscribePage()
 notFound()
 // Pages Functions only run for paginated hub URLs (?page=N) and the API; everything else is pure static.
+// Unlisted pieces: no page; their URLs 301 to the hub (or Latest) until they're relisted.
+if (UNLISTED.length) {
+  const to = (a) => (a.kind === 'clip' ? '/trump-videos/' : '/reports/')
+  const lines = UNLISTED.flatMap((a) => { const h = hrefFor(a); return [`${h.replace(/\/$/, '')}  ${to(a)}  301`, `${h}  ${to(a)}  301`] })
+  writeFileSync(join(dist, '_redirects'), readFileSync(join(dist, '_redirects'), 'utf8').replace(/\n*$/, '\n') + '# unlisted\n' + lines.join('\n') + '\n')
+}
 writeFileSync(join(dist, '_routes.json'), JSON.stringify({ version: 1, include: ['/api/*', '/trump-videos', '/trump-videos/', ...TOPICS.flatMap((t) => [`/trump-videos/${t}`, `/trump-videos/${t}/`])], exclude: [] }, null, 2))
 console.log(`v5: home, hub + ${TOPICS.length} topic hubs (${TOPICS.join(', ')}), ${clips.length} clip pages, ${files.length} file pages, latest, record, about, subscribe, 404 · CSS ${(CSS.length / 1024).toFixed(1)}KB · per page ${PER_PAGE}`)

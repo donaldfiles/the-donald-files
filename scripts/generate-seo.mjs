@@ -16,7 +16,7 @@ import {
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
 const all = attachMedia(extractArticles(readFileSync(join(root, 'src/content/articles.ts'), 'utf8')), join(root, 'data/clip-media.json'))
-const articles = all.filter((a) => !a.fixture)
+const articles = all.filter((a) => !a.fixture && !a.unlisted)
 
 // ---------- og images (share card v1, headless Chrome) ----------
 // Dossier numbers: chronological among feed articles (oldest = 001), stable as new pieces are prepended.
