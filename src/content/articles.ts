@@ -1,4 +1,4 @@
-import type { Category } from '../components/CategoryLabel'
+export type Category = 'REPORTS' | 'ANALYSIS' | 'TIMELINE' | 'OPINION'
 
 export type SourceFile = {
   label: string
@@ -96,6 +96,8 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 export const articles: Article[] = [
   {
     slug: 'camp-lejeune-no-win-no-money',
+    topics: ['cruelty'],
+    publishedAt: '2026-10-21T10:57:36+02:00',
     seoTitle: 'Trump Puts Camp Lejeune Marines’ Payouts on the Ballot',
     ogKicker: 'NO WIN, NO MONEY',
     ogPunch: 'ballot',
@@ -168,7 +170,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-21',
     dek: 'Nothing good gets posted at 1:37 in the morning. Ask anyone’s ex. Or the President of the United States.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['truth-social'],
     embed: {
       type: 'truthsocial',
@@ -221,7 +223,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-20',
     dek: 'Two deficits walk into the Oval Office. The president can only see one of them.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['gaffes'],
     embed: {
       type: 'x',
@@ -271,7 +273,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-20',
     dek: 'Every comedian has one bit they can’t let go of. This one has the nuclear codes.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['gaffes'],
     embed: {
       type: 'x',
@@ -334,7 +336,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-20',
     dek: 'Great news, rural America: the president has looked at your fuel bill and decided it’s cheap.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['gaffes'],
     embed: {
       type: 'x',
@@ -381,7 +383,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-20',
     dek: 'The fraud tip line had been open about an hour before the president found something he really wanted to report: a journalist.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['cruelty'],
     embed: {
       type: 'x',
@@ -435,7 +437,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-20',
     dek: 'Sunday a Russian drone hit a park in Nova Vodolaha, in Ukraine’s Kharkiv region. Six civilians dead.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['cruelty'],
     embed: {
       type: 'x',
@@ -495,7 +497,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-20',
     dek: 'Somewhere a meteorologist just closed their laptop and walked into the sea.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['gaffes'],
     embed: {
       type: 'x',
@@ -539,7 +541,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-19',
     dek: 'Move over, theologians. The man has spoken.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['gaffes'],
     embed: {
       type: 'x',
@@ -602,7 +604,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-19',
     dek: 'About fifteen seconds. That’s how long it takes the fake news to become real news, if it’s from the right outlet.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['gaffes'],
     embed: {
       type: 'x',
@@ -655,7 +657,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-19',
     dek: 'Nothing says “golden age” like the president crying about it into a microphone in Kansas.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['gaffes'],
     embed: {
       type: 'x',
@@ -699,7 +701,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-10-19',
     dek: 'Usually a politician’s worst story gets buried. Donald Trump dug this one up on stage and threw a slur in with it.',
-    publishedAt: '2026-10-21T11:30:00+02:00',
+    publishedAt: '2026-10-21T11:21:34+02:00',
     topics: ['cruelty'],
     embed: {
       type: 'x',
@@ -755,6 +757,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'wh-youtube-trump-tv',
+    topics: ['lies'],
     ogKicker: 'Press pool watch',
     ogPunch: 'Trump TV',
     ogStamp: 'ON TAPE',
@@ -888,6 +891,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-un-blunders',
+    topics: ['gaffes', 'lies'],
     seoTitle: 'Trump at the UN: The Laugh Track, the Teleprompter, the Seven Wars',
     ogKicker: 'UN watch',
     ogPunch: 'teleprompter',
@@ -1015,6 +1019,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-save-america-act-photo-id',
+    topics: ['truth-social', 'lies'],
     seoTitle: 'Trump’s SAVE America Act Push: Photo ID and Proof of Citizenship',
     ogKicker: 'Voting watch',
     ogPunch: 'choke',
@@ -1076,6 +1081,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-white-house-dump-ballroom',
+    topics: ['ballroom', 'truth-social'],
     seoTitle: 'Trump Calls the White House a ‘Dump,’ Sells the Ballroom as a Gift',
     ogKicker: 'Ballroom watch',
     ogPunch: 'dump',
@@ -1138,6 +1144,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-caracas-maduro-fafo',
+    topics: ['truth-social'],
     seoTitle: 'Trump’s 9/11-Night Caracas Flex Reel on Maduro',
     ogKicker: 'Venezuela watch',
     ogPunch: 'flex',
@@ -1182,6 +1189,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-dallas-beat-nfl',
+    topics: ['truth-social', 'gaffes'],
     seoTitle: 'Trump Declared Dallas ‘Beat the NFL’ Before the Ratings Existed',
     ogKicker: 'Ratings watch',
     ogPunch: 'NFL',
@@ -1230,6 +1238,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-reflecting-pool-vandalism-primer',
+    topics: ['truth-social', 'lies'],
     seoTitle: 'Trump’s Reflecting Pool Vandalism Yarn vs. the Primer Paperwork',
     ogKicker: 'Reflecting Pool watch',
     ogPunch: 'primer',
@@ -1279,6 +1288,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-colossus-smithsonian-washington',
+    topics: ['truth-social'],
     seoTitle: 'Trump Wants a 30-Foot Washington ‘Colossus’ and a Smithsonian Fight',
     ogKicker: 'Smithsonian watch',
     ogPunch: 'Colossus',
@@ -1321,6 +1331,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'truth-social-trump-dividend-5000-double-down',
+    topics: ['truth-social', 'lies'],
     seoTitle: 'Trump Doubles Down on the $5,000 Midterm Bribe on Truth Social',
     ogKicker: 'Midterm bribe watch',
     ogPunch: 'bribe',
@@ -1365,6 +1376,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'iran-war-midterms-pickaxe-mountain',
+    topics: ['lies'],
     ogKicker: 'Iran war watch',
     ogPunch: 'Pickaxe',
     ogStamp: 'FILED',
@@ -1400,6 +1412,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'doj-scotus-save-voter-verification',
+    topics: ['courts'],
     seoTitle: 'Trump DOJ Begs SCOTUS to Revive Its Blocked Voter-Purge Database',
     ogKicker: 'Supreme Court watch',
     ogPunch: 'voter-purge',
@@ -1434,6 +1447,7 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-dividend-5000-gop-congress',
+    topics: ['lies'],
     ogKicker: 'Midterm watch',
     ogPunch: 'bribe',
     ogStamp: 'RECEIPTS',
@@ -1469,6 +1483,7 @@ export const articles: Article[] = [
 
   {
     slug: 'doj-scotus-nevada-us-attorney-chattah',
+    topics: ['courts'],
     seoTitle: 'Trump DOJ Asks SCOTUS to Keep Nevada’s Unlawfully Parked U.S. Attorney',
     ogKicker: 'DOJ watch',
     ogPunch: 'unlawfully',
@@ -1507,6 +1522,7 @@ export const articles: Article[] = [
 
   {
     slug: 'trump-west-wing-holiday-cash-gifts',
+    topics: ['ballroom'],
     ogKicker: 'West Wing watch',
     ogPunch: 'cash',
     ogStamp: 'RECEIPTS',

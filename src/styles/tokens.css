@@ -1,104 +1,63 @@
 /* ============================================================
-   THE DONALD FILES — design tokens (single source of truth)
-   Used by the React app (src/index.css imports this file) AND by the
-   static generators (scripts/generate-static.mjs inlines it into every
-   /reports/* and /trump-videos/* page). A reskin = change values here.
-   Rules: no raw hex/rgb anywhere else; use var(--token).
+   THE DONALD FILES — design tokens (single source of truth), v5 light
+   Spec: design/v5-light/V5-SPEC.md (Vex). Inlined into every page by
+   scripts/v5/site.mjs. A reskin = change values here.
+   Rule: no raw hex/rgb in component CSS; use var(--token).
    For alpha, use rgb(var(--x-rgb) / .5) with the matching *-rgb triplet.
    ============================================================ */
-:root {
-  /* ---- Surfaces (dossier/article theme) ---- */
-  --bg: #121212;
-  --bg-rgb: 18 18 18;
-  --bg-deep: #0A0A0A;
-  --bg-deep-rgb: 10 10 10;
-  --bg-video: #0E0E0E;
-  --panel: #1C1C1C;
-  --panel-2: #141414;
-  --panel-3: #111111;
-  --panel-4: #0D0D0D;
-  --rail: #161616;
-  --rule: #2A2A2A;
-  --tint-red: #1A0A0A;
-  --tint-red-2: #1A0808;
-  --tint-red-glow: #2A0006;
-  --tint-ok: #2D4A32;
-
-  /* ---- Text ---- */
-  --cream: #F3EDE3;
-  --cream-2: #F4EFE6;
-  --cream-3: #CFC6B8;
-  --muted: #9A948A;
-  --muted-2: #A8A29A;
-  --white: #FFFFFF;
-  --white-rgb: 255 255 255;
-  --black: #000000;
-  --black-rgb: 0 0 0;
-
-  /* ---- Paper (manila folder surfaces) ---- */
-  --manila: #E8DCC8;
-  --manila-ink: #1A1510;
-  --manila-ink-2: #14110E;
-  --manila-ink-3: #16120E;
-  --manila-ink-soft: #3D3830;
-  --manila-ink-meta: #5A5348;
-  --manila-ink-muted: #6B6358;
-  --manila-edge: #C9BBA3;
-  --manila-rule: #C4B59A;
-  --manila-deep: #B8A990;
-
-  /* ---- Brand accents ---- */
-  --stamp: #D1001F;
-  --stamp-rgb: 209 0 31;
-  --stamp-ink: #FFFFFF;
-  --stamp-red: #FF1A1A;
-  --stamp-red-rgb: 255 26 26;
-  --stamp-red-deep: #D1001F;
-  --stamp-yellow: #FFE600;
-  --stamp-yellow-rgb: 255 230 0;
-  --highlight: #FFD400;
-  --highlight-ink: #000000;
-
-  /* Semantic stamps (same red, different label) */
-  --stamp-fact: var(--stamp);
-  --stamp-analysis: var(--stamp);
-  --stamp-opinion: var(--stamp);
-  --stamp-source: var(--stamp);
-
-  /* ---- Shadows ---- */
-  --shadow-rgb: 0 0 0;
-  --shadow-card: 0 12px 36px rgb(var(--shadow-rgb) / 0.4);
-  --shadow-embed: 0 8px 24px rgb(var(--shadow-rgb) / 0.35);
-
-  /* ---- Type ---- */
-  --mono: "IBM Plex Mono", ui-monospace, monospace;
-  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --serif: "IBM Plex Serif", Georgia, serif;
-  --display: "Anton", Impact, "Arial Narrow", sans-serif;
-  --display-alt: "Archivo Black", Impact, sans-serif;
-  --display-clip: "Antonio", "Anton", Impact, sans-serif;
-  --home-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: var(--mono);
-  --font-sans: var(--sans);
-  --body-size: 16px;
-  --prose-size: 18px;
-  --line: 1.55;
-
-  /* ---- Layout ---- */
-  --rail-w: 220px;
-  --max: 1100px;
-  --prose-max: 42rem;
-  --dock-h: 56px;
-  --radius-card: 2px;
-  --progress-h: 3px;
-}
-
-/* Loud feed theme: home (/), /reports index. */
-.app-shell-home,
-.theme-loud {
-  --bg: var(--bg-deep);
-  --bg-rgb: var(--bg-deep-rgb);
-  --panel: var(--panel-2);
-  --stamp-ink: var(--bg-deep);
-  --muted: var(--muted-2);
+@font-face{font-family:'Bricolage Grotesque';src:url(/fonts/bricolage-700-800.woff2) format('woff2');font-weight:700 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Inter';src:url(/fonts/inter-400-700.woff2) format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(/fonts/jetbrains-mono-500-600.woff2) format('woff2');font-weight:500 600;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif Pro';src:url(/fonts/source-serif-pro-400.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Source Serif Pro';src:url(/fonts/source-serif-pro-400-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Source Serif Pro';src:url(/fonts/source-serif-pro-600.woff2) format('woff2');font-weight:600;font-style:normal;font-display:swap}
+:root{
+  /* Surfaces */
+  --paper:#FAF7F2;
+  --paper-rgb:250 247 242;
+  --card:#FFFFFF;
+  --line:#E7E1D6;
+  --line2:#EFEAE1;
+  --sunk:#F1EEE7;
+  --thumb-a:#EEF1F8;
+  --thumb-b:#E6EAF4;
+  --thumb-c:#F3EFE6;
+  /* Text */
+  --text:#16213A;
+  --text-rgb:22 33 58;
+  --body-2:#2B3550;
+  --muted:#5A6378;
+  --muted-2:#C9C1B3;
+  --white:#FFFFFF;
+  --white-rgb:255 255 255;
+  /* Brand */
+  --blue:#2450FF;
+  --blue-rgb:36 80 255;
+  --blue-ink:#1B3FE0;
+  --blue-soft:#EAF0FF;
+  --blue-line:#D7E1FF;
+  --blue-field:#C9D4F5;
+  --blue-dash:#A9B7E8;
+  --hl:#FFE14D;
+  --hl-rgb:255 225 77;
+  --coral:#E5484D;
+  --coral-strong:#D93036;
+  /* Shape */
+  --r-sm:8px;
+  --r:12px;
+  --r-tile:16px;
+  --r-lg:20px;
+  --r-pill:999px;
+  --sh-1:0 1px 2px rgb(var(--text-rgb) / .05),0 1px 1px rgb(var(--text-rgb) / .03);
+  --sh-2:0 2px 4px rgb(var(--text-rgb) / .04),0 8px 24px rgb(var(--text-rgb) / .07);
+  /* Type */
+  --f-head:'Bricolage Grotesque','Inter',sans-serif;
+  --f-body:'Source Serif Pro','Newsreader',Georgia,serif;
+  --f-ui:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  /* Layout */
+  --max:1280px;
+  --gutter:40px;
+  --gutter-m:18px;
+  --prose:68ch;
 }

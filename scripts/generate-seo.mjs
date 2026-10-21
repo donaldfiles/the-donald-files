@@ -7,10 +7,10 @@ import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { openRenderer, cardParams } from './lib/share-card.mjs'
-import { extractArticles } from './lib/articles.mjs'
+import { extractArticles, fileNumbers, liveTopics } from './lib/articles.mjs'
 import {
   SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, urlFor, articleOg, datesFor, embedUrlFor,
-  headTags, websiteLd,
+
 } from './lib/seo.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -20,17 +20,15 @@ const articles = all.filter((a) => !a.fixture)
 
 // ---------- og images (share card v1, headless Chrome) ----------
 // Dossier numbers: chronological among feed articles (oldest = 001), stable as new pieces are prepended.
-const fileNo = new Map()
-const chrono = all.filter((a) => !a.fixture).slice().reverse()
-chrono.forEach((a, i) => fileNo.set(a.slug, i + 1))
+const fileNo = fileNumbers(all)
 mkdirSync(join(dist, 'og'), { recursive: true })
 const renderer = await openRenderer(root)
 const ogFailed = []
 const defaultPath = join(dist, 'og', 'default.png')
 try {
   const { png } = await renderer.render({
-    kicker: 'Hostile archive', file: 'FILE // INDEX', stamp: 'RECEIPTS',
-    hed: 'Brutal. Factual. *Documented.*',
+    kicker: 'The administration, annotated.', file: 'thedonaldfiles.com', stamp: 'RECEIPTS',
+    hed: 'Sourced. Snarky. *Receipts* attached.',
   })
   writeFileSync(defaultPath, png)
 } catch (e) {
@@ -41,7 +39,7 @@ let withDek = 0
 for (const a of all) {
   const out = join(dist, 'og', `${a.slug}.png`)
   const params = cardParams(a, fileNo.get(a.slug) ?? 0)
-  if (a.fixture) params.file = 'FILE // TEST'
+  if (a.fixture) params.file = 'File TEST'
   try {
     const r = await renderer.render(params)
     if (r.usedDek) withDek++
@@ -54,22 +52,13 @@ for (const a of all) {
 }
 await renderer.close()
 
-// ---------- home (SPA shell) share tags ----------
-const homePath = join(dist, 'index.html')
-if (existsSync(homePath) && !readFileSync(homePath, 'utf8').includes('og:site_name')) {
-  let html = readFileSync(homePath, 'utf8')
-  html = html.replace(/<meta name="description"[^>]*>\s*/i, '')
-  const tags = headTags({ title: `${SITE_NAME} — Brutal. Factual. Documented.`, description: SITE_DESC, url: `${SITE}/`, image: DEFAULT_OG, type: 'website', jsonLd: websiteLd() })
-  html = html.replace(/<title>[^<]*<\/title>/i, `<title>${esc(SITE_NAME)} — Brutal. Factual. Documented.</title>${tags}`)
-  writeFileSync(homePath, html)
-}
-
 // ---------- sitemap + robots ----------
 const latest = articles[0]?.date
 const urls = [
   { loc: `${SITE}/`, lastmod: latest, freq: 'hourly', pri: '1.0' },
   { loc: `${SITE}/reports/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
   { loc: `${SITE}/trump-videos/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
+  ...liveTopics(all).map((t) => ({ loc: `${SITE}/trump-videos/${t}/`, lastmod: latest, freq: 'daily', pri: '0.7' })),
   { loc: `${SITE}/the-record`, freq: 'daily', pri: '0.6' },
   { loc: `${SITE}/about`, freq: 'monthly', pri: '0.3' },
   { loc: `${SITE}/subscribe`, freq: 'monthly', pri: '0.4' },

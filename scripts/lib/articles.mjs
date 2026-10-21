@@ -152,3 +152,22 @@ export function extractArticles(text) {
   }
   return articles.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
 }
+
+export const TOPIC_LABEL = {
+  gaffes: 'Gaffes', lies: 'Lies', ballroom: 'Ballroom', tariffs: 'Tariffs',
+  'truth-social': 'Truth Social', courts: 'Courts', cruelty: 'Cruelty',
+}
+export const TOPIC_ORDER = Object.keys(TOPIC_LABEL)
+
+/** Dossier numbers: chronological among feed posts (oldest = 001), stable as new posts are prepended. */
+export function fileNumbers(all) {
+  const m = new Map()
+  all.filter((a) => !a.fixture).slice().reverse().forEach((a, i) => m.set(a.slug, i + 1))
+  return m
+}
+
+/** Topics with at least one published clip get a /trump-videos/<topic>/ hub (no empty hubs). */
+export function liveTopics(all) {
+  const used = new Set(all.filter((a) => a.kind === 'clip' && !a.fixture).flatMap((a) => a.topics || []))
+  return TOPIC_ORDER.filter((t) => used.has(t))
+}

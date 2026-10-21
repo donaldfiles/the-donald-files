@@ -1,5 +1,21 @@
 # The Donald Files
 
+**v5 light (Oct 2026).** Every public page is static HTML rendered by `scripts/v5/site.mjs`
+(Vex's V5-SPEC on the V4 information architecture). There is no React/Vite app any more.
+
+- **Design tokens:** `src/styles/tokens.css` is the single source for colors, fonts, radii, shadows and layout.
+  `src/styles/v5-base.css` (lifted from Vex's base.css) and `src/styles/v5-site.css` use tokens only.
+  Self-hosted fonts live in `public/fonts/` (woff2 subsets of Bricolage Grotesque, Inter, JetBrains Mono, Source Serif Pro).
+- **Content:** `src/content/articles.ts` (files and `kind: 'clip'` posts). `seoTitle` overrides only the `<title>`.
+  `src/content/content-dates.json` tracks published/modified times (updated by `scripts/content-dates.mjs` on every build).
+- **Pages:** `/`, `/reports/` (Latest), `/reports/<slug>/`, `/trump-videos/` (+`?page=N`), `/trump-videos/<topic>/`
+  (only topics that have clips), `/trump-videos/<slug>/`, `/the-record`, `/about`, `/subscribe`, `404.html`.
+  `?page=N` is served by `functions/trump-videos/*` from the prerendered `page/N/` copies (`dist/_routes.json` keeps every other page pure static).
+- **Switches** at the top of `scripts/v5/site.mjs`: `SUBSCRIBE_LIVE`, `X_ACCOUNT_LIVE`, `PER_PAGE`.
+- **Build / deploy:** `npm run build`, then `npm run deploy` (wrangler + IndexNow). `node scripts/indexnow.mjs [--all] [--dry]`.
+
+# The Donald Files
+
 Brutal. Factual. Documented.
 
 Vite + React + TypeScript broadsheet site for reports, analysis, timeline, and subscriptions.
