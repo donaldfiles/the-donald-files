@@ -14,6 +14,21 @@
   })
   // YouTube: click-to-load (nothing from YouTube loads until the click), inline, one at a time.
   var cur = null
+  function ytWatch(f) {
+    var state = -9, origin = 'https://www.youtube-nocookie.com'
+    var send = function (o) { try { f.contentWindow.postMessage(JSON.stringify(o), origin) } catch (e) {} }
+    var onMsg = function (ev) {
+      if (ev.source !== f.contentWindow) return
+      try { var d = JSON.parse(ev.data); if (d.info && typeof d.info.playerState === 'number') state = d.info.playerState } catch (e) {}
+    }
+    window.addEventListener('message', onMsg)
+    f.addEventListener('load', function () {
+      var n = 0, hello = setInterval(function () { send({ event: 'listening', id: 1, channel: 'widget' }); if (++n > 10 || state !== -9) clearInterval(hello) }, 250)
+      setTimeout(function () {
+        if (state !== 1 && state !== 3 && document.contains(f)) { send({ event: 'command', func: 'mute', args: [] }); send({ event: 'command', func: 'playVideo', args: [] }) }
+      }, 2500)
+    })
+  }
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest && ev.target.closest('a.facade')
     if (a) {
@@ -24,7 +39,7 @@
         if (cur) { cur.wrap.replaceWith(cur.facade); cur = null }
         var f = document.createElement('iframe')
         var st = Number(a.dataset.start) || 0
-        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1' + (st ? '&start=' + st : '')
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + (st ? '&start=' + st : '')
         f.title = a.getAttribute('aria-label') || 'Video'
         f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
         f.allowFullscreen = true
@@ -34,6 +49,9 @@
         wrap.appendChild(f)
         a.replaceWith(wrap)
         cur = { wrap: wrap, facade: a }
+        // Safari (and some strict autoplay setups) block unmuted autoplay inside the YouTube frame even after
+        // our click. If it isn't playing ~2.5s later, start it muted: YouTube shows its own "tap to unmute".
+        ytWatch(f)
       }
       return
     }
