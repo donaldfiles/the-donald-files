@@ -518,6 +518,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-budget-deficit-trade-deficit-confusion',
     kind: 'clip',
+    youtubeId: 'IQKChHxD9e8',
+    youtubeStart: 3768,
+    youtubeChannel: 'The White House',
     ogKicker: 'WRONG DEFICIT, SIR',
     ogPunch: 'deficit',
     ogStamp: 'ON TAPE',
@@ -631,6 +634,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-gas-prices-small-price-to-pay',
     kind: 'clip',
+    youtubeId: 'IQKChHxD9e8',
+    youtubeStart: 5680,
+    youtubeChannel: 'The White House',
     ogKicker: 'EASY FOR HIM TO SAY',
     ogPunch: 'Small',
     ogStamp: 'FILED',
@@ -678,6 +684,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-sick-person-reporter-oval-office',
     kind: 'clip',
+    youtubeId: 'IQKChHxD9e8',
+    youtubeStart: 5718,
+    youtubeChannel: 'The White House',
     ogKicker: 'QUIET! QUIET!',
     ogPunch: 'Sick',
     ogStamp: 'ON TAPE',
@@ -699,7 +708,7 @@ export const articles: Article[] = [
     body: [
       'The fraud tip line had been open about an hour before the president found something he really wanted to report: a journalist.',
       'Tuesday in the Oval Office, The Independent’s Andrew Feinberg asked a simple money question. Why would a whistleblower take the administration’s new bounty, about 1% by Trump’s own pitch, when the False Claims Act, on the books since Lincoln, pays up to a quarter of what’s recovered? Trump’s answer, per Feinberg: “Because it’s a lot of money.” Math is optional at this level.',
-      'Then he asked Feinberg who he was. Feinberg has covered him for a decade, and by his account Trump winked at him earlier in that same event. A little later, per Feinberg, aimed at him: “I don’t know who the hell you are, but you’d better be careful.”',
+      'Then he asked Feinberg who he was. Feinberg has covered him for a decade, and by his account Trump winked at him earlier in that same event. A little later, per Feinberg, aimed at him: “I don’t know who the hell you are, but you better be careful.”',
       'Then Feinberg tried a question about Trump’s plan to rebuild a public D.C. golf course. “Wait. Wait. Quiet. Quiet. What’s wrong with you? Are you a sick person?” Feinberg: “Not that I know of, sir.” Trump: “I actually think there’s something wrong with you.” Aaron Rupar counted it as Trump’s third blowup of the Q&A.',
       'There’s a pattern. The day before, Trump called the federal judge on the same golf course case a “crazed lunatic” on Truth Social. Ask about the golf course and you get a diagnosis. Feinberg says that after the event the White House rapid-response account called him a “Mongoloid Moron” and Vance called him an “imbecile.” Feinberg, for the record, says his annual physical came back fine.',
     ],
@@ -837,6 +846,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-christianity-know-more-than-anybody-two-corinthians',
     kind: 'clip',
+    youtubeId: 'ZY-QsVes0fA',
+    youtubeStart: 1068,
+    youtubeChannel: 'KWCH 12 News (full rally)',
     ogKicker: 'TWO CORINTHIANS WALK INTO A BAR',
     ogPunch: 'Christianity',
     ogStamp: 'ON TAPE',
@@ -953,6 +965,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-nobody-appreciates-me-kansas-rally',
     kind: 'clip',
+    youtubeId: 'ZY-QsVes0fA',
+    youtubeStart: 2443,
+    youtubeChannel: 'KWCH 12 News (full rally)',
     ogKicker: 'PITY PARTY OF ONE',
     ogPunch: 'sad',
     ogStamp: 'ON TAPE',
@@ -998,6 +1013,9 @@ export const articles: Article[] = [
   {
     slug: 'trump-shylock-slur-roger-marshall-kansas',
     kind: 'clip',
+    youtubeId: 'ZY-QsVes0fA',
+    youtubeStart: 2061,
+    youtubeChannel: 'KWCH 12 News (full rally)',
     ogKicker: 'HE WAS WARNED',
     ogPunch: 'slur',
     ogStamp: 'RECEIPTS',
