@@ -92,3 +92,15 @@ https://t.me/thedonaldfiles
 
 `node scripts/post-queue.mjs` does a dry run. It prints draft posts of 280 chars or fewer for articles that are not yet in `data/x-post-state.json`.
 `--write-drafts` saves them to `data/x-drafts.json`. `--post` calls the stubbed `postToX()`, which does nothing unless `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN` and `X_ACCESS_TOKEN_SECRET` are set, and is still unimplemented even when they are. `--mark-posted <slug>` records a manual post.
+
+## Newsletter (double opt-in)
+
+- **How signup works:** `functions/api/subscribe.js` takes a POST and calls Supabase RPC `df_subscribe`, which saves a pending row. It then emails a confirm link through Resend, sent from files@thedonaldfiles.com.
+- **Confirm:** `functions/api/confirm.js` handles GET `?token=`. It calls `df_confirm` and redirects to `/subscribe?status=…`.
+- **Unsubscribe:** `functions/api/unsubscribe.js` handles GET or POST `?id=&sig=`. The `sig` is an HMAC of the id. It calls `df_unsubscribe`. Every email carries a `List-Unsubscribe` header that supports one-click unsubscribe.
+- **Database (Supabase):** the schema is in `supabase/migrations/0002_newsletter_double_opt_in.sql`.
+  - The tables have RLS on, and only `service_role` has grants.
+  - The Pages Functions use the anon key, and can only reach the data through the three SECURITY DEFINER RPCs.
+  - Each RPC checks a shared secret against a sha256 hash kept in `private.df_config`.
+- **Abuse protection:** a honeypot field, a 2-second minimum fill time, a cap of 5 attempts per IP per hour, a 10-minute resend cooldown per email, and a cap of 5 sends per email.
+- **Pages secrets:** `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `DF_RPC_SECRET`, `DF_UNSUB_SECRET`, `RESEND_API_KEY` (sending-only key, restricted to thedonaldfiles.com) and `MAIL_FROM`.

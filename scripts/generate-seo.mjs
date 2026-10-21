@@ -84,7 +84,7 @@ ${urls
 writeFileSync(join(dist, 'sitemap.xml'), sitemap)
 writeFileSync(
   join(dist, 'robots.txt'),
-  `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /embed-smoke\nDisallow: /reports/embed-smoke-fixture/\n\nSitemap: ${SITE}/sitemap.xml\n`,
+  `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE}/sitemap.xml\n`,
 )
 
 // ---------- feed.json (JSON Feed 1.1) + rss.xml ----------

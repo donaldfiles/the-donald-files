@@ -103,20 +103,14 @@ export function Home() {
         </section>
 
         <section className="ugly-cta-block" aria-labelledby="support-title">
-          <h2 id="support-title">Subscribe / Support the Research</h2>
+          <h2 id="support-title">Get the files by email</h2>
           <p>
-            Keep independent documentation online. Buy the Report when it drops —
-            never tip-jar theatre.
+            New reports in your inbox when they drop. One confirm email, one-click
+            unsubscribe, no spam.
           </p>
           <div className="btn-row">
             <Link className="btn btn-stamp" to="/subscribe">
               Subscribe
-            </Link>
-            <Link className="btn btn-ghost" to="/subscribe">
-              Support the Research
-            </Link>
-            <Link className="btn btn-ghost" to="/subscribe">
-              Buy the Report
             </Link>
           </div>
         </section>
@@ -124,10 +118,9 @@ export function Home() {
 
       <footer className="site-foot">
         <div>
-          <strong>THE DONALD FILES</strong> · hybrid home · articles stay Open
-          Dossier
+          <strong>THE DONALD FILES</strong> · sourced, documented, unimpressed
         </div>
-        <div>Satire labeled · Exhibits A–C LIVE · homepage only</div>
+        <div>Memes are labeled satire · reports link their sources</div>
       </footer>
     </div>
   )

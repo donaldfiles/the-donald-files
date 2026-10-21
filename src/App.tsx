@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { Home } from './pages/Home'
 import { Reports } from './pages/Reports'
@@ -6,8 +6,6 @@ import { ReportArticle } from './pages/ReportArticle'
 import { TheRecord } from './pages/TheRecord'
 import { About } from './pages/About'
 import { Subscribe } from './pages/Subscribe'
-import { Admin } from './pages/Admin'
-import { EmbedSmoke } from './pages/EmbedSmoke'
 
 export default function App() {
   return (
@@ -20,8 +18,7 @@ export default function App() {
           <Route path="the-record" element={<TheRecord />} />
           <Route path="about" element={<About />} />
           <Route path="subscribe" element={<Subscribe />} />
-          <Route path="admin" element={<Admin />} />
-          <Route path="embed-smoke" element={<EmbedSmoke />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

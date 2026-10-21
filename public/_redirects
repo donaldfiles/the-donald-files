@@ -1,1 +1,7 @@
+/admin                          /  301
+/admin/*                        /  301
+/embed-smoke                    /  301
+/embed-smoke/*                  /  301
+/reports/embed-path-smoke-test  /  301
+/reports/embed-path-smoke-test/ /  301
 /*    /index.html   200

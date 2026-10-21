@@ -1,17 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
-import { submitSubscribe } from '../lib/resend'
+import { useSearchParams } from 'react-router-dom'
+import { submitSubscribe } from '../lib/subscribe'
+
+const STATUS_COPY: Record<string, string> = {
+  confirmed: 'You’re in. New files land in your inbox when they drop.',
+  already: 'You’re already confirmed. Nothing else to do.',
+  expired: 'That link expired. Sign up again below and we’ll send a fresh one.',
+  invalid: 'That link didn’t work. Sign up again below and we’ll send a fresh one.',
+  unsubscribed: 'You’re unsubscribed. No more emails from us.',
+  error: 'Something broke on our end. Try the link again in a minute.',
+}
 
 export function Subscribe() {
+  const [params] = useSearchParams()
+  const linkStatus = params.get('status')
   const [email, setEmail] = useState('')
+  const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const renderedAt = useRef(0)
+
+  useEffect(() => {
+    renderedAt.current = Date.now()
+  }, [])
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
     setBusy(true)
     setStatus(null)
-    const result = await submitSubscribe({ email, source: 'subscribe-page' })
+    const result = await submitSubscribe({
+      email,
+      website,
+      t: renderedAt.current,
+      source: 'subscribe-page',
+    })
     setStatus(result.message)
     setBusy(false)
     if (result.ok) setEmail('')
@@ -25,10 +48,16 @@ export function Subscribe() {
         </div>
         <h1>Subscribe</h1>
         <p className="dek">
-          Support the Research. Buy the Report when available. Get updates when
-          files drop.
+          Get new files by email when they drop. We’ll send one email to
+          confirm, and every email has a one-click unsubscribe.
         </p>
       </header>
+
+      {linkStatus && STATUS_COPY[linkStatus] ? (
+        <p className="form-status form-status-banner" role="status">
+          {STATUS_COPY[linkStatus]}
+        </p>
+      ) : null}
 
       <form className="subscribe-form" onSubmit={onSubmit}>
         <label htmlFor="email">Email</label>
@@ -40,10 +69,21 @@ export function Subscribe() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@example.com"
         />
+        <div className="hp-field" aria-hidden="true">
+          <label htmlFor="website">Leave this empty</label>
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </div>
         <button className="btn btn-stamp" type="submit" disabled={busy}>
-          {busy ? 'Submitting…' : 'Subscribe'}
+          {busy ? 'Sending…' : 'Subscribe'}
         </button>
         {status && (
           <p className="form-status" role="status">
@@ -51,17 +91,6 @@ export function Subscribe() {
           </p>
         )}
       </form>
-
-      <section className="support-block">
-        <h2>Support the Research</h2>
-        <p>
-          Paid report access and research support will plug in here. No “Donate”
-          framing — Subscribe / Support the Research / Buy the Report only.
-        </p>
-        <button type="button" className="btn btn-manila" disabled>
-          Buy the Report — coming soon
-        </button>
-      </section>
     </div>
   )
 }

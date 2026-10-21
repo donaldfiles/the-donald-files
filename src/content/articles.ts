@@ -828,36 +828,6 @@ export const articles: Article[] = [
     ],
     published: true,
   },
-
-  {
-    slug: 'embed-path-smoke-test',
-    title: 'Embed path smoke test (Ink: replace / remove)',
-    category: 'REPORTS',
-    date: '2026-09-24',
-    dek: 'Engineering fixture — proves youtube-nocookie iframe on Open Dossier pages. Not a dossier claim. Ink: delete this file or replace the embed with a real WH / UN URL.',
-    body: [
-      'FACT — Path proof only: this page exists so Cloudflare Pages + CSP + the VideoEmbed component can be verified live. No political claim is attached to the placeholder clip.',
-      'ANALYSIS (labeled opinion / editorial context) — Why it matters for the desk: Reed/Ink can pass embeds as { type: youtube, id } or youtubeUrl / embedUrl; the site normalizes to https://www.youtube-nocookie.com/embed/ID and renders a quiet 16:9 frame in the charcoal/manila dossier body.',
-      'SATIRE (desk-made — NOT a fact): “EXHIBIT STAMP: this is a smoke test, not a gotcha.”',
-    ],
-    sources: [
-      {
-        label: 'Placeholder — White House YouTube channel (smoke ID only)',
-        url: 'https://www.youtube.com/watch?v=WWDtyRXsGoI',
-      },
-    ],
-    embeds: [
-      {
-        type: 'youtube',
-        id: 'WWDtyRXsGoI',
-        title: 'White House channel (smoke-test placeholder)',
-        caption: 'MOCK EXHIBIT · SMOKE TEST · Ink replace with real URL',
-        afterBodyIndex: 0,
-      },
-    ],
-    fixture: true,
-    published: true,
-  },
 ]
 
 export function getPublishedArticles(): Article[] {

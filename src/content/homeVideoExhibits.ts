@@ -3,7 +3,7 @@ import type { YoutubeInput } from '../lib/youtube'
 /**
  * Home hybrid-ugly video exhibit rail.
  * Real FACT exhibits for shipped WH / UN reports.
- * Empty array = rail shows “awaiting URLs” shell (still wired).
+ * Empty array = rail is hidden.
  */
 export type HomeVideoExhibit = {
   /** Loud stamp, e.g. EXHIBIT · TRUMP TV */
@@ -14,12 +14,6 @@ export type HomeVideoExhibit = {
   /** Optional Open Dossier link to the matching REPORT */
   reportSlug?: string
 }
-
-/**
- * Kept for EmbedSmoke fixture page only — not shown on home rail.
- * Official White House YouTube channel clip — path proof, not dossier evidence.
- */
-export const SMOKE_YT_ID = 'WWDtyRXsGoI'
 
 export const homeVideoExhibits: HomeVideoExhibit[] = [
   {

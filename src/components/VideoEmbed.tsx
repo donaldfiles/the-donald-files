@@ -4,7 +4,7 @@ import {
 } from '../lib/youtube'
 
 export type VideoEmbedProps = YoutubeInput & {
-  /** Loud home exhibit label (e.g. EXHIBIT D · MOCK SMOKE) */
+  /** Loud home exhibit label (e.g. EXHIBIT · TRUMP TV) */
   exhibitLabel?: string
   /** Visual chrome: dossier (quiet) vs home (loud) */
   variant?: 'dossier' | 'home'

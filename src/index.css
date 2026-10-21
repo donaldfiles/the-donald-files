@@ -970,19 +970,7 @@ h1, h2, h3 {
   font-size: 0.95rem;
 }
 
-.admin-panel {
-  padding: 1.25rem;
-  border: 1px dashed var(--muted);
-  background: var(--panel);
-  color: var(--cream);
-  border-radius: var(--radius-card);
-}
 
-.admin-panel code {
-  font-family: var(--mono);
-  font-size: 0.9em;
-  color: var(--manila);
-}
 
 .footer-note {
   margin-top: 3rem;
@@ -1747,67 +1735,39 @@ h1, h2, h3 {
 .meme-card:nth-child(2) { transform: rotate(1.2deg); margin-top: 10px; }
 .meme-card:nth-child(3) { transform: rotate(-1.5deg); }
 
-.satire-banner {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  background: var(--stamp-yellow);
-  color: var(--stamp-ink);
-  text-align: center;
-  padding: 6px;
-  margin: -12px -12px 12px;
-  border-bottom: 2px solid #000;
-}
+.meme-card { margin: 0; }
 
-.meme-frame {
-  aspect-ratio: 1 / 1;
-  background:
-    repeating-conic-gradient(#1a1a1a 0% 25%, #0d0d0d 0% 50%) 50% / 24px 24px;
-  border: 3px solid #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 16px;
-  gap: 8px;
-}
+.meme-link { display: block; border: 3px solid #fff; background: #000; }
 
-.meme-frame .top-caption,
-.meme-frame .bot-caption {
-  font-family: Impact, "Anton", sans-serif;
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  text-transform: uppercase;
-  color: #fff;
-  text-shadow:
-    -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000;
-  line-height: 1.1;
-}
-
-.meme-frame .placeholder-art {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  border: 1px solid var(--rule);
-  padding: 20px 12px;
-  width: 80%;
+.meme-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 .meme-cap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.06em;
   color: var(--muted);
   margin-top: 10px;
-  text-align: center;
+}
+
+.meme-cap a { color: var(--cream); }
+.meme-cap a:hover { color: var(--stamp-yellow); }
+
+.meme-tag {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  padding: 2px 6px;
+  flex: none;
 }
 
 /* HostileList */
@@ -1999,7 +1959,7 @@ h1, h2, h3 {
   }
   .meme-grid {
     grid-template-columns: 1fr;
-    max-width: 360px;
+    max-width: 560px;
     margin: 0 auto;
   }
   .meme-card:nth-child(n) { transform: none; margin-top: 0; }
@@ -2217,22 +2177,7 @@ h1, h2, h3 {
   margin: 0 0 8px;
 }
 
-.embed-smoke-page .video-embed {
-  margin-top: 1.5rem;
-}
 
-.embed-smoke-meta {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--muted);
-  word-break: break-all;
-}
-
-.embed-smoke-meta code,
-.embed-smoke-page code {
-  color: var(--cream);
-  font-size: 12px;
-}
 
 .body-block {
   margin: 0;
@@ -2260,4 +2205,21 @@ h1, h2, h3 {
   .video-embed--home .video-embed-frame {
     box-shadow: 4px 4px 0 var(--stamp-yellow);
   }
+}
+
+/* Subscribe: honeypot (off-screen, not display:none so naive bots still fill it) */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status-banner {
+  border-left: 3px solid var(--stamp-yellow);
+  padding: 0.6rem 0.9rem;
+  background: var(--panel);
+  color: var(--cream);
+  max-width: 34rem;
 }
