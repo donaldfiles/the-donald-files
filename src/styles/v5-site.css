@@ -99,3 +99,5 @@ iframe.yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(
 .alsox{margin:-20px 0 28px;font:600 14px/1.4 var(--f-mono,inherit);color:var(--muted)}
 .alsox a{color:var(--blue)}
 .srcbox .corr{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);font:italic 15px/1.5 var(--f-body);color:var(--muted)}
+.filed{margin:-6px 0 22px;font:600 13px/1.5 var(--f-ui);color:var(--muted);letter-spacing:.02em}
+.filed a{color:var(--blue-ink);text-decoration:underline;text-underline-offset:3px}

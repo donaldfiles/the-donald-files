@@ -102,6 +102,14 @@ const crumbLd = (items) => ({
   itemListElement: items.map(([name, href], i) => ({ '@type': 'ListItem', position: i + 1, name, item: href.startsWith('http') ? href : SITE + href })),
 })
 
+// Search-engine ownership tags for the home head, from data/site-verification.json (written by scripts/add-verification.mjs).
+function verificationMeta() {
+  const p = join(root, 'data/site-verification.json')
+  if (!existsSync(p)) return ''
+  const v = JSON.parse(readFileSync(p, 'utf8'))
+  return [v.bing && `<meta name="msvalidate.01" content="${esc(v.bing)}"/>`, v.googleMeta && `<meta name="google-site-verification" content="${esc(v.googleMeta)}"/>`].filter(Boolean).join('')
+}
+
 // ---------- copy (Reed-approved, from design/v4-video-first + v5 mocks) ----------
 const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every clip is embedded from its original upload, and every claim links to its source.'
 const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: the gaffes, the lies, the ballroom, the court fights and the cruelty, embedded from the original uploads with our notes and the receipts underneath. Fresh clips land all day, US time.'
@@ -199,7 +207,7 @@ ${subband('home-band')}`
       { '@context': 'https://schema.org', '@type': 'Organization', name: SITE_NAME, url: `${SITE}/`, logo: DEFAULT_OG, description: FOOT_LINE },
     ],
   })
-  write('index.html', page({ title: 'Donald Trump Videos, Gaffes and Lies, Mocked | The Donald Files', head, active: 'videos', body, ticker: true }))
+  write('index.html', page({ title: 'Donald Trump Videos, Gaffes and Lies, Mocked | The Donald Files', head: head + verificationMeta(), active: 'videos', body, ticker: true }))
 }
 
 function paginate(list) {
@@ -277,12 +285,34 @@ function shareRow(a) {
   const u = urlFor(a)
   return `<div class="share"><span>Share</span><a href="https://x.com/intent/post?text=${encodeURIComponent(a.title)}&url=${encodeURIComponent(u)}" target="_blank" rel="noopener noreferrer">X</a><a href="https://wa.me/?text=${encodeURIComponent(`${a.title} ${u}`)}" target="_blank" rel="noopener noreferrer">WhatsApp</a><button type="button" data-copy="${esc(u)}">Copy link</button></div>`
 }
+// Curated related posts: relatedArticle/relatedClips from articles.ts first, then data/related.json
+// (filled by scripts/pick-related.mjs by shared event, topic and keywords). Live posts only, max 4.
+const RELATED = JSON.parse(existsSync(join(root, 'data/related.json')) ? read('data/related.json') : '{}')
+function relatedFor(a) {
+  const out = []
+  const add = (slug, label) => { const r = BY.get(slug); if (r && r !== a && !out.some(([, x]) => x === r)) out.push([label, r]) }
+  if (a.relatedArticle) add(a.relatedArticle, 'Read the full file')
+  for (const s of a.relatedClips || []) add(s, a.kind === 'clip' ? 'Related clip' : 'Watch the clip')
+  for (const s of RELATED[a.slug] || []) { const r = BY.get(s); if (r) add(s, r.kind === 'clip' ? 'Related clip' : 'Related file') }
+  return out.slice(0, 4)
+}
+const hubsFor = (a) => (a.topics || []).filter((t) => TOPICS.includes(t))
+function filedLine(a) {
+  const hubs = hubsFor(a)
+  if (!hubs.length) return ''
+  return `<p class="filed">Filed under ${hubs.map((t) => `<a href="/trump-videos/${t}/">${esc(TOPIC_LABEL[t])}</a>`).join('<span aria-hidden="true"> · </span>')}</p>`
+}
 function relatedLinks(a) {
-  const items = []
-  if (a.relatedArticle && BY.get(a.relatedArticle)) items.push(['Read the full file', BY.get(a.relatedArticle)])
-  for (const s of a.relatedClips || []) if (BY.get(s)) items.push([a.kind === 'clip' ? 'Related clip' : 'Watch the clip', BY.get(s)])
+  const items = relatedFor(a)
   if (!items.length) return ''
-  return `<section class="rel" aria-label="Related"><h2>Related</h2>${items.map(([k, r]) => `<a href="${esc(hrefFor(r))}"><span>${esc(k)}</span>${esc(r.title)}</a>`).join('')}</section>`
+  return `<section class="rel" aria-labelledby="h-rel"><h2 id="h-rel">Related files</h2>${items.map(([k, r]) => `<a href="${esc(hrefFor(r))}"><span>${esc(k)}</span>${esc(r.title)}</a>`).join('')}</section>`
+}
+// Build-time SEO check: every published clip links to a topic hub and to 2+ related posts.
+{
+  const bad = clips.flatMap((a) => [...(hubsFor(a).length ? [] : [`${a.slug}: no topic hub (topics: ${(a.topics || []).join(', ') || 'none'})`]), ...(relatedFor(a).length >= 2 ? [] : [`${a.slug}: only ${relatedFor(a).length} related link(s), need 2 (add relatedClips in articles.ts or run node scripts/pick-related.mjs)`])])
+  if (bad.length) { console.error(`✖ internal-link check failed:\n  ${bad.join('\n  ')}`); process.exit(1) }
+  const weakFiles = files.filter((a) => !hubsFor(a).length || relatedFor(a).length < 2).map((a) => a.slug)
+  if (weakFiles.length) console.warn(`⚠ files missing a hub or 2 related links: ${weakFiles.join(', ')}`)
 }
 const hero = (a, h1) =>
   `<header class="phead">${kickerOf(a) ? `<p class="kick">${esc(kickerOf(a))}</p>` : ''}<h1 class="ph1">${h1}</h1>${a.kind !== 'clip' && a.dek ? `<p class="pdek">${esc(a.dek)}</p>` : ''}<p class="pmeta">${timeLine(a)}${a.duration ? ` · ${esc(a.duration)}` : ''}</p></header>`
@@ -303,7 +333,7 @@ function clipPage(a) {
   const isVideo = a.embed && a.embed.type !== 'truthsocial'
   const ld = clipLd(a).map((x) => (x['@type'] === 'BreadcrumbList' ? crumbLd(cr) : x))
   const head = headTags({ title: a.title, description: a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: isVideo ? 'video.other' : 'article', published: d.published, modified: d.modified, section: 'Trump Videos', jsonLd: ld })
-  const body = `${crumbs(cr.map(([n, h], i) => (i === cr.length - 1 ? ['This clip', h] : [n, h])))}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}
+  const body = `${crumbs(cr.map(([n, h], i) => (i === cr.length - 1 ? ['This clip', h] : [n, h])))}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}${filedLine(a)}
 ${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a), anchor: true }) : ''}${a.xEmbed ? `<p class="alsox">Also on X: <a href="${esc(a.xEmbed.url)}" target="_blank" rel="noopener">${esc(a.xEmbed.accountName || a.xEmbed.account || 'the original post')}${a.xEmbed.account && a.xEmbed.accountName ? ` (${esc(a.xEmbed.account)})` : ''} ↗</a></p>` : ''}
 <div class="prose">${a.body.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
 ${a.beforeEmbed ? facade(a.beforeEmbed, { label: `Before · ${esc(a.beforeEmbed.label || '')}` }) : ''}
@@ -320,11 +350,13 @@ function articlePage(a) {
     byAfter.set(idx, [...(byAfter.get(idx) || []), e])
   }
   const prose = a.body.map((p, i) => `<p>${esc(p)}</p>${(byAfter.get(i) || []).map((e) => facade({ ...e, type: 'youtube' })).join('')}`).join('')
-  const cr = [['Home', '/'], ['Latest', '/reports/'], ['This file', hrefFor(a)]]
+  const hub = hubsFor(a)[0]
+  const crHub = hub ? [[TOPIC_LABEL[hub], `/trump-videos/${hub}/`]] : []
+  const cr = [['Home', '/'], ['Latest', '/reports/'], ...crHub, ['This file', hrefFor(a)]]
   const d = datesFor(a)
   const more = files.filter((f) => f !== a).slice(0, 4)
-  const head = headTags({ title: a.title, description: a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: 'article', published: d.published, modified: d.modified, section: 'Files', jsonLd: [newsArticleLd(a), crumbLd([['Home', '/'], ['Latest', '/reports/'], [a.title, hrefFor(a)]])] })
-  const body = `${crumbs(cr)}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}<div class="prose">${prose}</div>${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>
+  const head = headTags({ title: a.title, description: a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: 'article', published: d.published, modified: d.modified, section: 'Files', jsonLd: [newsArticleLd(a), crumbLd([['Home', '/'], ['Latest', '/reports/'], ...crHub, [a.title, hrefFor(a)]])] })
+  const body = `${crumbs(cr)}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}${filedLine(a)}<div class="prose">${prose}</div>${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>
 <section class="sec"><div class="wrap"><div class="shead"><div><h2 class="stitle">More <mark>files</mark></h2></div><a class="more" href="/reports/">Latest →</a></div><div class="cards">${more.map(card).join('')}</div></div></section>
 ${subband(`file-${a.slug}`.slice(0, 64))}`
   write(`reports/${a.slug}/index.html`, page({ title: `${a.seoTitle || a.title} | The Donald Files`, head, active: 'latest', body }))
