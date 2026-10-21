@@ -13,7 +13,7 @@ for (const [slug, start] of list) {
   const src = await p.evaluate(() => document.querySelector('#play iframe').src)
   const yf = p.frames().find((f) => f.url().includes('youtube-nocookie.com/embed'))
   const v = yf ? await yf.evaluate(() => { const v = document.querySelector('video'); return v ? { paused: v.paused, t: Math.round(v.currentTime), muted: v.muted } : null }).catch(() => null) : null
-  await p.locator('#play').screenshot({ path: `' + (process.env.OUT || '/workspace/shots-v5/swap3') + '/${which}-${slug}.png` })
+  await p.locator('#play').screenshot({ path: `${process.env.OUT || '/workspace/shots-v5/swap3'}/${which}-${slug}.png` })
   console.log(JSON.stringify({ which, slug, startParam: new URL(src).searchParams.get('start'), want: start, video: v, ok: !!v && !v.paused && v.t >= start && v.t < start + 15, alsox, sameTab: p.url().startsWith(BASE) }))
   await ctx.close()
 }
