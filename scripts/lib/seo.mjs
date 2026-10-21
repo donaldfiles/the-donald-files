@@ -125,7 +125,7 @@ export function etNoon(d) {
 
 export function embedUrlFor(e) {
   if (!e) return undefined
-  if (e.type === 'youtube') return `https://www.youtube-nocookie.com/embed/${e.id}`
+  if (e.type === 'youtube') return `https://www.youtube-nocookie.com/embed/${e.id}${e.start ? `?start=${e.start}` : ''}`
   if (e.type === 'x') return `https://platform.twitter.com/embed/Tweet.html?id=${e.id}`
   return e.url
 }
@@ -145,8 +145,9 @@ export function clipLd(a) {
   const e = a.embed
   if (e && (e.type === 'x' || e.type === 'youtube')) {
     const thumbs = [articleOg(a.slug)]
-    if (e.type === 'youtube') thumbs.unshift(`https://i.ytimg.com/vi/${e.id}/hqdefault.jpg`)
+    // Our own self-hosted poster first; YouTube's thumbnail only if we have none.
     if (a.poster) thumbs.unshift(`${SITE}${a.poster}`)
+    else if (e.type === 'youtube') thumbs.unshift(`https://i.ytimg.com/vi/${e.id}/hqdefault.jpg`)
     const v = {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',

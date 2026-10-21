@@ -91,3 +91,10 @@ iframe.yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(
 .xembed.fail .xph .play{display:none}
 .thumb:not(.big) .xcta{font-size:15px;padding:11px 18px;bottom:14px}
 .xembed.fail .xph .who{display:none}
+/* YouTube-first: inline players (clip page + tiles). */
+.thumb.playing{background:#000}
+.thumb.playing iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytile .tbody,.ytile .fbody{display:block;color:inherit;text-decoration:none}
+.ytile .facade{cursor:pointer}.ytile .facade:hover .play{transform:translate(-50%,-50%) scale(1.07)}
+.alsox{margin:-20px 0 28px;font:600 14px/1.4 var(--f-mono,inherit);color:var(--muted)}
+.alsox a{color:var(--blue)}

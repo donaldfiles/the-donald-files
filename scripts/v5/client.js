@@ -12,21 +12,28 @@
       if (n) n.hidden = false
     }
   })
-  // YouTube: click-to-load (nothing from YouTube loads until the click).
+  // YouTube: click-to-load (nothing from YouTube loads until the click), inline, one at a time.
+  var cur = null
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest && ev.target.closest('a.facade')
     if (a) {
       ev.preventDefault()
       var t = a.dataset.type, id = a.dataset.id, u = a.dataset.url
       if (t === 'youtube') {
+        // One player at a time: put the previous one back to its poster.
+        if (cur) { cur.wrap.replaceWith(cur.facade); cur = null }
         var f = document.createElement('iframe')
-        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1'
+        var st = Number(a.dataset.start) || 0
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1' + (st ? '&start=' + st : '')
         f.title = a.getAttribute('aria-label') || 'Video'
-        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
         f.allowFullscreen = true
         f.referrerPolicy = 'strict-origin-when-cross-origin'
-        f.className = 'yt'
-        a.replaceWith(f)
+        var wrap = document.createElement('div')
+        wrap.className = a.className.replace(/\bfacade\b/, '').replace(/\bfb\b/, '') + ' playing'
+        wrap.appendChild(f)
+        a.replaceWith(wrap)
+        cur = { wrap: wrap, facade: a }
       }
       return
     }

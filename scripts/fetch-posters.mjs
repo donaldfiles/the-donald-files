@@ -46,14 +46,21 @@ for (const a of clips) {
   for (const [key, e] of [[a.slug, a.embed], [`${a.slug}--before`, a.beforeEmbed]]) {
     if (!e || (e.type !== 'x' && e.type !== 'youtube')) continue
     const file = join(out, `${key}.webp`)
-    if (!refresh && meta[key] && existsSync(file)) continue
+    const want = e.type === 'youtube' ? `youtube:${ytId(e)}` : `x:${e.id}`
+    const have = meta[key]?.source === 'youtube' && e.type === 'youtube' ? want : meta[key]?.source === 'x' && e.type === 'x' ? want : meta[key]?.source
+    if (!refresh && have === want && existsSync(file)) continue
     try {
       let img, durationMs
       if (e.type === 'x') ({ img, durationMs } = await xMedia(e.id))
-      else img = `https://i.ytimg.com/vi/${ytId(e)}/hqdefault.jpg`
+      else {
+        // Highest-res still YouTube serves for the video (maxres isn't generated for every upload).
+        img = `https://i.ytimg.com/vi/${ytId(e)}/hqdefault.jpg`
+        const mx = `https://i.ytimg.com/vi/${ytId(e)}/maxresdefault.jpg`
+        if ((await fetch(mx, { method: 'HEAD' })).ok) img = mx
+      }
       if (!img) throw new Error('no preview image')
       await save(img, file)
-      meta[key] = { poster: `/posters/${key}.webp`, ...(durationMs ? { durationSeconds: Math.round(durationMs / 1000) } : {}), source: e.type, fetched: new Date().toISOString() }
+      meta[key] = { poster: `/posters/${key}.webp`, ...(durationMs ? { durationSeconds: Math.round(durationMs / 1000) } : {}), source: want, fetched: new Date().toISOString() }
       got++
     } catch (err) {
       console.warn(`posters: ${key}: ${err.message} (falls back to the blue kicker tile)`)

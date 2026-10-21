@@ -149,9 +149,31 @@ export function extractArticles(text) {
       relatedArticle: ogStr('relatedArticle'),
       relatedClips: strList(block, 'relatedClips'),
       topics: strList(block, 'topics'),
+      youtubeId: ogStr('youtubeId'),
+      youtubeStart: Number(/\byoutubeStart:\s*(\d+)/.exec(block)?.[1]) || 0,
+      youtubeChannel: ogStr('youtubeChannel'),
     })
   }
-  return articles.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
+  return articles.map(youtubeFirst).sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
+}
+
+/**
+ * YouTube-first clips: when a clip has youtubeId, its main player becomes that YouTube upload (plays inline on
+ * the site) and the X post, if any, is kept as a.xEmbed for the small "Also on X" credit. Everything downstream
+ * (players, tiles, VideoObject, video sitemap, posters) then just sees a YouTube embed.
+ */
+function youtubeFirst(a) {
+  if (a.kind !== 'clip' || !a.youtubeId) return a
+  const id = a.youtubeId, start = a.youtubeStart || 0
+  return {
+    ...a,
+    xEmbed: a.embed && a.embed.type === 'x' ? a.embed : undefined,
+    embed: {
+      type: 'youtube', id, start,
+      url: `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` : ''}`,
+      accountName: a.youtubeChannel || (a.embed && a.embed.type === 'youtube' ? a.embed.accountName : undefined),
+    },
+  }
 }
 
 export const TOPIC_LABEL = {

@@ -62,6 +62,12 @@ export type Article = {
   beforeEmbed?: ClipEmbed & { label?: string }
   /** ClipPost: display duration, e.g. "1:42". */
   duration?: string
+  /** YouTube-first: when set, the clip's main player is this YouTube upload (plays inline); the X post becomes an 'Also on X' credit. Set with scripts/set-youtube.mjs. */
+  youtubeId?: string
+  /** Seconds into the YouTube video where the clip starts. */
+  youtubeStart?: number
+  /** Uploader's channel name for the credit, e.g. 'The White House'. */
+  youtubeChannel?: string
   /** ClipPost: duration in seconds (for ISO 8601 PT…S). */
   durationSeconds?: number
   /** ClipPost: when we published, ISO with offset. */
