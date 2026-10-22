@@ -105,6 +105,62 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-dan-sullivan-alaska-judge-ashamed',
+    kind: 'clip',
+    ogKicker: 'SAME NAME, SAME PARTY',
+    ogPunch: 'ashamed',
+    ogStamp: 'POSTED',
+    title: 'Trump says the judge in Alaska’s two-Dan-Sullivans case ‘should be ashamed of himself’',
+    category: 'REPORTS',
+    date: '2026-10-21',
+    dek: 'Alaska has two Dan Sullivans on its Senate ballot, and Donald Trump has worked out whose fault that is. It’s a judge’s.',
+    publishedAt: '2026-10-22T06:32:00+02:00',
+    topics: ['courts', 'truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117482201426939709',
+      url: 'https://truthsocial.com/@realDonaldTrump/117482201426939709',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/42558',
+    },
+    body: [
+      'Alaska has two Dan Sullivans on its Senate ballot, and Donald Trump has worked out whose fault that is. It’s a judge’s.',
+      'At 10:28pm Wednesday, Trump posted that the race is “totally confusing, with the Dumocrats putting up another man, totally unrelated to Politics, named Daniel J. Sullivan, Jr.” He called it a “SCAM” and “CHEATING in an Election,” and said “the Judge that allowed this to happen should be ashamed of himself.” His team is “looking at powerful legal options” to get the man off the ballot.',
+      'A few details. The other Dan Sullivan is a 69-year-old retired teacher from Petersburg, and he filed as a Republican, the same party as the senator. It was a Republican elections director who threw him off the ballot in June. Anchorage Superior Court Judge Thomas Matthews found the state had overstepped, and three days later the Alaska Supreme Court affirmed his order. So “the Judge” is really a judge plus four justices. Trump hasn’t shown how the Democrats come into it. The ballot lists the newcomer with no party at all and the senator as “(Registered Republican) Incumbent,” so at least the confusion comes labelled.',
+      'Then the math. Trump: “Even 1, 2, or 3% could make the difference.” The other Sullivan got 2.5% in the August primary. Trump: “Dan S. Sullivan is leading by a lot.” In that same primary, Mary Peltola got 49.5% and the senator 41.4%. That’s leading by a lot, just not in the direction he means.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump on the “Dan S. Sullivan Race,” 21 Oct 2026, 10:28pm ET (archived)',
+        url: 'https://www.trumpstruth.org/statuses/42558',
+      },
+      {
+        label: 'Anchorage Daily News: Alaska Supreme Court allows namesake challenger on the ballot',
+        url: 'https://www.adn.com/politics/2026/06/29/alaska-supreme-court-rules-that-dan-j-sullivan-can-appear-on-the-ballot-against-sen-dan-sullivan/',
+      },
+      {
+        label: 'Alaska Supreme Court: order in Division of Elections v. Daniel J. Sullivan, Jr. (29 Jun 2026)',
+        url: 'https://appellate-records.courts.alaska.gov/CMSPublic/UserControl/OpenDocument?q=2ubl5dCVeEArChBN5bdIzg%3D%3D%27',
+      },
+      {
+        label: 'AP: Republican with same name as incumbent advances from Alaska US Senate primary',
+        url: 'https://apnews.com/article/alaska-primary-senate-congress-midterms-dan-sullivan-592c7fb777ed9e68da0c31d8ed7346e8',
+      },
+      {
+        label: 'Alaska Beacon: Dan J. Sullivan stays on the ballot after third-place primary finish',
+        url: 'https://alaskabeacon.com/2026/08/31/petersburgs-dan-j-sullivan-stays-on-alaskas-u-s-senate-ballot-after-third-place-primary-finish/',
+      },
+      {
+        label: 'Juneau Independent: sample ballot lists “Sullivan, Daniel J. Jr.” with no party',
+        url: 'https://www.juneauindependent.com/post/sample-ballot-lists-sullivan-daniel-j-jr-without-party-affiliation-sullivan-dan-s-as-reg',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-stephen-hubbard-released-gave-nothing-in-exchange',
     kind: 'clip',
     youtubeId: 'TLH3gXrPCTU',
