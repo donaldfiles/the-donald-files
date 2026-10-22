@@ -54,6 +54,8 @@ export type Article = {
   ogFile?: string
   /** <title> override (SEO). The on-page headline stays `title`. */
   seoTitle?: string
+  /** meta/OG/Twitter description override (SEO). Default `dek`. */
+  seoDescription?: string
   /** 'clip' = short video post at /trump-videos/<slug>/ (v4 ClipPost). Default 'article' at /reports/<slug>/. */
   kind?: 'article' | 'clip'
   /** ClipPost: the original upload, embedded (never re-hosted). hed = title, kicker = ogKicker. */
@@ -408,6 +410,8 @@ export const articles: Article[] = [
   },
   {
     slug: 'trump-clemson-rally-punch-he-got-whacked',
+    seoTitle: 'Trump on a protester at his Clemson rally: \'He got whacked\'',
+    seoDescription: 'Local TV reported punches thrown as a protester was walked out of Trump\'s Clemson rally. Trump\'s ringside verdict, on the GOP\'s own tape: \'He got whacked.\'',
     kind: 'clip',
     youtubeId: '55xUitZ5dag',
     youtubeStart: 8965,

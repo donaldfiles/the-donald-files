@@ -332,7 +332,7 @@ function clipPage(a) {
   const d = datesFor(a)
   const isVideo = a.embed && a.embed.type !== 'truthsocial'
   const ld = clipLd(a).map((x) => (x['@type'] === 'BreadcrumbList' ? crumbLd(cr) : x))
-  const head = headTags({ title: a.title, description: a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: isVideo ? 'video.other' : 'article', published: d.published, modified: d.modified, section: 'Trump Videos', jsonLd: ld })
+  const head = headTags({ title: a.seoTitle || a.title, description: a.seoDescription || a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: isVideo ? 'video.other' : 'article', published: d.published, modified: d.modified, section: 'Trump Videos', jsonLd: ld })
   const body = `${crumbs(cr.map(([n, h], i) => (i === cr.length - 1 ? ['This clip', h] : [n, h])))}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}${filedLine(a)}
 ${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a), anchor: true }) : ''}${a.xEmbed ? `<p class="alsox">Also on X: <a href="${esc(a.xEmbed.url)}" target="_blank" rel="noopener">${esc(a.xEmbed.accountName || a.xEmbed.account || 'the original post')}${a.xEmbed.account && a.xEmbed.accountName ? ` (${esc(a.xEmbed.account)})` : ''} ↗</a></p>` : ''}
 <div class="prose">${a.body.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
@@ -340,7 +340,7 @@ ${a.beforeEmbed ? facade(a.beforeEmbed, { label: `Before · ${esc(a.beforeEmbed.
 ${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>
 <section class="sec"><div class="wrap"><div class="shead"><div><h2 class="stitle">More <mark>clips</mark></h2></div><a class="more" href="/trump-videos/">All Trump videos →</a></div><div class="cwr">${related.map((c) => tile(c)).join('')}</div><div class="chips topchips">${TOPICS.map((x) => chip(x)).join('')}</div></div></section>
 ${subband(`clip-${a.slug}`.slice(0, 64))}`
-  write(`trump-videos/${a.slug}/index.html`, page({ title: `${a.title} | ${isVideo ? 'Trump Video' : 'Trump Watch'} | The Donald Files`, head, active: 'videos', body }))
+  write(`trump-videos/${a.slug}/index.html`, page({ title: `${a.seoTitle || a.title} | ${isVideo ? 'Trump Video' : 'Trump Watch'} | The Donald Files`, head, active: 'videos', body }))
 }
 
 function articlePage(a) {
@@ -355,7 +355,7 @@ function articlePage(a) {
   const cr = [['Home', '/'], ['Latest', '/reports/'], ...crHub, ['This file', hrefFor(a)]]
   const d = datesFor(a)
   const more = files.filter((f) => f !== a).slice(0, 4)
-  const head = headTags({ title: a.title, description: a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: 'article', published: d.published, modified: d.modified, section: 'Files', jsonLd: [newsArticleLd(a), crumbLd([['Home', '/'], ['Latest', '/reports/'], ...crHub, [a.title, hrefFor(a)]])] })
+  const head = headTags({ title: a.seoTitle || a.title, description: a.seoDescription || a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: 'article', published: d.published, modified: d.modified, section: 'Files', jsonLd: [newsArticleLd(a), crumbLd([['Home', '/'], ['Latest', '/reports/'], ...crHub, [a.title, hrefFor(a)]])] })
   const body = `${crumbs(cr)}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}${filedLine(a)}<div class="prose">${prose}</div>${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>
 <section class="sec"><div class="wrap"><div class="shead"><div><h2 class="stitle">More <mark>files</mark></h2></div><a class="more" href="/reports/">Latest →</a></div><div class="cards">${more.map(card).join('')}</div></div></section>
 ${subband(`file-${a.slug}`.slice(0, 64))}`
