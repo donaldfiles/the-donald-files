@@ -113,7 +113,7 @@ function verificationMeta() {
 // ---------- copy (Reed-approved, from design/v4-video-first + v5 mocks) ----------
 const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every clip is embedded from its original upload, and every claim links to its source.'
 const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: the gaffes, the lies, the ballroom, the court fights and the cruelty, embedded from the original uploads with our notes and the receipts underneath. Fresh clips land all day, US time.'
-// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip, wording from the live clip).
+// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; wording from the live clips).
 const TOPIC_INTRO = {
   gaffes: 'Every time his mouth outran his brain, on tape. Newest first.',
   'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
@@ -121,7 +121,7 @@ const TOPIC_INTRO = {
   tariffs: 'He says Mexico pays. Your receipts say you do. Every clip has the math underneath.',
   courts: 'Judges he’s lost to, one he told to go to hell, and one he says “should be ashamed of himself.” The court record sits underneath.',
   ballroom: 'He promised it’d be free. Here’s who’s actually paying, with the receipts underneath.',
-  cruelty: 'No mask slipping here, because there isn’t one. Every clip is embedded from the original upload, with the sources underneath.',
+  cruelty: 'He calls a Michigan Senate nominee “a jihadist,” tells Vivek Ramaswamy to keep the Acton mother ad up and say “thank you, God,” and says of Camp Lejeune that if Republicans don’t do well, “maybe they won’t get their money.” No mask slipping here, because there isn’t one. The sources sit underneath every clip.',
 }
 const PROPER_TOPICS = new Set(['truth-social'])
 const FAQ = [
