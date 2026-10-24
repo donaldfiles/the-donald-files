@@ -172,7 +172,7 @@ export const articles: Article[] = [
     slug: 'trump-new-mexico-new-america-homes-double',
     kind: 'clip',
     youtubeId: 'mG6ANPypepk',
-    youtubeStart: 12984,
+    youtubeStart: 12990,
     youtubeChannel: 'GOP',
     ogKicker: 'NEW AMERICA, NEW AMERICA',
     ogPunch: 'double',
@@ -199,7 +199,7 @@ export const articles: Article[] = [
     sources: [
       {
         label: 'GOP on YouTube: Midterm Rally in Fort Myers, Florida featuring President Donald J. Trump, 23 Oct 2026 (full stream)',
-        url: 'https://www.youtube.com/watch?v=mG6ANPypepk&t=12984s',
+        url: 'https://www.youtube.com/watch?v=mG6ANPypepk&t=12990s',
       },
       {
         label: 'Aaron Rupar: “I want to change it to New America. The value of their homes will double”',
