@@ -110,7 +110,7 @@ export const articles: Article[] = [
     slug: 'trump-uncle-invented-radar-knocked-out-their-radar',
     kind: 'clip',
     youtubeId: '3FGSX-eyHsY',
-    youtubeStart: 770,
+    youtubeStart: 788,
     youtubeChannel: 'LiveNOW from FOX',
     ogKicker: 'FAMILY PATENT',
     ogPunch: 'radar',
@@ -137,7 +137,7 @@ export const articles: Article[] = [
     sources: [
       {
         label: 'LiveNOW from FOX on YouTube: President Trump, First Lady cast votes early in FL (full gaggle)',
-        url: 'https://www.youtube.com/watch?v=3FGSX-eyHsY&t=770s',
+        url: 'https://www.youtube.com/watch?v=3FGSX-eyHsY&t=788s',
       },
       {
         label: 'Acyn: Trump on his uncle and radar',
