@@ -113,11 +113,11 @@ function verificationMeta() {
 // ---------- copy (Reed-approved, from design/v4-video-first + v5 mocks) ----------
 const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every clip is embedded from its original upload, and every claim links to its source.'
 const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: the gaffes, the lies, the ballroom, the court fights and the cruelty, embedded from the original uploads with our notes and the receipts underneath. Fresh clips land all day, US time.'
-// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; wording from the live clips).
+// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; lies refreshed 24 Oct for the third-term, Epic Fury and Ukraine-tariffs clips; wording from the live clips).
 const TOPIC_INTRO = {
   gaffes: 'Every time his mouth outran his brain, on tape. Newest first.',
   'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
-  lies: 'He says it on stage, and we check it underneath. The gap is the story.',
+  lies: 'He says the law bars a third term, then says he has “the right to run again.” He floats “another little Epic Fury” in Iran, a war he told Congress had “terminated,” and says tariffs to end the Ukraine war never occurred to him, though he threatened Russia with them in 2025. He says it on stage, and we check it underneath. The gap is the story.',
   tariffs: 'He says Mexico pays. Your receipts say you do. Every clip has the math underneath.',
   courts: 'Judges he’s lost to, one he told to go to hell, and one he says “should be ashamed of himself.” The court record sits underneath.',
   ballroom: 'He promised it’d be free. Here’s who’s actually paying, with the receipts underneath.',
@@ -125,7 +125,7 @@ const TOPIC_INTRO = {
 }
 const PROPER_TOPICS = new Set(['truth-social'])
 const FAQ = [
-  ['Where do these Donald Trump videos come from?', 'Every clip is embedded from its original upload on X or YouTube, usually the White House, C-SPAN, a network or the account that filmed it. We link the source under every video and never re-upload footage.'],
+  ['Where do these Donald Trump videos come from?', 'Every clip is embedded from its original upload on YouTube, X or Truth Social, usually the White House, C-SPAN, a network or the account that filmed it. We link the source under every video and never re-upload footage.'],
   ['How often is this page updated?', 'All day. The desk adds new Trump clips through the US morning and evening, and the newest always sits at the top.'],
   ['Is The Donald Files neutral?', 'No. We are openly anti-Trump and we mock him. The jokes are ours; the clips and sourced facts are his.'],
   ['Can I share these clips?', 'Yes. Every clip has its own page with a share card, so a link to it unfurls properly on X, WhatsApp and Facebook.'],
