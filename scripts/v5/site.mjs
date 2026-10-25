@@ -113,9 +113,9 @@ function verificationMeta() {
 // ---------- copy (Reed-approved, from design/v4-video-first + v5 mocks) ----------
 const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every clip is embedded from its original upload, and every claim links to its source.'
 const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: the gaffes, the lies, the ballroom, the court fights and the cruelty, embedded from the original uploads with our notes and the receipts underneath. Fresh clips land all day, US time.'
-// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; lies refreshed 24 Oct for the third-term, Epic Fury and Ukraine-tariffs clips; wording from the live clips).
+// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; lies refreshed 24 Oct for the third-term, Epic Fury and Ukraine-tariffs clips; gaffes refreshed 25 Oct for the Reflecting Pool/stone, data-centers and Iran-negotiating clips; wording from the live clips).
 const TOPIC_INTRO = {
-  gaffes: 'Every time his mouth outran his brain, on tape. Newest first.',
+  gaffes: 'He calls the Reflecting Pool “the longest swimming pool in history” and says he knows “more about stone than any human being outside of Italy.” He tells Georgia to make data centers pay “$20,000 for everybody that lives in the community,” then stops mid-Iran to “figure out who the hell are we negotiating with.” Every time his mouth outran his brain, on tape. Newest first.',
   'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
   lies: 'He says the law bars a third term, then says he has “the right to run again.” He floats “another little Epic Fury” in Iran, a war he told Congress had “terminated,” and says tariffs to end the Ukraine war never occurred to him, though he threatened Russia with them in 2025. He says it on stage, and we check it underneath. The gap is the story.',
   tariffs: 'He says Mexico pays. Your receipts say you do. Every clip has the math underneath.',
