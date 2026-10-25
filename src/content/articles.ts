@@ -118,7 +118,7 @@ export const articles: Article[] = [
     title: 'Trump says he hasn’t thought about pardoning junior staff, then tells an aide she won’t have to worry',
     category: 'REPORTS',
     date: '2026-10-24',
-    dek: 'Asked at his Palm Beach polling place on Saturday whether he’s considering pardoning junior administration officials to shield them from congressional…',
+    dek: 'Trump says “I haven’t thought of it” about pardoning junior staff, then tells an aide, “Margo, you’re not going to have to worry about it.”',
     publishedAt: '2026-10-25T07:00:00+02:00',
     topics: ['courts'],
     embed: {
@@ -184,7 +184,7 @@ export const articles: Article[] = [
     title: 'Trump says his people told him not to brag about oil money, then brags about ‘a freaking fortune’',
     category: 'REPORTS',
     date: '2026-10-24',
-    dek: 'At his Saturday night rally in Perry, Georgia, Trump told a crowd of people who buy gas that oil prices “are temporarily high” and will be “falling…',
+    dek: 'Trump says his people told him not to brag about oil money while you pay more at the pump, then calls it “a freaking fortune.”',
     publishedAt: '2026-10-25T07:00:00+02:00',
     topics: ['cruelty', 'gaffes'],
     embed: {
@@ -238,7 +238,7 @@ export const articles: Article[] = [
     title: 'Trump says if ‘Pee-wee Herman’ calls needing money for Georgia, ‘tell him I’m not in’',
     category: 'REPORTS',
     date: '2026-10-24',
-    dek: 'Trump went to Perry, Georgia, on Saturday night to sell the state on a Senate nominee, Mike Collins, and a governor nominee, Rick Jackson.',
+    dek: 'Trump sells Georgia on access, then acts out a call from “Pee-wee Herman” needing money for Georgia: “I don’t give a damn what he wants.”',
     publishedAt: '2026-10-25T07:00:00+02:00',
     topics: ['cruelty'],
     embed: {
@@ -300,7 +300,7 @@ export const articles: Article[] = [
     title: 'Trump asks why the US takes people from ‘shithouse countries’ and not Denmark, which he says ‘gave us Greenland’',
     category: 'REPORTS',
     date: '2026-10-24',
-    dek: 'At a rally in Perry, Georgia, on Saturday night, Trump told the crowd that Sen. Jon Ossoff “personally sponsored a bill to bring armies of migrants…',
+    dek: 'Trump asks why we take people from “shithouse countries” instead of Denmark, which he says “gave us Greenland” (it did not).',
     publishedAt: '2026-10-25T07:00:00+02:00',
     topics: ['cruelty', 'lies'],
     embed: {
@@ -354,7 +354,7 @@ export const articles: Article[] = [
     title: 'Trump calls the Reflecting Pool a swimming pool, then says only Italians know more about stone',
     category: 'REPORTS',
     date: '2026-10-24',
-    dek: 'At a Saturday night rally in Perry, Georgia, that was supposed to be about the state’s Senate and governor races, Trump took a detour to brief the…',
+    dek: 'Trump says he knows “more about stone than any human being outside of Italy,” after calling the Reflecting Pool a swimming pool.',
     publishedAt: '2026-10-25T07:00:00+02:00',
     topics: ['gaffes', 'lies'],
     embed: {
