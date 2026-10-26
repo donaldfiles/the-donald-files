@@ -268,6 +268,7 @@ export const articles: Article[] = [
     ogPunch: 'triple',
     ogStamp: 'ON TAPE',
     title: 'Trump says he thought gas would go ‘double and triple,’ and calls it ‘a small price to pay’',
+    seoTitle: 'Trump on gas prices: he thought gas would be ‘double and triple’ and calls it ‘a small price to pay’',
     category: 'REPORTS',
     date: '2026-10-25',
     dek: 'Trump on your gas bill: “...you’re taking a hit. It’s not a big hit.” Then: “I thought gas would be double and triple.”',
