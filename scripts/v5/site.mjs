@@ -113,7 +113,7 @@ function verificationMeta() {
 // ---------- copy (Reed-approved, from design/v4-video-first + v5 mocks) ----------
 const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every clip is embedded from its original upload, and every claim links to its source.'
 const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: the gaffes, the lies, the ballroom, the court fights and the cruelty, embedded from the original uploads with our notes and the receipts underneath. Fresh clips land all day, US time.'
-// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; lies refreshed 24 Oct for the third-term, Epic Fury and Ukraine-tariffs clips; gaffes refreshed 25 Oct for the Reflecting Pool/stone, data-centers and Iran-negotiating clips; wording from the live clips).
+// Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; lies refreshed 24 Oct for the third-term, Epic Fury and Ukraine-tariffs clips; gaffes refreshed 25 Oct for the Reflecting Pool/stone, data-centers and Iran-negotiating clips; cruelty refreshed 26 Oct for the gas, El-Sayed metal-detector, Norway and Space Force/Roop clips; wording from the live clips).
 const TOPIC_INTRO = {
   gaffes: 'He calls the Reflecting Pool “the longest swimming pool in history” and says he knows “more about stone than any human being outside of Italy.” He tells Georgia to make data centers pay “$20,000 for everybody that lives in the community,” then stops mid-Iran to “figure out who the hell are we negotiating with.” Every time his mouth outran his brain, on tape. Newest first.',
   'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
@@ -121,7 +121,7 @@ const TOPIC_INTRO = {
   tariffs: 'He says Mexico pays. Your receipts say you do. Every clip has the math underneath.',
   courts: 'Judges he’s lost to, one he told to go to hell, and one he says “should be ashamed of himself.” The court record sits underneath.',
   ballroom: 'He promised it’d be free. Here’s who’s actually paying, with the receipts underneath.',
-  cruelty: 'He calls a Michigan Senate nominee “a jihadist,” tells Vivek Ramaswamy to keep the Acton mother ad up and say “thank you, God,” and says of Camp Lejeune that if Republicans don’t do well, “maybe they won’t get their money.” No mask slipping here, because there isn’t one. The sources sit underneath every clip.',
+  cruelty: 'He says he thought gas would go “double and triple” and calls it “a small price to pay.” He wants Abdul El-Sayed to “go through a metal detector” before he’s allowed into the Senate, says “Norway sucks” because he didn’t get the Nobel Peace Prize, and tells a Fox 2 reporter that Space Force could read “Mohammed” on a jacket from space. The reporter’s name is Roop. No mask slipping here, because there isn’t one. The sources sit underneath every clip.',
 }
 const PROPER_TOPICS = new Set(['truth-social'])
 const FAQ = [
