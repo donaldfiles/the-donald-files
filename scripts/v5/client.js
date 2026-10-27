@@ -39,9 +39,13 @@
         if (cur) { cur.wrap.replaceWith(cur.facade); cur = null }
         var f = document.createElement('iframe')
         var st = Number(a.dataset.start) || 0
-        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + (st ? '&start=' + st : '')
+        // iOS/iPadOS (every iPhone browser is WebKit): a play started from outside the YouTube frame (autoplay=1 or
+        // our postMessage playVideo) leaves the player black with no controls. There, load it paused so YouTube's
+        // own play button takes a real tap inside the frame.
+        var ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?' + (ios ? '' : 'autoplay=1&') + 'rel=0&playsinline=1&modestbranding=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + (st ? '&start=' + st : '')
         f.title = a.getAttribute('aria-label') || 'Video'
-        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; web-share'
         f.allowFullscreen = true
         f.referrerPolicy = 'strict-origin-when-cross-origin'
         var wrap = document.createElement('div')
@@ -51,7 +55,7 @@
         cur = { wrap: wrap, facade: a }
         // Safari (and some strict autoplay setups) block unmuted autoplay inside the YouTube frame even after
         // our click. If it isn't playing ~2.5s later, start it muted: YouTube shows its own "tap to unmute".
-        ytWatch(f)
+        if (!ios) ytWatch(f)
       }
       return
     }
