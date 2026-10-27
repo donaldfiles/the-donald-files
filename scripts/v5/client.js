@@ -14,24 +14,33 @@
   })
   // YouTube: click-to-load (nothing from YouTube loads until the click), inline, one at a time.
   var cur = null
-  // Watches the YouTube frame's player state. onPlay fires once it is really playing (state 1) or paused (2).
-  function ytWatch(f, onPlay) {
-    var state = -9, origin = 'https://www.youtube-nocookie.com', done = false
+  // Watches the YouTube frame's player state. onPlay fires once it is really playing (state 1) or paused (2);
+  // onMuted(true/false) fires when YouTube reports the player muted or unmuted (or our fallback muted it).
+  function ytWatch(f, onPlay, onMuted) {
+    var state = -9, origin = 'https://www.youtube-nocookie.com', done = false, muted = null
     var send = function (o) { try { f.contentWindow.postMessage(JSON.stringify(o), origin) } catch (e) {} }
+    var setMuted = function (m) { if (m !== muted) { muted = m; onMuted(m) } }
     var onMsg = function (ev) {
       if (ev.source !== f.contentWindow) return
-      try { var d = JSON.parse(ev.data); if (d.info && typeof d.info.playerState === 'number') state = d.info.playerState } catch (e) {}
+      try {
+        var d = JSON.parse(ev.data)
+        if (d.info && typeof d.info.playerState === 'number') state = d.info.playerState
+        if (d.info && typeof d.info.muted === 'boolean' && (state === 1 || state === 3 || muted !== null)) setMuted(d.info.muted)
+      } catch (e) {}
       if (!done && (state === 1 || state === 2)) { done = true; onPlay() }
     }
     window.addEventListener('message', onMsg)
     f.addEventListener('load', function () {
       var n = 0, hello = setInterval(function () { send({ event: 'listening', id: 1, channel: 'widget' }); if (++n > 20 || state !== -9) clearInterval(hello) }, 250)
       // Safari and strict autoplay setups block unmuted autoplay even after our click. If it isn't playing
-      // (or buffering) ~0.8s after the frame loads, start it muted: YouTube shows its own "tap to unmute".
+      // (or buffering) ~0.8s after the frame loads, start it muted and offer the "Tap for sound" pill.
       setTimeout(function () {
-        if (state !== 1 && state !== 3 && document.contains(f)) { send({ event: 'command', func: 'mute', args: [] }); send({ event: 'command', func: 'playVideo', args: [] }) }
+        if (state !== 1 && state !== 3 && document.contains(f)) { send({ event: 'command', func: 'mute', args: [] }); send({ event: 'command', func: 'playVideo', args: [] }); setMuted(true) }
       }, 800)
     })
+    return {
+      unmute: function () { send({ event: 'command', func: 'unMute', args: [] }); send({ event: 'command', func: 'setVolume', args: [100] }); muted = false }
+    }
   }
   document.addEventListener('click', function (ev) {
     var a = ev.target.closest && ev.target.closest('a.facade')
@@ -62,7 +71,13 @@
         setTimeout(hide, 8000)
         a.replaceWith(wrap)
         cur = { wrap: wrap, facade: a }
-        ytWatch(f, hide)
+        // Muted fallback: a "Tap for sound" pill (the tap is a user gesture, so iOS allows unMute).
+        var pill = document.createElement('button')
+        pill.type = 'button'; pill.className = 'unm'; pill.hidden = true
+        pill.innerHTML = '<span aria-hidden="true">🔇</span> Tap for sound'
+        wrap.appendChild(pill)
+        var yt = ytWatch(f, hide, function (m) { pill.hidden = !m })
+        pill.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); yt.unmute(); pill.hidden = true })
       }
       return
     }
