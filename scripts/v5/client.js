@@ -14,19 +14,23 @@
   })
   // YouTube: click-to-load (nothing from YouTube loads until the click), inline, one at a time.
   var cur = null
-  function ytWatch(f) {
-    var state = -9, origin = 'https://www.youtube-nocookie.com'
+  // Watches the YouTube frame's player state. onPlay fires once it is really playing (state 1) or paused (2).
+  function ytWatch(f, onPlay) {
+    var state = -9, origin = 'https://www.youtube-nocookie.com', done = false
     var send = function (o) { try { f.contentWindow.postMessage(JSON.stringify(o), origin) } catch (e) {} }
     var onMsg = function (ev) {
       if (ev.source !== f.contentWindow) return
       try { var d = JSON.parse(ev.data); if (d.info && typeof d.info.playerState === 'number') state = d.info.playerState } catch (e) {}
+      if (!done && (state === 1 || state === 2)) { done = true; onPlay() }
     }
     window.addEventListener('message', onMsg)
     f.addEventListener('load', function () {
-      var n = 0, hello = setInterval(function () { send({ event: 'listening', id: 1, channel: 'widget' }); if (++n > 10 || state !== -9) clearInterval(hello) }, 250)
+      var n = 0, hello = setInterval(function () { send({ event: 'listening', id: 1, channel: 'widget' }); if (++n > 20 || state !== -9) clearInterval(hello) }, 250)
+      // Safari and strict autoplay setups block unmuted autoplay even after our click. If it isn't playing
+      // (or buffering) ~0.8s after the frame loads, start it muted: YouTube shows its own "tap to unmute".
       setTimeout(function () {
         if (state !== 1 && state !== 3 && document.contains(f)) { send({ event: 'command', func: 'mute', args: [] }); send({ event: 'command', func: 'playVideo', args: [] }) }
-      }, 2500)
+      }, 800)
     })
   }
   document.addEventListener('click', function (ev) {
@@ -39,11 +43,7 @@
         if (cur) { cur.wrap.replaceWith(cur.facade); cur = null }
         var f = document.createElement('iframe')
         var st = Number(a.dataset.start) || 0
-        // iOS/iPadOS (every iPhone browser is WebKit): a play started from outside the YouTube frame (autoplay=1 or
-        // our postMessage playVideo) leaves the player black with no controls. There, load it paused so YouTube's
-        // own play button takes a real tap inside the frame.
-        var ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?' + (ios ? '' : 'autoplay=1&') + 'rel=0&playsinline=1&modestbranding=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + (st ? '&start=' + st : '')
+        f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1&enablejsapi=1&origin=' + encodeURIComponent(location.origin) + (st ? '&start=' + st : '')
         f.title = a.getAttribute('aria-label') || 'Video'
         f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen; web-share'
         f.allowFullscreen = true
@@ -51,11 +51,18 @@
         var wrap = document.createElement('div')
         wrap.className = a.className.replace(/\bfacade\b/, '').replace(/\bfb\b/, '') + ' playing'
         wrap.appendChild(f)
+        // Long livestream offsets can take a while to buffer: keep the poster up with a spinner until the
+        // player reports playing, 8s at most. pointer-events:none so taps still reach YouTube's frame.
+        var ld = document.createElement('div'), img = a.querySelector('img')
+        ld.className = 'ldg'; ld.setAttribute('role', 'status')
+        if (img) { var im = img.cloneNode(); im.removeAttribute('loading'); im.alt = ''; ld.appendChild(im) }
+        ld.insertAdjacentHTML('beforeend', '<span class="ldg-in"><span class="spin" aria-hidden="true"></span>Loading clip…</span>')
+        wrap.appendChild(ld)
+        var hide = function () { if (ld.parentNode) { ld.classList.add('out'); setTimeout(function () { ld.remove() }, 250) } }
+        setTimeout(hide, 8000)
         a.replaceWith(wrap)
         cur = { wrap: wrap, facade: a }
-        // Safari (and some strict autoplay setups) block unmuted autoplay inside the YouTube frame even after
-        // our click. If it isn't playing ~2.5s later, start it muted: YouTube shows its own "tap to unmute".
-        if (!ios) ytWatch(f)
+        ytWatch(f, hide)
       }
       return
     }
