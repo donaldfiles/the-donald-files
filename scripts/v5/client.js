@@ -96,17 +96,26 @@
     f.elements.t.value = String(now)
     f.addEventListener('submit', function (ev) {
       ev.preventDefault()
-      var msg = f.querySelector('[data-msg]'), b = f.querySelector('button')
-      b.disabled = true
+      var msg = f.querySelector('[data-msg]'), b = f.querySelector('button'), label = b.dataset.label || (b.dataset.label = b.textContent)
+      b.disabled = true; b.setAttribute('aria-busy', 'true'); b.textContent = 'Sending…'
+      delete b.dataset.state; f.removeAttribute('data-state'); msg.textContent = ''
       fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: f.elements.email.value, website: f.elements.website.value, t: Number(f.elements.t.value), source: f.dataset.sub }),
       })
         .then(function (r) { return r.json() })
-        .then(function (j) { msg.textContent = j.message || 'Done.'; if (j.ok) f.elements.email.value = '' })
-        .catch(function () { msg.textContent = 'Something broke on our end. Try again in a minute.' })
-        .then(function () { b.disabled = false })
+        .then(function (j) {
+          msg.textContent = j.message || 'Done.'
+          if (j.ok) { f.elements.email.value = ''; b.dataset.state = 'sent'; b.textContent = 'Check your inbox' }
+          else f.dataset.state = 'error'
+        })
+        .catch(function () { f.dataset.state = 'error'; msg.textContent = 'Something broke on our end. Try again in a minute.' })
+        .then(function () {
+          b.disabled = false; b.removeAttribute('aria-busy')
+          if (b.dataset.state === 'sent') setTimeout(function () { if (b.dataset.state === 'sent') { delete b.dataset.state; b.textContent = label } }, 4000)
+          else b.textContent = label
+        })
     })
   })
   var st = document.querySelector('[data-status]')

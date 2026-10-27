@@ -34,6 +34,7 @@
   --blue:#2450FF;
   --blue-rgb:36 80 255;
   --blue-ink:#1B3FE0;
+  --blue-deep:#1633B8;   /* pressed state, one step below --blue-ink */
   --blue-soft:#EAF0FF;
   --blue-line:#D7E1FF;
   --blue-field:#C9D4F5;

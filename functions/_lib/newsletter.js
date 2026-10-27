@@ -65,14 +65,19 @@ export function back(status) {
 }
 
 export async function sendConfirmEmail(env, to, confirmUrl, unsubscribeUrl) {
-  const html = `<!doctype html><html><body style="margin:0;background:#0E0E0E;font-family:Arial,Helvetica,sans-serif;color:#F4EFE6">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 16px">
-<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;background:#141414;border-top:6px solid #D1001F">
-<tr><td style="padding:28px 28px 8px;font-family:Impact,'Arial Narrow',sans-serif;font-size:30px;letter-spacing:1px">THE <span style="color:#D1001F">DONALD</span> FILES</td></tr>
-<tr><td style="padding:8px 28px 0;font-size:16px;line-height:1.5">One click and you're on the list. Confirm your email to get new files when they drop.</td></tr>
-<tr><td style="padding:24px 28px"><a href="${confirmUrl}" style="display:inline-block;background:#FFD400;color:#000;font-weight:bold;text-decoration:none;padding:14px 22px;letter-spacing:1px">CONFIRM MY EMAIL</a></td></tr>
-<tr><td style="padding:0 28px 24px;font-size:13px;line-height:1.5;color:#a8a29a">Didn't sign up? Ignore this email and you won't hear from us. The link expires in 7 days.<br><br>
-<a href="${unsubscribeUrl}" style="color:#a8a29a">Unsubscribe</a> · <a href="${SITE}/" style="color:#a8a29a">thedonaldfiles.com</a></td></tr>
+  // v5 light, matching the digest Worker palette (digest/worker.js C).
+  const C = { paper: '#FAF7F2', card: '#FFFFFF', line: '#E7E1D6', text: '#16213A', muted: '#5A6378', blue: '#2450FF', hl: '#FFE14D' }
+  const html = `<!doctype html><html><body style="margin:0;padding:0;background:${C.paper}">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0">One click and you're on the list.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.paper}"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px">
+<tr><td style="padding:0 4px 14px;font:800 24px/1 Arial,Helvetica,sans-serif;color:${C.text};letter-spacing:-.02em">The <span style="background:${C.hl};padding:0 5px;border-radius:5px">Donald</span> Files</td></tr>
+<tr><td><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.card};border:1px solid ${C.line};border-radius:16px;border-collapse:separate">
+<tr><td style="padding:24px 24px 0;font:17px/1.5 Georgia,'Times New Roman',serif;color:${C.text}">One click and you're on the list. Confirm your email to get new files when they drop.</td></tr>
+<tr><td style="padding:20px 24px 24px"><a href="${confirmUrl}" target="_blank" style="display:inline-block;background:${C.blue};color:#FFFFFF;font:700 16px/1 Arial,Helvetica,sans-serif;text-decoration:none;padding:15px 24px;border-radius:999px">Confirm my email</a></td></tr>
+</table></td></tr>
+<tr><td style="padding:22px 4px 0;font:13px/1.6 Arial,Helvetica,sans-serif;color:${C.muted}">Didn't sign up? Ignore this email and you won't hear from us. The link expires in 7 days.<br><br>
+<a href="${unsubscribeUrl}" style="color:${C.muted};text-decoration:underline">Unsubscribe</a> · <a href="${SITE}/" style="color:${C.blue}">thedonaldfiles.com</a></td></tr>
 </table></td></tr></table></body></html>`
   const text = `THE DONALD FILES\n\nConfirm your email to get new files when they drop:\n${confirmUrl}\n\nDidn't sign up? Ignore this email. The link expires in 7 days.\nUnsubscribe: ${unsubscribeUrl}\n`
   const r = await fetch('https://api.resend.com/emails', {
