@@ -11,6 +11,9 @@ import { extractArticles, hrefFor, fileNumbers, liveTopics, attachMedia, TOPIC_L
 import {
   SITE, SITE_NAME, DEFAULT_OG, esc, headTags, newsArticleLd, clipLd, datesFor, urlFor, articleOg, etNoon,
 } from '../lib/seo.mjs'
+// Wrap a title in curly quotes for an aria-label without doubling a quote the title already opens/closes with
+// (e.g. a title ending in a quote: Play “… “millions”” here → Play “… “millions” here).
+const qt = (t) => `“${esc(t)}”`.replace(/^““/, '“').replace(/””$/, '”')
 
 // ---- switches ----
 /** Double opt-in verified end to end (subscribe → email → confirm → unsubscribe). Flip to false to hide every signup surface. */
@@ -71,7 +74,7 @@ function thumb(a, { big = false, eager = false } = {}) {
   const inner = src ? posterImg(src, eager) : `<span class="tkick">${esc(kickerOf(a) || PLATFORM[e.type] || 'Clip')}</span>`
   const bits = `${inner}${e.type === 'truthsocial' ? QUOTE : PLAY}<span class="src">${esc(PLATFORM[e.type] || 'Clip')}</span>${dur(a)}`
   // YouTube-first clips play right in the tile (click-to-load facade; the link fallback is the YouTube page).
-  if (a.youtubeId) return `<a class="thumb facade${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(e.url)}" target="_blank" rel="noopener" data-type="youtube" data-id="${esc(id)}" data-start="${e.start || 0}" aria-label="Play “${esc(a.title)}” here">${bits}</a>`
+  if (a.youtubeId) return `<a class="thumb facade${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(e.url)}" target="_blank" rel="noopener" data-type="youtube" data-id="${esc(id)}" data-start="${e.start || 0}" aria-label="Play ${qt(a.title)} here">${bits}</a>`
   return `<div class="thumb${big ? ' big' : ''}${src ? '' : ' fb'}">${bits}</div>`
 }
 // Clip tiles land on the player (canonical URLs stay hash-free).
@@ -274,9 +277,9 @@ function facade(e, { big = false, label = '', poster: pst = null, kicker = '', a
     // shows up; if it hasn't after 4s, or widgets.js is blocked, the poster becomes a "Watch on X" button.
     // The blockquote stays invisible until then, so readers never see X's bare fallback link.
     const tw = url.replace('https://x.com/', 'https://twitter.com/')
-    return `<figure class="player xp${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<div class="xembed" data-x><blockquote class="twitter-tweet" data-dnt="true" data-align="center" data-conversation="none"><a href="${esc(tw)}">${esc(url)}</a></blockquote><a class="xph thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="Watch${e.title ? ` “${esc(e.title)}”` : ' the clip'} on X (opens in a new tab)">${poster}${PLAY}<span class="src">${plat}</span>${who ? `<span class="who">${who}</span>` : ''}<span class="xload" aria-hidden="true">Loading the post from X…</span><span class="xcta">Watch on X ↗</span></a></div>${credit}</figure>`
+    return `<figure class="player xp${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<div class="xembed" data-x><blockquote class="twitter-tweet" data-dnt="true" data-align="center" data-conversation="none"><a href="${esc(tw)}">${esc(url)}</a></blockquote><a class="xph thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="Watch${e.title ? ` ${qt(e.title)}` : ' the clip'} on X (opens in a new tab)">${poster}${PLAY}<span class="src">${plat}</span>${who ? `<span class="who">${who}</span>` : ''}<span class="xload" aria-hidden="true">Loading the post from X…</span><span class="xcta">Watch on X ↗</span></a></div>${credit}</figure>`
   }
-  return `<figure class="player${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-start="${e.start || 0}" data-url="${esc(url)}" aria-label="Play${e.title ? ` “${esc(e.title)}”` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span></a>${credit}</figure>`
+  return `<figure class="player${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-start="${e.start || 0}" data-url="${esc(url)}" aria-label="Play${e.title ? ` ${qt(e.title)}` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span></a>${credit}</figure>`
 }
 function sourcesBox(a) {
   return `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}</ol>${a.correction ? `<p class="corr">${esc(a.correction)}</p>` : ''}</section>`
