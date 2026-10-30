@@ -107,6 +107,171 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-alaska-ballot-190-iq-incumbent',
+    kind: 'clip',
+    ogKicker: '“ENTRANCE EXAM”',
+    ogPunch: 'IQ',
+    ogStamp: 'ON TAPE',
+    title: 'Trump says you need ‘about 190 IQ’ to figure out the Alaska ballot',
+    category: 'REPORTS',
+    date: '2026-10-30',
+    dek: 'Trump on the Alaska ballot: “You need about 190 IQ to figure out the ballot.” Then: “What does incumbent mean?”',
+    publishedAt: '2026-10-30T14:55:00+02:00',
+    topics: ['gaffes', 'lies'],
+    embed: {
+      type: 'x',
+      id: '2116123814253969819',
+      url: 'https://x.com/kcmotalkradio/status/2116123814253969819',
+      account: '@kcmotalkradio',
+      accountName: 'KCMO Talk Radio',
+    },
+    body: [
+      'Donald Trump has bad news for Alaska voters. The Senate ballot is an IQ test, and he has set the pass mark.',
+      'On Kansas City’s KCMO on Friday morning, asked about the second Dan Sullivan, Trump said, “I call him the fake Dan Sullivan.” Then he gave the entry requirement: “You need about 190 IQ to figure out the ballot.” Then he played the confused voter himself: “What does incumbent mean? I don’t know what incumbent means.” Per CBS News, the ballot lists the challenger first as “Sullivan, Daniel J. Jr.” and the senator under him as “Sullivan, Dan S.”, with “Registered Republican” and “Incumbent” printed next to his name.',
+      'The day before, at Joint Base Andrews, Trump told reporters he’s a high-IQ person. Then he predicted most people would be “inclined to vote for the Daniel.” The New York Times reported that people working with Mary Peltola’s campaign and the DSCC helped recruit the challenger. Both deny it. Trump calls it “a total fraud,” and his Justice Department has asked a judge to block certification if voter confusion affects the result.',
+      'Good news for the real Dan Sullivan, then: the word Trump says voters can’t decode is printed right next to his name.',
+    ],
+    sources: [
+      {
+        label: 'KCMO Talk Radio on X: full live broadcast of Mundo in the Morning with President Trump, 30 Oct 2026 (Alaska from 41:53)',
+        url: 'https://x.com/i/broadcasts/1dGYlaZbonYKX',
+      },
+      {
+        label: 'The White House on YouTube: President Trump Gaggles with Press Upon Departure from Joint Base Andrews, Oct. 29, 2026 (high-IQ line from 0:49)',
+        url: 'https://www.youtube.com/watch?v=KtQ0nbSIi2Y&t=49s',
+      },
+      {
+        label: 'Roll Call Factba.se: full transcript of the 29 Oct departure gaggle',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-press-gaggle-before-air-force-one-departure-october-29-2026/',
+      },
+      {
+        label: 'CBS News: Two Dan Sullivans, what to know about Alaska’s Senate race',
+        url: 'https://www.cbsnews.com/news/alaska-senate-two-dan-sullivans-mary-peltola/',
+      },
+      {
+        label: 'The New York Times: Inside Democrats’ secret effort to stack Alaska’s ballot with another Dan Sullivan',
+        url: 'https://www.nytimes.com/2026/10/28/us/politics/alaska-dan-sullivan-conspiracy-peltola.html',
+      },
+      {
+        label: 'CNBC: Peltola campaign aides helped recruit second Dan Sullivan, NYT reports',
+        url: 'https://www.cnbc.com/2026/10/28/mary-peltola-dan-sullivan-alaska-senate-campaign-recruitment.html',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-iran-didnt-start-the-war-minor-details',
+    kind: 'clip',
+    ogKicker: '“LITTLE PROBLEM”',
+    ogPunch: 'details',
+    ogStamp: 'ON TAPE',
+    title: 'Trump says he didn’t start the Iran war, and the missing leaders are ‘minor details’',
+    category: 'REPORTS',
+    date: '2026-10-30',
+    dek: 'Trump on Iran: “I didn’t start the war with Iran.” Their leaders are “so gone,” he said, “but these are minor details.”',
+    publishedAt: '2026-10-30T14:55:00+02:00',
+    topics: ['lies'],
+    embed: {
+      type: 'x',
+      id: '2116123814253969819',
+      url: 'https://x.com/kcmotalkradio/status/2116123814253969819',
+      account: '@kcmotalkradio',
+      accountName: 'KCMO Talk Radio',
+    },
+    body: [
+      'Donald Trump has found who started the Iran war, and it isn’t the president who launched it.',
+      'Asked on Kansas City’s KCMO on Friday morning what the endgame looks like, Trump said the war will “get wrapped up soon.” Then he set the record straight: “I didn’t start the war with Iran. They started the war with us.” He dated that to 1979 and ran through the USS Cole and Qassem Soleimani. Reuters reported on 28 February that the US and Israel had launched a “pre-emptive” attack on Iran, the start of this war.',
+      'Then he read out the scoreboard: 159 ships “at the bottom of the sea” and 268 airplanes in “little tiny pieces.” Those are his numbers. Then came the catch: Iran’s leaders, he said, are “so gone, we don’t know who to negotiate with, but these are minor details.” He still wants a deal, though: “We need a guarantee there’ll never be a nuclear weapon.”',
+      'On Tuesday it would end whenever he wanted. On Friday it ends “one way or the other,” with a guarantee from leaders he says are gone.',
+    ],
+    sources: [
+      {
+        label: 'KCMO Talk Radio on X: full live broadcast of Mundo in the Morning with President Trump, 30 Oct 2026 (Iran from 35:13)',
+        url: 'https://x.com/i/broadcasts/1dGYlaZbonYKX',
+      },
+      {
+        label: 'Reuters via Jerusalem Post: Iran war will get “wrapped up soon,” Trump says',
+        url: 'https://www.jpost.com/middle-east/iran-news/article-913344',
+      },
+      {
+        label: 'Reuters, 28 Feb 2026: US and Israel launch “pre-emptive” attack against Iran',
+        url: 'https://www.reuters.com/world/middle-east/israel-says-it-launched-pre-emptive-attack-against-iran-2026-02-28/',
+      },
+      {
+        label: 'AP: What led up to Trump’s decision to strike Iran',
+        url: 'https://apnews.com/article/iran-united-states-trump-strikes-6c602da7d44cb8c34fa1a9f85f352e4a',
+      },
+      {
+        label: 'GOP on YouTube: Trump’s Lubbock rally, Tue 27 Oct 2026 (Iran war “end” answer from 2:40:04)',
+        url: 'https://www.youtube.com/watch?v=Le8TmlgiLVY&t=9604s',
+      },
+      {
+        label: 'Faytuks Network on X: the “one way or the other” audio clip',
+        url: 'https://x.com/FaytuksNetwork/status/2116135438477852770',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-prices-lower-than-under-obama-and-biden-gas',
+    kind: 'clip',
+    ogKicker: '“PUMP CHECK”',
+    ogPunch: 'lower',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump says prices are lower than under Obama and Biden, with gas at $4.22',
+    category: 'REPORTS',
+    date: '2026-10-30',
+    dek: 'Trump, his claim: “our prices are lower than they were under Obama.” AAA’s national gas average: $4.22.',
+    publishedAt: '2026-10-30T14:55:00+02:00',
+    topics: ['lies', 'truth-social'],
+    embed: {
+      type: 'x',
+      id: '2116123814253969819',
+      url: 'https://x.com/kcmotalkradio/status/2116123814253969819',
+      account: '@kcmotalkradio',
+      accountName: 'KCMO Talk Radio',
+    },
+    body: [
+      'Donald Trump has checked the prices, and they’re lower than ever, as long as nobody checks them after him.',
+      'On Kansas City’s KCMO on Friday morning, in the middle of a riff on fuel, Trump promised the Iran war would end and said “we’re knocking the hell out of them.” Then came the price report, his claim: “our prices are lower than they were under Obama,” and “they’re lower than they were under Biden.”',
+      'AAA’s national gas average for regular was $4.22 on Thursday. That’s about $1.19 above the same day a year ago, per WRNJ’s write-up of AAA data, and a year ago he was already president. The Bureau of Labor Statistics says gasoline rose 34.2% in the year to September, and overall inflation went from 3.4% in August to 3.7% in September.',
+      'About an hour before the interview, on Truth Social: “INFLATION IS WAY DOWN UNDER “TRUMP.”” The scare quotes around his own name are his.',
+    ],
+    sources: [
+      {
+        label: 'KCMO Talk Radio on X: full live broadcast of Mundo in the Morning with President Trump, 30 Oct 2026 (prices from 33:42)',
+        url: 'https://x.com/i/broadcasts/1dGYlaZbonYKX',
+      },
+      {
+        label: 'Trump on Truth Social: “INFLATION IS WAY DOWN UNDER “TRUMP.””',
+        url: 'https://truthsocial.com/@realDonaldTrump/117529394978444089',
+      },
+      {
+        label: 'AAA: Gas prices dip before Halloween',
+        url: 'https://newsroom.aaa.com/2026/10/gas-prices-dip-before-halloween/',
+      },
+      {
+        label: 'WRNJ: Gas prices remain more than $1 higher than last year, AAA says',
+        url: 'https://wrnjradio.com/gas-prices-fall-ahead-of-halloween-but-remain-more-than-1-higher-than-last-year-aaa-says/',
+      },
+      {
+        label: 'BLS: Gasoline prices up 34.2 percent over the year ended September 2026',
+        url: 'https://www.bls.gov/opub/ted/2026/prices-for-gasoline-increased-34-2-percent-over-the-year-ended-september-2026.htm',
+      },
+      {
+        label: 'CNBC: September 2026 CPI report',
+        url: 'https://www.cnbc.com/2026/10/14/cpi-inflation-report-september-2026.html',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-lt-gen-brett-sylvia-shes-got-problems',
     kind: 'clip',
     youtubeId: 'KtQ0nbSIi2Y',
