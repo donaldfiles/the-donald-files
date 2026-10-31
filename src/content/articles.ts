@@ -98,6 +98,8 @@ export type ClipEmbed = {
   poster?: string
   /** truthsocial only: trumpstruth.org archive link for the quote card. */
   archiveUrl?: string
+  /** truthsocial only: 'image' when the post is an image (card note says so); default is a text post. */
+  truthType?: 'text' | 'image'
 }
 
 /** Site path for any post: clips live under /trump-videos/, files under /reports/. */
@@ -179,6 +181,7 @@ export const articles: Article[] = [
       account: '@realDonaldTrump',
       accountName: 'Donald Trump',
       archiveUrl: 'https://www.trumpstruth.org/statuses/42984',
+      truthType: 'image',
     },
     body: [
       'Donald Trump’s health, by his own account, is perfect. His evidence, once again, is a Reuters reporter.',
@@ -231,6 +234,7 @@ export const articles: Article[] = [
       account: '@realDonaldTrump',
       accountName: 'Donald Trump',
       archiveUrl: 'https://www.trumpstruth.org/statuses/42985',
+      truthType: 'image',
     },
     body: [
       'Five weeks after a deal reaffirming Danish sovereignty over Greenland, Donald Trump posted Greenland as a US aircraft carrier.',

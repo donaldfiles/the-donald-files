@@ -264,7 +264,7 @@ ${subband(topic ? `hub-${topic}` : 'hub')}`
 function facade(e, { big = false, label = '', poster: pst = null, kicker = '', anchor = false } = {}) {
   const who = e.accountName ? `${esc(e.accountName)}${e.account ? ` (${esc(e.account)})` : ''}` : esc(e.account || '')
   if (e.type === 'truthsocial') {
-    return `<figure class="player"${anchor ? ' id="play"' : ''}><div class="qcard"><p class="qsrc">Truth Social · ${who}</p><p class="qnote">A text post, not a video. Read it in full on the Trump’s Truth archive, which keeps a copy if the original disappears.</p><p class="qlinks"><a href="${esc(e.archiveUrl || e.url)}" target="_blank" rel="noopener noreferrer">Read the post (archive) ↗</a><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">Original on Truth Social ↗</a></p></div></figure>`
+    return `<figure class="player"${anchor ? ' id="play"' : ''}><div class="qcard"><p class="qsrc">Truth Social · ${who}</p><p class="qnote">${e.truthType === 'image' ? 'An image post' : 'A text post'}, not a video. Read it in full on the Trump’s Truth archive, which keeps a copy if the original disappears.</p><p class="qlinks"><a href="${esc(e.archiveUrl || e.url)}" target="_blank" rel="noopener noreferrer">Read the post (archive) ↗</a><a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">Original on Truth Social ↗</a></p></div></figure>`
   }
   const id = e.type === 'youtube' ? ytId(e) : e.id
   const url = e.url || e.youtubeUrl || `https://www.youtube.com/watch?v=${id}`
