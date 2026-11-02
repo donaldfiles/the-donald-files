@@ -141,3 +141,11 @@ iframe.yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(
 /* While the election strip is up (MIDTERMS_BANNER), the ticker's Latest pill goes navy outline: no red fill, no motion. */
 .live.calm{background:var(--paper);color:var(--text);box-shadow:inset 0 0 0 1.5px var(--text);animation:none;transition:none}
 .live.calm i{background:var(--text);box-shadow:none;animation:none}
+/* Midterms hub chips on phones: one sideways-scrolling, snapping row, no scrollbar, 24px off-white fade on the right. */
+@media (max-width:760px){
+ .mtchips{position:relative}
+ .mtchips .filt{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
+ .mtchips .filt::-webkit-scrollbar{display:none}
+ .mtchips .filt .chip{flex:none;scroll-snap-align:start}
+ .mtchips::after{content:"";position:absolute;top:0;right:-18px;bottom:0;width:24px;pointer-events:none;background:linear-gradient(to right,rgb(var(--paper-rgb) / 0),var(--paper))}
+}

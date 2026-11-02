@@ -193,9 +193,9 @@ const MIDTERMS_PATH = '/midterms-2026/'
 // Copy: Reed's neutral wording. No LIVE pill, countdown, vote counts or projections.
 const MIDTERMS_BANNER_COPY = 'Midterms 2026: Trump’s election, on tape'
 // Hub dek (meta description / share text) from Ink and intro (visible) from Ink, both gated by Reed.
-// Placeholders below block a production build (scripts/check-desk-notes.mjs) until replaced.
-const MIDTERMS_DEK = '[DEK PENDING GATE]'
-const MIDTERMS_INTRO = '[INTRO PENDING GATE]'
+// Reed-gated 2 Nov. Any [DEK/INTRO PENDING] placeholder here blocks a production build (scripts/check-desk-notes.mjs).
+const MIDTERMS_DEK = 'He’ll tell you how the midterms went. We’ll show you the tape, with his fraud claims set next to the official record.'
+const MIDTERMS_INTRO = 'He’ll tell you how the midterms went. We’ll show you the tape. Every clip here comes from an official upload, starting just before he speaks. Any fraud or rigging claim is labelled as his claim and set next to the official record. A race counts as won or lost only once AP has called it, and every call is linked. If a network has called a race and AP hasn’t, we say so. We don’t run vote counts or projections of our own. Newest first.'
 // Filter chips. A clip opts in with topics: [..., 'midterms'] and picks chips with midtermsTags: [...].
 const MIDTERMS_CHIPS = [['results', 'Results'], ['claims', 'His claims vs the record'], ['endorsees', 'Endorsees'], ['truth-social', 'Truth Social']]
 const midClips = clips.filter((c) => (c.topics || []).includes('midterms'))
@@ -222,7 +222,7 @@ function midtermsHub() {
     crumbLd(cr),
   ]
   const head = headTags({ title: title.replace(/ \| The Donald Files$/, ''), description: MIDTERMS_DEK, url, image: DEFAULT_OG, type: 'website', jsonLd: ld })
-  const chips = `<div class="chips filt" data-mtchips><button type="button" class="chip on" data-mt="" aria-pressed="true">All</button>${MIDTERMS_CHIPS.map(([k, n]) => `<button type="button" class="chip" data-mt="${k}" aria-pressed="false">${esc(n)}</button>`).join('')}</div>`
+  const chips = `<div class="mtchips"><div class="chips filt" data-mtchips><button type="button" class="chip on" data-mt="" aria-pressed="true">All</button>${MIDTERMS_CHIPS.map(([k, n]) => `<button type="button" class="chip" data-mt="${k}" aria-pressed="false">${esc(n)}</button>`).join('')}</div></div>`
   const tags = (a) => ` data-mttags="${esc(midTags(a).join(' '))}"`
   const leadHtml = lead
     ? `<section class="sec tight"><div class="wrap"><div class="mtlead"${tags(lead)}>${lead.embed ? facade(lead.embed, { big: true, poster: midTags(lead).includes('claims') ? null : lead.poster, kicker: kickerOf(lead) }) : ''}<div class="mtlb"><div class="tmeta">${kickerOf(lead) ? `<span class="kick">${esc(kickerOf(lead))}</span><span class="dot">·</span>` : ''}${timeEl(lead)}${datesFor(lead).hasTime ? `<span class="dot">·</span><span class="etc">${esc(clockET(pub(lead)))}</span>` : ''}</div><h2 class="fhed"><a href="${esc(hrefFor(lead))}">${punch(lead.title, lead.ogPunch)}</a></h2>${lead.dek ? `<p class="fdek">${esc(lead.dek)}</p>` : ''}</div></div></div></section>`
