@@ -159,7 +159,7 @@ function topbar(active) {
 }
 function ticker() {
   const items = posts.slice(0, 8)
-  return `<div class="ticker"><div class="wrap tk"><span class="live"><i></i>Latest</span><div class="tkrow">${items
+  return `<div class="ticker"><div class="wrap tk"><span class="live${MIDTERMS_BANNER ? ' calm' : ''}"><i></i>Latest</span><div class="tkrow">${items
     .map((a) => `<a class="ti" href="${esc(hrefFor(a))}">${timeEl(a, '')}${esc(a.title)}</a>`)
     .join('')}</div></div></div>`
 }
