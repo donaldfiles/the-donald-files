@@ -59,6 +59,7 @@ const urls = [
   { loc: `${SITE}/reports/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
   { loc: `${SITE}/trump-videos/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
   ...liveTopics(all).map((t) => ({ loc: `${SITE}/trump-videos/${t}/`, lastmod: latest, freq: 'daily', pri: '0.7' })),
+  { loc: `${SITE}/midterms-2026/`, lastmod: all.filter((a) => a.kind === 'clip' && (a.topics || []).includes('midterms')).map((a) => datesFor(a).modified).sort().pop() || latest, freq: 'hourly', pri: '0.8' },
   { loc: `${SITE}/the-record`, freq: 'daily', pri: '0.6' },
   { loc: `${SITE}/about`, freq: 'monthly', pri: '0.3' },
   { loc: `${SITE}/subscribe`, freq: 'monthly', pri: '0.4' },

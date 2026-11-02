@@ -176,4 +176,21 @@
     }, { rootMargin: '600px' })
     io.observe(document.querySelector('.pager'))
   }
+  // Midterms hub: tag chips filter the lead clip and grid in place (all clips render without JS).
+  var mtc = document.querySelector('[data-mtchips]')
+  if (mtc) {
+    mtc.addEventListener('click', function (ev) {
+      var b = ev.target.closest('button[data-mt]')
+      if (!b) return
+      var k = b.dataset.mt, n = 0
+      mtc.querySelectorAll('button[data-mt]').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false') })
+      document.querySelectorAll('[data-mttags]').forEach(function (el) {
+        var show = !k || (' ' + el.dataset.mttags + ' ').indexOf(' ' + k + ' ') > -1
+        el.hidden = !show
+        if (show) n++
+      })
+      var em = document.querySelector('[data-mtempty]')
+      if (em) em.hidden = n > 0
+    })
+  }
 })()

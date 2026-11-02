@@ -80,6 +80,8 @@ export type Article = {
   publishedAt?: string
   updatedAt?: string
   topics?: Topic[]
+  /** Midterms 2026 hub filter chips (only read when topics includes 'midterms'). */
+  midtermsTags?: MidtermsTag[]
   featured?: boolean
   /** Slug of the long-form file this clip belongs to. */
   relatedArticle?: string
@@ -87,7 +89,10 @@ export type Article = {
   relatedClips?: string[]
 }
 
-export type Topic = 'gaffes' | 'lies' | 'ballroom' | 'tariffs' | 'truth-social' | 'courts' | 'cruelty'
+export type Topic = 'gaffes' | 'lies' | 'ballroom' | 'tariffs' | 'truth-social' | 'courts' | 'cruelty' | 'midterms'
+
+/** /midterms-2026/ chips: Results, His claims vs the record, Endorsees, Truth Social. */
+export type MidtermsTag = 'results' | 'claims' | 'endorsees' | 'truth-social'
 
 export type ClipEmbed = {
   type: 'x' | 'youtube' | 'truthsocial'

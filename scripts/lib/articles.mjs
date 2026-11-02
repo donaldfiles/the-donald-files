@@ -150,6 +150,7 @@ export function extractArticles(text) {
       relatedArticle: ogStr('relatedArticle'),
       relatedClips: strList(block, 'relatedClips'),
       topics: strList(block, 'topics'),
+      midtermsTags: strList(block, 'midtermsTags'),
       unlisted: /\bunlisted:\s*true/.test(block),
       correction: ogStr('correction'),
       youtubeId: ogStr('youtubeId'),

@@ -66,10 +66,10 @@ const dur = (a) => (a.duration ? `<span class="dur">${esc(a.duration)}</span>` :
 function posterImg(src, eager) {
   return `<img class="poster" src="${esc(src)}" alt="" width="640" height="360" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`
 }
-function thumb(a, { big = false, eager = false } = {}) {
+function thumb(a, { big = false, eager = false, noPoster = false } = {}) {
   const e = a.embed || {}
   const id = e.type === 'youtube' ? ytId(e) : null
-  const src = a.poster || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null)
+  const src = (noPoster ? null : a.poster) || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null)
   // No image (e.g. a Truth Social text post): solid blue tile with the kicker. Never grey mock lines.
   const inner = src ? posterImg(src, eager) : `<span class="tkick">${esc(kickerOf(a) || PLATFORM[e.type] || 'Clip')}</span>`
   const bits = `${inner}${e.type === 'truthsocial' ? QUOTE : PLAY}<span class="src">${esc(PLATFORM[e.type] || 'Clip')}</span>${dur(a)}`
@@ -79,11 +79,12 @@ function thumb(a, { big = false, eager = false } = {}) {
 }
 // Clip tiles land on the player (canonical URLs stay hash-free).
 const playHref = (a) => (a.kind === 'clip' && a.embed ? `${hrefFor(a)}#play` : hrefFor(a))
-function tile(a, row = false) {
-  const meta = `<div class="tmeta">${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h3 class="thed">${punch(a.title, a.ogPunch)}</h3>`
+function tile(a, row = false, { et = false, noPoster = false, attrs = '' } = {}) {
+  const etClock = et && datesFor(a).hasTime ? `<span class="dot">·</span><span class="etc">${esc(clockET(pub(a)))}</span>` : ''
+  const meta = `<div class="tmeta">${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}${etClock}</div><h3 class="thed">${punch(a.title, a.ogPunch)}</h3>`
   const full = row ? ` title="${esc(a.title)}" aria-label="${esc(a.title)}"` : ''
-  if (a.youtubeId) return `<div class="tile ytile${row ? ' row' : ''}">${thumb(a)}<a class="tbody" href="${esc(hrefFor(a))}"${full}>${meta}</a></div>`
-  return `<a class="tile${row ? ' row' : ''}" href="${esc(playHref(a))}"${full}>${thumb(a)}<div class="tbody">${meta}</div></a>`
+  if (a.youtubeId) return `<div class="tile ytile${row ? ' row' : ''}"${attrs}>${thumb(a, { noPoster })}<a class="tbody" href="${esc(hrefFor(a))}"${full}>${meta}</a></div>`
+  return `<a class="tile${row ? ' row' : ''}" href="${esc(playHref(a))}"${full}${attrs}>${thumb(a, { noPoster })}<div class="tbody">${meta}</div></a>`
 }
 function feat(a) {
   const body = `<div class="tmeta"><span class="new" data-new hidden>New</span>${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h2 class="fhed">${punch(a.title, a.ogPunch)}</h2>${a.dek ? `<p class="fdek">${esc(a.dek)}</p>` : ''}`
@@ -174,9 +175,9 @@ function footer() {
 const JS = read('scripts/v5/client.js').replace(/^\s*\/\/[^\n]*\n/gm, '').replace(/\s*\n\s*/g, '\n')
 
 const TWJS = '<script async id="twjs" src="https://platform.twitter.com/widgets.js" charset="utf-8" onerror="window.__twFail=1"></script>'
-function page({ title, head, active, body, ticker: withTicker = false }) {
+function page({ title, head, active, body, ticker: withTicker = false, banner = false }) {
   if (body.includes('data-x>')) head += TWJS
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title>${head}<link rel="preload" href="/fonts/bricolage-700-800.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-400-700.woff2" as="font" type="font/woff2" crossorigin><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#FAF7F2"><style>${CSS}</style></head><body>${topbar(active)}${withTicker ? ticker() : ''}<main id="main">${body}</main>${footer()}<script>${JS}</script></body></html>`
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)}</title>${head}<link rel="preload" href="/fonts/bricolage-700-800.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/inter-400-700.woff2" as="font" type="font/woff2" crossorigin><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#FAF7F2"><style>${CSS}</style></head><body>${topbar(active)}${banner ? electionBanner() : ''}${withTicker ? ticker() : ''}<main id="main">${body}</main>${footer()}<script>${JS}</script></body></html>`
 }
 function write(rel, html) {
   const p = join(dist, rel)
@@ -184,6 +185,58 @@ function write(rel, html) {
   writeFileSync(p, html)
 }
 const latestMod = (list) => list.map((a) => datesFor(a).modified).sort().pop()
+
+// ---------- Midterms 2026 (Vex midterms-2026-spec.md, Reed 2 Nov) ----------
+/** Homepage election strip. Flip to false (or delete) once the desk stops election coverage. */
+const MIDTERMS_BANNER = true
+const MIDTERMS_PATH = '/midterms-2026/'
+// Copy: Reed's neutral wording. No LIVE pill, countdown, vote counts or projections.
+const MIDTERMS_BANNER_COPY = 'Midterms 2026: Trump’s election, on tape'
+// Hub dek (meta description / share text) from Ink and intro (visible) from Ink, both gated by Reed.
+// Placeholders below block a production build (scripts/check-desk-notes.mjs) until replaced.
+const MIDTERMS_DEK = '[DEK PENDING GATE]'
+const MIDTERMS_INTRO = '[INTRO PENDING GATE]'
+// Filter chips. A clip opts in with topics: [..., 'midterms'] and picks chips with midtermsTags: [...].
+const MIDTERMS_CHIPS = [['results', 'Results'], ['claims', 'His claims vs the record'], ['endorsees', 'Endorsees'], ['truth-social', 'Truth Social']]
+const midClips = clips.filter((c) => (c.topics || []).includes('midterms'))
+const midTags = (a) => [...new Set([...(a.midtermsTags || []), ...(a.embed?.type === 'truthsocial' ? ['truth-social'] : [])])].filter((t) => MIDTERMS_CHIPS.some(([k]) => k === t))
+// Fraud-claim tiles: the title leads with what he said ("Trump claims…") and the preview never carries a
+// chyron/crawl stating the claim, so 'claims' clips always use the plain YouTube thumbnail on the hub.
+{
+  const bad = midClips.filter((a) => midTags(a).includes('claims') && !/^Trump claims/i.test(a.title)).map((a) => a.slug)
+  if (bad.length) { console.error(`✖ midterms check: 'claims' clips must lead with "Trump claims…": ${bad.join(', ')}`); process.exit(1) }
+}
+function electionBanner() {
+  if (!MIDTERMS_BANNER) return ''
+  return `<a class="ebanner" href="${MIDTERMS_PATH}"><span class="wrap eb"><span class="ebt">${esc(MIDTERMS_BANNER_COPY)}</span><span class="eba" aria-hidden="true">→</span></span></a>`
+}
+function midtermsHub() {
+  const cr = [['Home', '/'], ['Trump Videos', '/trump-videos/'], ['Midterms 2026', MIDTERMS_PATH]]
+  const url = `${SITE}${MIDTERMS_PATH}`
+  const title = 'Trump Midterms 2026: Every Election Night Clip | The Donald Files'
+  const [lead, ...rest] = midClips
+  const updated = latestMod(midClips)
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title.replace(/ \| The Donald Files$/, ''), url, description: MIDTERMS_DEK, isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${SITE}/` }, ...(updated ? { dateModified: updated } : {}),
+      mainEntity: { '@type': 'ItemList', numberOfItems: midClips.length, itemListElement: midClips.map((a, k) => ({ '@type': 'ListItem', position: k + 1, url: urlFor(a) })) } },
+    crumbLd(cr),
+  ]
+  const head = headTags({ title: title.replace(/ \| The Donald Files$/, ''), description: MIDTERMS_DEK, url, image: DEFAULT_OG, type: 'website', jsonLd: ld })
+  const chips = `<div class="chips filt" data-mtchips><button type="button" class="chip on" data-mt="" aria-pressed="true">All</button>${MIDTERMS_CHIPS.map(([k, n]) => `<button type="button" class="chip" data-mt="${k}" aria-pressed="false">${esc(n)}</button>`).join('')}</div>`
+  const tags = (a) => ` data-mttags="${esc(midTags(a).join(' '))}"`
+  const leadHtml = lead
+    ? `<section class="sec tight"><div class="wrap"><div class="mtlead"${tags(lead)}>${lead.embed ? facade(lead.embed, { big: true, poster: midTags(lead).includes('claims') ? null : lead.poster, kicker: kickerOf(lead) }) : ''}<div class="mtlb"><div class="tmeta">${kickerOf(lead) ? `<span class="kick">${esc(kickerOf(lead))}</span><span class="dot">·</span>` : ''}${timeEl(lead)}${datesFor(lead).hasTime ? `<span class="dot">·</span><span class="etc">${esc(clockET(pub(lead)))}</span>` : ''}</div><h2 class="fhed"><a href="${esc(hrefFor(lead))}">${punch(lead.title, lead.ogPunch)}</a></h2>${lead.dek ? `<p class="fdek">${esc(lead.dek)}</p>` : ''}</div></div></div></section>`
+    : ''
+  const grid = rest.length ? `<div class="hgrid" data-grid>${rest.map((a) => tile(a, false, { et: true, noPoster: midTags(a).includes('claims'), attrs: tags(a) })).join('')}</div>` : ''
+  const empty = `<div class="mtempty"${midClips.length ? ' hidden' : ''} data-mtempty><p class="mteh">No election clips filed yet.</p><p>Clips land here once they clear the desk, newest first. Until then, <a href="/trump-videos/">every Trump video is here →</a></p></div>`
+  const seen = new Set()
+  const srcs = midClips.flatMap((a) => a.sources || []).filter((x) => (seen.has(x.url) ? false : seen.add(x.url)))
+  const srcHtml = `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2>${srcs.length ? `<ol>${srcs.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.label)}</a></li>`).join('')}</ol>` : '<p class="mtns">Every clip on this page carries its own sources; they collect here as clips are filed.</p>'}</section>`
+  const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">Midterms 2026</p><h1 class="h1">Trump vs. the <mark>Midterms</mark></h1><p class="intro">${esc(MIDTERMS_INTRO)}</p>${chips}<div class="sortrow"><span>Sort: <b>Newest</b></span><span>${midClips.length} clip${midClips.length === 1 ? '' : 's'}${updated ? ` · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>` : ''}</span></div></div></section>
+${leadHtml}<section class="sec tight"><div class="wrap">${grid}${empty}${srcHtml}</div></section>
+${subband('hub-midterms')}`
+  write(`${MIDTERMS_PATH.slice(1)}index.html`, page({ title, head, active: 'videos', body }))
+}
 
 // ---------- pages ----------
 function home() {
@@ -210,7 +263,7 @@ ${subband('home-band')}`
       { '@context': 'https://schema.org', '@type': 'Organization', name: SITE_NAME, url: `${SITE}/`, logo: DEFAULT_OG, description: FOOT_LINE },
     ],
   })
-  write('index.html', page({ title: 'Donald Trump Videos, Gaffes and Lies, Mocked | The Donald Files', head: head + verificationMeta(), active: 'videos', body, ticker: true }))
+  write('index.html', page({ title: 'Donald Trump Videos, Gaffes and Lies, Mocked | The Donald Files', head: head + verificationMeta(), active: 'videos', body, ticker: true, banner: MIDTERMS_BANNER }))
 }
 
 function paginate(list) {
@@ -412,6 +465,7 @@ cpSync(join(root, 'public'), dist, { recursive: true })
 home()
 hubPage({})
 for (const t of TOPICS) hubPage({ topic: t })
+midtermsHub()
 for (const a of clips) clipPage(a)
 for (const a of files) articlePage(a)
 latestPage()
@@ -427,4 +481,4 @@ if (UNLISTED.length) {
   writeFileSync(join(dist, '_redirects'), readFileSync(join(dist, '_redirects'), 'utf8').replace(/\n*$/, '\n') + '# unlisted\n' + lines.join('\n') + '\n')
 }
 writeFileSync(join(dist, '_routes.json'), JSON.stringify({ version: 1, include: ['/api/*', '/trump-videos', '/trump-videos/', ...TOPICS.flatMap((t) => [`/trump-videos/${t}`, `/trump-videos/${t}/`])], exclude: [] }, null, 2))
-console.log(`v5: home, hub + ${TOPICS.length} topic hubs (${TOPICS.join(', ')}), ${clips.length} clip pages, ${files.length} file pages, latest, record, about, subscribe, 404 · CSS ${(CSS.length / 1024).toFixed(1)}KB · per page ${PER_PAGE}`)
+console.log(`v5: home, hub + ${TOPICS.length} topic hubs (${TOPICS.join(', ')}), ${clips.length} clip pages, ${files.length} file pages, midterms (${midClips.length}), latest, record, about, subscribe, 404 · CSS ${(CSS.length / 1024).toFixed(1)}KB · per page ${PER_PAGE}`)
