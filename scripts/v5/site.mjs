@@ -355,8 +355,11 @@ function relatedFor(a) {
 const hubsFor = (a) => (a.topics || []).filter((t) => TOPICS.includes(t))
 function filedLine(a) {
   const hubs = hubsFor(a)
-  if (!hubs.length) return ''
-  return `<p class="filed">Filed under ${hubs.map((t) => `<a href="/trump-videos/${t}/">${esc(TOPIC_LABEL[t])}</a>`).join('<span aria-hidden="true"> · </span>')}</p>`
+  // Midterms clips also file under the /midterms-2026/ hub (not a TOPIC_LABEL topic, so add it by hand).
+  const links = hubs.map((t) => `<a href="/trump-videos/${t}/">${esc(TOPIC_LABEL[t])}</a>`)
+  if ((a.topics || []).includes('midterms')) links.push(`<a href="${MIDTERMS_PATH}">Midterms 2026</a>`)
+  if (!links.length) return ''
+  return `<p class="filed">Filed under ${links.join('<span aria-hidden="true"> · </span>')}</p>`
 }
 function relatedLinks(a) {
   const items = relatedFor(a)
