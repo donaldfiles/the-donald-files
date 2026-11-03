@@ -164,7 +164,7 @@ export const articles: Article[] = [
     category: 'REPORTS',
     date: '2026-11-03',
     dek: 'At 1:12am ET, Trump asked in all caps if Dan J. Sullivan had been “KIDNAPPED.” He offered no evidence. We found no missing-person report.',
-    publishedAt: '2026-11-03T14:48:00+02:00',
+    publishedAt: '2026-11-03T14:49:00+02:00',
     topics: ['truth-social', 'lies', 'midterms'],
     embed: {
       type: 'truthsocial',

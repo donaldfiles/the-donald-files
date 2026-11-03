@@ -61,13 +61,16 @@ const PLATFORM = { x: 'X', youtube: 'YouTube', truthsocial: 'Truth Social' }
 const ytId = (e) => e.id || /(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/.exec(e.youtubeUrl || e.embedUrl || '')?.[1]
 const PLAY = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32"/><path d="M26 20 L46 32 L26 44 Z"/></svg>'
 const QUOTE = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32"/><path d="M20 38c0-7 4-12 10-14l1 3c-3 1-5 4-5 6h5v9H20zm15 0c0-7 4-12 10-14l1 3c-3 1-5 4-5 6h5v9H35z"/></svg>'
+// Text-only Truth Social posts (no embed, no YouTube: the post text is never rendered) tile like any
+// other Truth Social post: QUOTE icon + "Truth Social" label, never the PLAY icon or a generic "Clip" label.
+const isTruthText = (a) => a.kind === 'clip' && !a.embed && !a.youtubeId && (a.topics || []).includes('truth-social')
 const dur = (a) => (a.duration ? `<span class="dur">${esc(a.duration)}</span>` : '')
 
 function posterImg(src, eager) {
   return `<img class="poster" src="${esc(src)}" alt="" width="640" height="360" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`
 }
 function thumb(a, { big = false, eager = false, noPoster = false } = {}) {
-  const e = a.embed || {}
+  const e = a.embed || (isTruthText(a) ? { type: 'truthsocial' } : {})
   const id = e.type === 'youtube' ? ytId(e) : null
   const src = (noPoster ? null : a.poster) || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null)
   // No image (e.g. a Truth Social text post): solid blue tile with the kicker. Never grey mock lines.
@@ -93,7 +96,7 @@ function feat(a) {
 }
 function card(a) {
   const t = (a.topics || [])[0]
-  return `<a class="card" href="${esc(hrefFor(a))}"><div class="cbar"><span class="kick">${esc(kickerOf(a))}</span><span class="file">File ${String(fileNo.get(a.slug) || 0).padStart(3, '0')}</span></div><h3 class="ched">${punch(a.title, a.ogPunch)}</h3><div class="cfoot"><span>${esc(t ? TOPIC_LABEL[t] : a.kind === 'clip' ? 'Clip' : 'File')}</span>${timeEl(a, '')}</div></a>`
+  return `<a class="card" href="${esc(hrefFor(a))}"><div class="cbar"><span class="kick">${esc(kickerOf(a))}</span><span class="file">File ${String(fileNo.get(a.slug) || 0).padStart(3, '0')}</span></div><h3 class="ched">${punch(a.title, a.ogPunch)}</h3><div class="cfoot"><span>${esc(t ? TOPIC_LABEL[t] : isTruthText(a) ? 'Truth Social' : a.kind === 'clip' ? 'Clip' : 'File')}</span>${timeEl(a, '')}</div></a>`
 }
 const chip = (t, on = false, arrow = true) => `<a class="chip${on ? ' on' : ''}" href="/trump-videos/${t}/"${on ? ' aria-current="page"' : ''}>${esc(TOPIC_LABEL[t])}${arrow ? '<span>→</span>' : ''}</a>`
 const crumbs = (items) =>
@@ -348,8 +351,8 @@ function relatedFor(a) {
   const out = []
   const add = (slug, label) => { const r = BY.get(slug); if (r && r !== a && !out.some(([, x]) => x === r)) out.push([label, r]) }
   if (a.relatedArticle) add(a.relatedArticle, 'Read the full file')
-  for (const s of a.relatedClips || []) add(s, a.kind === 'clip' ? 'Related clip' : 'Watch the clip')
-  for (const s of RELATED[a.slug] || []) { const r = BY.get(s); if (r) add(s, r.kind === 'clip' ? 'Related clip' : 'Related file') }
+  for (const s of a.relatedClips || []) add(s, isTruthText(BY.get(s) || {}) ? 'Related Truth Social post' : a.kind === 'clip' ? 'Related clip' : 'Watch the clip')
+  for (const s of RELATED[a.slug] || []) { const r = BY.get(s); if (r) add(s, isTruthText(r) ? 'Related Truth Social post' : r.kind === 'clip' ? 'Related clip' : 'Related file') }
   return out.slice(0, 4)
 }
 const hubsFor = (a) => (a.topics || []).filter((t) => TOPICS.includes(t))
@@ -438,7 +441,7 @@ function recordPage() {
   }
   const head = headTags({ title: 'The Record: every Trump file and clip, by date', description: 'The Donald Files record: every published file and clip about Donald Trump, by date, newest first.', url: `${SITE}/the-record`, image: DEFAULT_OG, type: 'website', jsonLd: crumbLd([['Home', '/'], ['The Record', '/the-record']]) })
   const body = `${crumbs([['Home', '/'], ['The Record', '/the-record']])}<section class="hubhead"><div class="wrap"><p class="kick">The Record</p><h1 class="h1">Everything we’ve <mark>filed</mark>, by date</h1></div></section><section class="sec tight"><div class="wrap rec">${[...groups]
-    .map(([day, list]) => `<h2>${esc(day)}</h2><ul>${list.map((a) => `<li><span class="rk">${a.kind === 'clip' ? 'Clip' : 'File'}</span><a href="${esc(hrefFor(a))}">${esc(a.title)}</a></li>`).join('')}</ul>`)
+    .map(([day, list]) => `<h2>${esc(day)}</h2><ul>${list.map((a) => `<li><span class="rk">${isTruthText(a) ? 'Truth Social' : a.kind === 'clip' ? 'Clip' : 'File'}</span><a href="${esc(hrefFor(a))}">${esc(a.title)}</a></li>`).join('')}</ul>`)
     .join('')}</div></section>`
   write('the-record.html', page({ title: 'The Record | The Donald Files', head, active: 'record', body }))
 }
