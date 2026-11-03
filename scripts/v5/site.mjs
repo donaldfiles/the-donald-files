@@ -204,8 +204,8 @@ const MIDTERMS_INTRO = 'He’ll tell you how the midterms went. We’ll show you
 const MIDTERMS_CHIPS = [['results', 'Results'], ['claims', 'His claims vs the record'], ['endorsees', 'Endorsees'], ['truth-social', 'Truth Social']]
 const midClips = clips.filter((c) => (c.topics || []).includes('midterms'))
 const midTags = (a) => [...new Set([...(a.midtermsTags || []), ...(a.embed?.type === 'truthsocial' ? ['truth-social'] : [])])].filter((t) => MIDTERMS_CHIPS.some(([k]) => k === t))
-// Fraud-claim tiles: the title leads with what he said ("Trump claims…") and the preview never carries a
-// chyron/crawl stating the claim, so 'claims' clips always use the plain YouTube thumbnail on the hub.
+// Fraud-claim tiles: the title leads with what he said ("Trump claims…"). On the hub, 'claims' clips use the
+// clip's own poster (the branded share card), never the YouTube thumbnail: network frames carry chyrons/crawls.
 {
   const bad = midClips.filter((a) => midTags(a).includes('claims') && !/^Trump claims/i.test(a.title)).map((a) => a.slug)
   if (bad.length) { console.error(`✖ midterms check: 'claims' clips must lead with "Trump claims…": ${bad.join(', ')}`); process.exit(1) }
@@ -229,9 +229,9 @@ function midtermsHub() {
   const chips = `<div class="mtchips"><div class="chips filt" data-mtchips><button type="button" class="chip on" data-mt="" aria-pressed="true">All</button>${MIDTERMS_CHIPS.map(([k, n]) => `<button type="button" class="chip" data-mt="${k}" aria-pressed="false">${esc(n)}</button>`).join('')}</div></div>`
   const tags = (a) => ` data-mttags="${esc(midTags(a).join(' '))}"`
   const leadHtml = lead
-    ? `<section class="sec tight"><div class="wrap"><div class="mtlead"${tags(lead)}>${lead.embed ? facade(lead.embed, { big: true, poster: midTags(lead).includes('claims') ? null : lead.poster, kicker: kickerOf(lead) }) : ''}<div class="mtlb"><div class="tmeta">${kickerOf(lead) ? `<span class="kick">${esc(kickerOf(lead))}</span><span class="dot">·</span>` : ''}${timeEl(lead)}${datesFor(lead).hasTime ? `<span class="dot">·</span><span class="etc">${esc(clockET(pub(lead)))}</span>` : ''}</div><h2 class="fhed"><a href="${esc(hrefFor(lead))}">${punch(lead.title, lead.ogPunch)}</a></h2>${lead.dek ? `<p class="fdek">${esc(lead.dek)}</p>` : ''}</div></div></div></section>`
+    ? `<section class="sec tight"><div class="wrap"><div class="mtlead"${tags(lead)}>${lead.embed ? facade(lead.embed, { big: true, poster: lead.poster, kicker: kickerOf(lead) }) : ''}<div class="mtlb"><div class="tmeta">${kickerOf(lead) ? `<span class="kick">${esc(kickerOf(lead))}</span><span class="dot">·</span>` : ''}${timeEl(lead)}${datesFor(lead).hasTime ? `<span class="dot">·</span><span class="etc">${esc(clockET(pub(lead)))}</span>` : ''}</div><h2 class="fhed"><a href="${esc(hrefFor(lead))}">${punch(lead.title, lead.ogPunch)}</a></h2>${lead.dek ? `<p class="fdek">${esc(lead.dek)}</p>` : ''}</div></div></div></section>`
     : ''
-  const grid = rest.length ? `<div class="hgrid" data-grid>${rest.map((a) => tile(a, false, { et: true, noPoster: midTags(a).includes('claims'), attrs: tags(a) })).join('')}</div>` : ''
+  const grid = rest.length ? `<div class="hgrid" data-grid>${rest.map((a) => tile(a, false, { et: true, attrs: tags(a) })).join('')}</div>` : ''
   const empty = `<div class="mtempty"${midClips.length ? ' hidden' : ''} data-mtempty><p class="mteh">No election clips filed yet.</p><p>Clips land here once they clear the desk, newest first. Until then, <a href="/trump-videos/">every Trump video is here →</a></p></div>`
   const seen = new Set()
   const srcs = midClips.flatMap((a) => a.sources || []).filter((x) => (seen.has(x.url) ? false : seen.add(x.url)))
