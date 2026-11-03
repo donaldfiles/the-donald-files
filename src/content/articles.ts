@@ -114,6 +114,52 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-claims-israel-aid-cut-off-end-of-year',
+    kind: 'clip',
+    youtubeId: 'v7oEGGCbn1s',
+    youtubeStart: 1113,
+    youtubeChannel: 'Fox News',
+    ogKicker: 'END OF YEAR',
+    ogPunch: 'aid',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump claims Israel’s aid “gets cut off at the end of the year”',
+    category: 'REPORTS',
+    date: '2026-11-03',
+    dek: 'Trump says Israel’s $4 billion “gets cut off at the end of the year.” The current U.S.-Israel aid deal runs to 2028.',
+    publishedAt: '2026-11-03T20:31:00+02:00',
+    topics: ['lies', 'midterms'],
+    midtermsTags: ['claims'],
+    embed: {
+      type: 'youtube',
+      id: 'v7oEGGCbn1s',
+      url: 'https://www.youtube.com/watch?v=v7oEGGCbn1s&t=1113s',
+      accountName: 'Fox News',
+    },
+    body: [
+      'Election Day morning, on Fox & Friends, Donald Trump was asked whether the U.S. was really cutting off aid to Israel. Trump put the figure at $4 billion, and made the announcement on Fox & Friends as voters headed to the polls.',
+      '“We are, but it gets cut off at the end of the year.” Why? “Because they don’t need it, Brian.” Israel, he said, “is a very thriving country.” And then the politics: he asked why the U.S. should “suffer the slings” from “lunatics,” naming Abdul El-Sayed, the Democratic Senate nominee in Michigan.',
+      'The idea, Trump claims, was Benjamin Netanyahu’s. “Can I be honest with you? He brought it up.” In Trump’s telling, Netanyahu said: “I think it would be appropriate if we do not receive aid.” And: “we reached an agreement on that.”',
+      'The record: the current U.S.-Israel agreement, signed in 2016, provides about $3.8 billion a year and runs through 2028, NBC and Fox report. NBC says it was not immediately clear which funding Trump meant, and Netanyahu’s office declined to comment. Fox says the timing and terms of any change have not been detailed. In January, Netanyahu said he hoped to “taper off” U.S. military aid over the next decade, per NBC. A decade, an end-of-year deadline. Close enough, on Election Day.',
+    ],
+    sources: [
+      {
+        label: 'Fox News on YouTube: Trump’s full Fox & Friends phone interview, Nov. 3, 2026',
+        url: 'https://www.youtube.com/watch?v=v7oEGGCbn1s&t=1113s',
+      },
+      {
+        label: 'NBC News: U.S. will stop $4B in aid to Israel at the end of the year, Trump says',
+        url: 'https://www.nbcnews.com/politics/2026-election/trump-says-us-will-stop-4b-military-aid-israel-end-2026-rcna607210',
+      },
+      {
+        label: 'Fox News: Trump says Israel will stop receiving $4B in US aid by year’s end',
+        url: 'https://www.foxnews.com/politics/trump-says-israel-stop-receiving-4b-us-aid-years-end-can-still-buy-weapons',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-claims-president-xi-excuse-hang-up-on-hannity',
     kind: 'clip',
     youtubeId: 'v7oEGGCbn1s',
