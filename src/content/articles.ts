@@ -114,6 +114,52 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-claims-president-xi-excuse-hang-up-on-hannity',
+    kind: 'clip',
+    youtubeId: 'v7oEGGCbn1s',
+    youtubeStart: 1617,
+    youtubeChannel: 'Fox News',
+    ogKicker: '“TRUE STORY”',
+    ogPunch: 'Xi',
+    ogStamp: 'ON TAPE',
+    title: 'Trump claims he uses President Xi to get Sean Hannity off the phone',
+    category: 'REPORTS',
+    date: '2026-11-03',
+    dek: 'Trump’s Hannity exit line: “I’m sorry, Sean, I have to go, President Xi is on the phone.” Then: “This is a true story.”',
+    publishedAt: '2026-11-03T20:30:00+02:00',
+    topics: ['lies', 'midterms'],
+    midtermsTags: ['claims'],
+    embed: {
+      type: 'youtube',
+      id: 'v7oEGGCbn1s',
+      url: 'https://www.youtube.com/watch?v=v7oEGGCbn1s&t=1617s',
+      accountName: 'Fox News',
+    },
+    body: [
+      'Election Day morning, Donald Trump phoned Fox & Friends for a final message. Near the end, Brian Kilmeade warned him that Sean Hannity could hear him, from his couch. Trump didn’t care, and told the room how he gets off the phone with him.',
+      'Hannity, he said, is “a professional talker.” So: “I’m sorry, President Xi is on the line.” He said Hannity asked, “you speak to him a lot, don’t you?” Then the full bit: “The only way I can cut him off is say, I’m sorry, Sean, I have to go, President Xi is on the phone.” Then: “This is a true story.”',
+      'Trump claims Hannity makes more than $100 million a year. That’s his number, offered with no source. The Xi calls are his account too. We can’t fact-check a fake phone call. Neither, apparently, can Hannity.',
+      'The president of the United States says he dodges Sean Hannity by name-dropping China’s leader. Hannity was, per Kilmeade, on the couch.',
+    ],
+    sources: [
+      {
+        label: 'Fox News on YouTube: Trump’s full Fox & Friends phone interview, Nov. 3, 2026',
+        url: 'https://www.youtube.com/watch?v=v7oEGGCbn1s&t=1617s',
+      },
+      {
+        label: 'Fox News: the same interview on Fox.com',
+        url: 'https://www.foxnews.com/video/6407843848112',
+      },
+      {
+        label: 'The Daily Beast: Trump’s Fox & Friends closing message, including the Hannity and Xi story',
+        url: 'https://www.thedailybeast.com/trump-rambles-about-killing-lots-of-people-in-deranged-closing-message',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-truth-social-el-sayed-12-52am-election-day-post',
     kind: 'clip',
     ogKicker: '“12:52AM”',
