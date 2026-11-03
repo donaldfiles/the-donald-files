@@ -64,6 +64,7 @@ const QUOTE = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle 
 // Text-only Truth Social posts (no embed, no YouTube: the post text is never rendered) tile like any
 // other Truth Social post: QUOTE icon + "Truth Social" label, never the PLAY icon or a generic "Clip" label.
 const isTruthText = (a) => a.kind === 'clip' && !a.embed && !a.youtubeId && (a.topics || []).includes('truth-social')
+const isTruth = (a) => isTruthText(a) || (a.embed || {}).type === 'truthsocial'
 const dur = (a) => (a.duration ? `<span class="dur">${esc(a.duration)}</span>` : '')
 
 function posterImg(src, eager) {
@@ -351,8 +352,8 @@ function relatedFor(a) {
   const out = []
   const add = (slug, label) => { const r = BY.get(slug); if (r && r !== a && !out.some(([, x]) => x === r)) out.push([label, r]) }
   if (a.relatedArticle) add(a.relatedArticle, 'Read the full file')
-  for (const s of a.relatedClips || []) add(s, isTruthText(BY.get(s) || {}) ? 'Related Truth Social post' : a.kind === 'clip' ? 'Related clip' : 'Watch the clip')
-  for (const s of RELATED[a.slug] || []) { const r = BY.get(s); if (r) add(s, isTruthText(r) ? 'Related Truth Social post' : r.kind === 'clip' ? 'Related clip' : 'Related file') }
+  for (const s of a.relatedClips || []) add(s, isTruth(BY.get(s) || {}) ? 'Related Truth Social post' : a.kind === 'clip' ? 'Related clip' : 'Watch the clip')
+  for (const s of RELATED[a.slug] || []) { const r = BY.get(s); if (r) add(s, isTruth(r) ? 'Related Truth Social post' : r.kind === 'clip' ? 'Related clip' : 'Related file') }
   return out.slice(0, 4)
 }
 const hubsFor = (a) => (a.topics || []).filter((t) => TOPICS.includes(t))
