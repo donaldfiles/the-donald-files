@@ -202,7 +202,8 @@ const MIDTERMS_DEK = 'He’ll tell you how the midterms went. We’ll show you t
 const MIDTERMS_INTRO = 'He’ll tell you how the midterms went. We’ll show you the tape. Every clip here comes from an official upload, starting just before he speaks. Any fraud or rigging claim is labelled as his claim and set next to the official record. A race counts as won or lost only once AP has called it, and every call is linked. If a network has called a race and AP hasn’t, we say so. We don’t run vote counts or projections of our own. Newest first.'
 // Filter chips. A clip opts in with topics: [..., 'midterms'] and picks chips with midtermsTags: [...].
 const MIDTERMS_CHIPS = [['results', 'Results'], ['claims', 'His claims vs the record'], ['endorsees', 'Endorsees'], ['truth-social', 'Truth Social']]
-const midClips = clips.filter((c) => (c.topics || []).includes('midterms'))
+// Midterms files (reports) sit on the hub too, e.g. the AP-called results file under the Endorsees chip.
+const midClips = posts.filter((c) => (c.topics || []).includes('midterms'))
 const midTags = (a) => [...new Set([...(a.midtermsTags || []), ...(a.embed?.type === 'truthsocial' ? ['truth-social'] : [])])].filter((t) => MIDTERMS_CHIPS.some(([k]) => k === t))
 // Fraud-claim tiles: the title leads with what he said ("Trump claims…"). On the hub, 'claims' clips use the
 // clip's own poster (the branded share card), never the YouTube thumbnail: network frames carry chyrons/crawls.
