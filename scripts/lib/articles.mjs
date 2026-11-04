@@ -209,6 +209,8 @@ export function liveTopics(all) {
 
 /** Fox-sourced clip (YouTube channel or embed account contains a FOX brand: Fox News and FOX affiliates, Reed 4 Nov; or the embed is an @FoxNews X post).
  *  Network frames carry chyrons/lower thirds, so these clips always use the branded share card as poster. */
+/** Any embed (main, "Before", inline extra player) whose channel/account name contains a FOX brand (Reed, 4 Nov). */
+export const isFoxEmbed = (e) => !!e && /\bfox\b/i.test([e.accountName, e.channel, e.youtubeChannel, e.account].filter(Boolean).join(' '))
 export const isFoxNews = (a) => /\bfox\b/i.test(a.youtubeChannel || '') || /\bfox\b/i.test(a.embed?.accountName || '') || /^@?foxnews$/i.test(a.embed?.account || '') || /(?:x|twitter)\.com\/foxnews\//i.test(a.embed?.url || '')
 
 /** Merge cached clip posters/durations (data/clip-media.json, from scripts/fetch-posters.mjs) into posts. */
@@ -217,6 +219,8 @@ export function attachMedia(all, metaPath) {
   try { meta = JSON.parse(readFileSync(metaPath, 'utf8')) } catch {}
   const mmss = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
   for (const a of all) {
+    // Secondary players from a FOX channel never show a FOX frame: poster = the post's share-card crop (generate-seo writes it).
+    if (a.embeds) a.embeds = a.embeds.map((e, i) => (isFoxEmbed(e) ? { ...e, poster: `/posters/${a.slug}--card.webp` } : e))
     if (a.kind !== 'clip') continue
     const m = meta[a.slug]
     if (m?.poster) a.poster = m.poster
@@ -226,6 +230,7 @@ export function attachMedia(all, metaPath) {
     if (!a.duration && a.durationSeconds) a.duration = mmss(a.durationSeconds)
     const b = meta[`${a.slug}--before`]
     if (a.beforeEmbed && b?.poster) a.beforeEmbed = { ...a.beforeEmbed, poster: b.poster }
+    if (isFoxEmbed(a.beforeEmbed)) a.beforeEmbed = { ...a.beforeEmbed, poster: `/posters/${a.slug}--before.webp` }
   }
   return all
 }
