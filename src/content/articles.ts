@@ -114,6 +114,302 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-endorsees-lose-democrats-take-congress',
+    ogKicker: 'THE RESULTS',
+    ogPunch: '11',
+    ogStamp: 'AP CALLED',
+    title: 'Democrats take the House and Senate, and Trump’s picks lose 11 AP-called races',
+    category: 'REPORTS',
+    date: '2026-11-04',
+    dek: 'Democrats take the House and Senate. Trump’s picks lost in Texas, Ohio, Georgia, Iowa, Kansas and the Carolinas, as of AP’s calls overnight.',
+    publishedAt: '2026-11-04T09:22:00+02:00',
+    topics: ['midterms', 'truth-social'],
+    midtermsTags: ['endorsees'],
+    relatedClips: ['trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-truth-social-blames-abbott-rino-fox-news'],
+    body: [
+      'On Election Day morning Donald Trump posted his endorsement slates, state by state, each name with his “Complete and Total Endorsement.” By the small hours of Wednesday, the Associated Press had called both chambers of Congress for Democrats, and a long list of the names on those slates had lost.',
+      'He spent the night explaining that none of it was about him. “I wasn’t on the Ballot,” he posted at 10:37pm ET.',
+      'What AP has called: AP called control of the House and the Senate for Democrats overnight (links in the source files below). In the races below, AP called the contest against the candidate Trump endorsed:',
+      'Texas Senate: James Talarico beat Ken Paxton.',
+      'Texas governor: Gina Hinojosa beat Greg Abbott.',
+      'South Carolina Senate: Annie Andrews beat Darline Graham.',
+      'Ohio Senate: Sherrod Brown beat Jon Husted.',
+      'Ohio governor: Amy Acton beat Vivek Ramaswamy.',
+      'North Carolina Senate: Roy Cooper beat Michael Whatley, whom AP describes as Trump’s handpicked candidate.',
+      'Kansas Senate: Adam Hamilton beat Roger Marshall, for whom Trump rallied twice in Kansas.',
+      'Iowa Senate: Josh Turek beat Ashley Hinson.',
+      'Iowa governor: Rob Sand beat Zach Lahn.',
+      'Georgia Senate: Jon Ossoff beat Mike Collins.',
+      'Georgia governor: Keisha Lance Bottoms beat Rick Jackson.',
+      'Those are the top-of-ticket names on his Election Day slates for Texas, Ohio, Georgia, Iowa, Kansas and the Carolinas, as of AP’s calls overnight. We count a race only once AP has called it; we don’t run projections or vote counts.',
+      'What he said instead:',
+      '10:37pm ET: “I wasn’t on the Ballot and if I was, we would have won IN A LANDSLIDE!” No evidence was offered for the landslide part, and there’s no ballot to check it against.',
+      '11:35pm ET: Abbott “wouldn’t have lost,” he wrote, if he “hadn’t become a RINO in the last six months of his Political Life.”',
+      '11:38pm ET: He announced he would “become a Political Pundit” on why candidates “won and lost.”',
+      '11:40pm ET: A picture of a red cap that says VETO.',
+      '11:52pm ET: “FoxNews bears responsibility for these losses.” Axios notes he offered no evidence for that.',
+      'To the New York Times, by phone, he said he was “absolutely willing” to accept the results and would probably “work something out” with the new majorities. Axios reports he told Politico he had spoken with Democratic leaders around 11pm ET. At 11:40pm ET came the VETO hat.',
+    ],
+    sources: [
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'AP: latest on Congress',
+        url: 'https://apnews.com/article/midterm-elections-house-senate-congress-trump-ef6199e25927a9ac9f4c18eae0e497cd',
+      },
+      {
+        label: 'AP: when AP called control of Congress',
+        url: 'https://apnews.com/article/when-ap-calls-congress-control-9dae62cdd7d776a20a26eab6fbd9b12c',
+      },
+      {
+        label: 'AP: Texas Senate (Talarico, Paxton)',
+        url: 'https://apnews.com/article/texas-senate-talarico-paxton-midterm-election-66df71a7c2bfa962cffd4134ef1a0364',
+      },
+      {
+        label: 'AP: Texas governor (Hinojosa, Abbott)',
+        url: 'https://apnews.com/article/texas-governor-election-hinojosa-abbott-c9a0ffa1ec3cd599f9bc304ae26268a2',
+      },
+      {
+        label: 'AP: South Carolina Senate (Andrews, Graham)',
+        url: 'https://apnews.com/article/darline-graham-annie-andrews-south-carolina-midterms-74fc0bf08f5822378fcfa2fe09377d69',
+      },
+      {
+        label: 'AP: Ohio Senate (Brown, Husted)',
+        url: 'https://apnews.com/article/election-2026-ohio-senate-brown-husted-9e7ae9e1715c0e8203614aea6f71666d',
+      },
+      {
+        label: 'AP: Ohio governor (Acton, Ramaswamy)',
+        url: 'https://apnews.com/article/ohio-governor-race-2026-election-ramaswamy-acton-ee7b1860b0b8905c55df27318755f7e3',
+      },
+      {
+        label: 'AP: North Carolina Senate (Cooper, Whatley)',
+        url: 'https://apnews.com/article/north-carolina-senate-roy-cooper-michael-whatley-6cc139bf37efe41050796457d3d57b74',
+      },
+      {
+        label: 'AP race call: Cooper wins North Carolina U.S. Senate',
+        url: 'https://apnews.com/article/race-call-cooper-wins-north-carolina-u-s-senate-aad6b36fe94e422baad0184776aca6d2',
+      },
+      {
+        label: 'AP: Kansas Senate (Hamilton, Marshall)',
+        url: 'https://apnews.com/article/senate-kansas-election-roger-marshall-adam-hamilton-7f09e5cc69e0ac8e618376e60ef311d8',
+      },
+      {
+        label: 'AP: Iowa Senate (Turek, Hinson)',
+        url: 'https://apnews.com/article/iowa-senate-hinson-turek-midterm-election-312fe1f8e1f4a569ae5f24312d873bcb',
+      },
+      {
+        label: 'AP: Iowa governor (Sand, Lahn)',
+        url: 'https://apnews.com/article/iowa-governor-election-rob-sand-zach-lahn-f047750beff005ec96ca9ae51b82045e',
+      },
+      {
+        label: 'AP: Georgia Senate (Ossoff, Collins)',
+        url: 'https://apnews.com/article/georgia-senate-ossoff-collins-midterm-election-32dad2d529f42d055326b9ea7df9ce05',
+      },
+      {
+        label: 'AP: Georgia governor (Lance Bottoms, Jackson)',
+        url: 'https://apnews.com/article/georgia-governor-lance-bottom-jackson-midterm-election-67c22a38b9a6e4cad5584aa44acf106f',
+      },
+      {
+        label: 'Trump’s Election Day endorsement slate: Georgia (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43463',
+      },
+      {
+        label: 'Trump’s Election Day endorsement slate: Iowa (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43467',
+      },
+      {
+        label: 'Trump’s Election Day endorsement slate: Kansas (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43468',
+      },
+      {
+        label: 'Trump’s Election Day endorsement slates: Texas, Ohio, South Carolina and North Carolina (The Baseline tracker)',
+        url: 'https://thebaseline.report/trump-social',
+      },
+      {
+        label: 'Washington Post: South Carolina Senate (Graham “hand-selected by President Donald Trump”)',
+        url: 'https://www.washingtonpost.com/elections/results/2026/11/03/south-carolina-senate-live-updates/',
+      },
+      {
+        label: 'KCUR: Trump’s second Kansas rally for Marshall',
+        url: 'https://www.kcur.org/politics-elections-and-government/2026-11-01/trump-visits-kansas-again-for-final-pitch-in-senate-race-that-could-decide-control-of-the-chamber-roger-marshall-adam-hamilton',
+      },
+      {
+        label: 'Trump on Truth Social, 3 Nov, 10:37pm ET',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556082339815131',
+      },
+      {
+        label: 'Archive: 10:37pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43480',
+      },
+      {
+        label: 'Trump on Truth Social, 11:35pm ET',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556309377726931',
+      },
+      {
+        label: 'Archive: 11:35pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43481',
+      },
+      {
+        label: 'Trump on Truth Social, 11:38pm ET',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556320287218255',
+      },
+      {
+        label: 'Archive: 11:38pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43482',
+      },
+      {
+        label: 'Trump on Truth Social, 11:40pm ET',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556328694376584',
+      },
+      {
+        label: 'Archive: 11:40pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43483',
+      },
+      {
+        label: 'Trump on Truth Social, 11:52pm ET',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556376518256698',
+      },
+      {
+        label: 'Archive: 11:52pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43484',
+      },
+      {
+        label: 'New York Times: Trump phone interview on the results',
+        url: 'https://www.nytimes.com/2026/11/03/us/politics/trump-midterm-election-results.html',
+      },
+      {
+        label: 'Axios: Trump and the midterm results',
+        url: 'https://www.axios.com/2026/11/04/trump-republicans-midterms-2026-landslide-blue-wave',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-truth-social-blames-abbott-rino-fox-news',
+    kind: 'clip',
+    ogKicker: '11:35PM ET',
+    ogPunch: 'blame',
+    ogStamp: 'NOT HIM',
+    title: 'Trump’s election-night blame list: Greg Abbott’s ‘RINO’ turn, then Fox News',
+    category: 'REPORTS',
+    date: '2026-11-04',
+    dek: 'Abbott wouldn’t have lost if he hadn’t become a RINO, Trump wrote. Then: FoxNews bears responsibility for these losses.',
+    publishedAt: '2026-11-04T09:21:00+02:00',
+    topics: ['truth-social', 'midterms'],
+    midtermsTags: ['truth-social'],
+    relatedArticle: 'trump-endorsees-lose-democrats-take-congress',
+    embed: {
+      type: 'truthsocial',
+      id: '117556309377726931',
+      url: 'https://truthsocial.com/@realDonaldTrump/117556309377726931',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43481',
+    },
+    body: [
+      'Greg Abbott was on Trump’s Election Day endorsement slate for Texas. AP called the governor’s race for Democrat Gina Hinojosa. At 11:35pm ET, Trump explained the loss without mentioning the endorsement: “If Greg Abbott, the Governor of Texas, hadn’t become a RINO in the last six months of his Political Life, he wouldn’t have lost. He went back to his original formula, and it wasn’t pretty!”',
+      'Three minutes later he announced he would “become a Political Pundit” on why candidates “won and lost.” At 11:52pm ET the punditry arrived: “FoxNews bears responsibility for these losses by constantly and consistently putting on the Dumocrat opposition, and worse.”',
+      'The record: Abbott ran as Trump’s endorsed candidate, and AP called the race against him. Trump’s endorsees also lost AP-called races in the Texas Senate race, Ohio, Georgia, Iowa, Kansas and both Carolinas. He blamed none of those on himself. Axios notes he gave no evidence for the Fox claim.',
+    ],
+    sources: [
+      {
+        label: 'Donald Trump on Truth Social: the 11:35pm ET Abbott post, 3 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556309377726931',
+      },
+      {
+        label: 'Trump’s Truth archive: 11:35pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43481',
+      },
+      {
+        label: 'Donald Trump on Truth Social: the 11:38pm ET pundit post',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556320287218255',
+      },
+      {
+        label: 'Trump’s Truth archive: 11:38pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43482',
+      },
+      {
+        label: 'Donald Trump on Truth Social: the 11:52pm ET Fox post',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556376518256698',
+      },
+      {
+        label: 'Trump’s Truth archive: 11:52pm ET post',
+        url: 'https://www.trumpstruth.org/statuses/43484',
+      },
+      {
+        label: 'AP: Texas governor (Hinojosa, Abbott)',
+        url: 'https://apnews.com/article/texas-governor-election-hinojosa-abbott-c9a0ffa1ec3cd599f9bc304ae26268a2',
+      },
+      {
+        label: 'Trump’s Election Day endorsement slates (Texas slate lists Greg Abbott for governor), The Baseline tracker',
+        url: 'https://thebaseline.report/trump-social',
+      },
+      {
+        label: 'Axios: Trump and the midterm results',
+        url: 'https://www.axios.com/2026/11/04/trump-republicans-midterms-2026-landslide-blue-wave',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-truth-social-wasnt-on-ballot-10-37pm',
+    kind: 'clip',
+    ogKicker: '10:37PM ET',
+    ogPunch: 'Ballot',
+    ogStamp: 'NOT ON BALLOT',
+    title: 'Trump’s 10:37pm post: ‘I wasn’t on the Ballot’',
+    category: 'REPORTS',
+    date: '2026-11-04',
+    dek: 'At 10:37pm ET Trump posted he’d have won IN A LANDSLIDE had he been on the ballot. AP called Congress for Democrats.',
+    publishedAt: '2026-11-04T09:20:00+02:00',
+    topics: ['truth-social', 'midterms'],
+    midtermsTags: ['truth-social'],
+    relatedArticle: 'trump-endorsees-lose-democrats-take-congress',
+    embed: {
+      type: 'truthsocial',
+      id: '117556082339815131',
+      url: 'https://truthsocial.com/@realDonaldTrump/117556082339815131',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43480',
+    },
+    body: [
+      'At 10:37pm ET on election night, with the results going the wrong way for his side, Donald Trump posted: “I wasn’t on the Ballot and if I was, we would have won IN A LANDSLIDE! Thank you for your attention to this matter.”',
+      'The record: he wasn’t on the ballot, so there is nothing to check the landslide against, and he offered no evidence for it. What did happen is on the record: AP called control of the House and the Senate for Democrats, and his endorsed candidates lost AP-called Senate and governor races in Texas, Ohio, Georgia, Iowa, Kansas and both Carolinas. Shortly before that post, he told the New York Times by phone that he was “absolutely willing” to accept the results.',
+    ],
+    sources: [
+      {
+        label: 'Donald Trump on Truth Social: the 10:37pm ET post, 3 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556082339815131',
+      },
+      {
+        label: 'Trump’s Truth archive: post of 3 Nov 2026, 10:37pm ET',
+        url: 'https://www.trumpstruth.org/statuses/43480',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'New York Times: Trump phone interview on the results',
+        url: 'https://www.nytimes.com/2026/11/03/us/politics/trump-midterm-election-results.html',
+      },
+      {
+        label: 'Axios: Trump and the midterm results',
+        url: 'https://www.axios.com/2026/11/04/trump-republicans-midterms-2026-landslide-blue-wave',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-claims-israel-aid-cut-off-end-of-year',
     kind: 'clip',
     youtubeId: 'v7oEGGCbn1s',
