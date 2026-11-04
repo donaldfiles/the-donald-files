@@ -151,7 +151,7 @@
     var gone = ls('tdf_subscribed') === '1' || Number(ls('tdf_clipbar_dismissed') || 0) > Date.now()
     if (!gone) {
       var vis = { play: !!cplay, card: false, band: false }, dead = false
-      var upd = function () { var show = !dead && !vis.play && !vis.card && !vis.band; cbar.hidden = !show; document.body.classList.toggle('hasbar', show) }
+      var upd = function () { var show = ls('tdf_subscribed') !== '1' && !dead && !vis.play && !vis.card && !vis.band; cbar.hidden = !show; document.body.classList.toggle('hasbar', show) }
       var io = new IntersectionObserver(function (es) { es.forEach(function (e) { vis[e.target === cplay ? 'play' : e.target === ccard ? 'card' : 'band'] = e.isIntersecting }); upd() })
       if (cplay) io.observe(cplay); io.observe(ccard)
       var band = document.getElementById('subscribe'); if (band) io.observe(band)
