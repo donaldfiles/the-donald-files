@@ -207,9 +207,9 @@ export function liveTopics(all) {
   return TOPIC_ORDER.filter((t) => used.has(t))
 }
 
-/** Fox News-sourced clip (YouTube channel or embed account is Fox News, or the embed is an @FoxNews X post).
+/** Fox-sourced clip (YouTube channel or embed account contains a FOX brand: Fox News and FOX affiliates, Reed 4 Nov; or the embed is an @FoxNews X post).
  *  Network frames carry chyrons/lower thirds, so these clips always use the branded share card as poster. */
-export const isFoxNews = (a) => /^fox news\b/i.test(a.youtubeChannel || '') || /^fox news\b/i.test(a.embed?.accountName || '') || /^@?foxnews$/i.test(a.embed?.account || '') || /(?:x|twitter)\.com\/foxnews\//i.test(a.embed?.url || '')
+export const isFoxNews = (a) => /\bfox\b/i.test(a.youtubeChannel || '') || /\bfox\b/i.test(a.embed?.accountName || '') || /^@?foxnews$/i.test(a.embed?.account || '') || /(?:x|twitter)\.com\/foxnews\//i.test(a.embed?.url || '')
 
 /** Merge cached clip posters/durations (data/clip-media.json, from scripts/fetch-posters.mjs) into posts. */
 export function attachMedia(all, metaPath) {
