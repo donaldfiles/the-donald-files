@@ -173,6 +173,15 @@ function subband(source) {
 }
 const subForm = (source) =>
   `<form class="sbf" data-sub="${esc(source)}" action="/api/subscribe" method="post"><label class="sbl" for="em-${esc(source)}">Your email address</label><input id="em-${esc(source)}" type="email" name="email" required autocomplete="email"><input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><input type="hidden" name="t" value=""><button type="submit">Subscribe</button><p class="sbmsg" data-msg role="status"></p></form>`
+// Clip-page signup card (under the player) + sticky bar (clip-digest-signup-spec.md, Reed 3 Nov). Hidden when SUBSCRIBE_LIVE=false.
+function clipSubCard(slug) {
+  if (!SUBSCRIBE_LIVE) return ''
+  return `<section class="clipsub" id="clipsub" data-barsrc="${esc(`clipbar-${slug}`.slice(0, 64))}"><h2 class="csh">Get the worst of him, <mark>daily</mark>.</h2>${subForm(`clipcard-${slug}`.slice(0, 64))}<p class="csf">One email a day. Unsubscribe in one click.</p></section>`
+}
+function clipSubBar() {
+  if (!SUBSCRIBE_LIVE) return ''
+  return `<div class="clipbar" data-clipbar hidden><p class="cbt">The worst of him, daily.</p><a class="cbb" href="#clipsub" data-cbgo>Get the digest</a><button class="cbx" type="button" data-cbx aria-label="Dismiss">×</button></div>`
+}
 function footer() {
   return `<footer class="foot"><div class="wrap fgrid"><div><div class="logo big">The <mark>Donald</mark> Files</div><p class="fline">${esc(FOOT_LINE)}</p></div><div><h4>Watch</h4><a href="/trump-videos/">Trump Videos</a><a href="/reports/">Latest</a><a href="/#memes">Meme Zone</a></div><div><h4>Topics</h4>${TOPICS.map((t) => `<a href="/trump-videos/${t}/">${esc(TOPIC_LABEL[t])}</a>`).join('')}</div><div><h4>Desk</h4><a href="/the-record">The Record</a><a href="/about">About</a>${SUBSCRIBE_LIVE ? '<a href="/subscribe">Subscribe</a>' : ''}<a href="/rss.xml">RSS</a></div></div><div class="wrap fbase"><span>© ${new Date().getFullYear()} The Donald Files</span><span>thedonaldfiles.com</span></div></footer>`
 }
@@ -399,11 +408,12 @@ function clipPage(a) {
   const head = headTags({ title: a.seoTitle || a.title, description: a.seoDescription || a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: isVideo ? 'video.other' : 'article', published: d.published, modified: d.modified, section: 'Trump Videos', jsonLd: ld })
   const body = `${crumbs(cr.map(([n, h], i) => (i === cr.length - 1 ? ['This clip', h] : [n, h])))}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}${filedLine(a)}
 ${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a), anchor: true }) : ''}${a.xEmbed ? `<p class="alsox">Also on X: <a href="${esc(a.xEmbed.url)}" target="_blank" rel="noopener">${esc(a.xEmbed.accountName || a.xEmbed.account || 'the original post')}${a.xEmbed.account && a.xEmbed.accountName ? ` (${esc(a.xEmbed.account)})` : ''} ↗</a></p>` : ''}
+${clipSubCard(a.slug)}
 <div class="prose">${a.body.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
 ${a.beforeEmbed ? facade(a.beforeEmbed, { label: `Before · ${esc(a.beforeEmbed.label || '')}` }) : ''}
 ${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>
 <section class="sec"><div class="wrap"><div class="shead"><div><h2 class="stitle">More <mark>clips</mark></h2></div><a class="more" href="/trump-videos/">All Trump videos →</a></div><div class="cwr">${related.map((c) => tile(c)).join('')}</div><div class="chips topchips">${TOPICS.map((x) => chip(x)).join('')}</div></div></section>
-${subband(`clip-${a.slug}`.slice(0, 64))}`
+${subband(`clip-${a.slug}`.slice(0, 64))}${clipSubBar()}`
   write(`trump-videos/${a.slug}/index.html`, page({ title: `${a.seoTitle || a.title} | ${isVideo ? 'Trump Video' : 'Trump Watch'} | The Donald Files`, head, active: 'videos', body }))
 }
 

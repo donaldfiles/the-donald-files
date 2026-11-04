@@ -133,7 +133,7 @@
         .then(function (r) { return r.json() })
         .then(function (j) {
           msg.textContent = j.message || 'Done.'
-          if (j.ok) { f.elements.email.value = ''; b.dataset.state = 'sent'; b.textContent = 'Check your inbox' }
+          if (j.ok) { f.elements.email.value = ''; b.dataset.state = 'sent'; b.textContent = 'Check your inbox'; try { localStorage.setItem('tdf_subscribed', '1') } catch (e) {} var cbar = document.querySelector('[data-clipbar]'); if (cbar) cbar.hidden = true; document.body.classList.remove('hasbar') }
           else f.dataset.state = 'error'
         })
         .catch(function () { f.dataset.state = 'error'; msg.textContent = 'Something broke on our end. Try again in a minute.' })
@@ -144,6 +144,26 @@
         })
     })
   })
+  // Clip-page sticky digest bar: shows once the player is out of view, hides while the card or bottom band is on screen.
+  var cbar = document.querySelector('[data-clipbar]'), ccard = document.getElementById('clipsub'), cplay = document.getElementById('play')
+  if (cbar && ccard && 'IntersectionObserver' in window) {
+    var ls = function (k) { try { return localStorage.getItem(k) } catch (e) { return null } }
+    var gone = ls('tdf_subscribed') === '1' || Number(ls('tdf_clipbar_dismissed') || 0) > Date.now()
+    if (!gone) {
+      var vis = { play: !!cplay, card: false, band: false }, dead = false
+      var upd = function () { var show = !dead && !vis.play && !vis.card && !vis.band; cbar.hidden = !show; document.body.classList.toggle('hasbar', show) }
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { vis[e.target === cplay ? 'play' : e.target === ccard ? 'card' : 'band'] = e.isIntersecting }); upd() })
+      if (cplay) io.observe(cplay); io.observe(ccard)
+      var band = document.getElementById('subscribe'); if (band) io.observe(band)
+      cbar.querySelector('[data-cbx]').addEventListener('click', function () { dead = true; try { localStorage.setItem('tdf_clipbar_dismissed', String(Date.now() + 7 * 864e5)) } catch (e) {} upd() })
+      cbar.querySelector('[data-cbgo]').addEventListener('click', function (ev) {
+        ev.preventDefault()
+        var f = ccard.querySelector('form[data-sub]'); if (f && ccard.dataset.barsrc) f.dataset.sub = ccard.dataset.barsrc
+        ccard.scrollIntoView({ block: 'center', behavior: 'smooth' })
+        var inp = ccard.querySelector('input[type=email]'); if (inp) setTimeout(function () { inp.focus({ preventScroll: true }) }, 350)
+      })
+    }
+  }
   var st = document.querySelector('[data-status]')
   if (st) {
     var copy = {
