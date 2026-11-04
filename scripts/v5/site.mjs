@@ -488,5 +488,6 @@ if (UNLISTED.length) {
   const lines = UNLISTED.flatMap((a) => { const h = hrefFor(a); return [`${h.replace(/\/$/, '')}  ${to(a)}  301`, `${h}  ${to(a)}  301`] })
   writeFileSync(join(dist, '_redirects'), readFileSync(join(dist, '_redirects'), 'utf8').replace(/\n*$/, '\n') + '# unlisted\n' + lines.join('\n') + '\n')
 }
-writeFileSync(join(dist, '_routes.json'), JSON.stringify({ version: 1, include: ['/api/*', '/trump-videos', '/trump-videos/', ...TOPICS.flatMap((t) => [`/trump-videos/${t}`, `/trump-videos/${t}/`])], exclude: [] }, null, 2))
+// '/*' so functions/_middleware.js can 301 the bare pages.dev host on every page path; static binaries (fonts/posters/og/memes) stay function-free to save invocations.
+writeFileSync(join(dist, '_routes.json'), JSON.stringify({ version: 1, include: ['/*'], exclude: ['/fonts/*', '/posters/*', '/og/*', '/memes/*'] }, null, 2))
 console.log(`v5: home, hub + ${TOPICS.length} topic hubs (${TOPICS.join(', ')}), ${clips.length} clip pages, ${files.length} file pages, midterms (${midClips.length}), latest, record, about, subscribe, 404 · CSS ${(CSS.length / 1024).toFixed(1)}KB · per page ${PER_PAGE}`)
