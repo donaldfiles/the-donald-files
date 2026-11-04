@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { join } from 'node:path'
-import { extractArticles } from './lib/articles.mjs'
+import { extractArticles, isFoxNews } from './lib/articles.mjs'
 
 const root = new URL('..', import.meta.url).pathname
 const out = join(root, 'public', 'posters')
@@ -45,6 +45,7 @@ let got = 0
 for (const a of clips) {
   for (const [key, e] of [[a.slug, a.embed], [`${a.slug}--before`, a.beforeEmbed]]) {
     if (!e || (e.type !== 'x' && e.type !== 'youtube')) continue
+    if (key === a.slug && isFoxNews(a)) continue // never a Fox frame: generate-seo writes the share-card poster
     const file = join(out, `${key}.webp`)
     const want = e.type === 'youtube' ? `youtube:${ytId(e)}` : `x:${e.id}`
     const have = meta[key]?.source === 'youtube' && e.type === 'youtube' ? want : meta[key]?.source === 'x' && e.type === 'x' ? want : meta[key]?.source
