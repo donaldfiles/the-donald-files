@@ -21,3 +21,7 @@ Deploy: `cd digest && npx wrangler deploy`
 ## Subscriber counts
 
 > Count rule: subscriber counts exclude internal addresses (donaldfiles+*@proton.me and the owner dearziva.co.za address) and source=test rows; shared SQL rule `public.df_is_internal_email()` (migration 0004).
+
+## Analytics
+
+> Analytics source: Cloudflare Web Analytics numbers come from the Pages-project WA site entry 'the-donald-files.pages.dev +2' (auto-injected, token 37c26f67…), not the thedonaldfiles.com site entry. No manual beacon in the layout (reverted in 3072a96).

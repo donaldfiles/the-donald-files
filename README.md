@@ -120,3 +120,7 @@ https://t.me/thedonaldfiles
   - Each RPC checks a shared secret against a sha256 hash kept in `private.df_config`.
 - **Abuse protection:** a honeypot field, a 2-second minimum fill time, a cap of 5 attempts per IP per hour, a 10-minute resend cooldown per email, and a cap of 5 sends per email.
 - **Pages secrets:** `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `DF_RPC_SECRET`, `DF_UNSUB_SECRET`, `RESEND_API_KEY` (sending-only key, restricted to thedonaldfiles.com) and `MAIL_FROM`.
+
+## Analytics
+
+> Analytics source: Cloudflare Web Analytics numbers come from the Pages-project WA site entry 'the-donald-files.pages.dev +2' (auto-injected, token 37c26f67…), not the thedonaldfiles.com site entry. No manual beacon in the layout (reverted in 3072a96).
