@@ -8,3 +8,6 @@
 /trump-videos/trump-ukraine-mostly-soldiers-die/ /trump-videos/trump-ukraine-town-that-got-hit-or-whatever/  301
 /trump-reports/trump-endorsees-lose-democrats-take-congress  /reports/trump-endorsees-lose-democrats-take-congress/  301
 /trump-reports/trump-endorsees-lose-democrats-take-congress/ /reports/trump-endorsees-lose-democrats-take-congress/  301
+/trump-reports                  /reports/  301
+/trump-reports/                 /reports/  301
+/trump-reports/*                /reports/:splat  301

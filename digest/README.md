@@ -17,3 +17,7 @@ Test (sends only to rows with source = 'test'; re-confirm the bot inbox row firs
     curl -X POST -H "Authorization: Bearer $(cat /home/box/.config/donaldfiles/digest-secret)" https://donaldfiles-digest.donaldfiles.workers.dev/run-test
 Preview HTML: GET /preview (same auth), `?text` for the plain-text part.
 Deploy: `cd digest && npx wrangler deploy`
+
+## Subscriber counts
+
+> Count rule: subscriber counts exclude internal addresses (donaldfiles+*@proton.me and the owner dearziva.co.za address) and source=test rows; shared SQL rule `public.df_is_internal_email()` (migration 0004).
