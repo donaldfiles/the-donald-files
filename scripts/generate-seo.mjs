@@ -7,7 +7,7 @@ import { mkdirSync, writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { openRenderer, cardParams } from './lib/share-card.mjs'
-import { extractArticles, fileNumbers, liveTopics, attachMedia, isFoxNews, isFoxEmbed } from './lib/articles.mjs'
+import { extractArticles, fileNumbers, liveTopics, attachMedia, isFoxNews, isFoxEmbed, usesShareCardPoster } from './lib/articles.mjs'
 import {
   SITE, SITE_NAME, SITE_DESC, DEFAULT_OG, esc, urlFor, articleOg, datesFor, embedUrlFor,
 
@@ -62,7 +62,7 @@ await renderer.close()
   const swapped = []
   // Targets: main FOX clip poster (<slug>), FOX "Before" player (<slug>--before), FOX inline extra players (<slug>--card).
   const targets = all.filter((x) => !ogFailed.includes(x.slug)).flatMap((x) => [
-    ...(x.kind === 'clip' && isFoxNews(x) ? [[x, x.slug]] : []),
+    ...(x.kind === 'clip' && usesShareCardPoster(x) ? [[x, x.slug]] : []),
     ...(x.kind === 'clip' && isFoxEmbed(x.beforeEmbed) ? [[x, `${x.slug}--before`]] : []),
     ...((x.embeds || []).some(isFoxEmbed) ? [[x, `${x.slug}--card`]] : []),
   ])

@@ -74,6 +74,8 @@ export type Article = {
   youtubeStart?: number
   /** Uploader's channel name for the credit, e.g. 'The White House'. */
   youtubeChannel?: string
+  /** Frame carries a chyron/banner (e.g. White House "Text POTUS" lower third): use the share card as the poster, like Fox. */
+  posterShareCard?: boolean
   /** ClipPost: duration in seconds (for ISO 8601 PT…S). */
   durationSeconds?: number
   /** ClipPost: when we published, ISO with offset. */
@@ -282,6 +284,223 @@ export const articles: Article[] = [
       {
         label: 'Axios: Trump and the midterm results',
         url: 'https://www.axios.com/2026/11/04/trump-republicans-midterms-2026-landslide-blue-wave',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-truth-social-clocks-post-rewrites-october-push',
+    kind: 'clip',
+    ogKicker: '6:33PM ET',
+    ogPunch: 'clocks',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump’s clocks post: dark by 5:31pm, and a new history of his October push',
+    category: 'REPORTS',
+    date: '2026-11-04',
+    dek: 'Trump says he “didn’t want to make a big deal out of this prior to the Election.” On 3 October he posted Cotton’s cellphone number.',
+    publishedAt: '2026-11-04T14:42:00+02:00',
+    topics: ['truth-social', 'midterms', 'lies'],
+    midtermsTags: ['truth-social'],
+    relatedArticle: 'trump-endorsees-lose-democrats-take-congress',
+    embed: {
+      type: 'truthsocial',
+      id: '117560785494219046',
+      url: 'https://truthsocial.com/@realDonaldTrump/117560785494219046',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43487',
+    },
+    relatedClips: ['trump-daylight-saving-time-criminals-morning'],
+    body: [
+      'The day after his party lost Congress, Trump went to Truth Social at 6:33pm ET with the real emergency: “It’s so dark outside, so early (Sunset was 5:06 P.M., and it was dark by 5:31 P.M. — Isn’t that ridiculous?).” The culprit is the Senate, which hasn’t passed the Sunshine Protection Act, “or, the I Don’t Want to Change My Clocks Anymore Act.”',
+      'Then came the backstory. “I didn’t want to make a big deal out of this prior to the Election because I didn’t want to have certain Senators lose their Race, in a landslide.” He didn’t say which Senators, or how a clocks bill would sink them.',
+      'The record: on 3 October he posted Sen. Tom Cotton’s cellphone number and wrote “HAVE THE SENATE VOTE, NOW!” (AP). That was a month before the election, and it is what a big deal looks like. We’re not reprinting the number.',
+      'He also says the House sent the bill over “numerous times (308-117).” The House clerk shows one vote at 308-117: H.R. 139, on 14 July 2026. “We have far bigger priorities,” he added, “but I will keep fighting for this!” Noted.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 6:33pm ET post, 4 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117560785494219046',
+      },
+      {
+        label: 'Truth Social: Trump’s 6:33pm ET post, 4 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43487',
+      },
+      {
+        label: 'AP: Trump posts cell phone number for GOP Sen. Tom Cotton in time spat',
+        url: 'https://apnews.com/article/trump-tom-cotton-daylight-saving-time-cellphone-4c92c5171df81d0bb674a831fad49bc9',
+      },
+      {
+        label: 'The Hill: Trump posts Tom Cotton’s phone number',
+        url: 'https://thehill.com/homenews/administration/6127587-trump-posts-tom-cotton-phone-number/',
+      },
+      {
+        label: 'House Clerk: roll call on H.R. 139, 14 July 2026 (308-117)',
+        url: 'https://clerk.house.gov/Votes/2026238',
+      },
+      {
+        label: 'AP: House passes bill to make daylight saving time permanent',
+        url: 'https://apnews.com/article/daylight-saving-time-house-passes-bill-53e7ffd1c3e9beddb9ab1601a8482ad5',
+      },
+      {
+        label: 'HuffPost: Trump’s daylight saving time push',
+        url: 'https://www.huffpost.com/entry/trump-daylight-saving-time-bill_n_6aebd4f3e4b0dcee62e2af3a',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-rallies-couldnt-transfer-that-love',
+    kind: 'clip',
+    youtubeId: 'LHT-znOQXkA',
+    youtubeStart: 1626,
+    youtubeChannel: 'The White House',
+    posterShareCard: true,
+    ogKicker: 'NO REGRETS',
+    ogPunch: 'love',
+    ogStamp: 'ON TAPE',
+    title: 'Trump on his midterm rallies: ‘You couldn’t transfer that love’',
+    category: 'REPORTS',
+    date: '2026-11-04',
+    dek: 'Trump on his rallies: “You couldn’t transfer that love.” And “if I was on the ballot, we would have won.” He offered no evidence.',
+    publishedAt: '2026-11-04T14:41:00+02:00',
+    topics: ['midterms', 'lies'],
+    midtermsTags: ['results'],
+    embed: {
+      type: 'x',
+      id: '2118048207662198968',
+      url: 'https://x.com/BulwarkClips/status/2118048207662198968',
+      account: '@BulwarkClips',
+      accountName: 'The Bulwark',
+    },
+    relatedClips: ['trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-reflecting-pool-two-empire-state-buildings'],
+    body: [
+      'A reporter at the White House on Wednesday listed the closing act of the campaign: 30 rallies, then a final speech at the Reflecting Pool. Any regrets? Trump said no, then explained who was really missing from the ballot: “if I was on the ballot, we would have won.” He said it twice. He wasn’t on the ballot, so there’s nothing to check it against, and he offered no evidence.',
+      'The crowds, he said, were “thousands and thousands of people at every rally.” The trouble was the delivery: “you couldn’t transfer that love. There was such love at those rallies. It was incredible.” The love, apparently, was non-transferable. AP called the House and the Senate for Democrats.',
+      'This was the same pitch he posted at 10:37pm ET on election night, when he “wasn’t on the Ballot.” A day later the ballot still had the wrong name on it.',
+      'Asked whether aides had advised him on the Reflecting Pool speech, he reviewed it himself: “I heard it was a very good speech. Got great reviews.” About 30 seconds later: “That was not a speech.”',
+    ],
+    sources: [
+      {
+        label: 'The White House on YouTube: President Trump Delivers Remarks, Nov. 4, 2026 (full upload, from 27:06)',
+        url: 'https://www.youtube.com/watch?v=LHT-znOQXkA&t=1626s',
+      },
+      {
+        label: 'Roll Call Factba.se: full transcript of the Nov. 4 White House ballroom remarks',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-remarks-white-house-ballroom-construction-november-4-2026/',
+      },
+      {
+        label: 'The Bulwark on X: “you couldn’t transfer that love”',
+        url: 'https://x.com/BulwarkClips/status/2118048207662198968',
+      },
+      {
+        label: 'The Bulwark on X: “Got great reviews”',
+        url: 'https://x.com/BulwarkClips/status/2118048323323961409',
+      },
+      {
+        label: 'Fox News: Trump says he couldn’t transfer the love from his supporters to other Republicans',
+        url: 'https://www.foxnews.com/politics/trump-couldnt-transfer-love-supporters-other-republicans-amid-historic-midterm-loss',
+      },
+      {
+        label: 'AP: Trump talks about the ballroom for nearly 20 minutes and doesn’t mention losing Congress',
+        url: 'https://apnews.com/article/trump-midterms-blame-responsibility-republicans-losses-9593324649b5e8432fb34a95d4e4b2e1',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'Truth Social: Trump’s 10:37pm ET post, 3 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117556082339815131',
+      },
+      {
+        label: 'Truth Social: Trump’s 10:37pm ET post, 3 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43480',
+      },
+      {
+        label: 'The Donald Files: Trump’s picks lose 11 AP-called races',
+        url: 'https://thedonaldfiles.com/reports/trump-endorsees-lose-democrats-take-congress/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-vance-iran-war-midterms-largely-true',
+    kind: 'clip',
+    youtubeId: 'LHT-znOQXkA',
+    youtubeStart: 1549,
+    youtubeChannel: 'The White House',
+    posterShareCard: true,
+    ogKicker: 'VANCE WAS RIGHT',
+    ogPunch: 'true',
+    ogStamp: 'ON TAPE',
+    title: 'Trump says Vance blaming the Iran war for the midterm losses is ‘largely true’',
+    category: 'REPORTS',
+    date: '2026-11-04',
+    dek: 'Trump on Vance’s Iran-war verdict: “I think it’s largely true.” Also: “I thought the oil would go up a lot more.”',
+    publishedAt: '2026-11-04T14:40:00+02:00',
+    topics: ['midterms', 'lies'],
+    midtermsTags: ['results'],
+    embed: {
+      type: 'x',
+      id: '2118047501768880471',
+      url: 'https://x.com/cspan/status/2118047501768880471',
+      account: '@cspan',
+      accountName: 'C-SPAN',
+    },
+    relatedClips: ['trump-hannity-iran-not-much-of-a-war-peanuts', 'trump-iran-war-price-to-pay-knew-immediately'],
+    body: [
+      'JD Vance posted his post-mortem on X on Wednesday: “The reason we lost is the war.” Later that day, at the White House, a reporter put it to the man who launched the war. Trump’s verdict on Vance’s verdict: “I think it’s largely true.”',
+      'His explanation was that the war “drove the gasoline up a little bit short term.” Would he do it again? Yes, he said, because long term “it’s the only answer.” Was it worth it? “You have no choice. I mean, I thought the oil would go up a lot more.”',
+      'So the plan was priced for worse news at the pump. Except later in the same remarks he said: “I knew the war was going to impact it, but whether it impacted or not, Iran can’t have a nuclear weapon.” He knew it would hurt, and he also thought it would hurt more. Either way, AP called the House and the Senate for Democrats.',
+      'Earlier this week, on Hannity, the Iran war was “not much of a war.” It turns out to have been war enough to cost his party Congress, by his own vice president’s count and now, largely, by his.',
+    ],
+    sources: [
+      {
+        label: 'The White House on YouTube: President Trump Delivers Remarks, Nov. 4, 2026 (full upload, from 25:49)',
+        url: 'https://www.youtube.com/watch?v=LHT-znOQXkA&t=1549s',
+      },
+      {
+        label: 'Roll Call Factba.se: full transcript of the Nov. 4 White House ballroom remarks',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-remarks-white-house-ballroom-construction-november-4-2026/',
+      },
+      {
+        label: 'C-SPAN on X: the “largely true” answer',
+        url: 'https://x.com/cspan/status/2118047501768880471',
+      },
+      {
+        label: 'C-SPAN on X: “I knew the war was going to impact it”',
+        url: 'https://x.com/cspan/status/2118051391780385027',
+      },
+      {
+        label: 'BBC: Vance says Republicans lost because of the Iran war, and Trump calls it “largely true”',
+        url: 'https://www.bbc.com/news/articles/cq9vz9de7yelo',
+      },
+      {
+        label: 'ABC News: Vance blames Iran war for midterms defeat; Trump says he would “do it again”',
+        url: 'https://abcnews.com/Politics/vance-blames-iran-war-republicans-midterms-defeat-trump/story?id=137849295',
+      },
+      {
+        label: 'AP: Trump weighs his next move on Iran after the midterm loss',
+        url: 'https://apnews.com/article/trump-midterm-elections-iran-e92751dbcdf940c486c8d1e57dafbe99',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'The Donald Files: Trump’s picks lose 11 AP-called races',
+        url: 'https://thedonaldfiles.com/reports/trump-endorsees-lose-democrats-take-congress/',
       },
     ],
     published: true,

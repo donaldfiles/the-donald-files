@@ -152,6 +152,7 @@ export function extractArticles(text) {
       topics: strList(block, 'topics'),
       midtermsTags: strList(block, 'midtermsTags'),
       unlisted: /\bunlisted:\s*true/.test(block),
+      posterShareCard: /\bposterShareCard:\s*true/.test(block),
       correction: ogStr('correction'),
       youtubeId: ogStr('youtubeId'),
       youtubeStart: Number(/\byoutubeStart:\s*(\d+)/.exec(block)?.[1]) || 0,
@@ -211,6 +212,7 @@ export function liveTopics(all) {
  *  Network frames carry chyrons/lower thirds, so these clips always use the branded share card as poster. */
 /** Any embed (main, "Before", inline extra player) whose channel/account name contains a FOX brand (Reed, 4 Nov). */
 export const isFoxEmbed = (e) => !!e && /\bfox\b/i.test([e.accountName, e.channel, e.youtubeChannel, e.account].filter(Boolean).join(' '))
+export const usesShareCardPoster = (a) => isFoxNews(a) || a.posterShareCard === true
 export const isFoxNews = (a) => /\bfox\b/i.test(a.youtubeChannel || '') || /\bfox\b/i.test(a.embed?.accountName || '') || /^@?foxnews$/i.test(a.embed?.account || '') || /(?:x|twitter)\.com\/foxnews\//i.test(a.embed?.url || '')
 
 /** Merge cached clip posters/durations (data/clip-media.json, from scripts/fetch-posters.mjs) into posts. */
@@ -225,7 +227,7 @@ export function attachMedia(all, metaPath) {
     const m = meta[a.slug]
     if (m?.poster) a.poster = m.poster
     // Fox News: share-card poster at /posters/<slug>.webp (written by generate-seo in the same build, even on first ingest).
-    if (isFoxNews(a)) a.poster = `/posters/${a.slug}.webp`
+    if (usesShareCardPoster(a)) a.poster = `/posters/${a.slug}.webp`
     if (!a.durationSeconds && m?.durationSeconds) a.durationSeconds = m.durationSeconds
     if (!a.duration && a.durationSeconds) a.duration = mmss(a.durationSeconds)
     const b = meta[`${a.slug}--before`]
