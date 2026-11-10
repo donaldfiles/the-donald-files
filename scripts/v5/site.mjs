@@ -299,8 +299,9 @@ function home() {
   const under = rest.slice(3, 6)
   const top = files.slice(0, 4)
   const updated = latestMod(clips)
+  const topSub = SUBSCRIBE_LIVE ? `<section class="subband slim" id="subscribe-top" aria-label="Subscribe to the daily digest"><div class="wrap sb"><h2 class="sbh">Get the worst of him, <mark>daily</mark>.</h2>${subForm('home-top')}</div></section>` : ''
   const body = `<h1 class="vh">Donald Trump videos, gaffes and lies, mocked daily</h1>
-<section class="sec first" aria-labelledby="h-clips"><div class="wrap"><div class="shead"><div><h2 class="stitle" id="h-clips">Today’s <mark>clips</mark></h2><p class="ssub">The worst of him on tape, embedded from X and YouTube. Updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>.</p></div><a class="more" href="/trump-videos/">All Trump videos →</a></div>
+${topSub}<section class="sec first" aria-labelledby="h-clips"><div class="wrap"><div class="shead"><div><h2 class="stitle" id="h-clips">Today’s <mark>clips</mark></h2><p class="ssub">The worst of him on tape, embedded from X and YouTube. Updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>.</p></div><a class="more" href="/trump-videos/">All Trump videos →</a></div>
 <div class="cw"><div class="cwf">${feat(wall)}</div><div class="cws">${side.map((a) => tile(a, true)).join('')}</div></div><div class="cwr">${under.map((a) => tile(a)).join('')}</div></div></section>
 <section class="sec" aria-labelledby="h-files"><div class="wrap"><div class="shead"><div><h2 class="stitle" id="h-files">Top <mark>files</mark></h2><p class="ssub">The newest sourced files.</p></div><a class="more" href="/reports/">Latest →</a></div><div class="cards">${top.map(card).join('')}</div></div></section>
 <section class="sec" id="topics" aria-labelledby="h-topics"><div class="wrap"><div class="shead"><div><h2 class="stitle" id="h-topics">Pick your <mark>outrage</mark></h2><p class="ssub">Topic hubs, every clip in one place.</p></div></div><div class="chips">${TOPICS.map((t) => chip(t)).join('')}</div></div></section>
