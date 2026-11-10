@@ -24,13 +24,17 @@ for (const a of articles) {
   const published = a.publishedAt ? new Date(a.publishedAt).toISOString().replace(/\.\d+Z$/, 'Z') : null
   const prev = state[a.slug]
   if (!prev) {
-    state[a.slug] = { hash: h, published, modified: published }
+    // `added` is when the post first went live on the site (build time), not the event date.
+    state[a.slug] = { hash: h, published, modified: published, added: now }
     changed++
-  } else if (process.argv.includes('--rehash')) {
-    prev.hash = h
-  } else if (prev.hash !== h) {
-    state[a.slug] = { ...prev, hash: h, modified: now }
-    changed++
+  } else {
+    if (!prev.added) prev.added = prev.published || published || prev.modified || (a.date ? `${a.date}T16:00:00Z` : now)
+    if (process.argv.includes('--rehash')) {
+      prev.hash = h
+    } else if (prev.hash !== h) {
+      state[a.slug] = { ...prev, hash: h, modified: now }
+      changed++
+    }
   }
 }
 for (const k of Object.keys(state)) if (!articles.some((a) => a.slug === k)) delete state[k]

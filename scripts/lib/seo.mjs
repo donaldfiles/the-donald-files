@@ -33,7 +33,8 @@ export function datesFor(a) {
   const d = DATES[a.slug] || {}
   const published = d.published || (a.publishedAt ? new Date(a.publishedAt).toISOString() : isoDate(a.date))
   const modified = d.modified && d.modified > published ? d.modified : published
-  return { published, modified, hasTime: Boolean(d.published || a.publishedAt) }
+  const added = d.added || published
+  return { published, modified, added, hasTime: Boolean(d.published || a.publishedAt) }
 }
 
 export function isoDate(d) {
