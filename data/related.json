@@ -256,6 +256,7 @@
     "trump-ocean-google-atlantic-rename"
   ],
   "trump-habba-50-million-obnoxious-pardoned-herrera": [
+    "trump-60-minutes-tremendous-numbers-of-pardons",
     "trump-ashley-moody-pardon-angie-nixon-locked-up",
     "trump-pardons-junior-staff-margo-not-going-to-have-to-worry"
   ],
@@ -477,6 +478,7 @@
     "trump-iowa-gas-1-85-pump-story"
   ],
   "trump-pardons-junior-staff-margo-not-going-to-have-to-worry": [
+    "trump-60-minutes-tremendous-numbers-of-pardons",
     "trump-lewandowski-investigation-stealing-from-me",
     "trump-fbi-officials-dirty-cops-like-comey"
   ],
@@ -840,6 +842,7 @@
     "trump-el-sayed-black-or-jewish-youre-crazy-anyway"
   ],
   "trump-endorsees-lose-democrats-take-congress": [
+    "trump-60-minutes-probably-endorse-2028-not-necessarily",
     "trump-hannity-won-every-time-lost-in-2020",
     "trump-midterms-sitting-president-very-strong-shot"
   ],
@@ -853,6 +856,7 @@
     "trump-truth-social-alaska-other-dan-sullivan-1am-all-caps"
   ],
   "trump-democrats-did-a-good-job-not-a-hit-on-me": [
+    "trump-60-minutes-probably-endorse-2028-not-necessarily",
     "trump-claims-midterm-election-honest-machines",
     "trump-endorsees-lose-democrats-take-congress",
     "trump-hannity-won-every-time-lost-in-2020"
@@ -866,6 +870,8 @@
     "trump-truth-social-blames-abbott-rino-fox-news"
   ],
   "trump-vance-iran-war-midterms-largely-true": [
+    "trump-60-minutes-iran-war-emphatic-yes-maybe-not",
+    "trump-60-minutes-probably-endorse-2028-not-necessarily",
     "trump-60-minutes-bad-messaging-maybe-by-me",
     "trump-iran-militarily-is-effectively-over-fairly-soon",
     "trump-hannity-iran-not-much-of-a-war-peanuts",
@@ -923,6 +929,7 @@
     "trump-truth-social-stock-market-dumocrats-401k"
   ],
   "trump-iran-militarily-is-effectively-over-fairly-soon": [
+    "trump-60-minutes-iran-war-emphatic-yes-maybe-not",
     "trump-60-minutes-israel-would-not-exist-except-for-donald-trump",
     "trump-vance-iran-war-midterms-largely-true",
     "trump-hannity-iran-not-much-of-a-war-peanuts"
@@ -954,5 +961,18 @@
   "trump-60-minutes-israel-would-not-exist-except-for-donald-trump": [
     "trump-iran-militarily-is-effectively-over-fairly-soon",
     "trump-iran-war-dont-know-if-you-call-it-a-war-we-won"
+  ],
+  "trump-60-minutes-iran-war-emphatic-yes-maybe-not": [
+    "trump-vance-iran-war-midterms-largely-true",
+    "trump-iran-militarily-is-effectively-over-fairly-soon"
+  ],
+  "trump-60-minutes-tremendous-numbers-of-pardons": [
+    "trump-pardons-junior-staff-margo-not-going-to-have-to-worry",
+    "trump-habba-50-million-obnoxious-pardoned-herrera"
+  ],
+  "trump-60-minutes-probably-endorse-2028-not-necessarily": [
+    "trump-vance-iran-war-midterms-largely-true",
+    "trump-democrats-did-a-good-job-not-a-hit-on-me",
+    "trump-endorsees-lose-democrats-take-congress"
   ]
 }
