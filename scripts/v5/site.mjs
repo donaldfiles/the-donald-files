@@ -319,7 +319,8 @@ function home() {
   const wall = lead.find((c) => c.featured) || lead.find(isVid) || lead[0]
   const rest = lead.filter((c) => c !== wall)
   const side = rest.slice(0, 3)
-  const under = rest.slice(3, 6)
+  // When the Today strip is on, show every clip added today, not a fixed 6/7 cap.
+  const under = todays.length ? rest.slice(3) : rest.slice(3, 6)
   const top = files.slice(0, 4)
   const updated = latestMod(lead)
   const isToday = todays.length > 0
