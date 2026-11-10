@@ -131,6 +131,17 @@ const TOPIC_INTRO = {
   ballroom: 'He says fixing up the White House “actually relaxes me.” Obama says it looks like a Cheesecake Factory, and Trump answers that Obama is “a lousy president.” He says a protester in Corinth, Mississippi “broke up my punch line,” and that reviving the White House pool is now a “stupid thing.” He promised the ballroom would be free. Here’s who’s actually paying, with the receipts underneath. Newest first.',
   cruelty: 'He tells a Kansas rally “it’s much easier when I attack somebody who’s unsupportive,” about a pastor running for the Senate. On Saturday he says Haley Stevens “tried to do it, but she can’t.” On Sunday she endorses Mike Rogers, and he has “great respect for her.” He wants Michigan-born Abdul El-Sayed sent “back to where he came from,” answers a question about Angie Nixon with “a low IQ person,” and calls the Panhandle hurricane that killed six people in Florida “a little drizzle.” No mask slipping here, because there isn’t one. The sources sit underneath every clip. Newest first.',
 }
+// One-line visible dek + dedicated meta, taken from the Reed-cleared intros (not a replacement for them).
+const TOPIC_DEK = {
+  gaffes: 'Every time his mouth outran his brain, on tape.',
+  'truth-social': 'What he posts at 1am, filed with the receipts underneath.',
+  cruelty: 'No mask slipping here, because there isn’t one.',
+}
+const TOPIC_SEO = {
+  gaffes: 'Donald Trump Gaffes Videos',
+  'truth-social': 'Donald Trump Truth Social Videos',
+  cruelty: 'Donald Trump Cruelty Videos',
+}
 const PROPER_TOPICS = new Set(['truth-social'])
 const FAQ = [
   ['Where do these Donald Trump videos come from?', 'Every clip is embedded from its original upload on YouTube, X or Truth Social, usually the White House, C-SPAN, a network or the account that filmed it. We link the source under every video and never re-upload footage.'],
@@ -246,7 +257,7 @@ function midtermsHub() {
   const seen = new Set()
   const srcs = midClips.flatMap((a) => a.sources || []).filter((x) => (seen.has(x.url) ? false : seen.add(x.url)))
   const srcHtml = `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2>${srcs.length ? `<ol>${srcs.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.label)}</a></li>`).join('')}</ol>` : '<p class="mtns">Every clip on this page carries its own sources; they collect here as clips are filed.</p>'}</section>`
-  const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">Midterms 2026</p><h1 class="h1">Trump vs. the <mark>Midterms</mark></h1><p class="intro">${esc(MIDTERMS_INTRO)}</p>${chips}<div class="sortrow"><span>Sort: <b>Newest</b></span><span>${midClips.length} clip${midClips.length === 1 ? '' : 's'}${updated ? ` · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>` : ''}</span></div></div></section>
+  const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">Midterms 2026</p><h1 class="h1">Trump vs. the <mark>Midterms</mark></h1><p class="hubdek">${esc(MIDTERMS_DEK)}</p><p class="intro">${esc(MIDTERMS_INTRO)}</p>${chips}<div class="sortrow"><span>Sort: <b>Newest</b></span><span>${midClips.length} clip${midClips.length === 1 ? '' : 's'}${updated ? ` · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>` : ''}</span></div></div></section>
 ${leadHtml}<section class="sec tight"><div class="wrap">${grid}${empty}${srcHtml}</div></section>
 ${subband('hub-midterms')}`
   write(`${MIDTERMS_PATH.slice(1)}index.html`, page({ title, head, active: 'videos', body }))
@@ -284,7 +295,7 @@ function sixtyMinutesHub() {
   const seen = new Set()
   const srcs = sixtyClips.flatMap((a) => a.sources || []).filter((x) => (seen.has(x.url) ? false : seen.add(x.url)))
   const srcHtml = `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2>${srcs.length ? `<ol>${srcs.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.label)}</a></li>`).join('')}</ol>` : '<p class="mtns">Every clip on this page carries its own sources; they collect here as clips are filed.</p>'}</section>`
-  const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">60 Minutes</p><h1 class="h1">The 60 Minutes <mark>interview</mark></h1><p class="intro">${esc(SIXTY_INTRO)}</p><div class="sortrow"><span>Sort: <b>Newest</b></span><span>${sixtyClips.length} clip${sixtyClips.length === 1 ? '' : 's'}${updated ? ` · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>` : ''}</span></div></div></section>
+  const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">60 Minutes</p><h1 class="h1">The 60 Minutes <mark>interview</mark></h1><p class="hubdek">${esc(SIXTY_DEK)}</p><p class="intro">${esc(SIXTY_INTRO)}</p><div class="sortrow"><span>Sort: <b>Newest</b></span><span>${sixtyClips.length} clip${sixtyClips.length === 1 ? '' : 's'}${updated ? ` · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>` : ''}</span></div></div></section>
 ${leadHtml}<section class="sec tight"><div class="wrap">${grid}${empty}${srcHtml}</div></section>
 ${subband('hub-60-minutes')}`
   write(`${SIXTY_PATH.slice(1)}index.html`, page({ title, head, active: 'videos', body }))
@@ -353,13 +364,16 @@ function hubPage({ topic }) {
   const list = topic ? clips.filter((c) => (c.topics || []).includes(topic)) : clips
   const label = topic ? TOPIC_LABEL[topic] : null
   const base = topic ? `/trump-videos/${topic}/` : '/trump-videos/'
-  const title = topic ? `Donald Trump ${label} Videos | The Donald Files` : 'Donald Trump Videos: The Worst Clips, Annotated | The Donald Files'
   // Sentence case, but proper nouns (Truth Social) keep their capitals.
   const h1Word = topic ? (PROPER_TOPICS.has(topic) ? label : label.toLowerCase()) : ''
   const h1 = topic ? `Donald Trump <mark>${esc(h1Word)}</mark> videos` : 'Donald Trump videos: the worst <mark>clips</mark>, annotated'
   const intro = topic
     ? TOPIC_INTRO[topic] || `Every clip filed under ${h1Word}, embedded from the original uploads with the receipts underneath. Newest first.`
     : HUB_INTRO
+  const seoTitle = (topic && TOPIC_SEO[topic]) || (topic ? `Donald Trump ${label} Videos` : 'Donald Trump Videos: The Worst Clips, Annotated')
+  const title = `${seoTitle} | The Donald Files`
+  const metaDesc = (topic && TOPIC_DEK[topic]) || intro
+  const dekLine = topic && TOPIC_DEK[topic] ? `<p class="hubdek">${esc(TOPIC_DEK[topic])}</p>` : ''
   const files4 = topic ? files.filter((f) => (f.topics || []).includes(topic)).slice(0, 4) : []
   const cr = topic ? [['Home', '/'], ['Trump Videos', '/trump-videos/'], [label, base]] : [['Home', '/'], ['Trump Videos', '/trump-videos/']]
   const updated = latestMod(list)
@@ -369,15 +383,15 @@ function hubPage({ topic }) {
     const url = n === 1 ? `${SITE}${base}` : `${SITE}${base}?page=${n}`
     const faq = !topic && n === 1
     const ld = [
-      { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title.replace(/ \| The Donald Files$/, ''), url, description: intro, isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${SITE}/` }, dateModified: updated,
+      { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title.replace(/ \| The Donald Files$/, ''), url, description: metaDesc, isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${SITE}/` }, dateModified: updated,
         mainEntity: { '@type': 'ItemList', numberOfItems: items.length, itemListElement: items.map((a, k) => ({ '@type': 'ListItem', position: i * PER_PAGE + k + 1, url: urlFor(a) })) } },
       crumbLd(cr),
     ]
     if (faq) ld.push({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) })
-    let head = headTags({ title: title.replace(/ \| The Donald Files$/, ''), description: intro, url, image: DEFAULT_OG, type: 'website', jsonLd: ld })
+    let head = headTags({ title: seoTitle, description: metaDesc, url, image: DEFAULT_OG, type: 'website', jsonLd: ld })
     if (n > 1) head += `<link rel="prev" href="${n === 2 ? `${SITE}${base}` : `${SITE}${base}?page=${n - 1}`}">`
     if (n < pages.length) head += `<link rel="next" href="${SITE}${base}?page=${n + 1}">`
-    const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">${topic ? esc(label) : 'Trump videos'}</p><h1 class="h1">${h1}</h1><p class="intro">${esc(intro)}</p><div class="chips filt"><a class="chip${topic ? '' : ' on'}" href="/trump-videos/"${topic ? '' : ' aria-current="page"'}>All clips</a>${TOPICS.map((t) => chip(t, t === topic, false)).join('')}</div><div class="sortrow"><span>Sort: <b>Newest</b></span><span>${list.length} clip${list.length === 1 ? '' : 's'} · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time></span></div></div></section>
+    const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">${topic ? esc(label) : 'Trump videos'}</p><h1 class="h1">${h1}</h1>${dekLine}<p class="intro">${esc(intro)}</p><div class="chips filt"><a class="chip${topic ? '' : ' on'}" href="/trump-videos/"${topic ? '' : ' aria-current="page"'}>All clips</a>${TOPICS.map((t) => chip(t, t === topic, false)).join('')}</div><div class="sortrow"><span>Sort: <b>Newest</b></span><span>${list.length} clip${list.length === 1 ? '' : 's'} · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time></span></div></div></section>
 <section class="sec tight"><div class="wrap"><div class="hgrid" data-grid>${items.map((a) => tile(a)).join('')}</div>${pager(base, n, pages.length)}</div></section>
 ${files4.length ? `<section class="sec"><div class="wrap"><div class="shead"><div><h2 class="stitle">${esc(label)} <mark>files</mark></h2><p class="ssub">The long reads, sourced.</p></div><a class="more" href="/reports/">Latest →</a></div><div class="cards">${files4.map(card).join('')}</div></div></section>` : ''}
 ${faq ? `<section class="sec"><div class="wrap"><div class="faqbox"><h2 class="stitle">Donald Trump videos: <mark>FAQ</mark></h2>${FAQ.map(([q, a], k) => `<details class="faq"${k < 2 ? ' open' : ''}><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('')}</div></div></section>` : ''}
