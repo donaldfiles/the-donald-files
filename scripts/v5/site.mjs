@@ -479,8 +479,8 @@ function clipPage(a) {
   const ld = clipLd(a).map((x) => (x['@type'] === 'BreadcrumbList' ? crumbLd(cr) : x))
   const head = headTags({ title: a.seoTitle || a.title, description: a.seoDescription || a.dek || a.title, url: urlFor(a), image: articleOg(a.slug), type: isVideo ? 'video.other' : 'article', published: d.published, modified: d.modified, section: 'Trump Videos', jsonLd: ld })
   const body = `${crumbs(cr.map(([n, h], i) => (i === cr.length - 1 ? ['This clip', h] : [n, h])))}<article class="wrap post">${hero(a, punch(a.title, a.ogPunch))}${filedLine(a)}
-${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a), anchor: true }) : ''}${a.xEmbed ? `<p class="alsox">Also on X: <a href="${esc(a.xEmbed.url)}" target="_blank" rel="noopener">${esc(a.xEmbed.accountName || a.xEmbed.account || 'the original post')}${a.xEmbed.account && a.xEmbed.accountName ? ` (${esc(a.xEmbed.account)})` : ''} ↗</a></p>` : ''}
 ${clipSubCard(a.slug)}
+${a.embed ? facade(a.embed, { big: true, poster: a.poster, kicker: kickerOf(a), anchor: true }) : ''}${a.xEmbed ? `<p class="alsox">Also on X: <a href="${esc(a.xEmbed.url)}" target="_blank" rel="noopener">${esc(a.xEmbed.accountName || a.xEmbed.account || 'the original post')}${a.xEmbed.account && a.xEmbed.accountName ? ` (${esc(a.xEmbed.account)})` : ''} ↗</a></p>` : ''}
 <div class="prose">${a.body.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
 ${a.beforeEmbed ? facade(a.beforeEmbed, { label: `Before · ${esc(a.beforeEmbed.label || '')}` }) : ''}
 ${relatedLinks(a)}${sourcesBox(a)}${shareRow(a)}</article>
