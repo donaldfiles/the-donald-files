@@ -91,18 +91,22 @@ im.resize((640,360),Image.LANCZOS).save(sys.argv[2],'WEBP',quality=82,method=6)
 // ---------- sitemap + robots ----------
 const newest = articles.map((a) => datesFor(a).modified).sort().pop()
 const latest = newest
+// Sitemap lastmod only. Visible "Updated" bylines and JSON-LD dateModified stay on content dates.
+// Bump this when chrome, templates or CSS change a built page without a content-hash change.
+const SITE_CHROME_LASTMOD = '2026-11-10T15:52:26Z'
+const later = (...xs) => xs.filter(Boolean).sort().pop()
 const sixtyLastmod = all.filter((a) => a.kind === 'clip' && (a.youtubeId === 'm2aC8lAOQbg' || (a.sources || []).some((s) => /donald-trump-2026-post-midterm-elections-interview-60-minutes|m2aC8lAOQbg/i.test(`${s.url || ''} ${s.label || ''}`)))).map((a) => datesFor(a).modified).sort().pop() || latest
 const urls = [
-  { loc: `${SITE}/`, lastmod: latest, freq: 'hourly', pri: '1.0' },
-  { loc: `${SITE}/reports/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
-  { loc: `${SITE}/trump-videos/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
-  ...liveTopics(all).map((t) => ({ loc: `${SITE}/trump-videos/${t}/`, lastmod: latest, freq: 'daily', pri: '0.7' })),
-  { loc: `${SITE}/midterms-2026/`, lastmod: all.filter((a) => a.kind === 'clip' && (a.topics || []).includes('midterms')).map((a) => datesFor(a).modified).sort().pop() || latest, freq: 'hourly', pri: '0.8' },
-  { loc: `${SITE}/trump-videos/60-minutes-interview/`, lastmod: sixtyLastmod, freq: 'daily', pri: '0.7' },
-  { loc: `${SITE}/the-record`, lastmod: latest, freq: 'daily', pri: '0.6' },
-  { loc: `${SITE}/about`, lastmod: latest, freq: 'monthly', pri: '0.3' },
-  { loc: `${SITE}/subscribe`, lastmod: latest, freq: 'monthly', pri: '0.4' },
-  ...articles.map((a) => ({ loc: urlFor(a), lastmod: datesFor(a).modified, freq: 'weekly', pri: '0.8', img: articleOg(a.slug), title: a.title })),
+  { loc: `${SITE}/`, lastmod: later(latest, SITE_CHROME_LASTMOD), freq: 'hourly', pri: '1.0' },
+  { loc: `${SITE}/reports/`, lastmod: later(latest, SITE_CHROME_LASTMOD), freq: 'hourly', pri: '0.9' },
+  { loc: `${SITE}/trump-videos/`, lastmod: later(latest, SITE_CHROME_LASTMOD), freq: 'hourly', pri: '0.9' },
+  ...liveTopics(all).map((t) => ({ loc: `${SITE}/trump-videos/${t}/`, lastmod: later(latest, SITE_CHROME_LASTMOD), freq: 'daily', pri: '0.7' })),
+  { loc: `${SITE}/midterms-2026/`, lastmod: later(all.filter((a) => a.kind === 'clip' && (a.topics || []).includes('midterms')).map((a) => later(datesFor(a).modified, datesFor(a).added)).sort().pop(), SITE_CHROME_LASTMOD), freq: 'hourly', pri: '0.8' },
+  { loc: `${SITE}/trump-videos/60-minutes-interview/`, lastmod: later(sixtyLastmod, ...all.filter((a) => a.kind === 'clip' && (a.youtubeId === 'm2aC8lAOQbg' || (a.sources || []).some((s) => /donald-trump-2026-post-midterm-elections-interview-60-minutes|m2aC8lAOQbg/i.test(`${s.url || ''} ${s.label || ''}`)))).map((a) => datesFor(a).added), SITE_CHROME_LASTMOD), freq: 'daily', pri: '0.7' },
+  { loc: `${SITE}/the-record`, lastmod: later(latest, SITE_CHROME_LASTMOD), freq: 'daily', pri: '0.6' },
+  { loc: `${SITE}/about`, lastmod: later(latest, SITE_CHROME_LASTMOD), freq: 'monthly', pri: '0.3' },
+  { loc: `${SITE}/subscribe`, lastmod: later(latest, SITE_CHROME_LASTMOD), freq: 'monthly', pri: '0.4' },
+  ...articles.map((a) => ({ loc: urlFor(a), lastmod: later(datesFor(a).modified, datesFor(a).added, SITE_CHROME_LASTMOD), freq: 'weekly', pri: '0.8', img: articleOg(a.slug), title: a.title })),
 ]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
