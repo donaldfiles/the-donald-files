@@ -116,6 +116,104 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-hegseth-impeachment-republicans-disappointed',
+    kind: 'clip',
+    youtubeId: 'd-33mV3JYN8',
+    youtubeStart: 191,
+    youtubeChannel: 'C-SPAN',
+    posterShareCard: true,
+    ogKicker: 'C-SPAN',
+    ogPunch: 'disappointed',
+    ogStamp: 'ON TAPE',
+    title: 'Trump on Republicans backing Hegseth’s impeachment: he would be ‘disappointed’',
+    seoTitle: 'Trump on Hegseth impeachment: he would be ‘disappointed’',
+    category: 'REPORTS',
+    date: '2026-11-09',
+    dek: 'Asked how he would react if some Republicans backed impeaching Pete Hegseth, Trump said he would be “disappointed.” “Pete has won two wars.”',
+    publishedAt: '2026-11-09T16:41:00+02:00',
+    topics: ['gaffes'],
+
+    relatedClips: ['trump-hegseth-a-plus-plus-plus-massie-total-loser', 'trump-60-minutes-hegseth-no-but-he-was-a-part-of-it'],
+    body: [
+      'The night before the House could take up Pete Hegseth’s impeachment, Trump phoned in to C-SPAN. Asked about Republicans breaking ranks, he went straight to the scoreboard.',
+      'On Monday night, Trump called in to the premiere of C-SPAN’s *Washington Journal Primetime*. Host Mimi Geerges said the impeachment vote on Secretary Hegseth could come as early as Tuesday. She said Fox News was indicating that some Republicans might support it, and asked how he would react if some Republicans backed impeaching Pete Hegseth.',
+      'Trump said he would be “disappointed.” Then: “Pete has won two wars.” He added: “he’s been the head person in two wars.” He went on to cite the Venezuela operation and the Iran war.',
+      '“Won two wars” is his framing. Later in the same call, asked how much longer he expected the war in Iran to go, he said: “Well, it depends.”',
+      'Rep. Thomas Massie, an outgoing Kentucky Republican, filed eight articles of impeachment against Hegseth on Monday, most of them over the Iran war, per NBC and NPR. NBC reported Tuesday that the House could vote as early as 5:30 p.m. ET on a procedural motion to table the resolution or refer it to committee, and that it had not heard from any Republicans other than Massie committed to backing impeachment. As of NBC’s live blog, updated 12:40 p.m. ET, the House had not acted; the top summary still said the House could vote this evening. His Tuesday morning Truth Social post on Massie and Hegseth is a separate card.',
+    ],
+    sources: [
+      {
+        label: 'C-SPAN on YouTube: President Trump Calls In to C-SPAN’s Washington Journal Primetime (from 3:11)',
+        url: 'https://www.youtube.com/watch?v=d-33mV3JYN8&t=191s',
+      },
+      {
+        label: 'Roll Call Factba.se: transcript, Trump call-in to C-SPAN’s Washington Journal, Nov. 9, 2026',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-interview-mimi-geerges-c-span-washington-journal-november-9-2026/',
+      },
+      {
+        label: 'The Independent: Trump has wild primetime call-in to CSPAN with women heard giggling in background',
+        url: 'https://www.independent.co.uk/news/world/americas/us-politics/trump-cspan-interview-woman-laughing-b3082394.html',
+      },
+      {
+        label: 'NBC News: Trump administration live updates, Hegseth decries House impeachment threat (Nov. 10)',
+        url: 'https://www.nbcnews.com/politics/trump-administration/live-blog/hegseth-massie-impeachment-2026-election-congress-ukraine-live-updates-rcna608406',
+      },
+      {
+        label: 'NPR: Massie files articles of impeachment against Hegseth',
+        url: 'https://www.npr.org/2026/11/09/nx-s1-6034483/thomas-massie-impeachment-pete-hegseth',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-60-minutes-ufo-pilots-look-perfect-like-tom-cruise',
+    kind: 'clip',
+    youtubeId: 'm2aC8lAOQbg',
+    youtubeStart: 2256,
+    youtubeChannel: '60 Minutes',
+    posterShareCard: true,
+    ogKicker: '60 MINUTES',
+    ogPunch: 'Cruise',
+    ogStamp: 'ON TAPE',
+    title: 'Trump on 60 Minutes: UFO pilots ‘look perfect, like Tom Cruise’',
+    seoTitle: 'Trump: UFO pilots ‘look perfect, like Tom Cruise’',
+    category: 'REPORTS',
+    date: '2026-11-08',
+    dek: 'Asked about UFOs, Trump said Air Force pilots “look perfect, like Tom Cruise.” And: “they’ve told me things that are very strange.”',
+    publishedAt: '2026-11-08T16:30:00+02:00',
+    topics: ['gaffes'],
+
+    relatedClips: ['trump-60-minutes-probably-endorse-2028-not-necessarily', 'trump-i-do-hate-some-of-my-enemies-and-i-always-will'],
+    body: [
+      'Asked about UFOs, he started with the pilots. Specifically, their looks.',
+      'In the *60 Minutes* extended cut CBS posted, Ross Douthat noted that the administration has spent a lot of time releasing footage of UFOs. He asked whether Trump had seen, heard or been told anything that would lead him to think there is something more there than looking at things in the sky. Trump said it is one of the questions he gets asked about in private, by people you wouldn’t think.',
+      'Then: “I’m not too much of a believer, but I sat in the Oval Office, first term and a little bit second term, meeting with Air Force pilots that are really good, solid people.” He said: “These are not people that you would say are conspiracy theorists. They don’t even know what it means.”',
+      'He described them as “Young, handsome,” with flat tops, and said he would like a haircut like theirs. “They look perfect, like Tom Cruise.” Then, back to the sky: “And they’ve told me things that are very strange.”',
+      'He said the pilots told him that in certain cases there is something going on out there. Flying an F-22, he said, “something goes by them at three times their speed and it’s round. It’s not aerodynamic, it’s round.” That is his account of what pilots told him. He offered no footage or other evidence in the interview.',
+      'Douthat then asked about people styling themselves as whistleblowers who say there is a secret program that even presidents don’t know about, and whether he had seen any evidence of that. Trump: “I haven’t heard that.” If there is one, he said, he would “find out about it right after this interview.”',
+      'Earlier this year, CBS notes, Trump signed an executive order mandating the release of sensitive files on UAP sightings. The interview was taped Friday, Nov. 6. The broadcast aired Sunday; this stretch, including the Tom Cruise line, is in the extended cut and in CBS’s takeaways. The Tom Cruise line is not in the broadcast transcript.',
+    ],
+    sources: [
+      {
+        label: '60 Minutes on YouTube: Extended Interview: President Trump on 60 Minutes (from 37:36)',
+        url: 'https://www.youtube.com/watch?v=m2aC8lAOQbg&t=2256s',
+      },
+      {
+        label: 'CBS News: 60 Minutes broadcast transcript (Nov. 8), which does not include the Tom Cruise line',
+        url: 'https://www.cbsnews.com/news/donald-trump-2026-post-midterm-elections-interview-60-minutes-transcript/',
+      },
+      {
+        label: 'CBS News: 10 takeaways from Trump’s 60 Minutes interview, which quotes the Tom Cruise line',
+        url: 'https://www.cbsnews.com/news/10-takeaways-from-trump-60-minutes-interview/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-60-minutes-iran-war-emphatic-yes-maybe-not',
     kind: 'clip',
     youtubeId: 'm2aC8lAOQbg',
@@ -228,7 +326,7 @@ export const articles: Article[] = [
     publishedAt: '2026-11-08T16:31:00+02:00',
     topics: ['gaffes'],
 
-    relatedClips: ['trump-vance-iran-war-midterms-largely-true', 'trump-democrats-did-a-good-job-not-a-hit-on-me', 'trump-endorsees-lose-democrats-take-congress'],
+    relatedClips: ['trump-60-minutes-ufo-pilots-look-perfect-like-tom-cruise', 'trump-vance-iran-war-midterms-largely-true', 'trump-democrats-did-a-good-job-not-a-hit-on-me', 'trump-endorsees-lose-democrats-take-congress'],
     body: [
       'Two years from now, someone else will be the 2028 nominee. Asked if he would endorse a 2028 nominee, he would not be pinned down.',
       'On *60 Minutes*, Ross Douthat said that in two years someone else is going to be the Republican nominee for president. He then said he assumed Trump was going to endorse someone for that. Trump: “Probably. Not necessarily.”',
@@ -369,7 +467,7 @@ export const articles: Article[] = [
       accountName: 'Donald Trump',
       archiveUrl: 'https://www.trumpstruth.org/statuses/43541',
     },
-    relatedClips: ['trump-impeachment-not-even-a-little-bit', 'trump-iran-militarily-is-effectively-over-fairly-soon'],
+    relatedClips: ['trump-hegseth-impeachment-republicans-disappointed', 'trump-impeachment-not-even-a-little-bit', 'trump-iran-militarily-is-effectively-over-fairly-soon'],
     body: [
       'Pete Hegseth faced the press to fight off impeachment. The only review that matters came in shortly after, and it was a rave.',
       'On Tuesday at 8:33am ET, shortly after Hegseth finished his Pentagon news conference, per CBS, Trump posted that the Defense secretary “gets an ‘A’ PLUS, PLUS, PLUS for his defense against a disgruntled, angry, defeated, former Congressman, Thomas Massie, a TOTAL LOSER!” At the lectern, Hegseth had called Massie’s articles of impeachment “a farce” and said: “It’s a farce, and it’s a stunt, and everybody knows it,” as CBS and the Guardian reported.',
@@ -438,7 +536,7 @@ export const articles: Article[] = [
     topics: ['midterms', 'gaffes'],
     midtermsTags: ['results'],
 
-    relatedClips: ['trump-wiles-zero-chance-wanted-to-make-a-change', 'trump-iran-war-dont-know-if-you-call-it-a-war-we-won'],
+    relatedClips: ['trump-hegseth-impeachment-republicans-disappointed', 'trump-wiles-zero-chance-wanted-to-make-a-change', 'trump-iran-war-dont-know-if-you-call-it-a-war-we-won'],
     body: [
       'Full confidence in his Defense secretary. Credit for the wars, though? Let’s not get carried away.',
       'On *60 Minutes*, Ross Douthat reminded Trump he was once famous for saying “You’re fired,” and asked whether, after a big midterm defeat, he expected to fire anyone from his team. Trump: “Little bit.” “I love my Cabinet. I think they’re good,” he said, but there would be “maybe a few changes.” He did not say who. The first one, CBS reported, came an hour after the conversation: Susie Wiles was replaced as chief of staff by Stephen Miller.',
@@ -1040,7 +1138,7 @@ export const articles: Article[] = [
       account: '@60Minutes',
       accountName: '60 Minutes',
     },
-    relatedClips: ['trump-democrats-did-a-good-job-not-a-hit-on-me', 'trump-impeachment-not-even-a-little-bit'],
+    relatedClips: ['trump-60-minutes-ufo-pilots-look-perfect-like-tom-cruise', 'trump-democrats-did-a-good-job-not-a-hit-on-me', 'trump-impeachment-not-even-a-little-bit'],
     body: [
       'Offered eternal paradise in exchange for one act of forgiveness, Trump read the terms and passed.',
       'On *60 Minutes*, Ross Douthat reminded him of Erika Kirk’s call for Christian forgiveness at her husband’s memorial, and of what Trump said right after her, which Douthat quoted back as “I hate my opponents and I don’t want the best for them.” Then the hypothetical. You die, you reach the next life, and all it takes to enter paradise is love and forgiveness for James Comey, Nancy Pelosi, anyone you have expressed hate for. Could he do it?',

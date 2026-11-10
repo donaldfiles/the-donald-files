@@ -93,7 +93,7 @@ const newest = articles.map((a) => datesFor(a).modified).sort().pop()
 const latest = newest
 // Sitemap lastmod only. Visible "Updated" bylines and JSON-LD dateModified stay on content dates.
 // Bump this when chrome, templates or CSS change a built page without a content-hash change.
-const SITE_CHROME_LASTMOD = '2026-11-10T15:58:49Z'
+const SITE_CHROME_LASTMOD = '2026-11-10T17:49:31Z'
 const later = (...xs) => xs.filter(Boolean).sort().pop()
 const sixtyLastmod = all.filter((a) => a.kind === 'clip' && (a.youtubeId === 'm2aC8lAOQbg' || (a.sources || []).some((s) => /donald-trump-2026-post-midterm-elections-interview-60-minutes|m2aC8lAOQbg/i.test(`${s.url || ''} ${s.label || ''}`)))).map((a) => datesFor(a).modified).sort().pop() || latest
 const urls = [
