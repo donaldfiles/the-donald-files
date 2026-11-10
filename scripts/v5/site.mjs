@@ -367,6 +367,19 @@ ${subband(topic ? `hub-${topic}` : 'hub')}`
   })
 }
 
+// YouTube watch-page clock: 3010 → "50:10", 10524 → "2:55:24"
+const fmtStart = (s) => {
+  s = Math.max(0, Number(s) || 0)
+  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60
+  return h ? `${h}:${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}` : `${m}:${String(sec).padStart(2, '0')}`
+}
+function ytWatchLink(e, id) {
+  if ((e.type !== 'youtube' && e.type !== 'yt') || !id) return ''
+  const start = Number(e.start) || 0
+  const href = `https://www.youtube.com/watch?v=${id}${start ? `&t=${start}s` : ''}`
+  const label = start ? `Watch on YouTube at ${fmtStart(start)}` : 'Watch on YouTube'
+  return `<p class="ytwatch"><a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a></p>`
+}
 function facade(e, { big = false, label = '', poster: pst = null, kicker = '', anchor = false } = {}) {
   const who = e.accountName ? `${esc(e.accountName)}${e.account ? ` (${esc(e.account)})` : ''}` : esc(e.account || '')
   if (e.type === 'truthsocial') {
@@ -385,7 +398,7 @@ function facade(e, { big = false, label = '', poster: pst = null, kicker = '', a
     const tw = url.replace('https://x.com/', 'https://twitter.com/')
     return `<figure class="player xp${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<div class="xembed" data-x><blockquote class="twitter-tweet" data-dnt="true" data-align="center" data-conversation="none"><a href="${esc(tw)}">${esc(url)}</a></blockquote><a class="xph thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="Watch${e.title ? ` ${qt(e.title)}` : ' the clip'} on X (opens in a new tab)">${poster}${PLAY}<span class="src">${plat}</span>${who ? `<span class="who">${who}</span>` : ''}<span class="xload" aria-hidden="true">Loading the post from X…</span><span class="xcta">Watch on X ↗</span></a></div>${credit}</figure>`
   }
-  return `<figure class="player${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-start="${e.start || 0}" data-url="${esc(url)}" aria-label="Play${e.title ? ` ${qt(e.title)}` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span></a>${credit}</figure>`
+  return `<figure class="player${big ? '' : ' small'}"${anchor ? ' id="play"' : ''}>${label ? `<p class="plabel">${label}</p>` : ''}<a class="facade thumb${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" data-type="${e.type}" data-id="${esc(id)}" data-start="${e.start || 0}" data-url="${esc(url)}" aria-label="Play${e.title ? ` ${qt(e.title)}` : ' the clip'} (loads ${plat})">${poster}${PLAY}<span class="src">${plat}</span></a>${ytWatchLink(e, id)}${credit}</figure>`
 }
 function sourcesBox(a) {
   return `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)}</a></li>`).join('')}</ol>${a.correction ? `<p class="corr">${esc(a.correction)}</p>` : ''}</section>`

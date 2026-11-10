@@ -71,6 +71,8 @@ export function headTags(o) {
     if (o.section) t.push(`<meta property="article:section" content="${esc(o.section)}"/>`)
   }
   t.push(`<meta name="twitter:card" content="summary_large_image"/>`)
+  t.push(`<meta name="twitter:site" content="@thedonaldfiles"/>`)
+  t.push(`<meta name="twitter:creator" content="@thedonaldfiles"/>`)
   t.push(`<meta name="twitter:title" content="${esc(o.title)}"/>`)
   t.push(`<meta name="twitter:description" content="${esc(desc)}"/>`)
   t.push(`<meta name="twitter:image" content="${esc(o.image)}"/>`)
