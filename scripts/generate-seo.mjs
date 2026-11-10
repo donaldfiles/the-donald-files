@@ -126,6 +126,7 @@ for (const a of articles.filter((x) => x.kind === 'clip')) {
       desc: isBefore ? `The earlier clip referenced in: ${a.title}` : a.dek || a.title,
       player: embedUrlFor(e),
       date: d.published,
+      lastmod: d.modified,
       dur: !isBefore && a.durationSeconds ? a.durationSeconds : undefined,
     })
   }
@@ -137,7 +138,7 @@ const videoSitemap = `<?xml version="1.0" encoding="UTF-8"?>
 ${[...byLoc]
   .map(
     ([loc, vs]) =>
-      `  <url><loc>${esc(loc)}</loc>${vs
+      `  <url><loc>${esc(loc)}</loc><lastmod>${esc(vs.map((v) => v.lastmod || v.date).sort().pop())}</lastmod>${vs
         .map(
           (v) =>
             `<video:video><video:thumbnail_loc>${esc(v.thumb)}</video:thumbnail_loc><video:title>${esc(v.title.slice(0, 100))}</video:title><video:description>${esc(v.desc.slice(0, 2048))}</video:description><video:player_loc>${esc(v.player)}</video:player_loc>${v.dur ? `<video:duration>${v.dur}</video:duration>` : ''}<video:publication_date>${esc(v.date)}</video:publication_date><video:family_friendly>yes</video:family_friendly></video:video>`,
