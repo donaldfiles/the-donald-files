@@ -1008,7 +1008,7 @@ export const articles: Article[] = [
       account: '@cspan',
       accountName: 'C-SPAN',
     },
-    relatedClips: ['trump-democrats-did-a-good-job-not-a-hit-on-me', 'trump-rallies-couldnt-transfer-that-love'],
+    relatedClips: ['trump-dana-white-i-do-not-want-to-be-in-politics', 'trump-60-minutes-hegseth-no-but-he-was-a-part-of-it', 'trump-60-minutes-deportation-policy-might-be-too-tough', 'trump-democrats-did-a-good-job-not-a-hit-on-me', 'trump-rallies-couldnt-transfer-that-love'],
     body: [
       'Three weeks ago, Susie Wiles had “zero chance” of being replaced. On Friday he announced her replacement, starting Monday.',
       'On Oct. 16, asked on the South Lawn whether he was replacing his chief of staff, Trump said “Zero chance,” called the Politico report “a fake story,” and promised: “Susie is here and she’s going to be here for a long time.” A long time, it turns out, is 21 days.',
