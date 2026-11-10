@@ -139,7 +139,7 @@ export const articles: Article[] = [
       'On Monday night, Trump called in to the premiere of C-SPAN’s *Washington Journal Primetime*. Host Mimi Geerges said the impeachment vote on Secretary Hegseth could come as early as Tuesday. She said Fox News was indicating that some Republicans might support it, and asked how he would react if some Republicans backed impeaching Pete Hegseth.',
       'Trump said he would be “disappointed.” Then: “Pete has won two wars.” He added: “he’s been the head person in two wars.” He went on to cite the Venezuela operation and the Iran war.',
       '“Won two wars” is his framing. Later in the same call, asked how much longer he expected the war in Iran to go, he said: “Well, it depends.”',
-      'Rep. Thomas Massie, an outgoing Kentucky Republican, filed eight articles of impeachment against Hegseth on Monday, most of them over the Iran war, per NBC and NPR. NBC reported Tuesday that the House could vote as early as 5:30 p.m. ET on a procedural motion to table the resolution or refer it to committee, and that it had not heard from any Republicans other than Massie committed to backing impeachment. As of NBC’s live blog, updated 12:40 p.m. ET, the House had not acted; the top summary still said the House could vote this evening. His Tuesday morning Truth Social post on Massie and Hegseth is a separate card.',
+      'Rep. Thomas Massie, an outgoing Kentucky Republican, filed eight articles of impeachment against Hegseth on Monday, most of them over the Iran war, per NBC and NPR. On Tuesday evening ET the Republican-led House narrowly rejected Massie’s impeachment effort, NBC reported. The vote was 211-204 to send the resolution to committee, effectively killing the effort. His Tuesday morning Truth Social post on Massie and Hegseth is a separate card.',
     ],
     sources: [
       {
@@ -157,6 +157,10 @@ export const articles: Article[] = [
       {
         label: 'NBC News: Trump administration live updates, Hegseth decries House impeachment threat (Nov. 10)',
         url: 'https://www.nbcnews.com/politics/trump-administration/live-blog/hegseth-massie-impeachment-2026-election-congress-ukraine-live-updates-rcna608406',
+      },
+      {
+        label: 'NBC News: Republican-led House rejects Hegseth impeachment effort',
+        url: 'https://www.nbcnews.com/politics/congress/republican-led-house-rejects-hegseth-impeachment-effort-rcna608534',
       },
       {
         label: 'NPR: Massie files articles of impeachment against Hegseth',
@@ -473,7 +477,7 @@ export const articles: Article[] = [
       'On Tuesday at 8:33am ET, shortly after Hegseth finished his Pentagon news conference, per CBS, Trump posted that the Defense secretary “gets an ‘A’ PLUS, PLUS, PLUS for his defense against a disgruntled, angry, defeated, former Congressman, Thomas Massie, a TOTAL LOSER!” At the lectern, Hegseth had called Massie’s articles of impeachment “a farce” and said: “It’s a farce, and it’s a stunt, and everybody knows it,” as CBS and the Guardian reported.',
       'It was Trump’s second Massie post in 12 hours. On Monday at 8:36pm ET he called him “a total loser” who “is trying to Impeach perhaps the most popular and successful military official in the Country, Secretary of War, Pete Hegseth.” He claimed recruitment was “at an ALL-TIME HIGH” and cited “TWO VICTORIES, Venezuela and Iran.” The post gave no recruitment figures. It closed with a direct appeal to Congress on Hegseth’s behalf.',
       '“Former” is doing some work. Massie is an outgoing congressman, still in the House, after losing his Republican primary to a Trump-backed rival, the Guardian reports. NBC says he leaves at the end of the year. On Monday he filed eight articles of impeachment, most of them over the Iran war, per NBC and NPR. Told on Monday that Hegseth had called him a “disgruntled defeated congressman,” Massie said, per NPR: “Well, he’s right about one thing — I’m a defeated congressman. I’m not disgruntled.”',
-      'As of Tuesday morning ET, CBS reported the House was expected to take up the resolution Tuesday evening, per Massie, likely starting with a procedural motion to table it. The House had not yet acted.',
+      'As of Tuesday morning ET, CBS reported the House was expected to take up the resolution Tuesday evening, per Massie, likely starting with a procedural motion to table it. On Tuesday evening ET the Republican-led House narrowly rejected Massie’s impeachment effort, NBC reported. The vote was 211-204 to send the resolution to committee, effectively killing the effort.',
     ],
     sources: [
       {
@@ -511,6 +515,10 @@ export const articles: Article[] = [
       {
         label: 'Rep. Thomas Massie: the eight articles (House resolution text)',
         url: 'https://massie.house.gov/uploadedfiles/hegseth_impeachment_articles_11.9.26.pdf',
+      },
+      {
+        label: 'NBC News: Republican-led House rejects Hegseth impeachment effort',
+        url: 'https://www.nbcnews.com/politics/congress/republican-led-house-rejects-hegseth-impeachment-effort-rcna608534',
       },
     ],
     published: true,
