@@ -183,7 +183,7 @@ function clipSubBar() {
   return `<div class="clipbar" data-clipbar hidden><p class="cbt">The worst of him, daily.</p><a class="cbb" href="#clipsub" data-cbgo>Get the digest</a><button class="cbx" type="button" data-cbx aria-label="Dismiss">×</button></div>`
 }
 function footer() {
-  return `<footer class="foot"><div class="wrap fgrid"><div><div class="logo big">The <mark>Donald</mark> Files</div><p class="fline">${esc(FOOT_LINE)}</p></div><div><h4>Watch</h4><a href="/trump-videos/">Trump Videos</a><a href="/reports/">Latest</a><a href="/#memes">Meme Zone</a></div><div><h4>Topics</h4>${TOPICS.map((t) => `<a href="/trump-videos/${t}/">${esc(TOPIC_LABEL[t])}</a>`).join('')}</div><div><h4>Desk</h4><a href="/the-record">The Record</a><a href="/about">About</a>${SUBSCRIBE_LIVE ? '<a href="/subscribe">Subscribe</a>' : ''}<a href="/rss.xml">RSS</a></div></div><div class="wrap fbase"><span>© ${new Date().getFullYear()} The Donald Files</span><span>thedonaldfiles.com</span></div></footer>`
+  return `<footer class="foot"><div class="wrap fgrid"><div><div class="logo big">The <mark>Donald</mark> Files</div><p class="fline">${esc(FOOT_LINE)}</p></div><div><h4>Watch</h4><a href="/trump-videos/">Trump Videos</a><a href="${SIXTY_PATH}">60 Minutes interview</a><a href="/reports/">Latest</a><a href="/#memes">Meme Zone</a></div><div><h4>Topics</h4>${TOPICS.map((t) => `<a href="/trump-videos/${t}/">${esc(TOPIC_LABEL[t])}</a>`).join('')}</div><div><h4>Desk</h4><a href="/the-record">The Record</a><a href="/about">About</a>${SUBSCRIBE_LIVE ? '<a href="/subscribe">Subscribe</a>' : ''}<a href="/rss.xml">RSS</a></div></div><div class="wrap fbase"><span>© ${new Date().getFullYear()} The Donald Files</span><span>thedonaldfiles.com</span></div></footer>`
 }
 const JS = read('scripts/v5/client.js').replace(/^\s*\/\/[^\n]*\n/gm, '').replace(/\s*\n\s*/g, '\n')
 
@@ -250,6 +250,44 @@ function midtermsHub() {
 ${leadHtml}<section class="sec tight"><div class="wrap">${grid}${empty}${srcHtml}</div></section>
 ${subband('hub-midterms')}`
   write(`${MIDTERMS_PATH.slice(1)}index.html`, page({ title, head, active: 'videos', body }))
+}
+
+// ---------- 60 Minutes interview collection (Reed 10 Nov) ----------
+// Clips from Trump's post-midterm 60 Minutes interview with Ross Douthat. Identified by the
+// official CBS extended-interview YouTube id and/or the CBS transcript URL already cited on those pages.
+const SIXTY_PATH = '/trump-videos/60-minutes-interview/'
+const SIXTY_TITLE = '60 Minutes interview'
+const SIXTY_DEK = 'Clips from Donald Trump’s 60 Minutes interview with Ross Douthat, taped Friday, Nov. 6, and aired Sunday, with his claims labelled as his.'
+const SIXTY_INTRO = 'Every clip we’ve filed from Donald Trump’s 60 Minutes interview with Ross Douthat. The interview was taped Friday, Nov. 6, and aired Sunday; the extended cut is on CBS’s own YouTube channel. Trump’s claims in the interview are labelled as his. Newest first.'
+const isSixtyMinutesInterview = (a) =>
+  a.youtubeId === 'm2aC8lAOQbg' ||
+  (a.sources || []).some((s) => /donald-trump-2026-post-midterm-elections-interview-60-minutes|m2aC8lAOQbg/i.test(`${s.url || ''} ${s.label || ''}`))
+const sixtyClips = posts.filter((c) => c.kind === 'clip' && isSixtyMinutesInterview(c))
+
+function sixtyMinutesHub() {
+  const cr = [['Home', '/'], ['Trump Videos', '/trump-videos/'], [SIXTY_TITLE, SIXTY_PATH]]
+  const url = `${SITE}${SIXTY_PATH}`
+  const title = `${SIXTY_TITLE} | The Donald Files`
+  const [lead, ...rest] = sixtyClips
+  const updated = latestMod(sixtyClips)
+  const ld = [
+    { '@context': 'https://schema.org', '@type': 'CollectionPage', name: SIXTY_TITLE, url, description: SIXTY_DEK, isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${SITE}/` }, ...(updated ? { dateModified: updated } : {}),
+      mainEntity: { '@type': 'ItemList', numberOfItems: sixtyClips.length, itemListElement: sixtyClips.map((a, k) => ({ '@type': 'ListItem', position: k + 1, url: urlFor(a) })) } },
+    crumbLd(cr),
+  ]
+  const head = headTags({ title: SIXTY_TITLE, description: SIXTY_DEK, url, image: DEFAULT_OG, type: 'website', jsonLd: ld })
+  const leadHtml = lead
+    ? `<section class="sec tight"><div class="wrap"><div class="mtlead">${lead.embed ? facade(lead.embed, { big: true, poster: lead.poster, kicker: kickerOf(lead) }) : ''}<div class="mtlb"><div class="tmeta">${kickerOf(lead) ? `<span class="kick">${esc(kickerOf(lead))}</span><span class="dot">·</span>` : ''}${timeEl(lead)}${datesFor(lead).hasTime ? `<span class="dot">·</span><span class="etc">${esc(clockET(pub(lead)))}</span>` : ''}</div><h2 class="fhed"><a href="${esc(hrefFor(lead))}">${punch(lead.title, lead.ogPunch)}</a></h2>${lead.dek ? `<p class="fdek">${esc(lead.dek)}</p>` : ''}</div></div></div></section>`
+    : ''
+  const grid = rest.length ? `<div class="hgrid">${rest.map((a) => tile(a, false, { et: true })).join('')}</div>` : ''
+  const empty = sixtyClips.length ? '' : `<div class="mtempty"><p class="mteh">No clips from this interview filed yet.</p><p>Clips land here once they clear the desk, newest first. Until then, <a href="/trump-videos/">every Trump video is here →</a></p></div>`
+  const seen = new Set()
+  const srcs = sixtyClips.flatMap((a) => a.sources || []).filter((x) => (seen.has(x.url) ? false : seen.add(x.url)))
+  const srcHtml = `<section class="srcbox" aria-labelledby="h-src"><h2 id="h-src">Source files</h2>${srcs.length ? `<ol>${srcs.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.label)}</a></li>`).join('')}</ol>` : '<p class="mtns">Every clip on this page carries its own sources; they collect here as clips are filed.</p>'}</section>`
+  const body = `${crumbs(cr)}<section class="hubhead"><div class="wrap"><p class="kick">60 Minutes</p><h1 class="h1">The 60 Minutes <mark>interview</mark></h1><p class="intro">${esc(SIXTY_INTRO)}</p><div class="sortrow"><span>Sort: <b>Newest</b></span><span>${sixtyClips.length} clip${sixtyClips.length === 1 ? '' : 's'}${updated ? ` · updated <time datetime="${esc(updated)}">${esc(clockET(updated))}</time>` : ''}</span></div></div></section>
+${leadHtml}<section class="sec tight"><div class="wrap">${grid}${empty}${srcHtml}</div></section>
+${subband('hub-60-minutes')}`
+  write(`${SIXTY_PATH.slice(1)}index.html`, page({ title, head, active: 'videos', body }))
 }
 
 // ---------- pages ----------
@@ -372,6 +410,7 @@ function filedLine(a) {
   // Midterms clips also file under the /midterms-2026/ hub (not a TOPIC_LABEL topic, so add it by hand).
   const links = hubs.map((t) => `<a href="/trump-videos/${t}/">${esc(TOPIC_LABEL[t])}</a>`)
   if ((a.topics || []).includes('midterms')) links.push(`<a href="${MIDTERMS_PATH}">Midterms 2026</a>`)
+  if (isSixtyMinutesInterview(a)) links.push(`<a href="${SIXTY_PATH}">60 Minutes interview</a>`)
   if (!links.length) return ''
   return `<p class="filed">Filed under ${links.join('<span aria-hidden="true"> · </span>')}</p>`
 }
@@ -484,6 +523,7 @@ home()
 hubPage({})
 for (const t of TOPICS) hubPage({ topic: t })
 midtermsHub()
+sixtyMinutesHub()
 for (const a of clips) clipPage(a)
 for (const a of files) articlePage(a)
 latestPage()
@@ -500,4 +540,4 @@ if (UNLISTED.length) {
 }
 // '/*' so functions/_middleware.js can 301 the bare pages.dev host on every page path; static binaries (fonts/posters/og/memes) stay function-free to save invocations.
 writeFileSync(join(dist, '_routes.json'), JSON.stringify({ version: 1, include: ['/*'], exclude: ['/fonts/*', '/posters/*', '/og/*', '/memes/*'] }, null, 2))
-console.log(`v5: home, hub + ${TOPICS.length} topic hubs (${TOPICS.join(', ')}), ${clips.length} clip pages, ${files.length} file pages, midterms (${midClips.length}), latest, record, about, subscribe, 404 · CSS ${(CSS.length / 1024).toFixed(1)}KB · per page ${PER_PAGE}`)
+console.log(`v5: home, hub + ${TOPICS.length} topic hubs (${TOPICS.join(', ')}), ${clips.length} clip pages, ${files.length} file pages, midterms (${midClips.length}), 60-minutes (${sixtyClips.length}), latest, record, about, subscribe, 404 · CSS ${(CSS.length / 1024).toFixed(1)}KB · per page ${PER_PAGE}`)

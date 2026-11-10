@@ -89,16 +89,19 @@ im.resize((640,360),Image.LANCZOS).save(sys.argv[2],'WEBP',quality=82,method=6)
 }
 
 // ---------- sitemap + robots ----------
-const latest = articles[0]?.date
+const newest = articles.map((a) => datesFor(a).modified).sort().pop()
+const latest = newest
+const sixtyLastmod = all.filter((a) => a.kind === 'clip' && (a.youtubeId === 'm2aC8lAOQbg' || (a.sources || []).some((s) => /donald-trump-2026-post-midterm-elections-interview-60-minutes|m2aC8lAOQbg/i.test(`${s.url || ''} ${s.label || ''}`)))).map((a) => datesFor(a).modified).sort().pop() || latest
 const urls = [
   { loc: `${SITE}/`, lastmod: latest, freq: 'hourly', pri: '1.0' },
   { loc: `${SITE}/reports/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
   { loc: `${SITE}/trump-videos/`, lastmod: latest, freq: 'hourly', pri: '0.9' },
   ...liveTopics(all).map((t) => ({ loc: `${SITE}/trump-videos/${t}/`, lastmod: latest, freq: 'daily', pri: '0.7' })),
   { loc: `${SITE}/midterms-2026/`, lastmod: all.filter((a) => a.kind === 'clip' && (a.topics || []).includes('midterms')).map((a) => datesFor(a).modified).sort().pop() || latest, freq: 'hourly', pri: '0.8' },
-  { loc: `${SITE}/the-record`, freq: 'daily', pri: '0.6' },
-  { loc: `${SITE}/about`, freq: 'monthly', pri: '0.3' },
-  { loc: `${SITE}/subscribe`, freq: 'monthly', pri: '0.4' },
+  { loc: `${SITE}/trump-videos/60-minutes-interview/`, lastmod: sixtyLastmod, freq: 'daily', pri: '0.7' },
+  { loc: `${SITE}/the-record`, lastmod: latest, freq: 'daily', pri: '0.6' },
+  { loc: `${SITE}/about`, lastmod: latest, freq: 'monthly', pri: '0.3' },
+  { loc: `${SITE}/subscribe`, lastmod: latest, freq: 'monthly', pri: '0.4' },
   ...articles.map((a) => ({ loc: urlFor(a), lastmod: datesFor(a).modified, freq: 'weekly', pri: '0.8', img: articleOg(a.slug), title: a.title })),
 ]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -145,7 +148,6 @@ ${[...byLoc]
 </urlset>
 `
 writeFileSync(join(dist, 'sitemap-video.xml'), videoSitemap)
-const newest = articles.map((a) => datesFor(a).modified).sort().pop()
 writeFileSync(
   join(dist, 'sitemap-index.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
