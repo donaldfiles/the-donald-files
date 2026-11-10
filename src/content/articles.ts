@@ -116,6 +116,196 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-claims-midterm-election-honest-machines',
+    kind: 'clip',
+    ogKicker: '10:07AM ET',
+    ogPunch: 'machines',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump claims the midterm ‘Election’ wasn’t ‘honest’ and it’s ‘all about the machines’',
+    seoTitle: 'Trump claims the midterm ‘Election’ wasn’t ‘honest’',
+    category: 'REPORTS',
+    date: '2026-11-09',
+    dek: 'On Monday Trump posted: “Does anybody really believe that this ‘Election’ was honest.” And: “It’s all about the machines.”',
+    publishedAt: '2026-11-09T13:42:00+02:00',
+    topics: ['midterms', 'truth-social'],
+    midtermsTags: ['claims'],
+    embed: {
+      type: 'truthsocial',
+      id: '117587105833579030',
+      url: 'https://truthsocial.com/@realDonaldTrump/117587105833579030',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43533',
+    },
+    relatedClips: ['trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-democrats-did-a-good-job-not-a-hit-on-me'],
+    body: [
+      'Six days after telling the New York Times he was “absolutely willing” to accept the midterm results, per NBC, Trump tried the other product.',
+      'At 10:07am ET on Monday he posted: “Does anybody really believe that this ‘Election’ was honest. How could the Polls be so wrong???” Some early voting “dumps,” he wrote, “were so large that it was impossible to win, no matter how many people went to vote.” And: “It’s all about the machines, which are far more important than the voter!”',
+      'The post named no state, no race and no machine, and it offered no evidence. AP called the House and the Senate for the Democrats last week. NBC reported that election officials nationwide said voting this year was largely routine. Nevada Secretary of State Cisco Aguilar told NBC the claims are “completely false.” BBC reported that state and local officials described a mostly problem-free count, and that MIT election expert Charles Stewart said the reporting of results followed standard patterns.',
+      'Later on Monday, at the White House, a reporter asked whether he believed the midterms had been rigged. He did not answer yes or no. “Well, I think the numbers were terrible in terms of those early votes. You look at all those early votes,” he said, then turned to Alaska’s Senate race, which AP had not called as of 6:19am ET Tuesday, Nov. 10.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 10:07am ET post, 9 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117587105833579030',
+      },
+      {
+        label: 'Truth Social: Trump’s 10:07am ET post, 9 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43533',
+      },
+      {
+        label: 'NBC News: Trump casts doubt on the midterm results after saying he was “absolutely willing” to accept them',
+        url: 'https://www.nbcnews.com/politics/donald-trump/trump-midterm-elections-voting-machines-doubt-rcna607893',
+      },
+      {
+        label: 'BBC: Trump questions midterm elections integrity after previously accepting the results',
+        url: 'https://www.bbc.com/news/articles/ck79p9350zp9o',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'AP: races AP has not called yet',
+        url: 'https://apnews.com/article/midterm-election-ap-race-call-uncalled-races-d4f55516fd72155d746cfbbc2017c743',
+      },
+      {
+        label: 'Roll Call Factba.se: transcript of the Nov. 9 White House briefing (follow-up question)',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-press-conference-unscheduled-white-house-november-9-2026/',
+      },
+      {
+        label: 'The White House on YouTube: President Trump Delivers Remarks, Nov. 9, 2026',
+        url: 'https://www.youtube.com/watch?v=Djn09HekpAs',
+      },
+      {
+        label: 'The Donald Files: Trump’s 10:37pm “wasn’t on the Ballot” card',
+        url: 'https://thedonaldfiles.com/trump-videos/trump-truth-social-wasnt-on-ballot-10-37pm/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-dana-white-i-do-not-want-to-be-in-politics',
+    kind: 'clip',
+    youtubeId: 'Djn09HekpAs',
+    youtubeStart: 2054,
+    youtubeChannel: 'The White House',
+    posterShareCard: true,
+    ogKicker: 'PRESS ROOM',
+    ogPunch: 'politics',
+    ogStamp: 'ON TAPE',
+    title: 'Trump asked Dana White if he wanted the press secretary job. White: ‘I do not want to be in politics’',
+    seoTitle: 'Dana White to Trump: ‘I do not want to be in politics’',
+    category: 'REPORTS',
+    date: '2026-11-09',
+    dek: 'Asked on camera if he wanted the press secretary job, Dana White told Trump: “I do not want to be in politics.”',
+    publishedAt: '2026-11-09T13:41:00+02:00',
+    topics: ['gaffes'],
+
+    relatedClips: ['trump-offered-dana-white-press-secretary-violent-fighter', 'trump-wiles-zero-chance-wanted-to-make-a-change'],
+    body: [
+      'First he said he was kidding. Then he walked Dana White into the briefing room and asked him, on camera, if he wanted the job.',
+      'It follows Saturday’s Truth Social offer.',
+      'On Monday Trump arrived with the UFC chief and told reporters “a lot of people think he’ll be our new press secretary.” White took a turn at the lectern: “I’ve always wanted to do this. Who has the first question?” He then said: “I have zero political aspirations,” and that he had been at a fight in London when Trump called him. Asked later whether he had told the president no to the press secretary job, White said: “I don’t tell the president no to anything.” And: “I didn’t say no.” Trump’s account of Saturday’s post, in the same stretch: they had been “having a very bad press day,” he thought of White’s name, “and that was it.” He was “sort of kidding,” he said, “and then they wrote the story as though I wasn’t kidding.”',
+      'At the end of the session he put “the big question” to White directly: “Dana, would you like to be press secretary of the United States of America?” The alternative, he said, was to “stay with this ridiculous UFC.” White: “Thank you for the offer, sir.” Then: “I do not want to be in politics.” Trump: “I am devastated to hear this. Goodbye, everybody.”',
+      'The job has been vacant since Oct. 16, as CBS reported when Trump first dangled it on Saturday.',
+    ],
+    sources: [
+      {
+        label: 'The White House on YouTube: President Trump Delivers Remarks, Nov. 9, 2026 (from 34:14)',
+        url: 'https://www.youtube.com/watch?v=Djn09HekpAs&t=2054s',
+      },
+      {
+        label: 'Roll Call Factba.se: transcript of the Nov. 9 White House briefing',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-press-conference-unscheduled-white-house-november-9-2026/',
+      },
+      {
+        label: 'AP: UFC’s Dana White appears with Trump at a White House briefing but will not be his press secretary',
+        url: 'https://apnews.com/article/trump-dana-white-ufc-press-secretary-briefing-928726114a1a50da8c13b41823431c92',
+      },
+      {
+        label: 'BoxingScene: White tells Trump, “I do not want to be in politics”',
+        url: 'https://www.boxingscene.com/articles/dana-white-holds-court-at-white-house-but-tells-donald-trump-i-do-not-want-to-be-in-politics',
+      },
+      {
+        label: 'The Donald Files: Trump offered Dana White the press secretary job',
+        url: 'https://thedonaldfiles.com/trump-videos/trump-offered-dana-white-press-secretary-violent-fighter/',
+      },
+      {
+        label: 'CBS News: Trump says he offered UFC CEO Dana White the White House press secretary role',
+        url: 'https://www.cbsnews.com/news/trump-offers-white-house-press-secretary-role-dana-white/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-iran-militarily-is-effectively-over-fairly-soon',
+    kind: 'clip',
+    youtubeId: 'Djn09HekpAs',
+    youtubeStart: 308,
+    youtubeChannel: 'The White House',
+    posterShareCard: true,
+    ogKicker: 'EFFECTIVELY OVER',
+    ogPunch: 'over',
+    ogStamp: 'ON TAPE',
+    title: 'Trump says Iran ‘militarily is effectively over’ and the war will end ‘fairly soon’',
+    seoTitle: 'Trump says Iran is ‘effectively over,’ ending ‘fairly soon’',
+    category: 'REPORTS',
+    date: '2026-11-09',
+    dek: 'At a White House briefing Monday, Trump said Iran “militarily is effectively over” and the war would end “fairly soon.”',
+    publishedAt: '2026-11-09T13:40:00+02:00',
+    topics: ['gaffes'],
+
+    relatedClips: ['trump-vance-iran-war-midterms-largely-true', 'trump-hannity-iran-not-much-of-a-war-peanuts'],
+    body: [
+      'The war is over, he said. Also it is not over. Also it will be over fairly soon, unless it isn’t, in which case America is locked and loaded.',
+      'On Monday, after meeting Qatar’s prime minister, Trump told reporters at a White House briefing: “Iran militarily is effectively over.” Then: “We’re just keeping it the status quo,” adding that “we’re doing that really at the behest of countries that are their neighbors.” Earlier in the same remarks he had already timed the ending: “I think it’s going to be ending fairly soon.” Iran, he said, is “talking very politely.”',
+      'A reporter asked why, having said he had stopped Iran from having a nuclear weapon, he would not “just declare an end to the conflict.” He said “we have some great allies there” and “we have to make sure they’re not hurt.” He also declined to guarantee anything: “I don’t guarantee anything, but if we do have to go back in, we are locked and loaded and ready to go.” The same warning was in his opening statement — “the United States of America is fully locked and loaded with the best equipment ever made” — and again at 4:29pm ET on Truth Social, where he wrote that further action “seems to be quite unlikely.”',
+      'BBC noted this is not the first time he has said the war is militarily over. Iranian officials have denied that talks are underway. Euronews reported that Iran’s security chief, Mohsen Rezaei, told Washington to stop “manufacturing fake news about imaginary talks.” BBC and CNBC reported that oil prices dipped after the remarks.',
+    ],
+    sources: [
+      {
+        label: 'The White House on YouTube: President Trump Delivers Remarks, Nov. 9, 2026 (from 5:08)',
+        url: 'https://www.youtube.com/watch?v=Djn09HekpAs&t=308s',
+      },
+      {
+        label: 'Roll Call Factba.se: transcript of the Nov. 9 White House briefing',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-press-conference-unscheduled-white-house-november-9-2026/',
+      },
+      {
+        label: 'Truth Social: Trump’s 4:29pm ET post on the Qatar meeting and Iran (Nov. 9)',
+        url: 'https://truthsocial.com/@realDonaldTrump/117588608183719347',
+      },
+      {
+        label: 'Truth Social: Trump’s 4:29pm ET post on the Qatar meeting and Iran (Nov. 9) (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43537',
+      },
+      {
+        label: 'AP: Trump, after meeting Qatar’s PM, says the war with Iran is militarily “effectively over”',
+        url: 'https://apnews.com/article/iran-us-war-trump-qatar-c38770b168faf5e094e96c1e1e212cff',
+      },
+      {
+        label: 'BBC: Trump says more US attacks on Iran are “highly unlikely”',
+        url: 'https://www.bbc.com/news/articles/cq5yny4nl2d3o',
+      },
+      {
+        label: 'CNBC: Trump says the Iran war will end “fairly soon”',
+        url: 'https://www.cnbc.com/2026/11/10/trump-iran-war-hormuz-.html',
+      },
+      {
+        label: 'Euronews: Trump says the war is “effectively over” as Tehran denies planned talks',
+        url: 'https://www.euronews.com/2026/11/10/trump-says-iran-war-effectively-over-as-tehran-denies-planned-talks',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-endorsees-lose-democrats-take-congress',
     ogKicker: 'THE RESULTS',
     ogPunch: '11',
