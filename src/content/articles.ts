@@ -116,6 +116,191 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-c-span-call-fully-scheduled-new-york-times',
+    kind: 'clip',
+    ogKicker: '1:25AM ET',
+    ogPunch: 'scheduled',
+    ogStamp: 'FILED',
+    title: 'Trump, at 1:25am, insists his C-SPAN call was ‘a fully scheduled call’',
+    seoTitle: 'Trump: his C-SPAN call was ‘a fully scheduled call’',
+    category: 'REPORTS',
+    date: '2026-11-11',
+    dek: 'At 1:25am ET Trump posted that his C-SPAN call “was a fully scheduled call.” The host: “looks like we’ve got a call from the White House.”',
+    publishedAt: '2026-11-11T08:25:00+02:00',
+    topics: ['truth-social', 'gaffes'],
+    embed: {
+      type: 'truthsocial',
+      id: '117596377951333382',
+      url: 'https://truthsocial.com/@realDonaldTrump/117596377951333382',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43549',
+    },
+    relatedClips: ['trump-hegseth-impeachment-republicans-disappointed', 'trump-truth-social-alaska-other-dan-sullivan-1am-all-caps'],
+    body: [
+      'Nothing says calm, well-planned media operation like relitigating a TV booking at 1:25 in the morning.',
+      'On Wednesday at 1:25am ET, Trump posted that the New York Times “incorrectly reported that ‘Mr. Trump called into the premier of a C-Span show, APPARENTLY WITHOUT NOTICE.’ This is WRONG.” His version: “It was a fully scheduled call, as a favor to C-Span, set up through White House Communications. It was done at C-Span’s request, not mine.” The Times, he added, “knew this, but lied, in order to demean.” The post offered no booking details beyond his word.',
+      'The Times line he quoted already had a hedge built in: “apparently.” On Monday night, the host, Mimi Geerges, greeted the call on air with: “looks like we’ve got a call from the White House.” The Daily Wire, not exactly the Times, headlined it “Trump Crashes C-SPAN Call-In Show” and called him “the unexpected caller.” That is their phrasing, not a finding that the call was unscheduled. C-SPAN has not said either way.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 1:25am ET post, 11 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117596377951333382',
+      },
+      {
+        label: 'Truth Social: Trump’s 1:25am ET post, 11 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43549',
+      },
+      {
+        label: 'C-SPAN on YouTube: President Trump Calls In to C-SPAN’s Washington Journal Primetime (from 0:00)',
+        url: 'https://www.youtube.com/watch?v=d-33mV3JYN8',
+      },
+      {
+        label: 'Roll Call Factba.se: transcript, Trump call-in to C-SPAN’s Washington Journal, Nov. 9, 2026',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-interview-mimi-geerges-c-span-washington-journal-november-9-2026/',
+      },
+      {
+        label: 'The Daily Wire: Trump crashes C-SPAN call-in show, reveals why he tunes in',
+        url: 'https://www.dailywire.com/news/trump-crashes-c-span-call-in-show-reveals-why-he-tunes-in',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-hegseth-impeachment-referral-exoneration',
+    kind: 'clip',
+    ogKicker: '6:24PM ET',
+    ogPunch: 'EXONERATION',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump calls the House sending Hegseth’s impeachment to committee an ‘EXONERATION’',
+    seoTitle: 'Trump calls Hegseth committee referral an ‘EXONERATION’',
+    category: 'REPORTS',
+    date: '2026-11-10',
+    dek: 'The House voted 211-204 to send Massie’s resolution to committee. Trump posted that it led to “the EXONERATION of a Great American Patriot.”',
+    publishedAt: '2026-11-10T23:24:00+02:00',
+    topics: ['truth-social', 'lies'],
+    embed: {
+      type: 'truthsocial',
+      id: '117594721408592840',
+      url: 'https://truthsocial.com/@realDonaldTrump/117594721408592840',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43547',
+    },
+    relatedClips: ['trump-hegseth-a-plus-plus-plus-massie-total-loser', 'trump-hegseth-impeachment-republicans-disappointed'],
+    body: [
+      'Pete Hegseth’s impeachment didn’t get a verdict. It got sent to a filing cabinet. Trump called that an exoneration.',
+      'On Tuesday, the House voted 211-204, NBC reported, to send Rep. Thomas Massie’s resolution to the Judiciary Committee, which CBS and NPR say effectively kills it. At 6:24pm ET, Trump posted: “The Democrats’ attempt to impeach Secretary of War Pete Hegseth has miserably FAILED!” He singled out “Thomas Massie, a major LOSER,” and wrote that “Victories in Venezuela and Iran, the Best Recruitment Numbers in the History of the Military (Long waiting lists to get in!), and Spirit like rarely seen before, led to the EXONERATION of a Great American Patriot.”',
+      'Quick fact check on “The Democrats’ attempt”: Massie, who wrote the eight articles and forced the vote, is a Republican. On “EXONERATION”: nobody ruled on the articles. The committee can take them up but isn’t obligated to, per Breaking Defense, and NPR says the vote virtually guarantees they won’t be taken up before this Congress ends. He wrote as if the rest of the Republican conference had been unanimous. CBS counted seven Republicans who missed the vote. The post gave no recruitment figures.',
+      'Massie, after the vote, per CBS: “I wasn’t surprised, but I was disappointed.” That’s the word Trump used on C-SPAN the night before about Republicans who might back impeachment. House Minority Leader Hakeem Jeffries, per CBS: “This is not the end of it. It’s just the beginning.” Democrats take control of both chambers in January.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 6:24pm ET post, 10 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117594721408592840',
+      },
+      {
+        label: 'Truth Social: Trump’s 6:24pm ET post, 10 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43547',
+      },
+      {
+        label: 'CBS News: House blocks Massie’s effort to impeach Hegseth, voting to kill resolution',
+        url: 'https://www.cbsnews.com/news/massie-hegseth-impeachment/',
+      },
+      {
+        label: 'NPR: House vote effectively ends impeachment push against Hegseth',
+        url: 'https://www.npr.org/2026/11/10/nx-s1-6036813/house-votes-to-effectively-end-the-impeachment-effort-against-pete-hegseth',
+      },
+      {
+        label: 'Breaking Defense: House opts to stall Hegseth impeachment vote, sending resolution to Judiciary Committee',
+        url: 'https://breakingdefense.com/2026/11/house-opts-to-stall-hegseth-impeachment-vote-sending-resolution-to-judiciary-committee/',
+      },
+      {
+        label: 'NBC News: Republican-led House rejects Hegseth impeachment effort',
+        url: 'https://www.nbcnews.com/politics/congress/republican-led-house-rejects-hegseth-impeachment-effort-rcna608534',
+      },
+      {
+        label: 'NBC News live blog: Trump rips into Democrats after failed impeachment effort against Pete Hegseth',
+        url: 'https://www.nbcnews.com/politics/trump-administration/live-blog/hegseth-massie-impeachment-2026-election-congress-ukraine-live-updates-rcna608406',
+      },
+      {
+        label: 'C-SPAN on YouTube: House vote on Secretary Hegseth impeachment',
+        url: 'https://www.youtube.com/watch?v=Gja42toN-DA',
+      },
+      {
+        label: 'Mediaite on X: ‘EXONERATION!’ Trump celebrates defeat of Pete Hegseth impeachment push',
+        url: 'https://x.com/Mediaite/status/2120303982153265244',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-bbc-huge-victory-left-for-another-day',
+    kind: 'clip',
+    ogKicker: '6:50PM ET',
+    ogPunch: 'Victory',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump calls the BBC ruling a ‘Huge Victory.’ The judge left proof ‘for another day’',
+    seoTitle: 'Trump: BBC ruling a ‘Huge Victory.’ Proof ‘for another day’',
+    category: 'REPORTS',
+    date: '2026-11-10',
+    dek: 'Trump: “A Huge Victory against Fake News BBC.” The ruling: whether he can prove his claims “is left for another day.”',
+    publishedAt: '2026-11-10T23:50:00+02:00',
+    topics: ['truth-social', 'courts'],
+    embed: {
+      type: 'truthsocial',
+      id: '117594826848361683',
+      url: 'https://truthsocial.com/@realDonaldTrump/117594826848361683',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43548',
+    },
+    relatedClips: ['trump-macron-drug-prices-story-kansas-rally-france-fake-news', 'trump-iran-war-new-york-times-stupid-question'],
+    body: [
+      'Trump has won the right to keep suing the BBC. In Trump’s dictionary, that’s a “Huge Victory.”',
+      'On Tuesday at 6:50pm ET he posted: “A Huge Victory against Fake News BBC, a terrible abuser of the truth, just handed down by highly respected District Court Judge, Jeffrey T. Kuntz, of the Southern District of Florida.” He quoted the ruling: “Here, the news entity created the story. BBC admitted as much by confirming it had edited a video to make it appear as though President Trump made a statement he never made.” That line is in the order, word for word. The BBC has apologized for the Panorama edit, which spliced together lines from his January 6, 2021 speech made nearly 55 minutes apart, per the Guardian.',
+      'What the “victory” actually was: Kuntz denied the BBC’s motion to dismiss Trump’s defamation claim, so his $10bn suit can proceed, and granted it on his second claim, under Florida’s Deceptive and Unfair Trade Practices Act, which is now dismissed. The BBC has to answer by December 1. Same ruling, two paragraphs later: “Whether President Trump can prove these claims and establish he sustained damages at summary judgment or trial is left for another day.”',
+      'The order also opens with a recap of how his other media suits went. In the CNN case, Judge Singhal concluded “the complained of statements are opinion, not factually false statements, and therefore are not actionable.” In the Wall Street Journal case, Judge Gayles dismissed his claims that the paper “failed to adequately investigate claims it reported.” And per the Guardian, a magistrate judge ruled in late October that Trump must sit for a deposition by BBC lawyers by 11 December. The BBC, in a statement: “We are surprised by this decision but respect the Court’s authority.”',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 6:50pm ET post, 10 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117594826848361683',
+      },
+      {
+        label: 'Truth Social: Trump’s 6:50pm ET post, 10 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43548',
+      },
+      {
+        label: 'Court order: Trump v. British Broadcasting Corp., No. 1:25-cv-25894, S.D. Fla., Doc. 209 (10 Nov 2026), via Bloomberg',
+        url: 'https://assets.bwbx.io/documents/users/iqjWHBFdfxIU/rSAQ_SvfqH_Q/v0',
+      },
+      {
+        label: 'The Guardian: Federal judge allows Trump’s $10bn defamation lawsuit against BBC to proceed',
+        url: 'https://www.theguardian.com/us-news/2026/nov/10/trump-10bn-defamation-lawsuit-bbc-allowed',
+      },
+      {
+        label: 'BBC News: Judge allows Trump’s $10bn defamation case against BBC to proceed',
+        url: 'https://www.bbc.com/news/articles/cm93rpy6lx0do',
+      },
+      {
+        label: 'Politico: Judge rejects BBC’s motion to dismiss Trump libel suit',
+        url: 'https://www.politico.com/news/2026/11/11/trump-bbc-lawsuit-ruling',
+      },
+      {
+        label: 'LBC on X: Trump hails ‘huge victory’ as judge rules $10 billion defamation lawsuit against BBC ‘can proceed’',
+        url: 'https://x.com/LBC/status/2120397361130201512',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-hegseth-impeachment-republicans-disappointed',
     kind: 'clip',
     youtubeId: 'd-33mV3JYN8',
@@ -133,7 +318,7 @@ export const articles: Article[] = [
     publishedAt: '2026-11-09T16:41:00+02:00',
     topics: ['gaffes'],
 
-    relatedClips: ['trump-hegseth-a-plus-plus-plus-massie-total-loser', 'trump-60-minutes-hegseth-no-but-he-was-a-part-of-it'],
+    relatedClips: ['trump-hegseth-impeachment-referral-exoneration', 'trump-c-span-call-fully-scheduled-new-york-times', 'trump-hegseth-a-plus-plus-plus-massie-total-loser', 'trump-60-minutes-hegseth-no-but-he-was-a-part-of-it'],
     body: [
       'The night before the House could take up Pete Hegseth’s impeachment, Trump phoned in to C-SPAN. Asked about Republicans breaking ranks, he went straight to the scoreboard.',
       'On Monday night, Trump called in to the premiere of C-SPAN’s *Washington Journal Primetime*. Host Mimi Geerges said the impeachment vote on Secretary Hegseth could come as early as Tuesday. She said Fox News was indicating that some Republicans might support it, and asked how he would react if some Republicans backed impeaching Pete Hegseth.',
@@ -471,7 +656,7 @@ export const articles: Article[] = [
       accountName: 'Donald Trump',
       archiveUrl: 'https://www.trumpstruth.org/statuses/43541',
     },
-    relatedClips: ['trump-hegseth-impeachment-republicans-disappointed', 'trump-impeachment-not-even-a-little-bit', 'trump-iran-militarily-is-effectively-over-fairly-soon'],
+    relatedClips: ['trump-hegseth-impeachment-referral-exoneration', 'trump-hegseth-impeachment-republicans-disappointed', 'trump-impeachment-not-even-a-little-bit', 'trump-iran-militarily-is-effectively-over-fairly-soon'],
     body: [
       'Pete Hegseth faced the press to fight off impeachment. The only review that matters came in shortly after, and it was a rave.',
       'On Tuesday at 8:33am ET, shortly after Hegseth finished his Pentagon news conference, per CBS, Trump posted that the Defense secretary “gets an ‘A’ PLUS, PLUS, PLUS for his defense against a disgruntled, angry, defeated, former Congressman, Thomas Massie, a TOTAL LOSER!” At the lectern, Hegseth had called Massie’s articles of impeachment “a farce” and said: “It’s a farce, and it’s a stunt, and everybody knows it,” as CBS and the Guardian reported.',
