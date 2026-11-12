@@ -116,6 +116,186 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-caravans-mexico-tariffs-doubled-not-on-the-ballot',
+    kind: 'clip',
+    ogKicker: '7:04AM ET',
+    ogPunch: 'BALLOT',
+    ogStamp: 'FILED',
+    title: 'Trump says ‘I WAS NOT ON THE BALLOT’ and threatens to double Mexico tariffs over caravans',
+    seoTitle: 'Trump: ‘I WAS NOT ON THE BALLOT,’ Mexico tariffs doubled',
+    category: 'REPORTS',
+    date: '2026-11-12',
+    dek: 'Trump posted that “Huge CARAVANS are forming” and that tariffs on Mexico will be “IMMEDIATELY DOUBLED” if they do not stop them.',
+    publishedAt: '2026-11-12T14:04:00+02:00',
+    topics: ['truth-social', 'midterms'],
+    midtermsTags: ['truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117603372250841698',
+      url: 'https://truthsocial.com/@realDonaldTrump/117603372250841698',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://trumpstruth.org/statuses/43556',
+    },
+    relatedClips: ['trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-60-minutes-deportation-policy-might-be-too-tough'],
+    body: [
+      'Nine days after the midterms, Donald Trump has found the real reason they went badly: he wasn’t in them. Again.',
+      'At 7:04am ET Thursday he posted: “With the perceived loss by the Republicans in the Midterms - I WAS NOT ON THE BALLOT- the INVASION of our Country is taking place again.” “Perceived” is working overtime there, because AP called both the House and the Senate for Democrats. And on election eve he told Sean Hannity: “I’m just asking everybody to pretend that I’m on the ballot. And in a way, I am.”',
+      'Then the threat. “Huge CARAVANS are forming,” he wrote, and “MEXICO MUST STOP THEM, NOW, and if they do not do so, the Tariffs on Mexico will be IMMEDIATELY DOUBLED.” He didn’t say which tariffs. The caravans are real: AFP reported about 1,000 migrants entered Mexico on Sunday and Mexican forces blocked a group of about 100 on Tuesday, and Reuters, via La Jornada, put the biggest one at about 1,500 people. Both report migrants saying the Democrats’ win gave them hope. Mexico’s president, Claudia Sheinbaum, said her government tells them there is no asylum available in the US, per Agencia Reforma.',
+      'He also says he has informed “THE VERY LIBERAL NEW GOVERNOR OF TEXAS.” That’s Gina Hinojosa, the Democrat AP called the winner over Greg Abbott on election night. So the man who wasn’t on the ballot is now briefing the woman who beat his party’s governor.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 7:04am ET post, 12 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117603372250841698',
+      },
+      {
+        label: 'Truth Social: Trump’s 7:04am ET post, 12 Nov 2026 (archive)',
+        url: 'https://trumpstruth.org/statuses/43556',
+      },
+      {
+        label: 'AFP: Mexico works to block passage of US-bound migrant caravan (11 Nov)',
+        url: 'https://www.afp.com/en/mexico-works-block-passage-us-bound-migrant-caravan',
+      },
+      {
+        label: 'La Jornada (Reuters, in Spanish): migrant caravan advances from Chiapas, encouraged by the Democratic win',
+        url: 'https://www.jornada.com.mx/noticia/2026/11/11/estados/caravana-migrante-avanza-desde-chiapas-rumbo-a-eu-alentada-por-triunfo-democrata',
+      },
+      {
+        label: 'El Diario (Agencia Reforma, in Spanish): Sheinbaum says caravans are told there is no asylum in the US',
+        url: 'https://diario.mx/nacional/2026/nov/11/advierten-a-caravanas-que-no-hay-asilo-en-eu-1148229.html',
+      },
+      {
+        label: 'AP: Democrat Gina Hinojosa defeats Greg Abbott in Texas governor race',
+        url: 'https://apnews.com/article/texas-governor-election-hinojosa-abbott-c9a0ffa1ec3cd599f9bc304ae26268a2',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'Trump Archive: transcript, Hannity phone interview, Nov. 2, 2026 (00:11:40)',
+        url: 'https://trump-archive.com/item/31f4f23b-336f-4e79-98f1-14b3157c3b72',
+      },
+      {
+        label: 'Hannity.com: Trump tells Republicans to “pretend” he’s on the ballot',
+        url: 'https://hannity.com/media-room/keep-america-great-trump-tells-republicans-to-pretend-hes-on-the-ballot-watch/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-claims-tax-returns-found-nothing-750',
+    kind: 'clip',
+    ogKicker: '6:28AM ET',
+    ogPunch: 'NOTHING',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump claims Democrats’ accountants ‘FOUND NOTHING’ in his tax returns. Remember $750?',
+    seoTitle: 'Trump claims accountants ‘FOUND NOTHING.’ NPR: $750 and $0',
+    category: 'REPORTS',
+    date: '2026-11-12',
+    dek: 'Trump posted that Democrats’ accountants “FOUND NOTHING except that I paid my taxes.” NPR: $750 for 2016 and 2017, $0 for 2020.',
+    publishedAt: '2026-11-12T13:28:00+02:00',
+    topics: ['midterms', 'truth-social'],
+    midtermsTags: ['truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117603230815300802',
+      url: 'https://truthsocial.com/@realDonaldTrump/117603230815300802',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://trumpstruth.org/statuses/43555',
+    },
+    relatedClips: ['trump-claims-midterm-election-honest-machines', 'trump-democrats-did-a-good-job-not-a-hit-on-me'],
+    body: [
+      'Trump would like you to remember his tax returns. Happy to.',
+      'At 6:28am ET Thursday he posted that Democrats “won this unprecedented right in the U.S. Supreme Court” to get his returns and hired accountants to “get Trump.” Then: “After one year of intense work, these brilliant Democrat inspired accountants FOUND NOTHING except that I paid my taxes and did everything right.”',
+      'Here’s the nothing. NPR, reporting on the congressional figures released in December 2022: he paid $750 in federal taxes for 2016, $750 for 2017 and $0 for 2020. The House Ways and Means Committee also found the IRS’s mandatory audit of the president was “dormant, at best” on his watch, with one audit started and none finished. That same month, two Trump Organization companies were convicted in a tax scheme for top executives. Trump himself was not charged in that case.',
+      'Then the 2026 bit. Democrats, he wrote, are “illegally threatening Republicans with knowingly false accusations and charges. Other than cheating, this is how they won the Midterms.” That is his claim. He named no Republican, no charge and no cheating, and offered no evidence. AP called the House and Senate for Democrats, and NBC reported election officials said voting this year was largely routine.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 6:28am ET post, 12 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117603230815300802',
+      },
+      {
+        label: 'Truth Social: Trump’s 6:28am ET post, 12 Nov 2026 (archive)',
+        url: 'https://trumpstruth.org/statuses/43555',
+      },
+      {
+        label: 'NPR: House Democrats release Trump’s tax returns (30 Dec 2022)',
+        url: 'https://www.npr.org/2022/12/30/1146215064/trumps-tax-returns-released',
+      },
+      {
+        label: 'House Ways and Means Committee: report on the IRS mandatory audit program (20 Dec 2022, PDF)',
+        url: 'https://d3i6fh83elv35t.cloudfront.net/static/2022/12/2022.12.20-Final-Report-House-Ways-and-Means.pdf',
+      },
+      {
+        label: 'AP: Trump Organization convicted in executive tax dodge scheme',
+        url: 'https://apnews.com/article/business-new-york-manhattan-donald-trump-government-and-politics-86177401a887c85ab50d8b78eb1ed397',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'NBC News: Trump casts doubt on the midterm results',
+        url: 'https://www.nbcnews.com/politics/donald-trump/trump-midterm-elections-voting-machines-doubt-rcna607893',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-only-president-salary-hoover-kennedy',
+    kind: 'clip',
+    ogKicker: '5:50AM ET',
+    ogPunch: 'Hoover',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump says he’s ‘the only President’ to skip his salary. Hoover and Kennedy gave theirs away',
+    seoTitle: 'Trump: ‘the only President’ to skip a salary. He isn’t',
+    category: 'REPORTS',
+    date: '2026-11-12',
+    dek: 'Trump wrote that he doesn’t “even take a Salary” and “I am the only President to have done so!” He isn’t. Hoover and Kennedy gave it away.',
+    publishedAt: '2026-11-12T12:50:00+02:00',
+    topics: ['truth-social', 'lies'],
+    embed: {
+      type: 'truthsocial',
+      id: '117603082123932016',
+      url: 'https://truthsocial.com/@realDonaldTrump/117603082123932016',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://trumpstruth.org/statuses/43554',
+    },
+    relatedClips: ['trump-world-liberty-financial-i-know-nothing-about-it', 'trump-ballroom-own-money-when-they-run-out'],
+    body: [
+      'Herbert Hoover would like a word. So would John F. Kennedy.',
+      'At 5:50am ET Thursday, in a post about “MASSIVE BLUE STATE CORRUPTION,” Trump wrote that he doesn’t “even take a Salary, worth Millions of Dollars. I am the only President to have done so!”',
+      'He isn’t. The Herbert Hoover Presidential Library says Hoover gave his presidential salary away — part of it to staff he thought were underpaid, part to charities — and that John F. Kennedy gave his entire salary to charity.',
+      'The same post says “THE DEMOCRATS ARE CORRUPT AND EVIL, and I am the exact opposite!” This is the man who told 60 Minutes on Sunday, asked about World Liberty Financial: “I know nothing about it.”',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 5:50am ET post, 12 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117603082123932016',
+      },
+      {
+        label: 'Truth Social: Trump’s 5:50am ET post, 12 Nov 2026 (archive)',
+        url: 'https://trumpstruth.org/statuses/43554',
+      },
+      {
+        label: 'Herbert Hoover Presidential Library: “I’ve never accepted compensation…for federal service…” (15 Nov 2016)',
+        url: 'https://hoover.blogs.archives.gov/2016/11/15/ive-never-accepted-compensationfor-federal-service/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-c-span-call-fully-scheduled-new-york-times',
     kind: 'clip',
     ogKicker: '1:25AM ET',
@@ -781,7 +961,7 @@ export const articles: Article[] = [
     topics: ['midterms', 'cruelty'],
     midtermsTags: ['results'],
 
-    relatedClips: ['trump-wiles-zero-chance-wanted-to-make-a-change', 'trump-i-do-hate-some-of-my-enemies-and-i-always-will'],
+    relatedClips: ['trump-caravans-mexico-tariffs-doubled-not-on-the-ballot', 'trump-wiles-zero-chance-wanted-to-make-a-change', 'trump-i-do-hate-some-of-my-enemies-and-i-always-will'],
     body: [
       'He conceded the crackdown might be too tough. Then, CBS says, about an hour later he handed the White House to the man who built it.',
       'On *60 Minutes*, Ross Douthat asked whether immigration, and the crackdown, hurt Republicans in the midterms. “I think it both helped and hurt,” Trump said, and graded himself first: “an A+ for closing up the border,” and “very high marks for getting the bad ones out.” The hurt, he said, came from deporting people with good jobs whose one violation was coming into the country illegally.',
@@ -840,7 +1020,7 @@ export const articles: Article[] = [
       accountName: 'Donald Trump',
       archiveUrl: 'https://www.trumpstruth.org/statuses/43533',
     },
-    relatedClips: ['trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-democrats-did-a-good-job-not-a-hit-on-me'],
+    relatedClips: ['trump-claims-tax-returns-found-nothing-750', 'trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-democrats-did-a-good-job-not-a-hit-on-me'],
     body: [
       'Six days after telling the New York Times he was “absolutely willing” to accept the midterm results, per NBC, Trump tried the other product.',
       'At 10:07am ET on Monday he posted: “Does anybody really believe that this ‘Election’ was honest. How could the Polls be so wrong???” Some early voting “dumps,” he wrote, “were so large that it was impossible to win, no matter how many people went to vote.” And: “It’s all about the machines, which are far more important than the voter!”',
@@ -1277,7 +1457,7 @@ export const articles: Article[] = [
       account: '@60Minutes',
       accountName: '60 Minutes',
     },
-    relatedClips: ['trump-3-trillion-gained-would-have-been-more-unhappy', 'trump-truth-social-stock-market-dumocrats-401k'],
+    relatedClips: ['trump-only-president-salary-hoover-kennedy', 'trump-3-trillion-gained-would-have-been-more-unhappy', 'trump-truth-social-stock-market-dumocrats-401k'],
     body: [
       'Trump co-owns a crypto company, and says he knows nothing about it.',
       'On *60 Minutes*, Ross Douthat laid it out. Trump’s son helps manage World Liberty Financial, a cryptocurrency company. Trump is a co-owner; per CBS’s transcript he answered “That’s correct, yeah.” Douthat said the company is also partly owned by investors connected to the government of the United Arab Emirates, and asked: if this were Joe Biden’s family, wouldn’t Trump call it corrupt?',
@@ -2167,7 +2347,7 @@ export const articles: Article[] = [
       account: '@atrupar',
       accountName: 'Aaron Rupar',
     },
-    relatedClips: ['trump-hannity-won-every-time-lost-in-2020'],
+    relatedClips: ['trump-claims-tax-returns-found-nothing-750', 'trump-hannity-won-every-time-lost-in-2020'],
     body: [
       'Donald Trump has found the one election that isn’t about him: the one his party just lost.',
       'AP had called the House and the Senate for Democrats when he phoned in to Fox News’ election-night coverage with Bret Baier and Martha MacCallum. Asked for his message to the American people, he started out almost gracious: “Congratulations to the Democrats. They did a good job. They’ve been looking for this one for 11 years and they finally got it.” Then, without stopping: “But I don’t view it as a hit on me.”',
