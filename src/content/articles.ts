@@ -116,6 +116,181 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-believe-it-or-not-adam-schiff-hollywood-bill',
+    kind: 'clip',
+    ogKicker: '5:52PM ET',
+    ogPunch: 'Schiff',
+    ogStamp: 'FILED',
+    title: 'Trump says he’s working with ‘believe it or not, Senator Adam Schiff’ on a Hollywood tax bill',
+    seoTitle: 'Trump: ‘believe it or not,’ he’s working with Schiff',
+    category: 'REPORTS',
+    date: '2026-11-13',
+    dek: 'Trump posted that he is working with “believe it or not, Senator Adam Schiff” on a Hollywood tax incentive bill.',
+    publishedAt: '2026-11-14T00:52:00+02:00',
+    topics: ['truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117611584206041319',
+      url: 'https://truthsocial.com/@realDonaldTrump/117611584206041319',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://trumpstruth.org/statuses/43568',
+    },
+    relatedClips: ['trump-de-niro-moron-hollywood-tax-credits-kissing-my-ass', 'trump-jensen-huang-only-one-man-tim-cook'],
+    body: [
+      'Every plane in America was parked. The one thing still cleared for takeoff was a tax break for Hollywood.',
+      'At 5:52pm ET Friday, Trump posted that he is “working with Senator Tim Scott and, believe it or not, Senator Adam Schiff” on the Motion Picture, Television, and Entertainment Revitalization Act, followed by a long roll call of senators and House members from both parties. Hollywood, he wrote, has been “emptied out” by other countries’ tax incentives, and the cost “will be made up tenfold by the money pouring into the Treasury’s coffers.” The sign-off: “MAKE OUR ENTERTAINMENT INDUSTRY GREAT AGAIN!” Deadline says the bill is a 20% federal incentive. The Cato Institute puts the cost at $33 billion to $49 billion, and the Joint Committee on Taxation hasn’t published its estimate yet.',
+      'The timing: the FAA’s nationwide ground stop was still on. Transportation Secretary Sean Duffy said US airspace reopened at 8:15pm ET, and Reuters called it the longest shutdown since the September 11, 2001, attacks. Mediaite says the Hollywood bill was Trump’s first Truth Social post since the stop began. In fairness, Homeland Security Secretary Markwayne Mullin says “President Trump immediately had people in his office.” Six minutes after the Hollywood post, Trump thanked the Coast Guard for its work on a ship collision in Louisiana.',
+      'Schiff, at 6:32pm ET on X: “President Trump and I agree: it’s time for Congress to pass a federal film tax incentive.” Two weeks ago, at his 30 Oct Daytona Beach rally, Trump said Hollywood was “all calling me, kissing my ass” for tax credits. Then: “I’ll probably do it.” Probably is now a bill.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 5:52pm ET post, 13 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117611584206041319',
+      },
+      {
+        label: 'Truth Social: Trump’s 5:52pm ET post, 13 Nov 2026 (archive)',
+        url: 'https://trumpstruth.org/statuses/43568',
+      },
+      {
+        label: 'Truth Social: Trump’s 5:58pm ET Coast Guard post, 13 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117611608680849019',
+      },
+      {
+        label: 'Truth Social: Trump’s 5:58pm ET Coast Guard post, 13 Nov 2026 (archive)',
+        url: 'https://trumpstruth.org/statuses/43569',
+      },
+      {
+        label: 'Sen. Adam Schiff on X, 13 Nov 2026',
+        url: 'https://x.com/SenAdamSchiff/status/2121385670661075305',
+      },
+      {
+        label: 'Deadline: Donald Trump Urges Congress To Pass Federal Film & TV Tax Incentive (13 Nov 2026)',
+        url: 'https://deadline.com/2026/11/trump-federal-film-incentive-1237223479/',
+      },
+      {
+        label: 'Mediaite: Trump pushes movie industry bill in first post since FAA nationwide ground stop (13 Nov 2026)',
+        url: 'https://www.mediaite.com/media/news/trump-pushes-movie-industry-bill-in-first-post-since-faa-nationwide-ground-stop/',
+      },
+      {
+        label: 'Reuters: US to resume flights after air traffic network failure sparks chaos (13 Nov 2026)',
+        url: 'https://www.reuters.com/world/us/faa-issues-national-ground-stop-due-extraordinary-circumstance-reasons-safety-2026-11-13/',
+      },
+      {
+        label: 'DHS: Secretary Mullin and Secretary Duffy address nationwide FAA ground stop (13 Nov 2026)',
+        url: 'https://www.dhs.gov/news/2026/11/13/icymi-secretary-mullin-and-secretary-duffy-address-nationwide-faa-ground-stop-all',
+      },
+      {
+        label: 'The Donald Files: Trump at Daytona Beach, 30 Oct 2026, “kissing my ass”',
+        url: 'https://thedonaldfiles.com/trump-videos/trump-de-niro-moron-hollywood-tax-credits-kissing-my-ass/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-stephen-a-smith-i-can-have-it-both-ways',
+    kind: 'clip',
+    ogKicker: 'STEPHEN A., THU',
+    ogPunch: 'both',
+    ogStamp: 'ON TAPE',
+    title: 'Trump tells Stephen A. Smith ‘I can have it both ways’ on the midterms',
+    seoTitle: 'Trump to Stephen A. Smith: ‘I can have it both ways’',
+    category: 'REPORTS',
+    date: '2026-11-12',
+    dek: 'Stephen A. Smith told Trump, “You can’t have it both ways.” Trump: “I can have it both ways.”',
+    publishedAt: '2026-11-13T02:28:00+02:00',
+    topics: ['midterms', 'gaffes'],
+    midtermsTags: ['endorsees'],
+    relatedClips: ['trump-hannity-won-every-time-lost-in-2020', 'trump-rallies-couldnt-transfer-that-love', 'trump-endorsees-lose-democrats-take-congress'],
+    body: [
+      'Stephen A. Smith has spent a career yelling at athletes who want it both ways. On Thursday he finally met one who admitted it.',
+      'In a Roosevelt Room interview released Thursday evening on Smith’s YouTube channel, Smith asked what happened in the midterms. Trump: “number one, I wasn’t on the ballot.” Smith reminded him that, going into the midterms, he’d said “put you on the ballot” (Smith’s paraphrase). Trump: “Well, they didn’t do it. They didn’t put me on the ballot.” On election eve he told Sean Hannity he was “just asking everybody to pretend that I’m on the ballot,” then added: “And in a way, I am.” AP called the House and the Senate for Democrats.',
+      'Midway through, after a run of factory and jobs numbers, Smith tried again: “You can’t have it both ways.” Trump cut in: “I can have it both ways.” Smith: “Okay, you’re Donald Trump.” Then Trump pulled out a list and started reading.',
+      'Told his approval rating was lower than the Democrats’, Trump offered a comparison: “Lincoln was at 8%, Reagan was at 14%, and I was at 56% or something like that. So I think my approval rating is good.” Mediaite notes a recent Reuters poll had him at 32%. Lincoln did not return calls. As for the candidates he backed: “Well, I say that they maybe didn’t like the candidates.”',
+    ],
+    sources: [
+      {
+        label: 'Stephen A. Smith on YouTube: One-on-One With President Donald Trump (official upload)',
+        url: 'https://www.youtube.com/watch?v=Q2xPvRnU4oI',
+      },
+      {
+        label: 'Roll Call Factba.se: full transcript, Stephen A. Smith interview, 12 Nov 2026 (“both ways” at 25:01)',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-interview-stephen-a-smith-online-show-november-12-2026/',
+      },
+      {
+        label: 'Mediaite: ‘Your approval rating is lower!’ Stephen A. Smith squabbles with Trump over GOP midterm losses (12 Nov 2026)',
+        url: 'https://www.mediaite.com/politics/trump/your-approval-rating-is-lower-stephen-a-smith-squabbles-with-trump-over-gop-midterm-losses/',
+      },
+      {
+        label: 'Awful Announcing: Stephen A. Smith’s interview with Trump went about how you would expect',
+        url: 'https://awfulannouncing.com/politics/stephen-a-smith-interviews-donald-trump.html',
+      },
+      {
+        label: 'AP: Democrats win control of the House and Senate',
+        url: 'https://apnews.com/article/midterm-election-house-senate-democrats-republicans-trump-f126e12e05b579a327b98481c0ae2226',
+      },
+      {
+        label: 'The Donald Files: Trump on Hannity, election eve, “pretend that I’m on the ballot”',
+        url: 'https://thedonaldfiles.com/trump-videos/trump-hannity-won-every-time-lost-in-2020/',
+      },
+      {
+        label: 'The Donald Files: Trump’s picks lose 11 AP-called races',
+        url: 'https://thedonaldfiles.com/reports/trump-endorsees-lose-democrats-take-congress/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-dover-salute-nobody-killed-last-five-months',
+    kind: 'clip',
+    ogKicker: 'HEWITT, THU',
+    ogPunch: 'saluted',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump saluted four fallen troops at Dover in July. Now he says ‘nobody’s been killed’ in five months',
+    seoTitle: 'Trump saluted at Dover. Now: ‘nobody’s been killed’',
+    category: 'REPORTS',
+    date: '2026-11-12',
+    dek: 'Trump to Hugh Hewitt: “Nobody’s been killed in the last five months.” On July 22 he was at Dover for four service members.',
+    publishedAt: '2026-11-12T23:37:00+02:00',
+    topics: ['lies', 'cruelty'],
+    relatedClips: ['trump-iran-militarily-is-effectively-over-fairly-soon', 'trump-hewitt-get-cuba-done-before-i-leave'],
+    body: [
+      'Trump has a new casualty count for the Iran war: zero, as long as nobody counts July.',
+      'On Thursday’s Hugh Hewitt Show, Hewitt asked whether he would hesitate to use military force to stop Iran from terrorizing U.S. allies and ships. Trump: “No. No hesitation.” He went on to describe a war fought for “three weeks, not seven months,” and then: “Nobody’s been killed in the last five months.” In case anyone missed it: “We haven’t lost a soldier in five months and we control the Gulf.”',
+      'On July 22, Trump was at Dover Air Force Base for the dignified transfer of four service members killed in Iranian attacks that month: Tyler James Feehan, Isabella Gonzales, Angel Rampersad and Michael Emmanuel Swinton, per NBC News. He saluted as the remains passed and met privately with the families. That was less than four months before the interview.',
+      'By our calendar, July falls inside the last five months.',
+    ],
+    sources: [
+      {
+        label: 'The Hugh Hewitt Show on YouTube: full interview, 12 Nov 2026 (official upload)',
+        url: 'https://www.youtube.com/watch?v=OsMbjuV0pec',
+      },
+      {
+        label: 'Roll Call Factba.se: full transcript, Hugh Hewitt interview, 12 Nov 2026 (from 12:34)',
+        url: 'https://rollcall.com/factbase/trump/transcript/donald-trump-interview-hugh-hewitt-radio-november-12-2026/',
+      },
+      {
+        label: 'Mediaite: Trump claims ‘nobody’s been killed’ in Iran war in 5 months (transcript excerpt)',
+        url: 'https://www.mediaite.com/media/news/trump-wrongly-claims-nobodys-been-killed-in-iran-war-in-last-five-months/',
+      },
+      {
+        label: 'NBC News: Trump attends dignified transfer of 4 service members killed in Iran attacks (22 Jul 2026)',
+        url: 'https://www.nbcnews.com/politics/white-house/trump-attends-dignified-transfer-4-service-members-killed-iran-attacks-rcna588737',
+      },
+      {
+        label: 'CBS News: Trump attends dignified transfer of service members killed in Iranian attacks',
+        url: 'https://www.cbsnews.com/news/trump-dignified-transfer-service-members-killed-in-middle-east-strikes/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-hewitt-get-cuba-done-before-i-leave',
     kind: 'clip',
     ogKicker: 'HEWITT, THU',
@@ -128,7 +303,7 @@ export const articles: Article[] = [
     dek: 'Hewitt asked if he would order military force to free Cuba. Trump said he wants to “get Cuba done before I leave.”',
     publishedAt: '2026-11-12T23:37:00+02:00',
     topics: ['gaffes'],
-    relatedClips: ['trump-jensen-huang-only-one-man-tim-cook', 'trump-iran-cuba-stopover-send-marco-rubio-in', 'trump-iran-militarily-is-effectively-over-fairly-soon'],
+    relatedClips: ['trump-dover-salute-nobody-killed-last-five-months', 'trump-jensen-huang-only-one-man-tim-cook', 'trump-iran-cuba-stopover-send-marco-rubio-in', 'trump-iran-militarily-is-effectively-over-fairly-soon'],
     body: [
       'Three weeks ago he called Cuba a “stopover” on the way home from Iran. Now it has a deadline.',
       'On The Hugh Hewitt Show, in an interview that aired Thursday, Hewitt asked Trump straight out: “If freeing Cuba requires military force, before you leave office, will you order that military force?”',
@@ -183,7 +358,7 @@ export const articles: Article[] = [
       accountName: 'Donald Trump',
       archiveUrl: 'https://trumpstruth.org/statuses/43560',
     },
-    relatedClips: ['trump-claims-president-xi-excuse-hang-up-on-hannity', 'trump-hewitt-get-cuba-done-before-i-leave'],
+    relatedClips: ['trump-believe-it-or-not-adam-schiff-hollywood-bill', 'trump-claims-president-xi-excuse-hang-up-on-hannity', 'trump-hewitt-get-cuba-done-before-i-leave'],
     body: [
       'Nvidia’s board says it is starting a search for a new CEO. Trump has already finished it.',
       'At 10:29am ET Thursday, after Jensen Huang resigned as Nvidia CEO, Trump posted: “NOW THAT Nvidia CEO JENSEN HUANG, who has done a fantastic job, has resigned, there is only one man to take his place - TIM COOK of Apple. A Legend replaces a Legend!”',
@@ -1301,7 +1476,7 @@ export const articles: Article[] = [
     publishedAt: '2026-11-09T13:40:00+02:00',
     topics: ['gaffes'],
 
-    relatedClips: ['trump-hewitt-get-cuba-done-before-i-leave', 'trump-vance-iran-war-midterms-largely-true', 'trump-hannity-iran-not-much-of-a-war-peanuts'],
+    relatedClips: ['trump-dover-salute-nobody-killed-last-five-months', 'trump-hewitt-get-cuba-done-before-i-leave', 'trump-vance-iran-war-midterms-largely-true', 'trump-hannity-iran-not-much-of-a-war-peanuts'],
     body: [
       'The war is over, he said. Also it is not over. Also it will be over fairly soon, unless it isn’t, in which case America is locked and loaded.',
       'On Monday, after meeting Qatar’s prime minister, Trump told reporters at a White House briefing: “Iran militarily is effectively over.” Then: “We’re just keeping it the status quo,” adding that “we’re doing that really at the behest of countries that are their neighbors.” Earlier in the same remarks he had already timed the ending: “I think it’s going to be ending fairly soon.” Iran, he said, is “talking very politely.”',
@@ -1358,7 +1533,7 @@ export const articles: Article[] = [
     publishedAt: '2026-11-04T09:22:00+02:00',
     topics: ['midterms', 'truth-social'],
     midtermsTags: ['endorsees'],
-    relatedClips: ['trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-truth-social-blames-abbott-rino-fox-news'],
+    relatedClips: ['trump-stephen-a-smith-i-can-have-it-both-ways', 'trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-truth-social-blames-abbott-rino-fox-news'],
     body: [
       'On Election Day morning Donald Trump posted his endorsement slates, state by state, each name with his “Complete and Total Endorsement.” By the small hours of Wednesday, the Associated Press had called both chambers of Congress for Democrats, and a long list of the names on those slates had lost.',
       'He spent the night explaining that none of it was about him. “I wasn’t on the Ballot,” he posted at 10:37pm ET.',
@@ -2220,7 +2395,7 @@ export const articles: Article[] = [
       account: '@BulwarkClips',
       accountName: 'The Bulwark',
     },
-    relatedClips: ['trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-reflecting-pool-two-empire-state-buildings'],
+    relatedClips: ['trump-stephen-a-smith-i-can-have-it-both-ways', 'trump-truth-social-wasnt-on-ballot-10-37pm', 'trump-reflecting-pool-two-empire-state-buildings'],
     body: [
       'A reporter at the White House on Wednesday listed the closing act of the campaign: 30 rallies, then a final speech at the Reflecting Pool. Any regrets? Trump said no, then explained who was really missing from the ballot: “if I was on the ballot, we would have won.” He said it twice. He wasn’t on the ballot, so there’s nothing to check it against, and he offered no evidence.',
       'The crowds, he said, were “thousands and thousands of people at every rally.” The trouble was the delivery: “you couldn’t transfer that love. There was such love at those rallies. It was incredible.” The love, apparently, was non-transferable. AP called the House and the Senate for Democrats.',
