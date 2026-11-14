@@ -16,7 +16,7 @@ the run where it is 07:00 in America/New_York, so it lands at 7am New York year-
 Test (sends only to rows with source = 'test'; re-confirm the bot inbox row first):
     curl -X POST -H "Authorization: Bearer $(cat /home/box/.config/donaldfiles/digest-secret)" https://donaldfiles-digest.donaldfiles.workers.dev/run-test
 Preview HTML: GET /preview (same auth), `?text` for the plain-text part.
-Deploy: `cd digest && npx wrangler deploy`
+Deploy from the repo root: `npm run deploy:digest` (runs `scripts/cf-guard.sh wrangler deploy --config digest/wrangler.toml`). Do not call wrangler with the box default login. `wrangler secret put` for this worker must also use the guard: `bash scripts/cf-guard.sh wrangler secret put NAME --config digest/wrangler.toml`.
 
 ## Subscriber counts
 
@@ -24,4 +24,4 @@ Deploy: `cd digest && npx wrangler deploy`
 
 ## Analytics
 
-> Analytics source: Cloudflare Web Analytics numbers come from the Pages-project WA site entry 'the-donald-files.pages.dev +2' (auto-injected, token 37c26f67…), not the thedonaldfiles.com site entry. No manual beacon in the layout (reverted in 3072a96).
+> Analytics source (from 14 Nov 2026): Cloudflare Web Analytics real-reader figures come from GraphQL `siteTag` `a66b90f0…` (events have `requestHost` `thedonaldfiles.com`). Edge zone counts are secondary. The live Pages auto-inject beacon still uses public token `37c26f67…` (dashboard label 'the-donald-files.pages.dev +2'); that token is **not** the GraphQL siteTag, so filtering RUM by `37c26f67…` returns 0. The old manual thedonaldfiles.com snippet (token `0201704d…`, reverted in 3072a96) is not in the layout. Scorecard script: `/workspace/verify/wtd-1113/fetch.py`.

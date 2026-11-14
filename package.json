@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run build && npx wrangler pages dev dist",
+    "dev": "npm run build && bash scripts/cf-guard.sh wrangler pages dev dist",
     "build": "tsc -b && node scripts/content-dates.mjs && node scripts/fetch-posters.mjs && node scripts/v5/site.mjs && node scripts/generate-seo.mjs && node scripts/check-desk-notes.mjs",
     "lint": "oxlint",
     "indexnow": "node scripts/indexnow.mjs",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name the-donald-files --branch main && node scripts/indexnow.mjs"
+    "cf:whoami": "bash scripts/cf-guard.sh",
+    "deploy": "npm run build && bash scripts/cf-guard.sh wrangler pages deploy dist --project-name the-donald-files --branch main && node scripts/indexnow.mjs",
+    "deploy:digest": "bash scripts/cf-guard.sh wrangler deploy --config digest/wrangler.toml"
   },
   "dependencies": {
     "react": "^19.2.8",

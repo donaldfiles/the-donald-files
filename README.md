@@ -13,6 +13,7 @@
   `?page=N` is served by `functions/trump-videos/*` from the prerendered `page/N/` copies (`dist/_routes.json` keeps every other page pure static).
 - **Switches** at the top of `scripts/v5/site.mjs`: `SUBSCRIBE_LIVE`, `X_ACCOUNT_LIVE`, `PER_PAGE`.
 - **Build / deploy:** `npm run build`, then `npm run deploy` (wrangler + IndexNow). `node scripts/indexnow.mjs [--all] [--dry]`.
+  Every Cloudflare / wrangler command for this project **must** go through `scripts/cf-guard.sh`, which sets `XDG_CONFIG_HOME=/home/box/.config-donaldfiles` and aborts unless `wrangler whoami` shows `donaldfiles@proton.me`. The box default `~/.config/.wrangler` is Robert's Dear Ziva account — never deploy with it, and never run `wrangler logout`. Check: `npm run cf:whoami`. Digest Worker: `npm run deploy:digest`.
 
 # The Donald Files
 
@@ -123,4 +124,4 @@ https://t.me/thedonaldfiles
 
 ## Analytics
 
-> Analytics source: Cloudflare Web Analytics numbers come from the Pages-project WA site entry 'the-donald-files.pages.dev +2' (auto-injected, token 37c26f67…), not the thedonaldfiles.com site entry. No manual beacon in the layout (reverted in 3072a96).
+> Analytics source (from 14 Nov 2026): Cloudflare Web Analytics real-reader figures come from GraphQL `siteTag` `a66b90f0…` (events have `requestHost` `thedonaldfiles.com`). Edge zone counts are secondary. The live Pages auto-inject beacon still uses public token `37c26f67…` (dashboard label 'the-donald-files.pages.dev +2'); that token is **not** the GraphQL siteTag, so filtering RUM by `37c26f67…` returns 0. The old manual thedonaldfiles.com snippet (token `0201704d…`, reverted in 3072a96) is not in the layout. Scorecard script: `/workspace/verify/wtd-1113/fetch.py`.
