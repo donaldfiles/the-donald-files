@@ -116,6 +116,170 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-trash-island-golf-course-judge-blocks-closure',
+    kind: 'clip',
+    ogKicker: '2:35PM ET',
+    ogPunch: 'Island',
+    ogStamp: 'FILED',
+    title: 'Trump rants about ‘Trash Island.’ Later that day, a judge blocks his golf course closure',
+    seoTitle: 'Judge blocks Trump’s ‘Trash Island’ golf-course closure',
+    category: 'REPORTS',
+    date: '2026-11-14',
+    dek: 'Trump wrote “hopefully the Judge will agree.” Later Saturday, Reyes issued an order that stops the government from closing the park.',
+    publishedAt: '2026-11-14T21:35:00+02:00',
+    topics: ['courts', 'truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117616471014747868',
+      url: 'https://truthsocial.com/@realDonaldTrump/117616471014747868',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43580',
+    },
+    relatedClips: ['trump-golf-course-who-was-hit-many-people', 'trump-golf-course-judge-no-expertise-in-golf-fore'],
+    body: [
+      'Air travel was still a mess and the president still hadn’t been seen in public. Then he found a crisis worth 319 words: the fairways.',
+      'At 2:35pm ET Saturday, Trump posted that “Trash Island is currently the Worst Golf Course anywhere in the World,” and that “Judge Ana Reyes doesn’t want us to quickly and inexpensively fix up the Course which is, also, very dangerous — The Fairways are far too close together.” Down by the river, he wrote, “all you hear is the sound of people screaming, ‘FORE!’” He promised D.C. residents “a 50% discount on any and all Rates charged.” Trump wrote “hopefully the Judge will agree.” In the eight minutes before that, he put up six posts of course photos, all reposts of images from 20 Oct.',
+      'The Judge did not agree. Later Saturday, Reyes issued a temporary restraining order that stops the government from closing East Potomac Park, which Trump had directed be shut as of 15 Nov. That’s today. She found the government’s explanations for the closure “pretextual” and wrote that “in its haste to meet an arbitrary deadline, the Government has likely violated” at least two federal laws, the National Environmental Policy Act and the Administrative Procedure Act. The order runs through 28 Nov. Separately, she is pressing ahead with an inquiry into whether Justice Department lawyers misled her about the plans.',
+      'The Daily Beast notes he hasn’t been seen in public since Wednesday. His one nod to air travel all day was a quoted line from Sen. John Kennedy, posted at 12:39pm ET: “The FAA Funding should be a stand alone Bill” (with Democrat support, Kennedy added). Trash Island, Trump wrote, “will evolve into something very special, something which the Judge will be able to take great pride in seeing!” On 26 Oct he posted: “We are closing the East Potomac Golf Course Site as scheduled on November 15th” to start the rebuild. Happy 15 November. The park is open.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 2:35pm ET “Trash Island” post, 14 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117616471014747868',
+      },
+      {
+        label: 'Truth Social: Trump’s 2:35pm ET “Trash Island” post, 14 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43580',
+      },
+      {
+        label: 'Truth Social: first of six course-photo reposts, 2:27pm ET, 14 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117616438954064087',
+      },
+      {
+        label: 'Truth Social: first of six course-photo reposts, 2:27pm ET, 14 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43574',
+      },
+      {
+        label: 'Truth Social: Trump quotes Sen. John Kennedy on FAA funding, 12:39pm ET, 14 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117616014481394036',
+      },
+      {
+        label: 'Truth Social: Trump quotes Sen. John Kennedy on FAA funding, 12:39pm ET, 14 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43571',
+      },
+      {
+        label: 'US District Court for DC: Temporary Restraining Order, DC Preservation League v. Department of Interior, Dkt. 159 (14 Nov 2026)',
+        url: 'https://storage.courtlistener.com/recap/gov.uscourts.dcd.289401/gov.uscourts.dcd.289401.159.0_1.pdf',
+      },
+      {
+        label: 'BBC: Judge temporarily blocks Trump from closing Washington DC golf course for renovation (15 Nov 2026)',
+        url: 'https://www.bbc.com/news/articles/c6j9mn7l14y0o',
+      },
+      {
+        label: 'WJLA: Court order blocks East Potomac Park closure as golf course lawsuit continues (14 Nov 2026)',
+        url: 'https://wjla.com/news/local/east-potomac-park-golf-links-hains-point-washington-dc-donald-trump-redevelopment-ana-reyes-federal-court-temporary-restraining-order-national-links-trust',
+      },
+      {
+        label: 'The Daily Beast: Trump Hides Out Amid Crisis to Rage Over Golf Course (14 Nov 2026)',
+        url: 'https://www.thedailybeast.com/trump-hides-out-amid-crisis-to-rage-over-golf-course',
+      },
+      {
+        label: 'The Donald Files: Trump’s 26 Oct post, “closing ... as scheduled on November 15th”',
+        url: 'https://thedonaldfiles.com/trump-videos/trump-golf-course-judge-no-expertise-in-golf-fore/',
+      },
+      {
+        label: 'The Donald Files: Trump’s 26 Oct post, “closing ... as scheduled on November 15th” (archive)',
+        url: 'https://www.trumpstruth.org/statuses/42775',
+      },
+      {
+        label: 'NBC News: Judge wants former U.S. attorney to investigate whether the government misled her in Trump golf case',
+        url: 'https://www.nbcnews.com/politics/trump-administration/judge-wants-former-us-attorney-investigate-whether-government-misled-t-rcna608062',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-newsom-death-row-hannibal-lecter-nice-guy',
+    kind: 'clip',
+    ogKicker: '563? TRY 548',
+    ogPunch: 'Lecter',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump says some people Newsom spared from death row make Hannibal Lecter ‘look like a nice guy’',
+    seoTitle: 'Trump: Newsom’s spared inmates make Lecter ‘a nice guy’',
+    category: 'REPORTS',
+    date: '2026-11-14',
+    dek: 'Trump posted that some people Newsom “freed from the Death Penalty” make Hannibal Lecter “look like a nice guy!” California says 548.',
+    publishedAt: '2026-11-15T00:00:00+02:00',
+    topics: ['truth-social', 'lies'],
+    embed: {
+      type: 'truthsocial',
+      id: '117617041335738125',
+      url: 'https://truthsocial.com/@realDonaldTrump/117617041335738125',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43581',
+    },
+    relatedClips: ['trump-charlie-kirk-judge-tried-within-a-month', 'trump-believe-it-or-not-adam-schiff-hollywood-bill'],
+    body: [
+      'Trump has reviewed California’s death row and found a casting problem. Hannibal Lecter is too nice.',
+      'At 9:54am ET Saturday, he posted that “Gavin Newscum’s halting the Death Penalty for all 563 California Death Row inmates” is “a disaster for Justice in America.” The inmates, he wrote, “can’t believe their luck” in having a Governor who “would not let the long and winding legal system prevail.” At 5:00pm ET he came back for seconds: some of the people Newsom “freed from the Death Penalty” make “Hannibal Lecter, of Silence of the Lambs, look like a nice guy!”',
+      'Now the receipts. On 5 Nov, Newsom said he would commute every California death sentence to life in prison without parole. His office counts 548 people currently sentenced to death, not 563. And “freed” stops at the death chamber door: the governor’s fact sheet says the action “does not release anyone from prison” or make anyone eligible for parole. It isn’t even in effect yet. In cases with other felony convictions, which is all but about 30 percent of them per the ACLU, the California Supreme Court has to approve first.',
+      'As for that “long and winding legal system”: California hasn’t executed anyone since 17 January 2006. The governor’s fact sheet says 376 people on death row are still waiting for state habeas counsel, and 139 have waited 20 years or more. Long, yes. Winding, sure. Prevailing, not since 2006. Trump’s ruling from Truth Social: “Hopefully this decision will be overturned!”',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 5:00pm ET “Hannibal Lecter” post, 14 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117617041335738125',
+      },
+      {
+        label: 'Truth Social: Trump’s 5:00pm ET “Hannibal Lecter” post, 14 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43581',
+      },
+      {
+        label: 'Truth Social: Trump’s 9:54am ET “563” post, 14 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117615368066065400',
+      },
+      {
+        label: 'Truth Social: Trump’s 9:54am ET “563” post, 14 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43570',
+      },
+      {
+        label: 'Governor of California: Clemency (death penalty commutations)',
+        url: 'https://www.gov.ca.gov/clemency/',
+      },
+      {
+        label: 'Governor of California: Fact sheet, California commutations (5 Nov 2026, PDF)',
+        url: 'https://www.gov.ca.gov/wp-content/uploads/2026/11/11-5-26-External-Fact-Sheet-Clemency-Action.pdf',
+      },
+      {
+        label: 'California Courts Newsroom: Newsom moves to commute all California death sentences to life in prison without parole (5 Nov 2026)',
+        url: 'https://newsroom.courts.ca.gov/news/newsom-moves-commute-all-california-death-sentences-life-prison-without-parole-0',
+      },
+      {
+        label: 'California Courts Newsroom: Supreme Court invites legal challenges and support for Newsom’s plan (10 Nov 2026)',
+        url: 'https://newsroom.courts.ca.gov/news/california-supreme-court-invites-legal-challenges-and-support-newsoms-plan-commute-all-death-0',
+      },
+      {
+        label: 'BBC: California governor commutes sentences for state’s 548 death row inmates (5 Nov 2026)',
+        url: 'https://www.bbc.com/news/articles/cqrkyyd2j8mvo',
+      },
+      {
+        label: 'ACLU: California governor announces historic blow to death penalty',
+        url: 'https://www.aclu.org/news/capital-punishment/california-governor-announces-historic-blow-to-death-penalty-by-commuting-hundreds-of-death-sentences',
+      },
+      {
+        label: 'Mediaite: Trump trashes Newsom for halting death penalty (14 Nov 2026)',
+        url: 'https://www.mediaite.com/politics/trump-trashes-newsom-for-halting-death-penalty-mercy-for-killers-who-make-hannibal-lecter-look-like-a-nice-guy/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-believe-it-or-not-adam-schiff-hollywood-bill',
     kind: 'clip',
     ogKicker: '5:52PM ET',
@@ -136,7 +300,7 @@ export const articles: Article[] = [
       accountName: 'Donald Trump',
       archiveUrl: 'https://trumpstruth.org/statuses/43568',
     },
-    relatedClips: ['trump-de-niro-moron-hollywood-tax-credits-kissing-my-ass', 'trump-jensen-huang-only-one-man-tim-cook'],
+    relatedClips: ['trump-newsom-death-row-hannibal-lecter-nice-guy', 'trump-de-niro-moron-hollywood-tax-credits-kissing-my-ass', 'trump-jensen-huang-only-one-man-tim-cook'],
     body: [
       'Every plane in America was parked. The one thing still cleared for takeoff was a tax break for Hollywood.',
       'At 5:52pm ET Friday, Trump posted that he is “working with Senator Tim Scott and, believe it or not, Senator Adam Schiff” on the Motion Picture, Television, and Entertainment Revitalization Act, followed by a long roll call of senators and House members from both parties. Hollywood, he wrote, has been “emptied out” by other countries’ tax incentives, and the cost “will be made up tenfold by the money pouring into the Treasury’s coffers.” The sign-off: “MAKE OUR ENTERTAINMENT INDUSTRY GREAT AGAIN!” Deadline says the bill is a 20% federal incentive. The Cato Institute puts the cost at $33 billion to $49 billion, and the Joint Committee on Taxation hasn’t published its estimate yet.',
