@@ -116,6 +116,135 @@ export function hrefFor(a: Pick<Article, 'slug' | 'kind'>): string {
 
 export const articles: Article[] = [
   {
+    slug: 'trump-trash-island-affectionately-known-appeal-judge',
+    kind: 'clip',
+    ogKicker: '19 HOURS LATER',
+    ogPunch: 'affectionately',
+    ogStamp: 'FILED',
+    title: 'Trump says ‘Trash Island’ is ‘affectionately known’ as he vows to appeal the golf course judge',
+    seoTitle: 'Trump to appeal: ‘Trash Island’ is ‘affectionately known’',
+    category: 'REPORTS',
+    date: '2026-11-15',
+    dek: 'Saturday, Trump wrote “hopefully the Judge will agree.” Sunday she was “Biden appointed Judge Reyes” and the order “political.”',
+    publishedAt: '2026-11-15T16:30:00+02:00',
+    topics: ['courts', 'truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117620933637807515',
+      url: 'https://truthsocial.com/@realDonaldTrump/117620933637807515',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43590',
+    },
+    relatedClips: ['trump-trash-island-golf-course-judge-blocks-closure', 'trump-golf-course-judge-responsible-hurt-or-killed'],
+    body: [
+      'Nearly nineteen hours is a long time in golf course criticism. On Saturday, Trash Island was the worst course on Earth. By Sunday, it was a pet name.',
+      'At 2:35pm ET Saturday, Trump posted that “Trash Island is currently the Worst Golf Course anywhere in the World,” and wrote “hopefully the Judge will agree.” The Judge did not agree. Later Saturday, Judge Ana Reyes issued a temporary restraining order that keeps East Potomac Park open through 28 Nov.',
+      'At 9:30am ET Sunday, the hopeful tone was gone. “Biden appointed Judge Reyes has delayed, for yet another two weeks, the fix up and reconstruction,” Trump wrote, adding that “Trash Island,” as it is affectionately known, needs work, and needs it now!” He called the course “terrible and very unsafe,” called the order “this highly destructive and political decision of the judge,” and said Interior “will immediately appeal, on an expedited basis.” So the Judge went from someone he hoped would agree to “Biden appointed” overnight, and the dump went from worst in the World to affectionately known.',
+      'About “very unsafe.” The judge already looked at that. “If safety issues in fact required closure, NPS would have closed the Course months ago,” her order says, noting the course has stayed open since May “with conservatively over thirty thousand rounds of golf played.” She also noted that within ten days the Park Service managed to cut down “over 400 healthy trees.” Trump’s warning: “Time is of the essence, or golf seasons, jobs, prestige, and much money, will be lost!” The date on his post was 15 November.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 9:30am ET “Biden appointed Judge Reyes” post, 15 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117620933637807515',
+      },
+      {
+        label: 'Truth Social: Trump’s 9:30am ET “Biden appointed Judge Reyes” post, 15 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43590',
+      },
+      {
+        label: 'Truth Social: Trump’s 2:35pm ET “Trash Island” post, 14 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117616471014747868',
+      },
+      {
+        label: 'Truth Social: Trump’s 2:35pm ET “Trash Island” post, 14 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43580',
+      },
+      {
+        label: 'US District Court for DC: Temporary Restraining Order, DC Preservation League v. Department of Interior, Dkt. 159 (14 Nov 2026)',
+        url: 'https://storage.courtlistener.com/recap/gov.uscourts.dcd.289401/gov.uscourts.dcd.289401.159.0_1.pdf',
+      },
+      {
+        label: 'AP: Trump blasts judge’s 2-week halt to his Washington golf project and says administration will appeal (15 Nov 2026)',
+        url: 'https://apnews.com/article/trump-washington-golf-course-redevelopment-injunction-appeal-d56a2ca061ac54ba6367411bb972c29c',
+      },
+      {
+        label: 'NBC News: Judge temporarily blocks Trump’s plan to redevelop East Potomac golf course in D.C.',
+        url: 'https://www.nbcnews.com/politics/trump-administration/judge-temporarily-blocks-trumps-plan-redevelop-east-potomac-golf-cours-rcna609366',
+      },
+      {
+        label: 'The Hill: Interior Department to appeal order keeping East Potomac Park open (15 Nov 2026)',
+        url: 'https://thehill.com/homenews/administration/6221569-east-potomac-park-legal-battle/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
+    slug: 'trump-faa-ground-stop-biden-disaster-congress-money-fast',
+    kind: 'clip',
+    ogKicker: '$12.5B LAST YEAR',
+    ogPunch: 'FAST',
+    ogStamp: 'RECEIPTS',
+    title: 'Trump breaks his ground stop silence to blame Biden and tell Congress to ‘give the money, FAST!’',
+    seoTitle: 'Trump blames Biden, tells Congress: ‘give the money, FAST!’',
+    category: 'REPORTS',
+    date: '2026-11-15',
+    dek: 'Trump wrote “The Biden Administration was an FAA disaster” and “we need Congress to give the money, FAST!” Congress approved $12.5 billion.',
+    publishedAt: '2026-11-15T15:16:00+02:00',
+    topics: ['truth-social'],
+    embed: {
+      type: 'truthsocial',
+      id: '117620643696909295',
+      url: 'https://truthsocial.com/@realDonaldTrump/117620643696909295',
+      account: '@realDonaldTrump',
+      accountName: 'Donald Trump',
+      archiveUrl: 'https://www.trumpstruth.org/statuses/43587',
+    },
+    relatedClips: ['trump-prices-lower-than-under-obama-and-biden-gas', 'trump-believe-it-or-not-adam-schiff-hollywood-bill'],
+    body: [
+      'Two days, thousands of cancelled flights and one golf course rant later, the president has weighed in on Friday’s nationwide ground stop. The problem, it turns out, is Joe Biden.',
+      'At 8:16am ET Sunday, Trump wrote: “The Biden Administration was an FAA disaster. Everything they touched turned bad. Big money spent unwisely, making an old and broken system worse than when they began.” Then the ask: “we need Congress to give the money, FAST!” And a review: “Our FAA is doing a great job, and is ready to go.” CNBC called these his first public comments on the ground stop, which lasted more than four hours and contributed to thousands of cancellations and delays.',
+      'Nineteen minutes later, round two: “Much of our current air control system is 50 years old - RIDICULOUS!” and “The Biden Administration set it back years!” He has been president for nearly six of those 50 years, but sure.',
+      'Now the receipts. Congress approved $12.5 billion for the FAA last year as part of a major tax and spending package, CNBC notes. Sen. Chris Van Hollen said on CNN that Republicans “put in the $12.5 billion of which they’ve only spent one-third” (UPI). Transportation Secretary Sean Duffy now wants $50 billion (The Hill). “Big money spent unwisely,” he says. The latest big money came from his own party’s bill.',
+      'And the cause? The FAA said its equipment became unstable after a high volume of data flooded its network, that contractor work at one site may be related, and that the underlying cause remains under investigation (CNBC). Trump’s FAA “is ready to go.” On Friday afternoon, for more than four hours, nothing went anywhere.',
+    ],
+    sources: [
+      {
+        label: 'Truth Social: Trump’s 8:16am ET “FAA disaster” post, 15 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117620643696909295',
+      },
+      {
+        label: 'Truth Social: Trump’s 8:16am ET “FAA disaster” post, 15 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43587',
+      },
+      {
+        label: 'Truth Social: Trump’s 8:35am ET “Congress must approve” post, 15 Nov 2026',
+        url: 'https://truthsocial.com/@realDonaldTrump/117620719333478761',
+      },
+      {
+        label: 'Truth Social: Trump’s 8:35am ET “Congress must approve” post, 15 Nov 2026 (archive)',
+        url: 'https://www.trumpstruth.org/statuses/43588',
+      },
+      {
+        label: 'CNBC: Trump breaks silence on FAA nationwide ground stop, blames Biden (15 Nov 2026)',
+        url: 'https://www.cnbc.com/2026/11/15/trump-breaks-silence-on-faa-nationwide-ground-stop-blames-biden-.html',
+      },
+      {
+        label: 'UPI: Trump calls on Congress to fund new air traffic control network after ground stop (15 Nov 2026)',
+        url: 'https://www.upi.com/Top_News/US/2026/11/15/trump-faa-ground-stop-funding/9211794761362/',
+      },
+      {
+        label: 'The Hill: Trump calls on Congress to fund new air traffic control system (15 Nov 2026)',
+        url: 'https://thehill.com/policy/transportation/6221316-trump-requests-air-traffic-funding/',
+      },
+    ],
+    published: true,
+    fixture: false,
+    proseArticle: true,
+  },
+  {
     slug: 'trump-trash-island-golf-course-judge-blocks-closure',
     kind: 'clip',
     ogKicker: '2:35PM ET',
@@ -137,7 +266,7 @@ export const articles: Article[] = [
       accountName: 'Donald Trump',
       archiveUrl: 'https://www.trumpstruth.org/statuses/43580',
     },
-    relatedClips: ['trump-golf-course-who-was-hit-many-people', 'trump-golf-course-judge-no-expertise-in-golf-fore'],
+    relatedClips: ['trump-trash-island-affectionately-known-appeal-judge', 'trump-golf-course-who-was-hit-many-people', 'trump-golf-course-judge-no-expertise-in-golf-fore'],
     body: [
       'Air travel was still a mess and the president still hadn’t been seen in public. Then he found a crisis worth 319 words: the fairways.',
       'At 2:35pm ET Saturday, Trump posted that “Trash Island is currently the Worst Golf Course anywhere in the World,” and that “Judge Ana Reyes doesn’t want us to quickly and inexpensively fix up the Course which is, also, very dangerous — The Fairways are far too close together.” Down by the river, he wrote, “all you hear is the sound of people screaming, ‘FORE!’” He promised D.C. residents “a 50% discount on any and all Rates charged.” Trump wrote “hopefully the Judge will agree.” In the eight minutes before that, he put up six posts of course photos, all reposts of images from 20 Oct.',
@@ -301,7 +430,7 @@ export const articles: Article[] = [
       accountName: 'Donald Trump',
       archiveUrl: 'https://trumpstruth.org/statuses/43568',
     },
-    relatedClips: ['trump-newsom-death-row-hannibal-lecter-nice-guy', 'trump-de-niro-moron-hollywood-tax-credits-kissing-my-ass', 'trump-jensen-huang-only-one-man-tim-cook'],
+    relatedClips: ['trump-faa-ground-stop-biden-disaster-congress-money-fast', 'trump-newsom-death-row-hannibal-lecter-nice-guy', 'trump-de-niro-moron-hollywood-tax-credits-kissing-my-ass', 'trump-jensen-huang-only-one-man-tim-cook'],
     body: [
       'Every plane in America was parked. The one thing still cleared for takeoff was a tax break for Hollywood.',
       'At 5:52pm ET Friday, Trump posted that he is “working with Senator Tim Scott and, believe it or not, Senator Adam Schiff” on the Motion Picture, Television, and Entertainment Revitalization Act, followed by a long roll call of senators and House members from both parties. Hollywood, he wrote, has been “emptied out” by other countries’ tax incentives, and the cost “will be made up tenfold by the money pouring into the Treasury’s coffers.” The sign-off: “MAKE OUR ENTERTAINMENT INDUSTRY GREAT AGAIN!” Deadline says the bill is a 20% federal incentive. The Cato Institute puts the cost at $33 billion to $49 billion, and the Joint Committee on Taxation hasn’t published its estimate yet.',
