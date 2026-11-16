@@ -1633,7 +1633,7 @@ export const articles: Article[] = [
     ogPunch: 'over',
     ogStamp: 'ON TAPE',
     title: 'Trump says Iran ‘militarily is effectively over’ and the war will end ‘fairly soon’',
-    seoTitle: 'Trump says Iran is ‘effectively over,’ ending ‘fairly soon’',
+    seoTitle: 'Trump: ‘Iran militarily is effectively over’ — ‘fairly soon’',
     category: 'REPORTS',
     date: '2026-11-09',
     dek: 'At a White House briefing Monday, Trump said Iran “militarily is effectively over” and the war would end “fairly soon.”',
