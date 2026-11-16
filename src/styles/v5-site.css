@@ -41,7 +41,7 @@ iframe.yt{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(
 .prose{max-width:var(--prose)}
 .prose p{font:400 19px/1.6 var(--f-body);color:var(--text);margin:0 0 1.1em}
 .prose h2{font:700 24px/1.25 var(--f-head);letter-spacing:-.015em;margin:1.4em 0 .5em}
-.prose a{color:var(--blue-ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.prose a,.intro a{color:var(--blue-ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
 .prose .player{margin:24px 0 28px}
 .rel{max-width:var(--prose);margin:28px 0}
 .rel h2,.srcbox h2{font:700 13px/1 var(--f-ui);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
