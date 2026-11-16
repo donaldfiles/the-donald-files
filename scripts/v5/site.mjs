@@ -61,24 +61,43 @@ const PLATFORM = { x: 'X', youtube: 'YouTube', truthsocial: 'Truth Social' }
 const ytId = (e) => e.id || /(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/.exec(e.youtubeUrl || e.embedUrl || '')?.[1]
 const PLAY = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32"/><path d="M26 20 L46 32 L26 44 Z"/></svg>'
 const QUOTE = '<svg class="play" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32"/><path d="M20 38c0-7 4-12 10-14l1 3c-3 1-5 4-5 6h5v9H20zm15 0c0-7 4-12 10-14l1 3c-3 1-5 4-5 6h5v9H35z"/></svg>'
+// A real YouTube id, not the 'none' flag used on no-player cards.
+const hasYoutubeId = (a) => !!(a.youtubeId && a.youtubeId !== 'none')
+// Playable tile: YouTube or an X embed. Truth-only text cards and no-embed interviews have no player.
+const hasPlayer = (a) => {
+  if (hasYoutubeId(a)) return true
+  const typ = (a.embed || {}).type
+  return typ === 'youtube' || typ === 'x'
+}
 // Text-only Truth Social posts (no embed, no YouTube: the post text is never rendered) tile like any
 // other Truth Social post: QUOTE icon + "Truth Social" label, never the PLAY icon or a generic "Clip" label.
-const isTruthText = (a) => a.kind === 'clip' && !a.embed && !a.youtubeId && (a.topics || []).includes('truth-social')
+const isTruthText = (a) => a.kind === 'clip' && !a.embed && !hasYoutubeId(a) && (a.topics || []).includes('truth-social')
 const isTruth = (a) => isTruthText(a) || (a.embed || {}).type === 'truthsocial'
+const badgeFor = (a) => {
+  const typ = (a.embed || {}).type
+  if (!hasPlayer(a)) {
+    if (isTruth(a) || typ === 'truthsocial' || (a.topics || []).includes('truth-social')) {
+      return { icon: QUOTE, label: 'Truth Social' }
+    }
+    return { icon: QUOTE, label: 'Text' }
+  }
+  return { icon: PLAY, label: PLATFORM[typ] || 'Clip' }
+}
 const dur = (a) => (a.duration ? `<span class="dur">${esc(a.duration)}</span>` : '')
 
 function posterImg(src, eager) {
   return `<img class="poster" src="${esc(src)}" alt="" width="640" height="360" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`
 }
 function thumb(a, { big = false, eager = false, noPoster = false } = {}) {
-  const e = a.embed || (isTruthText(a) ? { type: 'truthsocial' } : {})
+  const e = a.embed || (isTruth(a) ? { type: 'truthsocial' } : {})
   const id = e.type === 'youtube' ? ytId(e) : null
   const src = (noPoster ? null : a.poster) || (id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null)
-  // No image (e.g. a Truth Social text post): solid blue tile with the kicker. Never grey mock lines.
-  const inner = src ? posterImg(src, eager) : `<span class="tkick">${esc(kickerOf(a) || PLATFORM[e.type] || 'Clip')}</span>`
-  const bits = `${inner}${e.type === 'truthsocial' ? QUOTE : PLAY}<span class="src">${esc(PLATFORM[e.type] || 'Clip')}</span>${dur(a)}`
+  const badge = badgeFor(a)
+  // No image (e.g. a Truth Social text post or no-embed interview): solid blue tile with the kicker. Never grey mock lines.
+  const inner = src ? posterImg(src, eager) : `<span class="tkick">${esc(kickerOf(a) || badge.label)}</span>`
+  const bits = `${inner}${badge.icon}<span class="src">${esc(badge.label)}</span>${dur(a)}`
   // YouTube-first clips play right in the tile (click-to-load facade; the link fallback is the YouTube page).
-  if (a.youtubeId) return `<a class="thumb facade${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(e.url)}" target="_blank" rel="noopener" data-type="youtube" data-id="${esc(id)}" data-start="${e.start || 0}" aria-label="Play ${qt(a.title)} here">${bits}</a>`
+  if (hasYoutubeId(a) && e.url) return `<a class="thumb facade${big ? ' big' : ''}${src ? '' : ' fb'}" href="${esc(e.url)}" target="_blank" rel="noopener" data-type="youtube" data-id="${esc(id)}" data-start="${e.start || 0}" aria-label="Play ${qt(a.title)} here">${bits}</a>`
   return `<div class="thumb${big ? ' big' : ''}${src ? '' : ' fb'}">${bits}</div>`
 }
 // Clip tiles land on the player (canonical URLs stay hash-free).
@@ -87,17 +106,17 @@ function tile(a, row = false, { et = false, noPoster = false, attrs = '' } = {})
   const etClock = et && datesFor(a).hasTime ? `<span class="dot">·</span><span class="etc">${esc(clockET(pub(a)))}</span>` : ''
   const meta = `<div class="tmeta">${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}${etClock}</div><h3 class="thed">${punch(a.title, a.ogPunch)}</h3>`
   const full = row ? ` title="${esc(a.title)}" aria-label="${esc(a.title)}"` : ''
-  if (a.youtubeId) return `<div class="tile ytile${row ? ' row' : ''}"${attrs}>${thumb(a, { noPoster })}<a class="tbody" href="${esc(hrefFor(a))}"${full}>${meta}</a></div>`
+  if (hasYoutubeId(a)) return `<div class="tile ytile${row ? ' row' : ''}"${attrs}>${thumb(a, { noPoster })}<a class="tbody" href="${esc(hrefFor(a))}"${full}>${meta}</a></div>`
   return `<a class="tile${row ? ' row' : ''}" href="${esc(playHref(a))}"${full}${attrs}>${thumb(a, { noPoster })}<div class="tbody">${meta}</div></a>`
 }
 function feat(a) {
   const body = `<div class="tmeta"><span class="new" data-new hidden>New</span>${kickerOf(a) ? `<span class="kick">${esc(kickerOf(a))}</span><span class="dot">·</span>` : ''}${timeEl(a)}</div><h2 class="fhed">${punch(a.title, a.ogPunch)}</h2>${a.dek ? `<p class="fdek">${esc(a.dek)}</p>` : ''}`
-  if (a.youtubeId) return `<div class="feat ytile">${thumb(a, { big: true, eager: true })}<a class="fbody" href="${esc(hrefFor(a))}">${body}</a></div>`
+  if (hasYoutubeId(a)) return `<div class="feat ytile">${thumb(a, { big: true, eager: true })}<a class="fbody" href="${esc(hrefFor(a))}">${body}</a></div>`
   return `<a class="feat" href="${esc(playHref(a))}">${thumb(a, { big: true, eager: true })}<div class="fbody">${body}</div></a>`
 }
 function card(a) {
   const t = (a.topics || [])[0]
-  return `<a class="card" href="${esc(hrefFor(a))}"><div class="cbar"><span class="kick">${esc(kickerOf(a))}</span><span class="file">File ${String(fileNo.get(a.slug) || 0).padStart(3, '0')}</span></div><h3 class="ched">${punch(a.title, a.ogPunch)}</h3><div class="cfoot"><span>${esc(t ? TOPIC_LABEL[t] : isTruthText(a) ? 'Truth Social' : a.kind === 'clip' ? 'Clip' : 'File')}</span>${timeEl(a, '')}</div></a>`
+  return `<a class="card" href="${esc(hrefFor(a))}"><div class="cbar"><span class="kick">${esc(kickerOf(a))}</span><span class="file">File ${String(fileNo.get(a.slug) || 0).padStart(3, '0')}</span></div><h3 class="ched">${punch(a.title, a.ogPunch)}</h3><div class="cfoot"><span>${esc(t ? TOPIC_LABEL[t] : isTruth(a) ? 'Truth Social' : a.kind === 'clip' && !hasPlayer(a) ? 'Text' : a.kind === 'clip' ? 'Clip' : 'File')}</span>${timeEl(a, '')}</div></a>`
 }
 const chip = (t, on = false, arrow = true) => `<a class="chip${on ? ' on' : ''}" href="/trump-videos/${t}/"${on ? ' aria-current="page"' : ''}>${esc(TOPIC_LABEL[t])}${arrow ? '<span>→</span>' : ''}</a>`
 const crumbs = (items) =>
@@ -119,7 +138,7 @@ function verificationMeta() {
 }
 
 // ---------- copy (Reed-approved, from design/v4-video-first + v5 mocks) ----------
-const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every clip is embedded from its original upload, and every claim links to its source.'
+const FOOT_LINE = 'The administration, annotated. Sourced. Snarky. Receipts attached. Every video is embedded from its original upload. When an interview can’t be embedded, we quote it and link the original. We link the source under every clip.'
 const HUB_INTRO = 'Every Donald Trump clip he’d rather you didn’t rewatch: the gaffes, the lies, the ballroom, the court fights and the cruelty, embedded from the original uploads with our notes and the receipts underneath. Fresh clips land every day.'
 // Topic hub intros (Reed-cleared, 21 Oct; courts refreshed 22 Oct for the Sullivan clip; cruelty refreshed 23 Oct for the El-Sayed, Ramaswamy and Camp Lejeune clips; lies refreshed 24 Oct for the third-term, Epic Fury and Ukraine-tariffs clips; gaffes refreshed 25 Oct for the Reflecting Pool/stone, data-centers and Iran-negotiating clips; cruelty refreshed 26 Oct for the gas, El-Sayed metal-detector, Norway and Space Force/Roop clips; ballroom refreshed 27 Oct for the relaxes-me, Corinth heckler, Obama Cheesecake Factory and pool clips; courts refreshed 28 Oct for the Ted Cruz Supreme Court, golf course judge, illegal-because-unfair and violate-the-governor clips; gaffes refreshed 29 Oct for the Obama cognitive-test, Blacks for Trump, Lutnick 9/11 and solar-panels clips; lies refreshed 30 Oct for the Iran didn’t-start-the-war, prices-lower-than-Obama, California millions and rallies/Kansas-Iowa clips; truth-social refreshed 31 Oct for the Minnesota three times, Bill Maher, Netanyahu endorsement and golf-judge clips; tariffs refreshed 1 Nov for the De Niro/Hollywood tax-credits, Ukraine never-thought-of-it and Mississippi farmer clips; cruelty refreshed 2 Nov for the Kansas Hamilton unsupportive, Haley Stevens great-respect, El-Sayed back-to-where-he-came-from, Angie Nixon low-IQ and Panhandle drizzle clips; gaffes refreshed 3 Nov for the 401(k) wives, Alaska 190 IQ, did-not-marry-my-sister, Agent Orange red crap and grass-has-a-life clips; lies refreshed 8 Nov for the Wiles zero-chance, Hannity won-every-time, Israel aid, rallies on-the-ballot and Vance largely-true clips; truth-social refreshed 8 Nov for the Dana White, DOJ extortionists, 10:37pm ballot, Abbott/Fox, Dumocrats stock market and Alaska KIDNAPPED posts; gaffes refreshed 15 Nov for the Stephen A. Smith both-ways, Hewitt get-Cuba-done, Iran effectively-over, Dana White not-in-politics and 60 Minutes UFO/Tom Cruise clips; truth-social refreshed 15 Nov for the Newsom/Hannibal Lecter, Trash Island, Schiff Hollywood bill, only-President salary and Hegseth EXONERATION posts; wording from the live clips).
 const TOPIC_INTRO = {
@@ -540,7 +559,7 @@ function recordPage() {
   }
   const head = headTags({ title: 'The Record: every Trump file and clip, by date', description: 'The Donald Files record: every published file and clip about Donald Trump, by date, newest first.', url: `${SITE}/the-record`, image: DEFAULT_OG, type: 'website', jsonLd: crumbLd([['Home', '/'], ['The Record', '/the-record']]) })
   const body = `${crumbs([['Home', '/'], ['The Record', '/the-record']])}<section class="hubhead"><div class="wrap"><p class="kick">The Record</p><h1 class="h1">Everything we’ve <mark>filed</mark>, by date</h1></div></section><section class="sec tight"><div class="wrap rec">${[...groups]
-    .map(([day, list]) => `<h2>${esc(day)}</h2><ul>${list.map((a) => `<li><span class="rk">${isTruthText(a) ? 'Truth Social' : a.kind === 'clip' ? 'Clip' : 'File'}</span><a href="${esc(hrefFor(a))}">${esc(a.title)}</a></li>`).join('')}</ul>`)
+    .map(([day, list]) => `<h2>${esc(day)}</h2><ul>${list.map((a) => `<li><span class="rk">${isTruth(a) ? 'Truth Social' : a.kind === 'clip' && !hasPlayer(a) ? 'Text' : a.kind === 'clip' ? 'Clip' : 'File'}</span><a href="${esc(hrefFor(a))}">${esc(a.title)}</a></li>`).join('')}</ul>`)
     .join('')}</div></section>`
   write('the-record.html', page({ title: 'The Record | The Donald Files', head, active: 'record', body }))
 }

@@ -168,7 +168,7 @@ export function extractArticles(text) {
  * (players, tiles, VideoObject, video sitemap, posters) then just sees a YouTube embed.
  */
 function youtubeFirst(a) {
-  if (a.kind !== 'clip' || !a.youtubeId) return a
+  if (a.kind !== 'clip' || !a.youtubeId || a.youtubeId === 'none') return a
   const id = a.youtubeId, start = a.youtubeStart || 0
   return {
     ...a,
